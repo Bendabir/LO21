@@ -1,3 +1,6 @@
 # Exclude all files below
 UI.*
 UML.*
+*.vpp.*
+*.vpp~*
+*.vux
