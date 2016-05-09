@@ -46,3 +46,4 @@ Il manque des opérateurs.
 - Affichage du clavier
 - X derniers éléments de la pile à afficher
 - Bip sonore (message utilisateurs)
+- 
