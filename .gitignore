@@ -1,6 +1,6 @@
 # Exclude all files below
-UI.*
-UML.*
-*.vpp.*
-*.vpp~*
-*.vux
+conception/UI.*
+conception/UML.*
+conception/*.vpp.*
+conception/*.vpp~*
+conception/*.vux
