@@ -57,6 +57,8 @@ Il manque des opérateurs.
 | `LittéraleRationnelle` | `LittéraleRationnelle` | `LittéraleRationnelle` ou `LittéraleEntière` (si dénominateur = 1) |
 | `LittéraleEntière` ou `LittéraleRationnelle` ou `LittéraleRéelle`| `LittéraleRéelle` | `LittéraleRéelle` |
 | `LittéraleEntière` ou `LittéraleRationnelle` ou `LittéraleRéelle` (`LittéraleNumérique`) | `LittéraleComplexe` | `LittéraleComplexe` ou `LittéraleNumérique` (si partie imaginaire = 0) |
+| `LittéraleExpression` | `LittéraleExpression` | `LittéraleExpression` |
+| `LittéraleExpression` | `LittéraleNumérique` ou `LittéraleComplexe` | `LittéraleExpression` |
 
 ### -
 
@@ -66,6 +68,8 @@ Il manque des opérateurs.
 | `LittéraleRationnelle` | `LittéraleRationnelle` | `LittéraleRationnelle` ou `LittéraleEntière` (si dénominateur = 1) |
 | `LittéraleEntière` ou `LittéraleRationnelle` ou `LittéraleRéelle`| `LittéraleRéelle` | `LittéraleRéelle` |
 | `LittéraleEntière` ou `LittéraleRationnelle` ou `LittéraleRéelle` (`LittéraleNumérique`) | `LittéraleComplexe` | `LittéraleComplexe` ou `LittéraleNumérique` (si partie imaginaire = 0) |
+| `LittéraleExpression` | `LittéraleExpression` | `LittéraleExpression` |
+| `LittéraleExpression` | `LittéraleNumérique` ou `LittéraleComplexe` | `LittéraleExpression` |
 
 ### *
 
@@ -75,6 +79,8 @@ Il manque des opérateurs.
 | `LittéraleRationnelle` | `LittéraleRationnelle` | `LittéraleRationnelle` ou `LittéraleEntière` (si dénominateur = 1) |
 | `LittéraleEntière` ou `LittéraleRationnelle` ou `LittéraleRéelle`| `LittéraleRéelle` | `LittéraleRéelle` |
 | `LittéraleEntière` ou `LittéraleRationnelle` ou `LittéraleRéelle` (`LittéraleNumérique`) | `LittéraleComplexe` | `LittéraleComplexe` ou `LittéraleNumérique` (si partie imaginaire = 0) |
+| `LittéraleExpression` | `LittéraleExpression` | `LittéraleExpression` |
+| `LittéraleExpression` | `LittéraleNumérique` ou `LittéraleComplexe` | `LittéraleExpression` |
 
 ### /
 
@@ -84,31 +90,44 @@ Il manque des opérateurs.
 | `LittéraleRationnelle` | `LittéraleRationnelle` | `LittéraleRationnelle` ou `LittéraleEntière` (si dénominateur = 1) |
 | `LittéraleEntière` ou `LittéraleRationnelle` ou `LittéraleRéelle`| `LittéraleRéelle` | `LittéraleRéelle` |
 | `LittéraleEntière` ou `LittéraleRationnelle` ou `LittéraleRéelle` (`LittéraleNumérique`) | `LittéraleComplexe` | `LittéraleComplexe` ou `LittéraleNumérique` (si partie imaginaire = 0) |
+| `LittéraleExpression` | `LittéraleExpression` | `LittéraleExpression` |
+| `LittéraleExpression` | `LittéraleNumérique` ou `LittéraleComplexe` | `LittéraleExpression` |
 
 
 ### DIV
 
+Provoque une erreur sur `LittéraleRationnelle`, `LittéraleRéelle` ou `LittéraleComplexe` ?
+
 | Opérande 1 | Opérande 2 | Sortie |
 |:----------:|:----------:|:------:|
 | `LittéraleEntière` | `LittéraleEntière` | `LittéraleEntière` |
+| `LittéraleExpression` | `LittéraleExpression` | `LittéraleExpression` |
+| `LittéraleExpression` | `LittéraleNumérique` ou `LittéraleComplexe` | `LittéraleExpression` |
 
 ### MOD
 
+Provoque une erreur sur `LittéraleRationnelle`, `LittéraleRéelle` ou `LittéraleComplexe` ?
+
 | Opérande 1 | Opérande 2 | Sortie |
 |:----------:|:----------:|:------:|
 | `LittéraleEntière` | `LittéraleEntière` | `LittéraleEntière` |
+| `LittéraleExpression` | `LittéraleExpression` | `LittéraleExpression` |
+| `LittéraleExpression` | `LittéraleNumérique` ou `LittéraleComplexe` | `LittéraleExpression` |
 
 ### POW
 
-| Opérande | Sortie |
-|:--------:|:------:|
-| `LittéraleNumérique` ou `LittéraleComplexe` | `LittéraleNumérique` ou `LittéraleComplexe` |
+| Opérande 1 | Opérande 2 | Sortie |
+|:----------:|:----------:|:------:|
+| `LittéraleNumérique` ou `LittéraleComplexe` |  `LittéraleNumérique` | `LittéraleNumérique` ou `LittéraleComplexe` |
+| `LittéraleExpression` | `LittéraleExpression` | `LittéraleExpression` |
+| `LittéraleExpression` | `LittéraleNumérique` ou `LittéraleComplexe` | `LittéraleExpression` |
 
 ### NEG
 
 | Opérande | Sortie |
 |:--------:|:------:|
 | `LittéraleNumérique` ou `LittéraleComplexe` | `LittéraleNumérique` ou `LittéraleComplexe` |
+| `LittéraleExpression` | `LittéraleExpression` |
 
 ### SIN, ARCSIN, COS, ARCCOS, TAN, ARCTAN (radian)
 
@@ -117,9 +136,69 @@ On va oublier la trigonométrie complexe, ça part en sinus hyperboliques etc.
 | Opérande | Sortie |
 |:--------:|:------:|
 | `LittéraleNumérique` | `LittéraleNumérique` |
+| `LittéraleExpression` | `LittéraleExpression` |
 
 ### SQRT
+
+On va commencer sans implémenter le calcul d'une racine carrée d'un nombre complexe.
+Une racine négative renvoie un nombre complexe.
+
+| Opérande | Sortie |
+|:--------:|:------:|
+| `LittéraleNumérique` | `LittéraleNumérique` ou `LittéraleComplexe` |
+| `LittéraleExpression` | `LittéraleExpression` |
+
+### EXP
 
 | Opérande | Sortie |
 |:--------:|:------:|
 | `LittéraleNumérique` ou `LittéraleComplexe` | `LittéraleNumérique` ou `LittéraleComplexe` |
+| `LittéraleExpression` | `LittéraleExpression` |
+
+### LN 
+
+Il s'agit par définition du logarithme naturelle, donc réel. On ne se préoccupe pas de l'implémentation complexe.
+
+| Opérande | Sortie |
+|:--------:|:------:|
+| `LittéraleNumérique` | `LittéraleNumérique` |
+| `LittéraleExpression` | `LittéraleExpression` |
+
+### NUM
+
+Provoque une erreur sur `LittéraleRéelle` ou `LittéraleComplexe`.
+
+| Opérande | Sortie |
+|:--------:|:------:|
+| `LittéraleEntière` ou `LittéraleRationnelle` | `LittéraleEntière` |
+| `LittéraleExpression` | `LittéraleExpression` |
+
+### DEN
+
+Provoque une erreur sur `LittéraleRéelle` ou `LittéraleComplexe`.
+
+| Opérande | Sortie |
+|:--------:|:------:|
+| `LittéraleEntière` ou `LittéraleRationnelle` | `LittéraleEntière` |
+| `LittéraleExpression` | `LittéraleExpression` |
+
+### $
+
+| Opérande 1 | Opérande 2 | Sortie |
+|:----------:|:----------:|:------:|
+| `LittéraleNumérique` |  `LittéraleNumérique` | `LittéraleComplexe` |
+| `LittéraleExpression` | `LittéraleExpression` |
+
+### RE, IM, ARG, NORM
+
+| Opérande | Sortie |
+|:--------:|:------:|
+| `LittéraleComplexe` ou `LittéraleNumérique` | `LittéraleNumérique` |
+| `LittéraleExpression` | `LittéraleExpression` |
+
+### Opérateurs logiques
+
+| Opérande | Sortie |
+|:--------:|:------:|
+| `LittéraleComplexe` ou `LittéraleNumérique` | `LittéraleEntière` (0 ou 1) |
+| `LittéraleExpression` | `LittéraleExpression` |
