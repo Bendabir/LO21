@@ -46,4 +46,80 @@ Il manque des opérateurs.
 - Affichage du clavier
 - X derniers éléments de la pile à afficher
 - Bip sonore (message utilisateurs)
-- 
+
+## Opérations
+
+### +
+
+| Opérande 1 | Opérande 2 | Sortie |
+|:----------:|:----------:|:------:|
+| `LittéraleEntière` | `LittéraleEntière` | `LittéraleEntière` |
+| `LittéraleRationnelle` | `LittéraleRationnelle` | `LittéraleRationnelle` ou `LittéraleEntière` (si dénominateur = 1) |
+| `LittéraleEntière` ou `LittéraleRationnelle` ou `LittéraleRéelle`| `LittéraleRéelle` | `LittéraleRéelle` |
+| `LittéraleEntière` ou `LittéraleRationnelle` ou `LittéraleRéelle` (`LittéraleNumérique`) | `LittéraleComplexe` | `LittéraleComplexe` ou `LittéraleNumérique` (si partie imaginaire = 0) |
+
+### -
+
+| Opérande 1 | Opérande 2 | Sortie |
+|:----------:|:----------:|:------:|
+| `LittéraleEntière` | `LittéraleEntière` | `LittéraleEntière` |
+| `LittéraleRationnelle` | `LittéraleRationnelle` | `LittéraleRationnelle` ou `LittéraleEntière` (si dénominateur = 1) |
+| `LittéraleEntière` ou `LittéraleRationnelle` ou `LittéraleRéelle`| `LittéraleRéelle` | `LittéraleRéelle` |
+| `LittéraleEntière` ou `LittéraleRationnelle` ou `LittéraleRéelle` (`LittéraleNumérique`) | `LittéraleComplexe` | `LittéraleComplexe` ou `LittéraleNumérique` (si partie imaginaire = 0) |
+
+### *
+
+| Opérande 1 | Opérande 2 | Sortie |
+|:----------:|:----------:|:------:|
+| `LittéraleEntière` | `LittéraleEntière` | `LittéraleEntière` |
+| `LittéraleRationnelle` | `LittéraleRationnelle` | `LittéraleRationnelle` ou `LittéraleEntière` (si dénominateur = 1) |
+| `LittéraleEntière` ou `LittéraleRationnelle` ou `LittéraleRéelle`| `LittéraleRéelle` | `LittéraleRéelle` |
+| `LittéraleEntière` ou `LittéraleRationnelle` ou `LittéraleRéelle` (`LittéraleNumérique`) | `LittéraleComplexe` | `LittéraleComplexe` ou `LittéraleNumérique` (si partie imaginaire = 0) |
+
+### /
+
+| Opérande 1 | Opérande 2 | Sortie |
+|:----------:|:----------:|:------:|
+| `LittéraleEntière` | `LittéraleEntière` | `LittéraleEntière` ou `LittéraleRationnelle`|
+| `LittéraleRationnelle` | `LittéraleRationnelle` | `LittéraleRationnelle` ou `LittéraleEntière` (si dénominateur = 1) |
+| `LittéraleEntière` ou `LittéraleRationnelle` ou `LittéraleRéelle`| `LittéraleRéelle` | `LittéraleRéelle` |
+| `LittéraleEntière` ou `LittéraleRationnelle` ou `LittéraleRéelle` (`LittéraleNumérique`) | `LittéraleComplexe` | `LittéraleComplexe` ou `LittéraleNumérique` (si partie imaginaire = 0) |
+
+
+### DIV
+
+| Opérande 1 | Opérande 2 | Sortie |
+|:----------:|:----------:|:------:|
+| `LittéraleEntière` | `LittéraleEntière` | `LittéraleEntière` |
+
+### MOD
+
+| Opérande 1 | Opérande 2 | Sortie |
+|:----------:|:----------:|:------:|
+| `LittéraleEntière` | `LittéraleEntière` | `LittéraleEntière` |
+
+### POW
+
+| Opérande | Sortie |
+|:--------:|:------:|
+| `LittéraleNumérique` ou `LittéraleComplexe` | `LittéraleNumérique` ou `LittéraleComplexe` |
+
+### NEG
+
+| Opérande | Sortie |
+|:--------:|:------:|
+| `LittéraleNumérique` ou `LittéraleComplexe` | `LittéraleNumérique` ou `LittéraleComplexe` |
+
+### SIN, ARCSIN, COS, ARCCOS, TAN, ARCTAN (radian)
+
+On va oublier la trigonométrie complexe, ça part en sinus hyperboliques etc.
+
+| Opérande | Sortie |
+|:--------:|:------:|
+| `LittéraleNumérique` | `LittéraleNumérique` |
+
+### SQRT
+
+| Opérande | Sortie |
+|:--------:|:------:|
+| `LittéraleNumérique` ou `LittéraleComplexe` | `LittéraleNumérique` ou `LittéraleComplexe` |
