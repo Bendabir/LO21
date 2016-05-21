@@ -4,4 +4,6 @@ HEADERS += \
     src/digital_literal.h
 
 SOURCES += \
-    src/main.cpp
+    src/main.cpp \
+    src/digital_literal.cpp \
+    src/literal.cpp
