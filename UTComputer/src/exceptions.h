@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <exception>
+#include <typeinfo>
 
 /*!
  * \brief The CalculatorException class
