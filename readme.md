@@ -187,7 +187,8 @@ Provoque une erreur sur `LittéraleRéelle` ou `LittéraleComplexe`.
 | Opérande 1 | Opérande 2 | Sortie |
 |:----------:|:----------:|:------:|
 | `LittéraleNumérique` |  `LittéraleNumérique` | `LittéraleComplexe` |
-| `LittéraleExpression` | `LittéraleExpression` |
+| `LittéraleExpression` | `LittéraleExpression` | `LittéraleExpression` |
+| `LittéraleExpression` | `LittéraleNumérique` ou `LittéraleComplexe` | `LittéraleExpression` |
 
 ### RE, IM, ARG, NORM
 
