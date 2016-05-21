@@ -34,6 +34,4 @@ public:
     double toReal() const;
 };
 
-//std::ostream& operator<<(std::ostream& f, const RationalLiteral& q);
-
 #endif // RATIONNALLITERAL_H
