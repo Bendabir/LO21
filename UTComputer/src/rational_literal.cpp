@@ -1,23 +1,17 @@
-//#include "rational_literal.h"
+#include "rational_literal.h"
 
-//std::ostream& operator<<(std::ostream& f, const RationalLiteral& q){
-//    f << q.toString().toStdString();
+QString RationalLiteral::toString() const {
+    QString str = QString::number(numerator.getNumber());
 
-//    return f;
-//}
+    if(denominator != 1)
+        str += "/" + QString::number(denominator.getNumber());
 
-//QString RationalLiteral::toString() const {
-//    QString str = QString::number(*numerator);
+    return str;
+}
 
-//    if(denominator != 1)
-//        str += "/" + QString::number(*denominator);
-
-//    return str;
-//}
-
-//double RationalLiteral::toReal() const {
-//    return static_cast<double>(*numerator) / *denominator;
-//}
+RealLiteral RationalLiteral::toReal() const {
+    return (static_cast<double>(numerator.getNumber()) / denominator.getNumber());
+}
 
 //void RationalLiteral::simplify() {
 //    if(numerator == 0){
@@ -32,8 +26,8 @@
 
 //    /* utilisation de l’algorithme d’Euclide pour trouver le Plus Grand Commun
 //    Denominateur (PGCD) entre le numerateur et le denominateur */
-//    int a = numerator,
-//        b = denominator;
+//    int a = numerator.getNumber(),
+//        b = denominator.getNumber();
 
 //    // on ne travaille qu’avec des valeurs positives...
 //    if(a < 0)
@@ -50,7 +44,7 @@
 
 //    // on divise le numerateur et le denominateur par le PGCD=a
 //    numerator /= a;
-//    denominator/=a;
+//    denominator /= a;
 
 //    // si le denominateur est négatif, on fait passer le signe - au denominateur
 //    if(denominator < 0){

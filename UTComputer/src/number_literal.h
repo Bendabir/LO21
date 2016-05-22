@@ -3,6 +3,8 @@
 
 #include "digital_literal.h"
 
+// NOTE : Certaines fonctions/opérations sont implémentables en temps que méthodes
+
 template<class T = int>
 class NumberLiteral : public DigitalLiteral {
 private:
@@ -10,7 +12,7 @@ private:
 
 public:
     // Constructeurs/Destructeurs
-    NumberLiteral(T n = 0) : number(n){} // On profite de la conversion implicite
+    NumberLiteral(T n = 0) : DigitalLiteral(), number(n){} // On profite de la conversion implicite
     // Recopie par défaut
     // Affectation par défaut
     // Destructeur par défaut
@@ -20,8 +22,10 @@ public:
     void setNumber(const T& n) {number = n;}
 
     // Opérateurs numériques
-    NumberLiteral<T> operator-() const;
-    NumberLiteral<T> neg() const;
+    NumberLiteral<T>& operator++();
+    NumberLiteral<T> operator++(int);
+    NumberLiteral<T>& operator--();
+    NumberLiteral<T> operator--(int);
 
     // Opérateurs logiques
     bool operator==(const NumberLiteral<T>& l) const;
@@ -30,6 +34,8 @@ public:
     bool operator<(const NumberLiteral<T>& l) const;
     bool operator>=(const NumberLiteral<T>& l) const;
     bool operator>(const NumberLiteral<T>& l) const;
+
+    // Manque AND, OR et NOT
 
     // Opérateurs
     NumberLiteral<T>& operator=(T n);
@@ -49,12 +55,26 @@ QString NumberLiteral<T>::toString() const {
 }
 
 template<class T>
-NumberLiteral<T> NumberLiteral<T>::operator-() const {
-    return -number;
+NumberLiteral<T>& NumberLiteral<T>::operator++(){
+    ++number;
+    return *this;
 }
 template<class T>
-NumberLiteral<T> NumberLiteral<T>::neg() const {
-    return -number;
+NumberLiteral<T> NumberLiteral<T>::operator++(int){
+    NumberLiteral<T> temp = *this;
+    ++*this;
+    return temp;
+}
+template<class T>
+NumberLiteral<T>& NumberLiteral<T>::operator--(){
+    --number;
+    return *this;
+}
+template<class T>
+NumberLiteral<T> NumberLiteral<T>::operator--(int){
+    NumberLiteral<T> temp = *this;
+    --*this;
+    return temp;
 }
 
 // Opérateurs logiques
@@ -136,7 +156,7 @@ IntegerLiteral div(const IntegerLiteral& l1, const IntegerLiteral& l2);
 
 // MOD
 IntegerLiteral operator%(const IntegerLiteral& l1, const IntegerLiteral& l2);
-IntegerLiteral mod(const IntegerLiteral& l1, const IntegerLiteral& l2);
+//IntegerLiteral mod(const IntegerLiteral& l1, const IntegerLiteral& l2);
 
 // POW
 template<class T>
@@ -147,6 +167,16 @@ template<class T, class U>
 RealLiteral pow(const NumberLiteral<T>& l1, const NumberLiteral<U>& l2){
     return std::pow(l1.getNumber(), l2.getNumber());
 }
+
+// NEG
+template<class T>
+NumberLiteral<T> operator-(const NumberLiteral<T>& l){
+    return -l.getNumber();
+}
+//template<class T>
+//NumberLiteral<T> neg(const NumberLiteral<T>& l){
+//    return -l;
+//}
 
 // SIN, ARCSIN, COS, ARCCOS, TAN, ARCTAN
 template<class T>
@@ -230,5 +260,31 @@ NumberLiteral<T> im(const NumberLiteral<T>& l){
 // On fera l'implémentation en déclarant un complexe à partir d'un entier/réel puis en retournant sa norme/argument
 
 // NORM
+
+
+// Autres opérateurs utiles
+template<class T, class U>
+NumberLiteral<T>& operator+=(NumberLiteral<T>& l1, const NumberLiteral<U>& l2){
+    l1 = l1 + l2;
+    return l1;
+}
+template<class T, class U>
+NumberLiteral<T>& operator-=(NumberLiteral<T>& l1, const NumberLiteral<U>& l2){
+    l1 = l1 - l2;
+    return l1;
+}
+template<class T, class U>
+NumberLiteral<T>& operator*=(NumberLiteral<T>& l1, const NumberLiteral<U>& l2){
+    l1 = l1 * l2;
+    return l1;
+}
+template<class T, class U>
+NumberLiteral<T>& operator/=(NumberLiteral<T>& l1, const NumberLiteral<U>& l2){
+    if(l2 == 0)
+        throw CalculatorException("Erreur : Division par 0 impossible.");
+
+    l1 = l1 / l2;
+    return l1;
+}
 
 #endif // NUMBERLITTERAL_H

@@ -14,6 +14,11 @@ int main(){
                    k = 3;
     RealLiteral j = 2.5;
 
+//    cout << i << endl;
+//    cout << i-- << endl;
+//    cout << i << endl;
+//    cout << --i << endl;
+
     cout << "i : " << i << " (" << typeid(i).name() << ")" << endl;
     cout << "j : " << j << " (" << typeid(j).name() << ")" << endl;
     cout << "--------------------------------" << endl;
@@ -33,14 +38,32 @@ int main(){
     cout << "j * i : " << (j * i) << " (" << typeid(j * i).name() << ")" << endl;
     cout << "--------------------------------" << endl;
 
-
-
     cout << "--------------------------------" << endl;
-    cout << "i DIV k : " << div(i, k) << " (" << typeid(div(i, k)).name() << ")" << endl;
+    try{
+        cout << "i DIV k : " << div(i, k) << " (" << typeid(div(i, k)).name() << ")" << endl;
+    }
+    catch(const CalculatorException& e){
+        cout << e.what() << endl;
+    }
+    try{
     cout << "k DIV i : " << div(k, i) << " (" << typeid(div(k, i)).name() << ")" << endl;
+    }
+    catch(const CalculatorException& e){
+        cout << e.what() << endl;
+    }
     cout << "--------------------------------" << endl;
-    cout << "i MOD k : " << mod(i, k) << " (" << typeid(mod(i, k)).name() << ")" << endl;
-    cout << "k MOD i : " << mod(k, i) << " (" << typeid(mod(k, i)).name() << ")" << endl;
+    try{
+        cout << "i MOD k : " << (i % k) << " (" << typeid(i % k).name() << ")" << endl;
+    }
+    catch(const CalculatorException& e){
+        cout << e.what() << endl;
+    }
+    try{
+        cout << "k MOD i : " << (k % i) << " (" << typeid(k %i).name() << ")" << endl;
+    }
+    catch(const CalculatorException& e){
+        cout << e.what() << endl;
+    }
     cout << "--------------------------------" << endl;
     cout << "i POW i : " << pow(i, i) << " (" << typeid(pow(i, i)).name() << ")" << endl;
     cout << "j POW j : " << pow(j, j) << " (" << typeid(pow(j, j)).name() << ")" << endl;
