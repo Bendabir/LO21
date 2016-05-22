@@ -1,5 +1,3 @@
-
-#include <cmath>
 #include <typeinfo>
 
 #include "exceptions.h"
@@ -15,9 +13,6 @@ int main(){
     IntegerLiteral i = 2,
                    k = 3;
     RealLiteral j = 2.5;
-
-    cout << (2 / 2) << " (" << typeid(2 / 2).name() << ")" << endl;
-    cout << (2.3 / 2) << " (" << typeid(2.3 / 2).name() << ")" << endl;
 
     cout << "i : " << i << " (" << typeid(i).name() << ")" << endl;
     cout << "j : " << j << " (" << typeid(j).name() << ")" << endl;
@@ -42,22 +37,115 @@ int main(){
 
     cout << "--------------------------------" << endl;
     cout << "i DIV k : " << div(i, k) << " (" << typeid(div(i, k)).name() << ")" << endl;
-    cout << "k DIV i : " << div(k, i) << " (" << typeid(div(i, k)).name() << ")" << endl;
+    cout << "k DIV i : " << div(k, i) << " (" << typeid(div(k, i)).name() << ")" << endl;
     cout << "--------------------------------" << endl;
     cout << "i MOD k : " << mod(i, k) << " (" << typeid(mod(i, k)).name() << ")" << endl;
-    cout << "k MOD i : " << mod(k, i) << " (" << typeid(mod(i, k)).name() << ")" << endl;
+    cout << "k MOD i : " << mod(k, i) << " (" << typeid(mod(k, i)).name() << ")" << endl;
     cout << "--------------------------------" << endl;
-
-
-
-//    cout << "i * j : " << (i * j) << endl;
-//    cout << "j * i : " << (j * i) << endl;
-////    cout << "i / j : " << (i / j) << endl;
-////    cout << "j / i : " << (j / i) << endl;
-//    cout << "i % j : " << (i % j) << endl;
-//    cout << "j % i : " << (j % i) << endl;
-//    cout << "i DIV j : " << i.div(j) << endl;
-//    cout << "j DIV i : " << j.div(i) << endl;
+    cout << "i POW i : " << pow(i, i) << " (" << typeid(pow(i, i)).name() << ")" << endl;
+    cout << "j POW j : " << pow(j, j) << " (" << typeid(pow(j, j)).name() << ")" << endl;
+    cout << "i POW j : " << pow(i, j) << " (" << typeid(pow(i, j)).name() << ")" << endl;
+    cout << "j POW i : " << pow(j, i) << " (" << typeid(pow(j, i)).name() << ")" << endl;
+    cout << "--------------------------------" << endl;
+    cout << "-i : " << -i << " (" << typeid(-i).name() << ")" << endl;
+    cout << "-j : " << -j << " (" << typeid(-j).name() << ")" << endl;
+    cout << "--------------------------------" << endl;
+    cout << "SIN i : " << sin(i) << " (" << typeid(sin(i)).name() << ")" << endl;
+    cout << "SIN j : " << sin(j) << " (" << typeid(sin(j)).name() << ")" << endl;
+    try{
+        cout << "ARCSIN i : " << arcsin(i) << " (" << typeid(arcsin(i)).name() << ")" << endl;
+    }
+    catch(const CalculatorException& e){
+        cout << e.what() << endl;
+    }
+    try{
+        cout << "ARCSIN j : " << arcsin(j) << " (" << typeid(arcsin(j)).name() << ")" << endl;
+    }
+    catch(const CalculatorException& e){
+        cout << e.what() << endl;
+    }
+    cout << "--------------------------------" << endl;
+    cout << "COS i : " << cos(i) << " (" << typeid(cos(i)).name() << ")" << endl;
+    cout << "COS j : " << cos(j) << " (" << typeid(cos(j)).name() << ")" << endl;
+    try{
+        cout << "ARCCOS i : " << arccos(i) << " (" << typeid(arccos(i)).name() << ")" << endl;
+    }
+    catch(const CalculatorException& e){
+        cout << e.what() << endl;
+    }
+    try{
+        cout << "ARCCOS j : " << arccos(j) << " (" << typeid(arccos(j)).name() << ")" << endl;
+    }
+    catch(const CalculatorException& e){
+        cout << e.what() << endl;
+    }
+    cout << "--------------------------------" << endl;
+    cout << "TAN i : " << tan(i) << " (" << typeid(tan(i)).name() << ")" << endl;
+    cout << "TAN j : " << tan(j) << " (" << typeid(tan(j)).name() << ")" << endl;
+    try{
+     cout << "ARCTAN i : " << arctan(i) << " (" << typeid(arctan(i)).name() << ")" << endl;
+    }
+    catch(const CalculatorException& e){
+        cout << e.what() << endl;
+    }
+    try{
+    cout << "ARCTAN j : " << arctan(j) << " (" << typeid(arctan(j)).name() << ")" << endl;
+    }
+    catch(const CalculatorException& e){
+        cout << e.what() << endl;
+    }
+    cout << "--------------------------------" << endl;
+    cout << "SQRT i : " << sqrt(i) << " (" << typeid(sqrt(i)).name() << ")" << endl;
+    cout << "SQRT j : " << sqrt(j) << " (" << typeid(sqrt(j)).name() << ")" << endl;
+    try{
+        cout << "SQRT -i : " << sqrt(-i) << " (" << typeid(sqrt(-i)).name() << ")" << endl;
+    }
+    catch(const CalculatorException& e){
+        cout << e.what() << endl;
+    }
+    try{
+        cout << "SQRT -j : " << sqrt(-j) << " (" << typeid(sqrt(-j)).name() << ")" << endl;
+    }
+    catch(const CalculatorException& e){
+        cout << e.what() << endl;
+    }
+    cout << "--------------------------------" << endl;
+    cout << "EXP i : " << exp(i) << " (" << typeid(exp(i)).name() << ")" << endl;
+    cout << "EXP j : " << exp(j) << " (" << typeid(exp(j)).name() << ")" << endl;
+    cout << "EXP -i : " << exp(-i) << " (" << typeid(exp(-i)).name() << ")" << endl;
+    cout << "EXP -j : " << exp(-j) << " (" << typeid(exp(-j)).name() << ")" << endl;
+    cout << "--------------------------------" << endl;
+    cout << "LN i : " << ln(i) << " (" << typeid(ln(i)).name() << ")" << endl;
+    cout << "LN j : " << ln(j) << " (" << typeid(ln(j)).name() << ")" << endl;
+    try{
+        cout << "LN -i : " << ln(-i) << " (" << typeid(ln(-i)).name() << ")" << endl;
+    }
+    catch(const CalculatorException& e){
+        cout << e.what() << endl;
+    }
+    try{
+        cout << "LN -j : " << ln(-j) << " (" << typeid(ln(-j)).name() << ")" << endl;
+    }
+    catch(const CalculatorException& e){
+        cout << e.what() << endl;
+    }
+    cout << "--------------------------------" << endl;
+    cout << "NUM i : " << num(i) << " (" << typeid(num(i)).name() << ")" << endl;
+    try{
+        cout << "NUM j : " << num(j) << " (" << typeid(num(j)).name() << ")" << endl;
+    }
+    catch(const CalculatorException& e){
+        cout << e.what() << endl;
+    }
+    cout << "--------------------------------" << endl;
+    cout << "DEN i : " << den(i) << " (" << typeid(den(i)).name() << ")" << endl;
+    try{
+        cout << "DEN j : " << den(j) << " (" << typeid(den(j)).name() << ")" << endl;
+    }
+    catch(const CalculatorException& e){
+        cout << e.what() << endl;
+    }
+    cout << "--------------------------------" << endl;
 
     return 0;
 }

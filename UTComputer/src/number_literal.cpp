@@ -12,3 +12,19 @@ IntegerLiteral operator%(const IntegerLiteral& l1, const IntegerLiteral& l2){
 IntegerLiteral mod(const IntegerLiteral& l1, const IntegerLiteral& l2){
     return l1 % l2;
 }
+
+// NUM
+IntegerLiteral num(const IntegerLiteral& l){
+    return l;
+}
+RealLiteral num(const RealLiteral& l){
+    throw CalculatorException("Erreur : La fonction NUM ne peut s'appliquer qu'à des entiers ou des rationnels.");
+}
+
+// DEN
+IntegerLiteral den(const IntegerLiteral& l){
+    return 1;
+}
+RealLiteral den(const RealLiteral& l){
+    throw CalculatorException("Erreur : La fonction DEN ne peut s'appliquer qu'à des entiers ou des rationnels.");
+}

@@ -20,8 +20,19 @@ public:
     void setNumber(const T& n) {number = n;}
 
     // Opérateurs numériques
+    NumberLiteral<T> operator-() const;
+    NumberLiteral<T> neg() const;
 
     // Opérateurs logiques
+    bool operator==(const NumberLiteral<T>& l) const;
+    bool operator!=(const NumberLiteral<T>& l) const;
+    bool operator<=(const NumberLiteral<T>& l) const;
+    bool operator<(const NumberLiteral<T>& l) const;
+    bool operator>=(const NumberLiteral<T>& l) const;
+    bool operator>(const NumberLiteral<T>& l) const;
+
+    // Opérateurs
+    NumberLiteral<T>& operator=(T n);
 
     // Autres
     QString toString() const;
@@ -33,8 +44,50 @@ typedef NumberLiteral<double> RealLiteral;
 
 // Définition des méthodes
 template<class T>
-QString NumberLiteral<T>::toString() const{
+QString NumberLiteral<T>::toString() const {
     return QString::number(number);
+}
+
+template<class T>
+NumberLiteral<T> NumberLiteral<T>::operator-() const {
+    return -number;
+}
+template<class T>
+NumberLiteral<T> NumberLiteral<T>::neg() const {
+    return -number;
+}
+
+// Opérateurs logiques
+template<class T>
+bool NumberLiteral<T>::operator==(const NumberLiteral<T>& l) const {
+    return number == l.number;
+}
+template<class T>
+bool NumberLiteral<T>::operator!=(const NumberLiteral<T>& l) const {
+    return number != l.number;
+}
+template<class T>
+bool NumberLiteral<T>::operator<=(const NumberLiteral<T>& l) const {
+    return number <= l.number;
+}
+template<class T>
+bool NumberLiteral<T>::operator<(const NumberLiteral<T>& l) const {
+    return number < l.number;
+}
+template<class T>
+bool NumberLiteral<T>::operator>=(const NumberLiteral<T>& l) const {
+    return number >= l.number;
+}
+template<class T>
+bool NumberLiteral<T>::operator>(const NumberLiteral<T>& l) const {
+    return number > l.number;
+}
+
+// Opérateurs
+template<class T>
+NumberLiteral<T>& NumberLiteral<T>::operator=(T n){
+    number = n;
+    return *this;
 }
 
 // Prototypes des opérateurs binaires
@@ -84,5 +137,87 @@ IntegerLiteral div(const IntegerLiteral& l1, const IntegerLiteral& l2);
 // MOD
 IntegerLiteral operator%(const IntegerLiteral& l1, const IntegerLiteral& l2);
 IntegerLiteral mod(const IntegerLiteral& l1, const IntegerLiteral& l2);
+
+// POW
+template<class T>
+NumberLiteral<T> pow(const NumberLiteral<T>& l1, const NumberLiteral<T>& l2){
+    return std::pow(l1.getNumber(), l2.getNumber());
+}
+template<class T, class U>
+RealLiteral pow(const NumberLiteral<T>& l1, const NumberLiteral<U>& l2){
+    return std::pow(l1.getNumber(), l2.getNumber());
+}
+
+// SIN, ARCSIN, COS, ARCCOS, TAN, ARCTAN
+template<class T>
+RealLiteral sin(const NumberLiteral<T>& l){
+    return std::sin(l.getNumber());
+}
+template<class T>
+RealLiteral arcsin(const NumberLiteral<T>& l){
+    if(l < -1 || l > 1)
+        throw CalculatorException("Erreur : L'ensemble de définition de ARCSIN est [-1; 1].");
+
+    return std::asin(l.getNumber());
+}
+template<class T>
+RealLiteral cos(const NumberLiteral<T>& l){
+    return std::cos(l.getNumber());
+}
+template<class T>
+RealLiteral arccos(const NumberLiteral<T>& l){
+    if(l < -1 || l > 1)
+        throw CalculatorException("Erreur : L'ensemble de définition de ARCCOS est [-1; 1].");
+
+    return std::acos(l.getNumber());
+}
+template<class T>
+RealLiteral tan(const NumberLiteral<T>& l){
+    return std::tan(l.getNumber());
+}
+template<class T>
+RealLiteral arctan(const NumberLiteral<T>& l){
+    return std::atan(l.getNumber());
+}
+
+// SQRT
+template<class T>
+RealLiteral sqrt(const NumberLiteral<T>& l){
+    if(l < 0)
+        throw CalculatorException("Erreur : Impossible de calculer une racine carrée négative.");
+
+    return std::sqrt(l.getNumber());
+}
+
+// EXP
+template<class T>
+RealLiteral exp(const NumberLiteral<T>& l){
+    return std::exp(l.getNumber());
+}
+
+// LN
+template<class T>
+RealLiteral ln(const NumberLiteral<T>& l){
+    if(l <= 0)
+        throw CalculatorException("Erreur : le paramètre d'un logarithme est forcément positif.");
+
+    return std::log(l.getNumber());
+}
+
+// NUM
+IntegerLiteral num(const IntegerLiteral& l);
+RealLiteral num(const RealLiteral& l);
+
+// DEN
+IntegerLiteral den(const IntegerLiteral& l);
+RealLiteral den(const RealLiteral& l);
+
+// $
+
+// RE
+template<class T>
+NumberLiteral<T> re(const NumberLiteral<T>& l){
+    return l;
+}
 
 #endif // NUMBERLITTERAL_H

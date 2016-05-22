@@ -2,6 +2,7 @@
 #define LITERAL_H
 
 #include <QString>
+#include <cmath>
 
 #include "exceptions.h"
 

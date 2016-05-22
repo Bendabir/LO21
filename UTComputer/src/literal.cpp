@@ -6,3 +6,5 @@ std::ostream& operator<<(std::ostream& f, const Literal& l){
 
     return f;
 }
+
+
