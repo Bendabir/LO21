@@ -220,4 +220,15 @@ NumberLiteral<T> re(const NumberLiteral<T>& l){
     return l;
 }
 
+// IM
+template<class T>
+NumberLiteral<T> im(const NumberLiteral<T>& l){
+    return 0;
+}
+
+// ARG
+// On fera l'implémentation en déclarant un complexe à partir d'un entier/réel puis en retournant sa norme/argument
+
+// NORM
+
 #endif // NUMBERLITTERAL_H
