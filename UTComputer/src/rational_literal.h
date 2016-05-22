@@ -3,35 +3,35 @@
 
 #include "digital_literal.h"
 
-class RationalLiteral : public DigitalLiteral {
-private:
-    // Pour le moment, on fait du test sur du int
-    int numerator;
-    int denominator;
+//class RationalLiteral : public DigitalLiteral {
+//private:
+//    // Pour le moment, on fait du test sur du int
+//    IntegerLiteral numerator;
+//    IntegerLiteral denominator;
 
-    void simplify();
+//    void simplify();
 
-public:
-    // Le choix du constructeur se fera dans la factory
-    RationalLiteral(int num = 0, int den = 1) : numerator(num), denominator(den){
-        simplify();
-    }
-    // Constructeur de recopie par défaut
-    // Opérateur d'affectation par défaut
-    // Destructeur par défaut
+//public:
+//    // Le choix du constructeur se fera dans la factory
+//    RationalLiteral(IntegerLiteral num = 0, IntegerLiteral den = 1) : DigitalLiteral(), numerator(num), denominator(den){
+//        simplify();
+//    }
+//    // Constructeur de recopie par défaut
+//    // Opérateur d'affectation par défaut
+//    // Destructeur par défaut
 
-    // Accesseurs
-    // Pas de setters
-    int getNumerator() const {return numerator;}
-    int getDenominator() const {return denominator;}
+//    // Accesseurs
+//    // Pas de setters
+//    const IntegerLiteral& getNumerator() const {return numerator;}
+//    const IntegerLiteral& getDenominator() const {return denominator;}
 
-    // Opérateurs numériques
+//    // Opérateurs numériques
 
-    // Opérateurs logiques
+//    // Opérateurs logiques
 
-    // Autres
-    QString toString() const;
-    double toReal() const;
-};
+//    // Autres
+//    QString toString() const;
+//    double toReal() const;
+//};
 
 #endif // RATIONNALLITERAL_H

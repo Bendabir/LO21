@@ -24,7 +24,7 @@ public:
     // Opérateurs numériques
     // Pour le moment, on fait des retours par pointeur un peu dégueu
     // A terme, tout sera géré par la factory
-//    virtual Literal* operator+(const Literal& l) = 0;
+//    virtual const Literal& operator+(const Literal& l) const = 0;
 //    virtual Literal* operator-(const Literal& l) = 0;
 //    virtual Literal* operator*(const Literal& l) = 0;
 //    virtual Literal* operator/(const Literal& l) = 0;
@@ -64,6 +64,7 @@ public:
     virtual QString toString() const = 0;
 };
 
+// Prototypes
 std::ostream& operator<<(std::ostream& f, const Literal& l);
 
 #endif // LITERAL_H

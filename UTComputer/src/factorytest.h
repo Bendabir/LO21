@@ -7,7 +7,7 @@
 #include "literal.h"
 #include "digital_literal.h"
 #include "rational_literal.h"
-#include "integer_literal.h"
+#include "number_literal.h"
 
 class FactoryTest {
 private:
@@ -16,9 +16,9 @@ private:
 public:
     explicit FactoryTest();
 
-    DigitalLiteral* addLiteral(int num = 0, int den = 1);
-    DigitalLiteral* addLiteral(const IntegerLiteral& l);
-    DigitalLiteral* addLiteral(const RationalLiteral& l);
+//    DigitalLiteral* addLiteral(int num = 0, int den = 1);
+//    DigitalLiteral* addLiteral(const IntegerLiteral& l);
+//    DigitalLiteral* addLiteral(const RationalLiteral& l);
 
     int size() const {return literals.size();}
 
