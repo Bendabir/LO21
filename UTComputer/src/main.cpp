@@ -13,19 +13,30 @@ int main(){
     IntegerLiteral i = 2,
                    k = 3;
     RealLiteral j = 2.5;
+    RationalLiteral q(2, 3),
+                    p(3, 6);
 
-//    cout << i << endl;
-//    cout << i-- << endl;
-//    cout << i << endl;
-//    cout << --i << endl;
+//    cout << p << endl;
+//    cout << p++ << endl;
+//    cout << p << endl;
+//    cout << ++p << endl;
+//    cout << p-- << endl;
+//    cout << p << endl;
+//    cout << --p << endl;
 
     cout << "i : " << i << " (" << typeid(i).name() << ")" << endl;
     cout << "j : " << j << " (" << typeid(j).name() << ")" << endl;
+    cout << "q : " << q << " (" << typeid(q).name() << ")" << endl;
+    cout << "p : " << p << " (" << typeid(p).name() << ")" << endl;
     cout << "--------------------------------" << endl;
     cout << "i + i : " << (i + i) << " (" << typeid(i + i).name() << ")" << endl;
     cout << "j + j : " << (j + j) << " (" << typeid(j + j).name() << ")" << endl;
     cout << "i + j : " << (i + j) << " (" << typeid(i + j).name() << ")" << endl;
     cout << "j + i : " << (j + i) << " (" << typeid(j + i).name() << ")" << endl;
+    cout << "q + p : " << (q + p) << " (" << typeid(q + p).name() << ")" << endl;
+    cout << "p + q : " << (p + q) << " (" << typeid(p + q).name() << ")" << endl;
+    cout << "q + i : " << (q + i) << " (" << typeid(q + i).name() << ")" << endl;
+//    cout << "i + q : " << (i + q) << " (" << typeid(i + q).name() << ")" << endl;
     cout << "--------------------------------" << endl;
     cout << "i - i : " << (i - i) << " (" << typeid(i - i).name() << ")" << endl;
     cout << "j - j : " << (j - j) << " (" << typeid(j - j).name() << ")" << endl;

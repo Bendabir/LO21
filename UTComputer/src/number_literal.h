@@ -146,10 +146,10 @@ RealLiteral operator*(const NumberLiteral<T>& l1, const NumberLiteral<U>& l2){
 //NumberLiteral<T> operator/(const NumberLiteral<T>& l1, const NumberLiteral<T>& l2){
 //    return l1.getNumber() / l2.getNumber();
 //}
-//template<class T, class U>
-//RealLiteral operator/(const NumberLiteral<T>& l1, const NumberLiteral<U>& l2){
-//    return l1.getNumber() / l2.getNumber();
-//}
+template<class T, class U>
+RealLiteral operator/(const NumberLiteral<T>& l1, const NumberLiteral<U>& l2){
+    return l1.getNumber() / l2.getNumber();
+}
 
 // DIV
 IntegerLiteral div(const IntegerLiteral& l1, const IntegerLiteral& l2);
