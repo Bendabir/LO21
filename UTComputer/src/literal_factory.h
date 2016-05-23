@@ -8,6 +8,7 @@
 #include "rational_literal.h"
 #include "number_literal.h"
 
+// Idéalement, il faudrait passer pas mal de membres originel en privé pour éviter de se retrouver avec une foule de méthodes
 class LiteralFactory : public QList<Literal*> {
 public:
     LiteralFactory() : QList<Literal*>(){}

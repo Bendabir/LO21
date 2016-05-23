@@ -10,6 +10,10 @@
 #include "number_literal.h"
 #include "literal_factory.h"
 
+// Déclaration dégueu pour du test
+// A terme, le manager est créée dans la classe singleton Application (seule classe qui peut l'instancier)
+LiteralFactory manager;
+
 using namespace std;
 
 IntegerLiteral eval(const IntegerLiteral& l) {
@@ -17,14 +21,15 @@ IntegerLiteral eval(const IntegerLiteral& l) {
 }
 
 int main(){
-    LiteralFactory manager;
-    cout << manager;
-
-    manager.addLiteral(1);
-    manager.addLiteral(1, 3);
-    manager.addLiteral(0.5);
+//    LiteralFactory manager;
 
     cout << manager;
+
+    Literal& i = manager.addLiteral(1);
+    Literal& q = manager.addLiteral(1, 3);
+    Literal& x = manager.addLiteral(0.5);
+
+
 //    IntegerLiteral& i = manager.addLiteral(1);
 
 
