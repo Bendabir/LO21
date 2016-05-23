@@ -11,8 +11,6 @@
  */
 
 class Literal {
-private:
-
 public:
     // Constructeurs/Destructeur
     Literal(){}

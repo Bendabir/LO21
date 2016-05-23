@@ -7,8 +7,8 @@
 #include "literal.h"
 #include "digital_literal.h"
 #include "rational_literal.h"
-#include "factorytest.h"
 #include "number_literal.h"
+#include "literal_factory.h"
 
 using namespace std;
 
@@ -17,6 +17,18 @@ IntegerLiteral eval(const IntegerLiteral& l) {
 }
 
 int main(){
+    LiteralFactory manager;
+    cout << manager;
+
+    manager.addLiteral(1);
+    manager.addLiteral(1, 3);
+    manager.addLiteral(0.5);
+
+    cout << manager;
+//    IntegerLiteral& i = manager.addLiteral(1);
+
+
+
 //    IntegerLiteral i = 2;
 //    RealLiteral x = 2.5;
 

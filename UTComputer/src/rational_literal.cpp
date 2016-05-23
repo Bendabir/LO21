@@ -10,9 +10,9 @@ QString RationalLiteral::toString() const {
     return str;
 }
 
-RealLiteral RationalLiteral::toReal() const {
-    return (static_cast<double>(numerator.getNumber()) / denominator.getNumber());
-}
+//RealLiteral RationalLiteral::toReal() const {
+//    return (static_cast<double>(numerator.getNumber()) / denominator.getNumber());
+//}
 
 void RationalLiteral::simplify() {
     if(numerator == 0){
@@ -55,61 +55,61 @@ void RationalLiteral::simplify() {
 }
 
 // +
-RationalLiteral RationalLiteral::operator+(const RationalLiteral& q) const {
-    IntegerLiteral a = numerator,
-                   b = denominator,
-                   c = q.numerator,
-                   d = q.denominator;
-    return RationalLiteral(a * d + b * c, b * d);
-}
+//RationalLiteral RationalLiteral::operator+(const RationalLiteral& q) const {
+//    IntegerLiteral a = numerator,
+//                   b = denominator,
+//                   c = q.numerator,
+//                   d = q.denominator;
+//    return RationalLiteral(a * d + b * c, b * d);
+//}
 
-// -
-RationalLiteral RationalLiteral::operator-(const RationalLiteral& q) const {
-    IntegerLiteral a = numerator,
-                   b = denominator,
-                   c = q.numerator,
-                   d = q.denominator;
-    return RationalLiteral(a * d - b * c, b * d);
-}
+//// -
+//RationalLiteral RationalLiteral::operator-(const RationalLiteral& q) const {
+//    IntegerLiteral a = numerator,
+//                   b = denominator,
+//                   c = q.numerator,
+//                   d = q.denominator;
+//    return RationalLiteral(a * d - b * c, b * d);
+//}
 
-// *
-RationalLiteral RationalLiteral::operator*(const RationalLiteral& q) const {
-    IntegerLiteral a = numerator,
-                   b = denominator,
-                   c = q.numerator,
-                   d = q.denominator;
-    return RationalLiteral(a * c, b * d);
-}
+//// *
+//RationalLiteral RationalLiteral::operator*(const RationalLiteral& q) const {
+//    IntegerLiteral a = numerator,
+//                   b = denominator,
+//                   c = q.numerator,
+//                   d = q.denominator;
+//    return RationalLiteral(a * c, b * d);
+//}
 
-// /
-RationalLiteral RationalLiteral::operator/(const RationalLiteral& q) const {
-    IntegerLiteral a = numerator,
-                   b = denominator,
-                   c = q.numerator,
-                   d = q.denominator;
-    return RationalLiteral(a * d, b * c);
-}
+//// /
+//RationalLiteral RationalLiteral::operator/(const RationalLiteral& q) const {
+//    IntegerLiteral a = numerator,
+//                   b = denominator,
+//                   c = q.numerator,
+//                   d = q.denominator;
+//    return RationalLiteral(a * d, b * c);
+//}
 
 
 // Autres opérateurs utiles
-RationalLiteral& RationalLiteral::operator++(){
-    *this = *this + IntegerLiteral(1);
-    return *this;
-}
-RationalLiteral RationalLiteral::operator++(int){
-    RationalLiteral temp = *this;
-    ++*this;
-    return temp;
-}
+//RationalLiteral& RationalLiteral::operator++(){
+//    *this = *this + IntegerLiteral(1);
+//    return *this;
+//}
+//RationalLiteral RationalLiteral::operator++(int){
+//    RationalLiteral temp = *this;
+//    ++*this;
+//    return temp;
+//}
 
-RationalLiteral& RationalLiteral::operator--(){
-    *this = *this - IntegerLiteral(1);
-    return *this;
-}
+//RationalLiteral& RationalLiteral::operator--(){
+//    *this = *this - IntegerLiteral(1);
+//    return *this;
+//}
 
-RationalLiteral RationalLiteral::operator--(int){
-    RationalLiteral temp = *this;
-    --*this;
-    return *this;
-}
+//RationalLiteral RationalLiteral::operator--(int){
+//    RationalLiteral temp = *this;
+//    --*this;
+//    return *this;
+//}
 
