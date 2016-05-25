@@ -21,7 +21,8 @@ Il manque des opérateurs.
 
 | Opérateur | Priorité | Arité |
 |:---------:|:--------:|:--------:|
-| `()` | **8** | Pas vraiment un opérateur |
+| `()` | 9 | Pas vraiment un opérateur |
+| `$` | **8** | unaire |
 | `NEG` | 7 | unaire |
 | `NOT` | 7 | unaire |
 | `*` | **6** | binaire |
