@@ -204,3 +204,9 @@ Provoque une erreur sur `LittéraleRéelle` ou `LittéraleComplexe`.
 |:--------:|:------:|
 | `LittéraleComplexe` ou `LittéraleNumérique` | `LittéraleEntière` (0 ou 1) |
 | `LittéraleExpression` | `LittéraleExpression` |
+
+## Design Pattern
+
+On utilise le design pattern Adapter (en objet serait mieux) pour réutiliser les classes QStack et QVector pour la pile et la/les factorie.
+Design pattern Factory Method.
+Peut-être Composite aussi.
