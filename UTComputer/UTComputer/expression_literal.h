@@ -93,7 +93,7 @@ public:
     bool operator||(const Literal& l) const;
     bool operator!() const;
 
-    QString operator*() const;
+    QString eval() const;
     QString toString() const;
 
     /*!

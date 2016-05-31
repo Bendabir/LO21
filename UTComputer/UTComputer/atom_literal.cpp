@@ -82,19 +82,68 @@ Literal& AtomLiteral::arccos() const {
 Literal& AtomLiteral::tan() const {
     return target->tan();
 }
-Literal& AtomLiteral::arctan() const {}
-Literal& AtomLiteral::sqrt() const {}
-Literal& AtomLiteral::ln() const {}
-Literal& AtomLiteral::exp() const {}
-Literal& AtomLiteral::num() const {}
-Literal& AtomLiteral::den() const {}
-Literal& AtomLiteral::re() const {}
-Literal& AtomLiteral::im() const {}
-Literal& AtomLiteral::arg() const {}
-Literal& AtomLiteral::norm() const {}
+Literal& AtomLiteral::arctan() const {
+    return target->arctan();
+}
+Literal& AtomLiteral::sqrt() const {
+    try {
+        return target->sqrt();
+    }
+    catch(const CalculatorException& e){
+        throw e;
+    }
+}
+Literal& AtomLiteral::ln() const {
+    try {
+        return target->ln();
+    }
+    catch(const CalculatorException& e){
+        throw e;
+    }
+}
+Literal& AtomLiteral::exp() const {
+    return target->exp();
+}
+Literal& AtomLiteral::num() const {
+    try {
+        return target->num();
+    }
+    catch(const CalculatorException& e){
+        throw e;
+    }
+}
+Literal& AtomLiteral::den() const {
+    try {
+        return target->den();
+    }
+    catch(const CalculatorException& e){
+        throw e;
+    }
+}
+Literal& AtomLiteral::re() const {
+    return target->re();
+}
+Literal& AtomLiteral::im() const {
+    return target->im();
+}
+Literal& AtomLiteral::arg() const {
+    return target->arg();
+}
+Literal& AtomLiteral::norm() const {
+    return target->norm();
+}
 
 // Opérateurs logiques
-bool AtomLiteral::operator==(const Literal& l) const {}
+bool AtomLiteral::operator==(const Literal& l) const {
+    // Si l'argument est un atome, on teste entre les valeurs pointée, sinon on fait un test basique
+    if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        return *target == *literal.target;
+    }
+//    else
+//        return
+}
 bool AtomLiteral::operator!=(const Literal& l) const {}
 bool AtomLiteral::operator>=(const Literal& l) const {}
 bool AtomLiteral::operator>(const Literal& l) const {}
@@ -104,7 +153,7 @@ bool AtomLiteral::operator&&(const Literal& l) const {}
 bool AtomLiteral::operator||(const Literal& l) const {}
 bool AtomLiteral::operator!() const {}
 
-QString AtomLiteral::operator*() const {
+QString AtomLiteral::eval() const {
     // On retourne la valeur de la variable pointée sous forme de chaine de caractères
     return target->toString();
 }

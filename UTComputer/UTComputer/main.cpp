@@ -11,7 +11,7 @@ int main(){
     LiteralFactory fact;
     Literal& z = fact.addLiteral(1, -1);
     Literal& i = fact.addLiteral(Number(2.3, -9.6));
-    Literal& exp1 = fact.addLiteral("1 + 2");
+    Literal& exp1 = fact.addLiteral("1$1");
     Literal& exp2 = fact.addLiteral("1 * 2");
     Literal& exp3 = fact.addLiteral("POW(2 + 5, 2)");
 

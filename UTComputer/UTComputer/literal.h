@@ -273,12 +273,12 @@ public:
      */
     virtual QString toString() const = 0;
     /*!
-     * \brief Opérateur d'indirection surchargé pour renvoyer la littérale sous forme de chaine de caractères.
+     * \brief Fonction qui renvoie la littérale sous forme de chaine de caractères.
      * \brief Si cette littérale est une expression, cela renvoie une chaine de caractères correspondant à l'expression évaluée.
      * \brief Si cette littérale est un atome, cela renvoie une chaine de caractères correspondant à l'expression pointée.
      * \return Chaine de caractère
      */
-    virtual QString operator*() const;
+    virtual QString eval() const;
 };
 
 /*!

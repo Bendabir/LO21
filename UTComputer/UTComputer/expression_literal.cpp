@@ -147,24 +147,23 @@ Literal& ExpressionLiteral::norm() const {
 // A voir si on fait le calcul des chaines et on vérifie que la valeur renvoyée est identique
 bool ExpressionLiteral::operator==(const Literal& l) const {
     // On vérifie que l'évaluation des chaînes donne la même chose
-    // Rappel : l'opérateur * a été surchargé pour renvoyé la littérale ou la littérale expression évaluée
     // Cela permet de faire abstraction des parenthèses de priorité (parfois superflues) dans les expressions
-    return *(*this) == *l;
+    return (*this).eval() == l.eval();
 }
 bool ExpressionLiteral::operator!=(const Literal& l) const {
-    return *(*this) != *l;
+    return (*this).eval() != l.eval();
 }
 bool ExpressionLiteral::operator>=(const Literal& l) const {
-    return *(*this) >= *l;
+    return (*this).eval() >= l.eval();
 }
 bool ExpressionLiteral::operator>(const Literal& l) const  {
-    return *(*this) > *l;
+    return (*this).eval() > l.eval();
 }
 bool ExpressionLiteral::operator<=(const Literal& l) const  {
-    return *(*this) <= *l;
+    return (*this).eval() <= l.eval();
 }
 bool ExpressionLiteral::operator<(const Literal& l) const  {
-    return *(*this) < *l;
+    return (*this).eval() < l.eval();
 }
 bool ExpressionLiteral::operator&&(const Literal& l) const {
     // Si la littérale passée en argument est un entier
@@ -184,7 +183,7 @@ bool ExpressionLiteral::operator!() const {
 }
 
 // Permet de récupérer la chaine évaluée même lorsque l'on a une référence sur une litérale (dynamique)
-QString ExpressionLiteral::operator*() const {
+QString ExpressionLiteral::eval() const {
     return evaluate();
 }
 

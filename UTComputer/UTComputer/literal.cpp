@@ -15,7 +15,7 @@ bool Literal::isNumber() const {
 }
 
 // Permet d'implémenter l'évaluation d'une expression litérale. Par défaut, ça affiche la littérale
-QString Literal::operator*() const {
+QString Literal::eval() const {
     return toString();
 }
 
