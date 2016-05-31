@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7eliteral',['~Literal',['../class_literal.html#ae562f3f8cfa8d6d1730bfc0bfcda289f',1,'Literal']]]
+  ['what',['what',['../class_calculator_exception.html#a12fc8dbb9b890e0b7a51717eb8e4c171',1,'CalculatorException']]]
 ];

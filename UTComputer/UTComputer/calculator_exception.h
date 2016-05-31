@@ -6,6 +6,8 @@
 #include <typeinfo>
 #include <exception>
 
+#include <QString>
+
 using namespace std;
 
 /*!
@@ -15,12 +17,16 @@ using namespace std;
 
 class CalculatorException : public exception {
 private:
-    string info;
+    QString info;
 
 public:
-    CalculatorException(const char* s = "") throw() : info(s){}
+    CalculatorException(const QString& s = "") throw() : info(s){}
 
-    const char* what() const throw(){return info.c_str();}
+    /*!
+     * \brief Renvoie le message d'erreur contenu dans l'objet CalculatorException
+     * \return Chaine de caractère standard
+     */
+    const char* what() const throw(){return info.toStdString().c_str();}
 };
 
 /*!

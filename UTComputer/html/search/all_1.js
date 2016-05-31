@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['calculator_5fexception_2ecpp',['calculator_exception.cpp',['../calculator__exception_8cpp.html',1,'']]],
-  ['calculator_5fexception_2eh',['calculator_exception.h',['../calculator__exception_8h.html',1,'']]],
-  ['calculatorexception',['CalculatorException',['../class_calculator_exception.html',1,'CalculatorException'],['../class_calculator_exception.html#ac2f3ec1447f8645af02016818abdf173',1,'CalculatorException::CalculatorException()']]],
-  ['complex_5fliteral_2ecpp',['complex_literal.cpp',['../complex__literal_8cpp.html',1,'']]],
-  ['complex_5fliteral_2eh',['complex_literal.h',['../complex__literal_8h.html',1,'']]],
-  ['complexliteral',['ComplexLiteral',['../class_complex_literal.html',1,'ComplexLiteral'],['../class_complex_literal.html#ab85d7ce96425b861dbcfd2a43d42349a',1,'ComplexLiteral::ComplexLiteral()']]],
-  ['cos',['cos',['../class_digital_literal.html#accef5987cc6ff2077d89b8a99c94c010',1,'DigitalLiteral::cos()'],['../class_literal.html#ae26f854cdea90e768682776ec067344d',1,'Literal::cos()']]]
+  ['calculatorexception',['CalculatorException',['../class_calculator_exception.html',1,'']]],
+  ['complexarg',['complexArg',['../class_complex_literal.html#ad996d53099b80545e5f7fee49dd6b0be',1,'ComplexLiteral']]],
+  ['complexliteral',['ComplexLiteral',['../class_complex_literal.html',1,'']]],
+  ['complexnorm',['complexNorm',['../class_complex_literal.html#a80289f2247c76b25303f53227fd32a31',1,'ComplexLiteral']]],
+  ['conj',['conj',['../class_complex_literal.html#a72a2f9e5fb8bc236edec47b80354b362',1,'ComplexLiteral']]],
+  ['cos',['cos',['../class_atom_literal.html#ae4d30ba952103a91b9f7fba6c260dfbf',1,'AtomLiteral::cos()'],['../class_complex_literal.html#a372800c71bad833b2576d99213eace6d',1,'ComplexLiteral::cos()'],['../class_expression_literal.html#a7339c8d3f69ac155a7dda1c792b6ee46',1,'ExpressionLiteral::cos()'],['../class_literal.html#a700bf62c605ec3b38e74a6d3c0033b20',1,'Literal::cos()'],['../class_number.html#acaf2976a78509d4f9f860dd552648da8',1,'Number::cos()']]]
 ];

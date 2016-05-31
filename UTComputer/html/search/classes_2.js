@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['literal',['Literal',['../class_literal.html',1,'']]]
+  ['expressionliteral',['ExpressionLiteral',['../class_expression_literal.html',1,'']]]
 ];
