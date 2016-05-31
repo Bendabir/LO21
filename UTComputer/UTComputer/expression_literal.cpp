@@ -224,7 +224,7 @@ QString ExpressionLiteral::evaluate() const {
             if(!this->manager->existsAtom(token))
                 throw CalculatorException("Erreur : Le nom d'atome " + token + " n'existe pas.");
             else
-                output.append(token);
+                output.append(token); // A voir si on évalue la variable dans l'évaluation (ou si on la laisse telle qu'elle) et si oui, si on l'évalue sur une itération ou sur toute sa chaine de référence
         }
 
         // Si c'est une fonction, on empile

@@ -24,6 +24,20 @@ AtomLiteral::AtomLiteral(LiteralFactory* m, const QString& a, Literal* t) : Lite
         throw CalculatorException("Erreur : Le nom de variable " + atom + " est déjà utilisé.");
 }
 
+Literal& AtomLiteral::getTarget(bool allSons) const {
+    if(allSons){
+        if(target->isAtom()){
+            AtomLiteral& son = dynamic_cast<AtomLiteral&>(*target);
+
+            return son.getTarget();
+        }
+        else
+            return *target;
+    }
+    else
+        return *target;
+}
+
 // Pour savoir ce que l'on traite
 bool AtomLiteral::isInteger() const {return false;}
 bool AtomLiteral::isReal() const {return false;}

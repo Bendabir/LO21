@@ -1,0 +1,15 @@
+INPUT(
+./debug\calculator_exception.o
+./debug\main.o
+./debug\literal.o
+./debug\complex_literal.o
+./debug\tests.o
+./debug\expression_literal.o
+./debug\number.o
+./debug\literal_factory.o
+./debug\atom_literal.o
+./debug\stack.o
+./debug\calculator.o
+./debug\mainwindow.o
+./debug\moc_mainwindow.o
+);

@@ -124,7 +124,7 @@ Inheritance diagram for Literal:</div>
  <div class="center">
   <img src="class_literal.png" usemap="#Literal_map" alt=""/>
   <map id="Literal_map" name="Literal_map">
-<area href="class_atom_literal.html" alt="AtomLiteral" shape="rect" coords="0,56,109,80"/>
+<area href="class_atom_literal.html" title="La classe AtomLiteral permet de gérer des &quot;variables&quot; au sein de la calculatrice. Elles pointent (pou..." alt="AtomLiteral" shape="rect" coords="0,56,109,80"/>
 <area href="class_complex_literal.html" title="Classe permettant de gérer les nombres complexes. Composée de deux Number. " alt="ComplexLiteral" shape="rect" coords="119,56,228,80"/>
 <area href="class_expression_literal.html" title="La classe ExpressionLiteral permet de gérer les expression littérales. " alt="ExpressionLiteral" shape="rect" coords="238,56,347,80"/>
 </map>
@@ -261,9 +261,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af2c35c8dd7c84315f5cd9a52ee66c398"><td class="memItemLeft" align="right" valign="top">virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal.html#af2c35c8dd7c84315f5cd9a52ee66c398">toString</a> () const  =0</td></tr>
 <tr class="memdesc:af2c35c8dd7c84315f5cd9a52ee66c398"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convertit la littérale en chaine de caractères (QString).  <a href="#af2c35c8dd7c84315f5cd9a52ee66c398">More...</a><br /></td></tr>
 <tr class="separator:af2c35c8dd7c84315f5cd9a52ee66c398"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a642b717884d4b640d5d566dcda995870"><td class="memItemLeft" align="right" valign="top">virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal.html#a642b717884d4b640d5d566dcda995870">operator*</a> () const </td></tr>
-<tr class="memdesc:a642b717884d4b640d5d566dcda995870"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opérateur d'indirection surchargé pour renvoyer la littérale sous forme de chaine de caractères.  <a href="#a642b717884d4b640d5d566dcda995870">More...</a><br /></td></tr>
-<tr class="separator:a642b717884d4b640d5d566dcda995870"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae82f8923b9a468f782efc9502c684ef4"><td class="memItemLeft" align="right" valign="top">virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal.html#ae82f8923b9a468f782efc9502c684ef4">eval</a> () const </td></tr>
+<tr class="memdesc:ae82f8923b9a468f782efc9502c684ef4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui renvoie la littérale sous forme de chaine de caractères.  <a href="#ae82f8923b9a468f782efc9502c684ef4">More...</a><br /></td></tr>
+<tr class="separator:ae82f8923b9a468f782efc9502c684ef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -508,6 +508,34 @@ Protected Attributes</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Pointeur sur une littérale (étant une sous-classe de <a class="el" href="class_literal.html" title="La classe Literal est la classe de base de toutes les littérales de l&#39;application (littérales entière...">Literal</a>), selon les cas. </dd></dl>
 
 <p>Implemented in <a class="el" href="class_expression_literal.html#a71b0d62d950eacb6acb2a83fd48004b5">ExpressionLiteral</a>, <a class="el" href="class_complex_literal.html#a1483d2aac85cc3ae843ff2316757b056">ComplexLiteral</a>, and <a class="el" href="class_atom_literal.html#a71e54c040bc2527c7512a2bc9079f37d">AtomLiteral</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae82f8923b9a468f782efc9502c684ef4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString Literal::eval </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Fonction qui renvoie la littérale sous forme de chaine de caractères. </p>
+<p>Si cette littérale est une expression, cela renvoie une chaine de caractères correspondant à l'expression évaluée. Si cette littérale est un atome, cela renvoie une chaine de caractères correspondant à l'expression pointée. </p><dl class="section return"><dt>Returns</dt><dd>Chaine de caractère </dd></dl>
+
+<p>Reimplemented in <a class="el" href="class_expression_literal.html#ad4d721a13e5c9774a96e69e93027f121">ExpressionLiteral</a>, and <a class="el" href="class_atom_literal.html#a50c137a985796a961d49c919ac0e87ef">AtomLiteral</a>.</p>
 
 </div>
 </div>
@@ -1056,34 +1084,6 @@ Protected Attributes</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Pointeur sur une littérale (étant une sous-classe de <a class="el" href="class_literal.html" title="La classe Literal est la classe de base de toutes les littérales de l&#39;application (littérales entière...">Literal</a>), selon les cas. </dd></dl>
 
 <p>Implemented in <a class="el" href="class_expression_literal.html#af2987982914a4e465516ecfa2887e179">ExpressionLiteral</a>, <a class="el" href="class_complex_literal.html#a5f896e8bae78c1cbbb05b8085f82b478">ComplexLiteral</a>, and <a class="el" href="class_atom_literal.html#a9842c507605edfcfee30f9f01ccb2b75">AtomLiteral</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a642b717884d4b640d5d566dcda995870"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">QString Literal::operator* </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Opérateur d'indirection surchargé pour renvoyer la littérale sous forme de chaine de caractères. </p>
-<p>Si cette littérale est une expression, cela renvoie une chaine de caractères correspondant à l'expression évaluée. </p><dl class="section return"><dt>Returns</dt><dd>Chaine de caractère </dd></dl>
-
-<p>Reimplemented in <a class="el" href="class_expression_literal.html#a817893a4b317668723ef6020b8b0d2ef">ExpressionLiteral</a>.</p>
 
 </div>
 </div>

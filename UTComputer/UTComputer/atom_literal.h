@@ -3,6 +3,9 @@
 
 #include "literal.h"
 
+/*!
+ * \brief La classe AtomLiteral permet de gérer des "variables" au sein de la calculatrice. Elles pointent (pour le moment) sur d'autres littérales.
+ */
 class AtomLiteral : public Literal {
     friend class LiteralFactory;
 
@@ -21,8 +24,18 @@ private:
 public:
 
     // Accesseurs
+    /*!
+     * \brief Permet de connaitre le nom de la variable.
+     * \return Chaine de caractères contenant le nom de la variable.
+     */
     const QString& getAtom() const {return atom;}
-    Literal& getTarget() const {return *target;}
+    /*!
+     * \brief Permet de récupérer la littérale pointée par la variable.
+     * \brief Si allSons est vrai, alors on récupére la littérale pointée au bout de la chaine de référence (une variable peut pointer sur une variable), sinon on ne récupére que la première littérale fille (nom de la variable pointée).
+     * \param allSons : Parcourt complet de la chaine de référence si c'est vrai, ou non si c'est faux. Vrai par défaut.
+     * \return Littérale pointée
+     */
+    Literal& getTarget(bool allSons = true) const;
 
     // Pour savoir ce que l'on traite
     bool isInteger() const;

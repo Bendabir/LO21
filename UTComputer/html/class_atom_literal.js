@@ -1,6 +1,5 @@
 var class_atom_literal =
 [
-    [ "AtomLiteral", "class_atom_literal.html#aaaac2e194082f27b8b8e7fe2b993d276", null ],
     [ "arccos", "class_atom_literal.html#a4ab101bdfa05fc69a1910e30235830e6", null ],
     [ "arcsin", "class_atom_literal.html#a870c566d10537e1e59f5aaa20e2fb389", null ],
     [ "arctan", "class_atom_literal.html#a62c8ea5b17caa9d694fa9e3f2cbe8c31", null ],
@@ -8,9 +7,10 @@ var class_atom_literal =
     [ "cos", "class_atom_literal.html#ae4d30ba952103a91b9f7fba6c260dfbf", null ],
     [ "den", "class_atom_literal.html#a223bc7584998b8635174249e5ba824e6", null ],
     [ "div", "class_atom_literal.html#a71e54c040bc2527c7512a2bc9079f37d", null ],
+    [ "eval", "class_atom_literal.html#a50c137a985796a961d49c919ac0e87ef", null ],
     [ "exp", "class_atom_literal.html#a1c5b039d5ec8d8c887aa2340a752e764", null ],
     [ "getAtom", "class_atom_literal.html#ad45e7e6876bcfed4162c33254929005b", null ],
-    [ "getTarget", "class_atom_literal.html#ad772017374b0878f0ce424e39862bbee", null ],
+    [ "getTarget", "class_atom_literal.html#a5c750b86183b0f96d223100a489ea633", null ],
     [ "im", "class_atom_literal.html#a1be9f69e077e1f2b7312c1c3f0205641", null ],
     [ "isAtom", "class_atom_literal.html#af3507b7f9f649e130bae4417269baea1", null ],
     [ "isComplex", "class_atom_literal.html#a1a0849bf9926b0548097dbe8a2f46e4e", null ],
@@ -42,5 +42,6 @@ var class_atom_literal =
     [ "sin", "class_atom_literal.html#adc1ec5b103d621473522ed6b79ab21b7", null ],
     [ "sqrt", "class_atom_literal.html#a3a0dee1e5e3d416d4895d6f52acd95e3", null ],
     [ "tan", "class_atom_literal.html#a4b886ee37b3e77e8f8253ae93c53a96a", null ],
-    [ "toString", "class_atom_literal.html#aabd5112f4c7cb717e87f5b507b4c9254", null ]
+    [ "toString", "class_atom_literal.html#aabd5112f4c7cb717e87f5b507b4c9254", null ],
+    [ "LiteralFactory", "class_atom_literal.html#ab0ad5b2e683c750b9f78fd13da3fee67", null ]
 ];

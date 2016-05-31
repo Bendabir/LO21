@@ -1,13 +1,19 @@
+#include <QApplication>
 #include <QDebug>
 #include <QList>
 
 #include "complex_literal.h"
 #include "expression_literal.h"
 #include "atom_literal.h"
+#include "calculator.h"
+#include "mainwindow.h"
 
-#include "number.h"
+int main(int argc, char* argv[]){
+    // Démarrage de l'application
+    QApplication app(argc, argv);
+    MainWindow root;
+    root.show();
 
-int main(){
     LiteralFactory fact;
     Literal& z = fact.addLiteral(1, -1);
     Literal& i = fact.addLiteral(2);
@@ -22,15 +28,26 @@ int main(){
         cout << e;
     }
 
-    Literal& x1 = fact.addLiteral("X1", &u);
+    AtomLiteral& x1 = dynamic_cast<AtomLiteral&>(fact.addLiteral("X1", &u));
+    AtomLiteral& x2 = dynamic_cast<AtomLiteral&>(fact.addLiteral("X2", &x1));
 
-    try {
-        Literal& x2 = fact.addLiteral("X2", &x1);
-        cout << (x1 + exp2) << endl;
-    }
-    catch(const CalculatorException& e){
-        cout << e;
-    }
+    cout << x1.getTarget() << endl;
+    cout << x2.getTarget() << endl;
+    cout << x2.getTarget(false) << endl;
 
-    return 0;
+//    Stack stack;
+//    stack.push(i);
+
+//    cout << stack[0] << endl;
+//    try{
+//        cout << stack[1] << endl;
+//    }
+//    catch(const CalculatorException& e){
+//        cout << e;
+//    }
+
+    Calculator& calc = Calculator::start();
+    calc.getStack().push(i);
+
+    return app.exec();
 }

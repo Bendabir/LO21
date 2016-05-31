@@ -11,7 +11,10 @@ HEADERS += \
     expression_literal.h \
     number.h \
     literal_factory.h \
-    atom_literal.h
+    atom_literal.h \
+    stack.h \
+    calculator.h \
+    mainwindow.h
 
 SOURCES += \
     calculator_exception.cpp \
@@ -22,4 +25,10 @@ SOURCES += \
     expression_literal.cpp \
     number.cpp \
     literal_factory.cpp \
-    atom_literal.cpp
+    atom_literal.cpp \
+    stack.cpp \
+    calculator.cpp \
+    mainwindow.cpp
+
+FORMS += \
+    mainwindow.ui

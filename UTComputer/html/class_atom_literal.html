@@ -107,11 +107,17 @@ $(document).ready(function(){initNavTree('class_atom_literal.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="class_atom_literal-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">AtomLiteral Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>La classe <a class="el" href="class_atom_literal.html" title="La classe AtomLiteral permet de gérer des &quot;variables&quot; au sein de la calculatrice. Elles pointent (pou...">AtomLiteral</a> permet de gérer des "variables" au sein de la calculatrice. Elles pointent (pour le moment) sur d'autres littérales.  
+ <a href="class_atom_literal.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="atom__literal_8h_source.html">atom_literal.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for AtomLiteral:</div>
 <div class="dyncontent">
@@ -124,15 +130,12 @@ Inheritance diagram for AtomLiteral:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aaaac2e194082f27b8b8e7fe2b993d276"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaaac2e194082f27b8b8e7fe2b993d276"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>AtomLiteral</b> (<a class="el" href="class_literal_factory.html">LiteralFactory</a> *m, const QString &amp;a, <a class="el" href="class_literal.html">Literal</a> *t=0)</td></tr>
-<tr class="separator:aaaac2e194082f27b8b8e7fe2b993d276"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad45e7e6876bcfed4162c33254929005b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad45e7e6876bcfed4162c33254929005b"></a>
-const QString &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getAtom</b> () const </td></tr>
+<tr class="memitem:ad45e7e6876bcfed4162c33254929005b"><td class="memItemLeft" align="right" valign="top">const QString &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_atom_literal.html#ad45e7e6876bcfed4162c33254929005b">getAtom</a> () const </td></tr>
+<tr class="memdesc:ad45e7e6876bcfed4162c33254929005b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de connaitre le nom de la variable.  <a href="#ad45e7e6876bcfed4162c33254929005b">More...</a><br /></td></tr>
 <tr class="separator:ad45e7e6876bcfed4162c33254929005b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad772017374b0878f0ce424e39862bbee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad772017374b0878f0ce424e39862bbee"></a>
-<a class="el" href="class_literal.html">Literal</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getTarget</b> () const </td></tr>
-<tr class="separator:ad772017374b0878f0ce424e39862bbee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c750b86183b0f96d223100a489ea633"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_literal.html">Literal</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_atom_literal.html#a5c750b86183b0f96d223100a489ea633">getTarget</a> (bool allSons=true) const </td></tr>
+<tr class="memdesc:a5c750b86183b0f96d223100a489ea633"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de récupérer la littérale pointée par la variable.  <a href="#a5c750b86183b0f96d223100a489ea633">More...</a><br /></td></tr>
+<tr class="separator:a5c750b86183b0f96d223100a489ea633"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d178776b02f5f6cdcee159424bc7c16"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_atom_literal.html#a9d178776b02f5f6cdcee159424bc7c16">isInteger</a> () const </td></tr>
 <tr class="memdesc:a9d178776b02f5f6cdcee159424bc7c16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de savoir si la <a class="el" href="class_literal.html" title="La classe Literal est la classe de base de toutes les littérales de l&#39;application (littérales entière...">Literal</a> traitée est un entier.  <a href="#a9d178776b02f5f6cdcee159424bc7c16">More...</a><br /></td></tr>
 <tr class="separator:a9d178776b02f5f6cdcee159424bc7c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -250,6 +253,9 @@ const QString &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getAto
 <tr class="memitem:a992489a0dc370164b341ea3042aa3d40"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_atom_literal.html#a992489a0dc370164b341ea3042aa3d40">operator!</a> () const </td></tr>
 <tr class="memdesc:a992489a0dc370164b341ea3042aa3d40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renvoie le booléen opposé correspondant à la littérale sur laquelle s'applique l'opérateur.  <a href="#a992489a0dc370164b341ea3042aa3d40">More...</a><br /></td></tr>
 <tr class="separator:a992489a0dc370164b341ea3042aa3d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50c137a985796a961d49c919ac0e87ef"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_atom_literal.html#a50c137a985796a961d49c919ac0e87ef">eval</a> () const </td></tr>
+<tr class="memdesc:a50c137a985796a961d49c919ac0e87ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui renvoie la littérale sous forme de chaine de caractères.  <a href="#a50c137a985796a961d49c919ac0e87ef">More...</a><br /></td></tr>
+<tr class="separator:a50c137a985796a961d49c919ac0e87ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabd5112f4c7cb717e87f5b507b4c9254"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_atom_literal.html#aabd5112f4c7cb717e87f5b507b4c9254">toString</a> () const </td></tr>
 <tr class="memdesc:aabd5112f4c7cb717e87f5b507b4c9254"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convertit la littérale en chaine de caractères (QString).  <a href="#aabd5112f4c7cb717e87f5b507b4c9254">More...</a><br /></td></tr>
 <tr class="separator:aabd5112f4c7cb717e87f5b507b4c9254"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -263,9 +269,12 @@ const QString &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getAto
 <tr class="memitem:ad8c846d3a89df8848dabc2dd8242a659 inherit pub_methods_class_literal"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal.html#ad8c846d3a89df8848dabc2dd8242a659">isNumber</a> () const </td></tr>
 <tr class="memdesc:ad8c846d3a89df8848dabc2dd8242a659 inherit pub_methods_class_literal"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de savoir si la <a class="el" href="class_literal.html" title="La classe Literal est la classe de base de toutes les littérales de l&#39;application (littérales entière...">Literal</a> traitée est une littérale entière, réelle ou rationnelle.  <a href="#ad8c846d3a89df8848dabc2dd8242a659">More...</a><br /></td></tr>
 <tr class="separator:ad8c846d3a89df8848dabc2dd8242a659 inherit pub_methods_class_literal"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a642b717884d4b640d5d566dcda995870 inherit pub_methods_class_literal"><td class="memItemLeft" align="right" valign="top">virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal.html#a642b717884d4b640d5d566dcda995870">operator*</a> () const </td></tr>
-<tr class="memdesc:a642b717884d4b640d5d566dcda995870 inherit pub_methods_class_literal"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opérateur d'indirection surchargé pour renvoyer la littérale sous forme de chaine de caractères.  <a href="#a642b717884d4b640d5d566dcda995870">More...</a><br /></td></tr>
-<tr class="separator:a642b717884d4b640d5d566dcda995870 inherit pub_methods_class_literal"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:ab0ad5b2e683c750b9f78fd13da3fee67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0ad5b2e683c750b9f78fd13da3fee67"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>LiteralFactory</b></td></tr>
+<tr class="separator:ab0ad5b2e683c750b9f78fd13da3fee67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -275,7 +284,9 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:aaf98fbbd4440483f27c09a5375f00607 inherit pro_attribs_class_literal"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointeur sur la factory qui a créé la littérale. Permet de créer des littérales à la volée pendant les opérations et de s'affranchir d'un code trop lourd via des retours par référence. <br /></td></tr>
 <tr class="separator:aaf98fbbd4440483f27c09a5375f00607 inherit pro_attribs_class_literal"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>La classe <a class="el" href="class_atom_literal.html" title="La classe AtomLiteral permet de gérer des &quot;variables&quot; au sein de la calculatrice. Elles pointent (pou...">AtomLiteral</a> permet de gérer des "variables" au sein de la calculatrice. Elles pointent (pour le moment) sur d'autres littérales. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a4ab101bdfa05fc69a1910e30235830e6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -479,6 +490,34 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a50c137a985796a961d49c919ac0e87ef"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString AtomLiteral::eval </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Fonction qui renvoie la littérale sous forme de chaine de caractères. </p>
+<p>Si cette littérale est une expression, cela renvoie une chaine de caractères correspondant à l'expression évaluée. Si cette littérale est un atome, cela renvoie une chaine de caractères correspondant à l'expression pointée. </p><dl class="section return"><dt>Returns</dt><dd>Chaine de caractère </dd></dl>
+
+<p>Reimplemented from <a class="el" href="class_literal.html#ae82f8923b9a468f782efc9502c684ef4">Literal</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a1c5b039d5ec8d8c887aa2340a752e764"></a>
 <div class="memitem">
 <div class="memproto">
@@ -504,6 +543,57 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Pointeur sur une littérale (étant une sous-classe de <a class="el" href="class_literal.html" title="La classe Literal est la classe de base de toutes les littérales de l&#39;application (littérales entière...">Literal</a>), selon les cas (réel, expression ou programme). </dd></dl>
 
 <p>Implements <a class="el" href="class_literal.html#a070f957888375659ae9827bd813dcf47">Literal</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad45e7e6876bcfed4162c33254929005b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString&amp; AtomLiteral::getAtom </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Permet de connaitre le nom de la variable. </p>
+<dl class="section return"><dt>Returns</dt><dd>Chaine de caractères contenant le nom de la variable. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5c750b86183b0f96d223100a489ea633"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_literal.html">Literal</a> &amp; AtomLiteral::getTarget </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>allSons</em> = <code>true</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de récupérer la littérale pointée par la variable. </p>
+<p>Si allSons est vrai, alors on récupére la littérale pointée au bout de la chaine de référence (une variable peut pointer sur une variable), sinon on ne récupére que la première littérale fille (nom de la variable pointée). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">allSons</td><td>: Parcourt complet de la chaine de référence si c'est vrai, ou non si c'est faux. Vrai par défaut. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Littérale pointée </dd></dl>
 
 </div>
 </div>

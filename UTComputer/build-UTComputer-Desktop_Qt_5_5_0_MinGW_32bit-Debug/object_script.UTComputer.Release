@@ -1,0 +1,15 @@
+INPUT(
+./release\calculator_exception.o
+./release\main.o
+./release\literal.o
+./release\complex_literal.o
+./release\tests.o
+./release\expression_literal.o
+./release\number.o
+./release\literal_factory.o
+./release\atom_literal.o
+./release\stack.o
+./release\calculator.o
+./release\mainwindow.o
+./release\moc_mainwindow.o
+);

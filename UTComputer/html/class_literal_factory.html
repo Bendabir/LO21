@@ -126,6 +126,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac62c50139a9fdb0197185617422e851c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_literal.html">Literal</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#ac62c50139a9fdb0197185617422e851c">addLiteral</a> (const QString &amp;expression)</td></tr>
 <tr class="memdesc:ac62c50139a9fdb0197185617422e851c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute une littérale expression et la lie à la factory.  <a href="#ac62c50139a9fdb0197185617422e851c">More...</a><br /></td></tr>
 <tr class="separator:ac62c50139a9fdb0197185617422e851c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80be309cd2ca001377d978e25eccf001"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_literal.html">Literal</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a80be309cd2ca001377d978e25eccf001">addLiteral</a> (const QString &amp;atom, <a class="el" href="class_literal.html">Literal</a> *target)</td></tr>
+<tr class="memdesc:a80be309cd2ca001377d978e25eccf001"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'ajouter une variable pointant sur une autre littérale.  <a href="#a80be309cd2ca001377d978e25eccf001">More...</a><br /></td></tr>
+<tr class="separator:a80be309cd2ca001377d978e25eccf001"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8401d933bed9b95aa50c08e26bdc0d18"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a8401d933bed9b95aa50c08e26bdc0d18">removeLiteral</a> (<a class="el" href="class_literal.html">Literal</a> &amp;l)</td></tr>
 <tr class="memdesc:a8401d933bed9b95aa50c08e26bdc0d18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de supprimer une littérale passée en argument. Provoque une erreur si la littérale à supprimer n'existait pas.  <a href="#a8401d933bed9b95aa50c08e26bdc0d18">More...</a><br /></td></tr>
 <tr class="separator:a8401d933bed9b95aa50c08e26bdc0d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,6 +141,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a697eeb0ab97eb9c1de32227c36c07df6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a697eeb0ab97eb9c1de32227c36c07df6">empty</a> () const </td></tr>
 <tr class="memdesc:a697eeb0ab97eb9c1de32227c36c07df6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Détermine sur la factory est vide.  <a href="#a697eeb0ab97eb9c1de32227c36c07df6">More...</a><br /></td></tr>
 <tr class="separator:a697eeb0ab97eb9c1de32227c36c07df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e5f990266a6ee110ebc2d606f02f446"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a1e5f990266a6ee110ebc2d606f02f446">existsAtom</a> (const QString &amp;atom) const </td></tr>
+<tr class="memdesc:a1e5f990266a6ee110ebc2d606f02f446"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de vérifier si un nom de variable (atome) est déjà utilisé.  <a href="#a1e5f990266a6ee110ebc2d606f02f446">More...</a><br /></td></tr>
+<tr class="separator:a1e5f990266a6ee110ebc2d606f02f446"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Permet de créer des littérales (quelconques) et les stocker. </p>
@@ -203,6 +209,42 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a80be309cd2ca001377d978e25eccf001"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_literal.html">Literal</a> &amp; LiteralFactory::addLiteral </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>atom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_literal.html">Literal</a> *&#160;</td>
+          <td class="paramname"><em>target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet d'ajouter une variable pointant sur une autre littérale. </p>
+<p>Provoque une erreur si le nom de variable correspond à un nom de fonction ou d'opérateur. Provoque une erreur si le nom de variable correspond à un nom de variable déjà utilisé. Provoque une erreur si le nom de variable n'est pas valide (suite de chiffre ou de lettres majuscules, commençant par une lettre majuscule). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">atom</td><td>: Nom de la variable </td></tr>
+    <tr><td class="paramname">target</td><td>: Pointeur sur la littérale à pointer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a697eeb0ab97eb9c1de32227c36c07df6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -226,6 +268,31 @@ Public Member Functions</h2></td></tr>
 
 <p>Détermine sur la factory est vide. </p>
 <dl class="section return"><dt>Returns</dt><dd>Vrai si la factory est vide, faux sinon </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1e5f990266a6ee110ebc2d606f02f446"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool LiteralFactory::existsAtom </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>atom</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de vérifier si un nom de variable (atome) est déjà utilisé. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Le</td><td>nom de la variable à vérifier </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vrai si le nom est déjà pris, faux sinon </dd></dl>
 
 </div>
 </div>

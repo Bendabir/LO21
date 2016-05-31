@@ -33,6 +33,15 @@ public:
      * \return Une référence sur la littérale créée.
      */
     Literal& addLiteral(const QString& expression);
+    /*!
+     * \brief Permet d'ajouter une variable pointant sur une autre littérale.
+     * \brief Provoque une erreur si le nom de variable correspond à un nom de fonction ou d'opérateur.
+     * \brief Provoque une erreur si le nom de variable correspond à un nom de variable déjà utilisé.
+     * \brief Provoque une erreur si le nom de variable n'est pas valide (suite de chiffre ou de lettres majuscules, commençant par une lettre majuscule).
+     * \param atom : Nom de la variable
+     * \param target : Pointeur sur la littérale à pointer
+     * \return
+     */
     Literal& addLiteral(const QString& atom, Literal* target);
     /*!
      * \brief Permet de supprimer une littérale passée en argument. Provoque une erreur si la littérale à supprimer n'existait pas.
