@@ -148,22 +148,22 @@ Literal& ExpressionLiteral::norm() const {
 bool ExpressionLiteral::operator==(const Literal& l) const {
     // On vérifie que l'évaluation des chaînes donne la même chose
     // Cela permet de faire abstraction des parenthèses de priorité (parfois superflues) dans les expressions
-    return (*this).eval() == l.eval();
+    return this->eval() == l.eval();
 }
 bool ExpressionLiteral::operator!=(const Literal& l) const {
-    return (*this).eval() != l.eval();
+    return this->eval() != l.eval();
 }
 bool ExpressionLiteral::operator>=(const Literal& l) const {
-    return (*this).eval() >= l.eval();
+    return this->eval() >= l.eval();
 }
 bool ExpressionLiteral::operator>(const Literal& l) const  {
-    return (*this).eval() > l.eval();
+    return this->eval() > l.eval();
 }
 bool ExpressionLiteral::operator<=(const Literal& l) const  {
-    return (*this).eval() <= l.eval();
+    return this->eval() <= l.eval();
 }
 bool ExpressionLiteral::operator<(const Literal& l) const  {
-    return (*this).eval() < l.eval();
+    return this->eval() < l.eval();
 }
 bool ExpressionLiteral::operator&&(const Literal& l) const {
     // Si la littérale passée en argument est un entier

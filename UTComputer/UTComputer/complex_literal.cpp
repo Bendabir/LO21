@@ -2,6 +2,7 @@
 
 #include "complex_literal.h"
 #include "expression_literal.h"
+#include "atom_literal.h"
 
 // Pour savoir ce que l'on traite
 bool ComplexLiteral::isInteger() const {
@@ -52,18 +53,32 @@ Literal& ComplexLiteral::operator+(const Literal& l) const {
 
         return this->manager->addLiteral(result);
     }
+    else if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        return *this + literal.getTarget();
+    }
 
     // Autres cas
 }
 Literal& ComplexLiteral::operator-(const Literal& l) const {
-    if(l.isComplex())
-        return (*this) + (-l);
+    // Pas vraiment possible de réutiliser l'addition dans ce cas
+    if(l.isComplex()){
+        const ComplexLiteral& literal = dynamic_cast<const ComplexLiteral&>(l);
+
+        return this->manager->addLiteral(real - literal.real, imaginary - literal.imaginary);
+    }
     else if(l.isExpression()){
         const ExpressionLiteral& expressionArgument = dynamic_cast<const ExpressionLiteral&>(l);
 
         QString result = "(" + this->toString() + ") - (" + expressionArgument.getExpression() + ")";
 
         return this->manager->addLiteral(result);
+    }
+    else if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        return *this - literal.getTarget();
     }
 }
 Literal& ComplexLiteral::operator*(const Literal& l) const {
@@ -84,6 +99,11 @@ Literal& ComplexLiteral::operator*(const Literal& l) const {
         QString result = "(" + this->toString() + ") * (" + expressionArgument.getExpression() + ")";
 
         return this->manager->addLiteral(result);
+    }
+    else if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        return *this * literal.getTarget();
     }
 }
 Literal& ComplexLiteral::operator/(const Literal& l) const {
@@ -118,6 +138,16 @@ Literal& ComplexLiteral::operator/(const Literal& l) const {
 
         return this->manager->addLiteral(result);
     }
+    else if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        try{
+            return *this / literal.getTarget();
+        }
+        catch(const CalculatorException& e){
+            throw e; // On propage à cause du ping-pong
+        }
+    }
 }
 Literal& ComplexLiteral::div(const Literal& l) const {
     // Ne s'applique que sur des entiers
@@ -133,6 +163,16 @@ Literal& ComplexLiteral::div(const Literal& l) const {
         QString result = "DIV(" + this->toString() + ", " + literal.getExpression() + ")";
 
         return this->manager->addLiteral(result);
+    }
+    else if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        try {
+            return this->div(literal.getTarget());
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
     }
     // Autres cas à gérer
     else
@@ -153,6 +193,16 @@ Literal& ComplexLiteral::mod(const Literal& l) const {
 
         return this->manager->addLiteral(result);
     }
+    else if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        try {
+            return this->mod(literal.getTarget());
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
     // Autres cas à gérer
     else
         throw CalculatorException("Erreur : DIV ne peut s'appliquer que sur des entiers.");
@@ -171,6 +221,16 @@ Literal& ComplexLiteral::pow(const Literal& l) const {
         QString result = "POW(" + this->toString() + ", " + literal.getExpression() + ")";
 
         return this->manager->addLiteral(result);
+    }
+    else if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        try {
+            return this->pow(literal.getTarget());
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
     }
     else
         throw CalculatorException("Erreur : POW ne peut pas s'appliquer sur ces opérandes.");

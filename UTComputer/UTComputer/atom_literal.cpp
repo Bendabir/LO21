@@ -46,14 +46,117 @@ bool AtomLiteral::isProgramm() const {return false;}
 bool AtomLiteral::isAtom() const {return true;}
 
 // Opérateurs numériques
-Literal& AtomLiteral::operator+(const Literal& l) const {}
-Literal& AtomLiteral::operator-(const Literal& l) const {}
-Literal& AtomLiteral::operator*(const Literal& l) const {}
-Literal& AtomLiteral::operator/(const Literal& l) const {}
-Literal& AtomLiteral::div(const Literal& l) const {}
-Literal& AtomLiteral::mod(const Literal& l) const {}
-Literal& AtomLiteral::pow(const Literal& l) const {}
-Literal& AtomLiteral::operator-() const {}
+Literal& AtomLiteral::operator+(const Literal& l) const {
+    // Si on a deux atomes
+    if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        return *target + *(literal.target);
+    }
+    else
+        return *target + l;
+}
+Literal& AtomLiteral::operator-(const Literal& l) const {
+    // On réutilise l'addition
+    return *this + (-l);
+}
+Literal& AtomLiteral::operator*(const Literal& l) const {
+    // Si on a deux atomes
+    if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        return *target * *(literal.target);
+    }
+    else
+        return *target * l;
+}
+Literal& AtomLiteral::operator/(const Literal& l) const {
+    // Si on a deux atomes
+    if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        try {
+            return *target / *(literal.target);
+        }
+        catch(const CalculatorException& e){
+            throw e; // On teste et on propage parce qu'on fait du ping-pong entre les fonctions à cause des atomes
+        }
+    }
+    else{
+        try{
+            return *target / l;
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+}
+Literal& AtomLiteral::div(const Literal& l) const {
+    // Si on a deux atomes
+    if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        try {
+            return target->div(*literal.target);
+        }
+        catch(const CalculatorException& e){
+            throw e; // On teste et on propage parce qu'on fait du ping-pong entre les fonctions à cause des atomes
+        }
+    }
+    else{
+        try{
+            return target->div(l);
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+}
+Literal& AtomLiteral::mod(const Literal& l) const {
+    // Si on a deux atomes
+    if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        try {
+            return target->mod(*literal.target);
+        }
+        catch(const CalculatorException& e){
+            throw e; // On teste et on propage parce qu'on fait du ping-pong entre les fonctions à cause des atomes
+        }
+    }
+    else{
+        try{
+            return target->mod(l);
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+}
+Literal& AtomLiteral::pow(const Literal& l) const {
+    // Si on a deux atomes
+    if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        try {
+            return target->pow(*literal.target);
+        }
+        catch(const CalculatorException& e){
+            throw e; // On teste et on propage parce qu'on fait du ping-pong entre les fonctions à cause des atomes
+        }
+    }
+    else{
+        try{
+            return target->pow(l);
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+}
+Literal& AtomLiteral::operator-() const {
+    return -(*target);
+}
 Literal& AtomLiteral::sin() const {
     // On calcule le sinus de la littérale pointée
     // Si jamais l'atome pointe sur un atome, on a un appel récursif jusqu'à tomber sur la destination "finale".
@@ -135,14 +238,14 @@ Literal& AtomLiteral::norm() const {
 
 // Opérateurs logiques
 bool AtomLiteral::operator==(const Literal& l) const {
-    // Si l'argument est un atome, on teste entre les valeurs pointée, sinon on fait un test basique
-    if(l.isAtom()){
-        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+//    // Si l'argument est un atome, on teste entre les valeurs pointée, sinon on fait un test basique
+//    if(l.isAtom()){
+//        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
 
-        return *target == *literal.target;
-    }
+//        return *target == *literal.target;
+//    }
 //    else
-//        return
+//        return *target == l;
 }
 bool AtomLiteral::operator!=(const Literal& l) const {}
 bool AtomLiteral::operator>=(const Literal& l) const {}

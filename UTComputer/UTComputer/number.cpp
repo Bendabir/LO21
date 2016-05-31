@@ -148,9 +148,18 @@ Number Number::operator/(const Number& n) const {
 
 Number Number::div(const Number& n) const {
     // Ne peut s'appliquer que sur entiers
-    if(isInteger() && n.isInteger())
+    if(isInteger() && n.isInteger()){
+        // Division par 0 : VERBOTEN !
+        if(n == 0)
+            throw CalculatorException("Erreur : La division par 0 est impossible.");
+
+        // Conversion au calme
+        int a = numerator,
+            b = n.numerator;
+
         // On convertit l'opérande 2
-        return numerator / n.numerator; // On retourne la division d'entiers, qui sera soit un entier soit un rationnel
+        return a / b; // On retourne la division d'entiers, qui sera soit un entier soit un rationnel
+    }
     // Autres cas de littérales (programme, expression)
     else
         throw CalculatorException("Erreur : DIV ne peut s'appliquer que sur des entiers.");
@@ -159,6 +168,10 @@ Number Number::div(const Number& n) const {
 Number Number::mod(const Number& n) const {
     // Ne peut s'appliquer que sur entiers
     if(isInteger() && n.isInteger()){
+        // Division par 0 : VERBOTEN !
+        if(n == 0)
+            throw CalculatorException("Erreur : La division par 0 est impossible.");
+
         int a = numerator,
             b = n.numerator;
 
