@@ -1,4 +1,5 @@
 #include "atom_literal.h"
+#include "expression_literal.h"
 
 AtomLiteral::AtomLiteral(LiteralFactory* m, const QString& a, Literal* t) : Literal(m), atom(a), target(t){
     atom.replace(" ", ""); // On vire les espaces
@@ -19,21 +20,8 @@ AtomLiteral::AtomLiteral(LiteralFactory* m, const QString& a, Literal* t) : Lite
         throw CalculatorException("Erreur : " + atom + " est réservé.");
 
     // On va vérifier que ce nom n'existe pas déjà
-    // A voir pour implémenter la vérification en tant que méthode
-    LiteralFactory& factory = *this->manager;
-
-    for(int i = 0; i < factory.size(); i++){
-        // Si on a un atom, on convertit et on check
-        Literal& literal = factory[i];
-
-        if(literal.isAtom()){
-            AtomLiteral& atomLiteral = dynamic_cast<AtomLiteral&>(literal);
-
-            // On renvoie un erreur si le nom est déjà pris
-            if(atom == atomLiteral.atom)
-                throw CalculatorException("Erreur : Le nom de variable " + atom + " est déjà utilisé.");
-        }
-    }
+    if(this->manager->existsAtom(atom))
+        throw CalculatorException("Erreur : Le nom de variable " + atom + " est déjà utilisé.");
 }
 
 // Pour savoir ce que l'on traite
@@ -53,12 +41,52 @@ Literal& AtomLiteral::operator+(const Literal& l) const {
 
         return *target + *(literal.target);
     }
+    // On prend en compte les expressions
+    else if(l.isExpression()){
+        const ExpressionLiteral& expressionArgument = dynamic_cast<const ExpressionLiteral&>(l);
+        int operatorPriority = getPriority("+");
+
+        QString result = this->toString() + " + ";
+
+        if(operatorPriority > expressionArgument.priority())
+            result += "(" ;
+
+        result += expressionArgument.getExpression();
+
+        if(operatorPriority > expressionArgument.priority())
+            result += ")" ;
+
+        return this->manager->addLiteral(result);
+    }
     else
         return *target + l;
 }
 Literal& AtomLiteral::operator-(const Literal& l) const {
-    // On réutilise l'addition
-    return *this + (-l);
+    // Si on a deux atomes
+    if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        return *target - *(literal.target);
+    }
+    // On prend en compte les expressions
+    else if(l.isExpression()){
+        const ExpressionLiteral& expressionArgument = dynamic_cast<const ExpressionLiteral&>(l);
+        int operatorPriority = getPriority("-");
+
+        QString result = this->toString() + " - ";
+
+        if(operatorPriority > expressionArgument.priority())
+            result += "(" ;
+
+        result += expressionArgument.getExpression();
+
+        if(operatorPriority > expressionArgument.priority())
+            result += ")" ;
+
+        return this->manager->addLiteral(result);
+    }
+    else
+        return *target - l;
 }
 Literal& AtomLiteral::operator*(const Literal& l) const {
     // Si on a deux atomes
@@ -66,6 +94,23 @@ Literal& AtomLiteral::operator*(const Literal& l) const {
         const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
 
         return *target * *(literal.target);
+    }
+    // On prend en compte les expressions
+    else if(l.isExpression()){
+        const ExpressionLiteral& expressionArgument = dynamic_cast<const ExpressionLiteral&>(l);
+        int operatorPriority = getPriority("*");
+
+        QString result = this->toString() + " * ";
+
+        if(operatorPriority > expressionArgument.priority())
+            result += "(" ;
+
+        result += expressionArgument.getExpression();
+
+        if(operatorPriority > expressionArgument.priority())
+            result += ")" ;
+
+        return this->manager->addLiteral(result);
     }
     else
         return *target * l;
@@ -81,6 +126,23 @@ Literal& AtomLiteral::operator/(const Literal& l) const {
         catch(const CalculatorException& e){
             throw e; // On teste et on propage parce qu'on fait du ping-pong entre les fonctions à cause des atomes
         }
+    }
+    // On prend en compte les expressions
+    else if(l.isExpression()){
+        const ExpressionLiteral& expressionArgument = dynamic_cast<const ExpressionLiteral&>(l);
+        int operatorPriority = getPriority("/");
+
+        QString result = this->toString() + " / ";
+
+        if(operatorPriority > expressionArgument.priority())
+            result += "(" ;
+
+        result += expressionArgument.getExpression();
+
+        if(operatorPriority > expressionArgument.priority())
+            result += ")" ;
+
+        return this->manager->addLiteral(result);
     }
     else{
         try{

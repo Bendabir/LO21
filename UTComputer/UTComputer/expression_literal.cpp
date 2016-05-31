@@ -47,8 +47,15 @@ ExpressionLiteral::ExpressionLiteral(LiteralFactory* m, const QString& exp) : Li
     expression.replace(" ", ""); // On vire les espaces
 
     // Si l'expression est vide, on ne prend pas et on vérifie qu'elle est valide
-    if(expression.length() == 0 || !isValid())
-        throw CalculatorException("Erreur : L'expression infixe entrée n'est pas valide.");
+    if(expression.length() == 0)
+        throw CalculatorException("Erreur : L'expression infixe entrée est vide.");
+
+    try{
+        evaluate();
+    }
+    catch(const CalculatorException& e){
+        throw e; // On propage les erreurs
+    }
 }
 
 // Pour savoir ce que l'on traite
@@ -209,8 +216,16 @@ QString ExpressionLiteral::evaluate() const {
         QString token = tokens[i];
 
         // Si le token est un nombre, on le stocke en sortie
-        if(::isNumber(token) || isVariable(token))
+        if(::isNumber(token))
             output.append(token);
+
+        // Si c'est une variable, on va faire quelques tests pour être sûrs
+        if(isVariable(token)){
+            if(!this->manager->existsAtom(token))
+                throw CalculatorException("Erreur : Le nom d'atome " + token + " n'existe pas.");
+            else
+                output.append(token);
+        }
 
         // Si c'est une fonction, on empile
         if(isFunction(token))
@@ -229,7 +244,7 @@ QString ExpressionLiteral::evaluate() const {
 
             // Si la pile est vide sans trouver de parenthèses gauche
             if(tokensStack.empty())
-                throw CalculatorException("Erreur : L'expression à convertir n'est pas valide (mauvais parenthèsage). (1)");
+                throw CalculatorException("Erreur : L'expression à convertir n'est pas valide (mauvais parenthèsage).");
         }
 
         // Si c'est un opérateur o1
@@ -276,7 +291,7 @@ QString ExpressionLiteral::evaluate() const {
                     output.append(tokensStack.pop());
             }
             else if(!parenthesisFound)
-                throw CalculatorException("Erreur : L'expression à convertir n'est pas valide (mauvais parenthèsage). (2)");
+                throw CalculatorException("Erreur : L'expression à convertir n'est pas valide (mauvais parenthèsage).");
         }
     }
 
@@ -285,9 +300,9 @@ QString ExpressionLiteral::evaluate() const {
         QString remainingToken = tokensStack.pop(); // Les tokens restants
 
         if(remainingToken == "(")
-            throw CalculatorException("Erreur : L'expression à convertir n'était pas valide (mauvais parenthèsage).");
+            throw CalculatorException("Erreur : L'expression à convertir n'est pas valide (mauvais parenthèsage).");
         else if(!isOperator(remainingToken))
-            throw CalculatorException("Erreur : Les tokens restant devraient être des opérateurs.");
+            throw CalculatorException("Erreur : L'expression à convertir n'est pas valide (problème d'opérateurs).");
         else
             output.append(remainingToken);
     }
@@ -316,7 +331,7 @@ bool ExpressionLiteral::isValid() const {
         evaluate();
     }
     catch(const CalculatorException& e){
-        return false; // Sinon on pourrait propager l'erreur
+        return false;
     }
 
     return true;

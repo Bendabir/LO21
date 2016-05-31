@@ -48,8 +48,17 @@ Literal& ComplexLiteral::operator+(const Literal& l) const {
     // Si on a une expression littérale
     else if(l.isExpression()){
         const ExpressionLiteral& expressionArgument = dynamic_cast<const ExpressionLiteral&>(l);
+        int operatorPriority = getPriority("+");
 
-        QString result = "(" + this->toString() + ") + (" + expressionArgument.getExpression() + ")";
+        QString result = this->toString() + " + ";
+
+        if(operatorPriority > expressionArgument.priority())
+            result += "(" ;
+
+        result += expressionArgument.getExpression();
+
+        if(operatorPriority > expressionArgument.priority())
+            result += ")" ;
 
         return this->manager->addLiteral(result);
     }
@@ -70,8 +79,17 @@ Literal& ComplexLiteral::operator-(const Literal& l) const {
     }
     else if(l.isExpression()){
         const ExpressionLiteral& expressionArgument = dynamic_cast<const ExpressionLiteral&>(l);
+        int operatorPriority = getPriority("-");
 
-        QString result = "(" + this->toString() + ") - (" + expressionArgument.getExpression() + ")";
+        QString result = this->toString() + " - ";
+
+        if(operatorPriority > expressionArgument.priority())
+            result += "(" ;
+
+        result += expressionArgument.getExpression();
+
+        if(operatorPriority > expressionArgument.priority())
+            result += ")" ;
 
         return this->manager->addLiteral(result);
     }
@@ -95,8 +113,17 @@ Literal& ComplexLiteral::operator*(const Literal& l) const {
     }
     else if(l.isExpression()){
         const ExpressionLiteral& expressionArgument = dynamic_cast<const ExpressionLiteral&>(l);
+        int operatorPriority = getPriority("*");
 
-        QString result = "(" + this->toString() + ") * (" + expressionArgument.getExpression() + ")";
+        QString result = this->toString() + " * ";
+
+        if(operatorPriority > expressionArgument.priority())
+            result += "(" ;
+
+        result += expressionArgument.getExpression();
+
+        if(operatorPriority > expressionArgument.priority())
+            result += ")" ;
 
         return this->manager->addLiteral(result);
     }
@@ -133,8 +160,17 @@ Literal& ComplexLiteral::operator/(const Literal& l) const {
     }
     else if(l.isExpression()){
         const ExpressionLiteral& expressionArgument = dynamic_cast<const ExpressionLiteral&>(l);
+        int operatorPriority = getPriority("/");
 
-        QString result = "(" + this->toString() + ") / (" + expressionArgument.getExpression() + ")";
+        QString result = this->toString() + " / ";
+
+        if(operatorPriority > expressionArgument.priority())
+            result += "(" ;
+
+        result += expressionArgument.getExpression();
+
+        if(operatorPriority > expressionArgument.priority())
+            result += ")" ;
 
         return this->manager->addLiteral(result);
     }

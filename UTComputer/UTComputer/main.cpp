@@ -12,15 +12,21 @@ int main(){
     Literal& z = fact.addLiteral(1, -1);
     Literal& i = fact.addLiteral(2);
     Literal& u = fact.addLiteral(3);
-    Literal& exp1 = fact.addLiteral("1$1");
+    Literal& exp1 = fact.addLiteral("1 + 2");
     Literal& exp2 = fact.addLiteral("1 * 2");
-    Literal& exp3 = fact.addLiteral("POW(2 + 5, 2)");
+    try{
+        Literal& exp3 = fact.addLiteral("X1 + 2");
+        cout << exp3 << endl;
+    }
+    catch(const CalculatorException& e){
+        cout << e;
+    }
 
     Literal& x1 = fact.addLiteral("X1", &u);
-    Literal& x2 = fact.addLiteral("X2", &x1);
 
     try {
-        cout << u.div(i) << endl;
+        Literal& x2 = fact.addLiteral("X2", &x1);
+        cout << (x1 + exp2) << endl;
     }
     catch(const CalculatorException& e){
         cout << e;

@@ -25,3 +25,23 @@ void LiteralFactory::removeLiteral(Literal& l){
         throw CalculatorException("Erreur : L'élément à supprimer n'existe pas.");
 }
 
+bool LiteralFactory::existsAtom(const QString& atom) const {
+    // On vérifie que l'atome existe
+    // On va vérifier que ce nom n'existe pas déjà
+    // A voir pour implémenter la vérification en tant que méthode
+
+    for(int i = 0; i < literals.size(); i++){
+        // Si on a un atom, on convertit et on check
+        const Literal& literal = *literals[i];
+
+        if(literal.isAtom()){
+            const AtomLiteral& atomLiteral = dynamic_cast<const AtomLiteral&>(literal);
+
+            // On renvoie vrai si le nom est déjà pris
+            if(atom == atomLiteral.atom)
+                return true;
+        }
+    }
+
+    return false;
+}

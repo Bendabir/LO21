@@ -56,6 +56,13 @@ public:
      * \return Vrai si la factory est vide, faux sinon
      */
     bool empty() const {return literals.empty();}
+
+    /*!
+     * \brief Permet de vérifier si un nom de variable (atome) est déjà utilisé.
+     * \param Le nom de la variable à vérifier
+     * \return Vrai si le nom est déjà pris, faux sinon
+     */
+    bool existsAtom(const QString& atom) const;
 };
 
 #endif // LITERALFACTORY_H
