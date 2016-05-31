@@ -303,6 +303,8 @@ ostream& operator<<(ostream& f, const Literal& l);
  * \return Vrai si c'est un nombre, faux sinon
  */
 bool isNumber(const QString& str);
+bool isComplex(const QString& str);
+bool isRational(const QString& str);
 /*!
  * \brief Permet de vérifier si une chaine de caractères est une fonction.
  * \param Fonction à vérifier

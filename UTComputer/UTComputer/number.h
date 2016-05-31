@@ -31,6 +31,7 @@ public:
      * \param den : Dénominateur
      */
     Number(double num = 0, double den = 1);
+//    explicit Number(bool value);
 
     // Accesseurs
     /*!

@@ -30,3 +30,20 @@ Literal& Stack::operator[](int i){
     else
         throw CalculatorException("Erreur : Impossible de retourner l'élément " + QString::number(i) + ".");
 }
+
+const Literal& Stack::operator[](int i) const {
+    if(!empty() && i < size())
+        return *literals[i];
+    else
+        throw CalculatorException("Erreur : Impossible de retourner l'élément " + QString::number(i) + ".");
+}
+
+ostream& operator<<(ostream& f, const Stack& s){
+    if(s.empty())
+        f << "La pile de calcul est vide." << endl;
+    else
+        for(int i = 0; i < s.size(); i++)
+            f << s.size() - i << " : " << s[i] << endl;
+
+    return f;
+}

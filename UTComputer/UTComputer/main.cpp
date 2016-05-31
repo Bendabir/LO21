@@ -10,9 +10,9 @@
 
 int main(int argc, char* argv[]){
     // Démarrage de l'application
-    QApplication app(argc, argv);
-    MainWindow root;
-    root.show();
+//    QApplication app(argc, argv);
+//    MainWindow root;
+//    root.show();
 
     LiteralFactory fact;
     Literal& z = fact.addLiteral(1, -1);
@@ -20,34 +20,23 @@ int main(int argc, char* argv[]){
     Literal& u = fact.addLiteral(3);
     Literal& exp1 = fact.addLiteral("1 + 2");
     Literal& exp2 = fact.addLiteral("1 * 2");
-    try{
-        Literal& exp3 = fact.addLiteral("X1 + 2");
-        cout << exp3 << endl;
-    }
-    catch(const CalculatorException& e){
-        cout << e;
-    }
 
-    AtomLiteral& x1 = dynamic_cast<AtomLiteral&>(fact.addLiteral("X1", &u));
-    AtomLiteral& x2 = dynamic_cast<AtomLiteral&>(fact.addLiteral("X2", &x1));
+    Stack stack;
 
-    cout << x1.getTarget() << endl;
-    cout << x2.getTarget() << endl;
-    cout << x2.getTarget(false) << endl;
+    cout << stack;
 
-//    Stack stack;
-//    stack.push(i);
+    stack.push(z);
+    stack.push(i);
+    stack.push(u);
 
-//    cout << stack[0] << endl;
-//    try{
-//        cout << stack[1] << endl;
-//    }
-//    catch(const CalculatorException& e){
-//        cout << e;
-//    }
+    cout << stack;
 
-    Calculator& calc = Calculator::start();
-    calc.getStack().push(i);
+//    root.getStack().push(z);
+//    root.getStack().push(i);
+//    root.getStack().push(u);
+//    root.getStack().push(exp1);
+//    root.getStack().push(exp2);
 
-    return app.exec();
+//    return app.exec();
+    return 0;
 }

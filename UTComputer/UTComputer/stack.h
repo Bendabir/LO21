@@ -16,11 +16,11 @@ class Stack {
 private:
     QStack<Literal*> literals;
 
+
+public:
     Stack();
     Stack(const Stack& s);
     Stack& operator=(const Stack& s);
-
-public:
 
     // On réimplémente les fonctions utiles
     Literal& top();
@@ -31,7 +31,9 @@ public:
     int size() const {return literals.size();}
 
     Literal& operator[](int i);
-
+    const Literal& operator[](int i) const;
 };
+
+ostream& operator<<(ostream& f, const Stack& s);
 
 #endif // STACK_H

@@ -4,11 +4,13 @@
 #include <QMainWindow>
 #include <QDialog>
 
+#include "calculator.h"
+
 namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
+class MainWindow : public QMainWindow, public Calculator
 {
     Q_OBJECT
 

@@ -1,6 +1,9 @@
-#include "calculator.h"
+#include <QStringList>
 
-Calculator::Handler Calculator::handler = Calculator::Handler();
+#include "calculator.h"
+#include "literal.h"
+
+//Calculator::Handler Calculator::handler = Calculator::Handler();
 
 Calculator::Calculator(){
     stack = new Stack();
@@ -10,14 +13,30 @@ Calculator::~Calculator(){
     delete stack;
 }
 
-Calculator& Calculator::start(){
-    if(!handler.instance)
-        handler.instance = new Calculator();
+//void Calculator::command(const QString& token){
+//    if(isNumber(token))
+//        stack->push(factory.addLiteral(token.toDouble()));
 
-    return *handler.instance;
-}
+//    if(isRational(token)){
+//        QStringList rationalParts = token.split("/");
 
-void Calculator::stop(){
-    delete handler.instance;
-    handler.instance = 0;
-}
+//        stack->push(factory.addLiteral(rationalParts.at(0).toDouble(), rationalParts.at(0).toDouble());
+//    }
+
+//    if(isComplex(token)){
+//        QStringList complexPart = token.split("$");
+//    }
+
+//}
+
+//Calculator& Calculator::start(){
+//    if(!handler.instance)
+//        handler.instance = new Calculator();
+
+//    return *handler.instance;
+//}
+
+//void Calculator::stop(){
+//    delete handler.instance;
+//    handler.instance = 0;
+//}

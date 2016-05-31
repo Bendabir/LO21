@@ -24,11 +24,19 @@ bool isNumber(const QString& str){
     bool check;
     str.toDouble(&check);
 
-    // Si on ne trouve pas, on vérifie que c'est un complexe
-    if(str.indexOf("$") != -1)
-        check = true;
-
     return check;
+}
+
+bool isComplex(const QString& str){
+    if(str.indexOf("$") != -1)
+        return true;
+    return false;
+}
+
+bool isRational(const QString& str){
+    if(str.indexOf("/") != -1)
+        return true;
+    return false;
 }
 
 bool isFunction(const QString& str){

@@ -5,6 +5,8 @@ Number::Number(double num, double den) : numerator(num), denominator(den){
     simplify();
 }
 
+//Number::Number(bool value) : numerator(value ? 1 : 0), denominator(1){}
+
 void Number::simplify(){
     // Si on a des nombres à virgule, on convertit en rapport entier
     double numeratorWholePart,

@@ -5,6 +5,7 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
+    Calculator(),
     ui(new Ui::MainWindow),
     editProgrammDialog(new QDialog(this)),
     editVariablesDialog(new QDialog(this))
@@ -25,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Afficher l'édition des programmes/variables
     QObject::connect(ui->actionEdition_des_programmes, SIGNAL(triggered(bool)), editProgrammDialog, SLOT(show()));
     QObject::connect(ui->actionEdition_des_variables, SIGNAL(triggered(bool)), editVariablesDialog, SLOT(show()));
+//    QObject::connect(ui->b0, SIGNAL(toggled(bool)), ui->commandInput, SLOT(setText(QString)));
 
     // Raccourcis
     ui->actionQuitter->setShortcut(QKeySequence::Quit);
