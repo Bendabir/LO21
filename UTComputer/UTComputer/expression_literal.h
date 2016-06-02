@@ -81,6 +81,7 @@ public:
     Literal& im() const;
     Literal& arg() const;
     Literal& norm() const;
+    Literal& $(const Literal &l) const;
 
     // Opérateurs logiques
     bool operator==(const Literal& l) const;
@@ -122,6 +123,6 @@ public:
      * \brief Utile pour le parenthèsage des expressions lors des opérations entre expressions.
      * \return Priorité minimale de l'expression.
      */
-    unsigned int priority() const;
+    int priority() const;
 };
 #endif // EXPRESSIONLITERAL_H

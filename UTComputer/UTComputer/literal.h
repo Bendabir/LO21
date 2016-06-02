@@ -19,14 +19,14 @@ class LiteralFactory;
 class Literal {
 protected:
     /*!
-     * \brief Pointeur sur la factory qui a créé la littérale. Permet de créer des littérales à la volée pendant les opérations et de s'affranchir d'un code trop lourd via des retours par référence.
+     * \brief Référence sur la factory qui a créé la littérale. Permet de créer des littérales à la volée pendant les opérations et de s'affranchir d'un code trop lourd via des retours par référence.
      */
     LiteralFactory* manager;
 
 public:
     /*!
      * \brief Constructeur de Literal
-     * \param Pointeur sur la factory qui a créé la littérale.
+     * \param Référence sur la factory qui a créé la littérale.
      */
     Literal(LiteralFactory* m) : manager(m){}
     virtual ~Literal(){}
@@ -83,134 +83,139 @@ public:
     /*!
      * \brief Gère l'addition de deux littérales.
      * \param l : Littérale à additionner avec la littérale implicite (celle sur laquelle s'applique la méthode)
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas.
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas.
      */
     virtual Literal& operator+(const Literal& l) const = 0;
     /*!
      * \brief Gère la soustraction de deux littérales.
      * \param l : Littérale à soustraire avec la littérale implicite (celle sur laquelle s'applique la méthode)
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas.
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas.
      */
     virtual Literal& operator-(const Literal& l) const = 0;
     /*!
      * \brief Gère la multiplication de deux littérales.
      * \param l : Littérale à multiplier avec la littérale implicite (celle sur laquelle s'applique la méthode)
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas.
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas.
      */
     virtual Literal& operator*(const Literal& l) const = 0;
     /*!
      * \brief Gère la division de deux littérales.
      * \param l : Littérale à diviser avec la littérale implicite (celle sur laquelle s'applique la méthode)
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas.
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas.
      */
     virtual Literal& operator/(const Literal& l) const = 0;
 
     /*!
      * \brief Renvoie la division euclidienne de deux entiers. Provoque une erreur sur les réels, les complexes et les rationnels. Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
      * \param Référence sur la littérale.
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas.
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas.
      */
     virtual Literal& div(const Literal& l) const = 0;
     /*!
      * \brief Renvoie le reste de la division euclidienne de deux entiers. Provoque une erreur sur les réels, les complexes et les rationnels. Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
      * \param Référence sur la littérale.
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas.
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas.
      */
     virtual Literal& mod(const Literal& l) const = 0;
     /*!
      * \brief Renvoie la littérale à la puissance passée en argument. Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
      * \param Référence sur la littérale.
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas.
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas.
      */
     virtual Literal& pow(const Literal& l) const = 0;
     /*!
      * \brief Renvoie l'opposée de la littérale sur laquelle s'applique l'opérateur. Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas.
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas.
      */
     virtual Literal& operator-() const = 0;
     /*!
      * \brief Renvoie le numérateur de la littérale sur laquelle s'applique l'opérateur. Provoque une erreur sur les réels et les complexes. Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas.
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas.
      */
     virtual Literal& num() const = 0;
     /*!
      * \brief Renvoie le dénominateur de la littérale sur laquelle s'applique l'opérateur. Provoque une erreur sur les réels et les complexes. Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas.
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas.
      */
     virtual Literal& den() const = 0;
     /*!
      * \brief Renvoie le sinus de la littérale sur laquelle s'applique l'opérateur (littérale réelle). Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
      */
     virtual Literal& sin() const = 0;
     /*!
      * \brief Renvoie l'arcsinus de la littérale sur laquelle s'applique l'opérateur (littérale réelle). Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
      * \brief Provoque une erreur si la littérale est en dehors de l'intervale réel [-1; 1]
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
      */
     virtual Literal& arcsin() const = 0;
     /*!
      * \brief Renvoie le cosinus de la littérale sur laquelle s'applique l'opérateur (littérale réelle). Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
      */
     virtual Literal& cos() const = 0;
     /*!
      * \brief Renvoie l'arccos de la littérale sur laquelle s'applique l'opérateur (littérale réelle). Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
      * \brief Provoque une erreur si la littérale est en dehors de l'intervale réel [-1; 1]
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
      */
     virtual Literal& arccos() const = 0;
     /*!
      * \brief Renvoie la tangente de la littérale sur laquelle s'applique l'opérateur (littérale réelle). Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
      */
     virtual Literal& tan() const = 0;
     /*!
      * \brief Renvoie l'arctan de la littérale sur laquelle s'applique l'opérateur (littérale réelle). Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
      */
     virtual Literal& arctan() const = 0;
     /*!
      * \brief Renvoie la racine carrée de la littérale sur laquelle s'applique l'opérateur (littérale réelle). Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
      * \brief Provoque une erreur si la littérale n'est pas réelle et inférieure à 0;
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
      */
     virtual Literal& sqrt() const = 0;
     /*!
      * \brief Renvoie le logarithme népérien de la littérale sur laquelle s'applique l'opérateur (littérale réelle). Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
      * \brief Provoque une erreur si la littérale n'est pas réelle et inférieure à 0;
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
      */
     virtual Literal& ln() const = 0;
     /*!
      * \brief Renvoie l'exponentielle de la littérale sur laquelle s'applique l'opérateur (littérale réelle). Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
      */
     virtual Literal& exp() const = 0;
     /*!
      * \brief Renvoie la partie réelle de la littérale sur laquelle s'applique l'opérateur (littérale complexe). Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
      * \brief Renvoie la littérale inchangée s'il s'agit d'une littérale réelle, entière ou rationnelle.
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
      */
     virtual Literal& re() const = 0;
     /*!
      * \brief Renvoie la partie imaginaire de la littérale sur laquelle s'applique l'opérateur (littérale complexe). Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
      * \brief Renvoie la littérale entière 0 s'il s'agit d'une littérale réelle, entière ou rationnelle.
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
      */
     virtual Literal& im() const = 0;
     /*!
      * \brief Renvoie l'argument de la littérale sur laquelle s'applique l'opérateur (littérale complexe). Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
      * \brief Peut s'appliquer sur les réels, entiers et rationnels également.
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
      */
     virtual Literal& arg() const = 0;
     /*!
      * \brief Renvoie le module de la littérale sur laquelle s'applique l'opérateur (littérale complexe). Renvoie un nouveau programme ou expression sur lequel s'applique cet opérateur.
      * \brief Peut s'appliquer sur les réels, entiers et rationnels également.
-     * \return Pointeur sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
      */
     virtual Literal& norm() const = 0;
+    /*!
+     * \brief Permet de créer un complexe
+     * \return Référence sur une littérale (étant une sous-classe de Literal), selon les cas (réel, expression ou programme).
+     */
+    virtual Literal& $(const Literal& l) const = 0;
 
     // Opérateurs logiques
     /*!

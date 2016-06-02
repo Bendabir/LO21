@@ -389,6 +389,37 @@ Literal& ComplexLiteral::arg() const {
 Literal& ComplexLiteral::norm() const {
     return this->manager->addLiteral(complexNorm());
 }
+Literal& ComplexLiteral::$(const Literal& l) const {
+    // Si on a des réels, on crée un entier
+    if(l.isNumber() && isNumber()){
+        const ComplexLiteral& literal = dynamic_cast<const ComplexLiteral&>(l);
+
+        return this->manager->addLiteral(real, literal.real);
+    }
+    else if(l.isExpression() && isNumber()){
+        const ExpressionLiteral& expressionArgument = dynamic_cast<const ExpressionLiteral&>(l);
+        int operatorPriority = getPriority("$");
+
+        QString result = this->toString() + " $ ";
+
+        if(operatorPriority > expressionArgument.priority())
+            result += "(" ;
+
+        result += expressionArgument.getExpression();
+
+        if(operatorPriority > expressionArgument.priority())
+            result += ")" ;
+
+        return this->manager->addLiteral(result);
+    }
+    else if(l.isAtom() && isNumber()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        return this->$(literal.getTarget());
+    }
+    else
+        throw CalculatorException("Erreur : Impossible de créer un complexe à partir de ces opérandes.");
+}
 
 // On utilise ces fonctions pour alléger l'écriture des autres, notamment dans les comparaisons
 Number ComplexLiteral::complexArg() const {

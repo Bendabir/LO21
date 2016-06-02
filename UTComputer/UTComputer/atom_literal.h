@@ -70,6 +70,7 @@ public:
     Literal& im() const;
     Literal& arg() const;
     Literal& norm() const;
+    Literal& $(const Literal& l) const;
 
     // Opérateurs logiques
     bool operator==(const Literal& l) const;

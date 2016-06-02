@@ -9,6 +9,28 @@ EditProgrammDialog::EditProgrammDialog(QWidget *parent) :
 
     this->setWindowTitle("UTComputer - Edition des programmes");
     this->setFixedSize(640, 480);
+
+    // Juste pour du test
+    QStringList programms;
+    programms << "Programme 1" << "Programme 2" << "Modulo" << "LO21";
+    ui->comboBox->addItems(programms);
+
+    QString abs = "[ DUP 0 < [ NEG ] IFT ]";
+    abs.replace(" ", "\n");
+
+    int parenthesisCount = 0;
+    for(int i = 0; i < abs.size(); i++){
+        if(abs[i] == '[')
+            parenthesisCount++;
+
+        if(abs[i] == ']')
+            parenthesisCount--;
+
+        if(abs[i] == '\n')
+            abs.insert(i+1, QString(" ").repeated(4 * parenthesisCount));
+    }
+    ui->plainTextEdit->document()->setPlainText(abs);
+    ui->plainTextEdit->setFont(QFont("serif"));
 }
 
 EditProgrammDialog::~EditProgrammDialog()

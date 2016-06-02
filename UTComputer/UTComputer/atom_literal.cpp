@@ -311,6 +311,27 @@ Literal& AtomLiteral::arg() const {
 Literal& AtomLiteral::norm() const {
     return target->norm();
 }
+Literal& AtomLiteral::$(const Literal& l) const {
+    // Si on a deux atomes
+    if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        try {
+            return target->$(*literal.target);
+        }
+        catch(const CalculatorException& e){
+            throw e; // On teste et on propage parce qu'on fait du ping-pong entre les fonctions à cause des atomes
+        }
+    }
+    else{
+        try{
+            return target->$(l);
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+}
 
 // Opérateurs logiques
 bool AtomLiteral::operator==(const Literal& l) const {

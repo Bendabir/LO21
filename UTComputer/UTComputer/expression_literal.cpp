@@ -9,7 +9,7 @@ QString ExpressionLiteral::concat(const QString& op) const {
 
 QString ExpressionLiteral::concat(const QString& op, const Literal& l) const {
     QString exp;
-    unsigned int operatorPriority = getPriority(op);
+    int operatorPriority = getPriority(op);
 
     // Si on a un opérateur : infixe, sinon préfixe
     if(isOperator(op)){
@@ -147,6 +147,9 @@ Literal& ExpressionLiteral::arg() const {
 }
 Literal& ExpressionLiteral::norm() const {
     return this->manager->addLiteral(concat("NORM"));
+}
+Literal& ExpressionLiteral::$(const Literal &l) const {
+    return this->manager->addLiteral(concat("$", l));
 }
 
 // Opérateurs logiques
@@ -361,7 +364,7 @@ QStringList ExpressionLiteral::getTokens() const {
 }
 
 // Retourne la priorité minimale des parties non parenthésées de l'expression
-unsigned int ExpressionLiteral::priority() const {
+int ExpressionLiteral::priority() const {
     // On récupère les tokens
     QStringList tokens = getTokens();
     int enteredInParenthesis = 0;

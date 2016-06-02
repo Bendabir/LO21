@@ -71,6 +71,7 @@ public:
     Literal& im() const;
     Literal& arg() const;
     Literal& norm() const;
+    Literal& $(const Literal& l) const;
 
 
     // Opérateurs logiques
