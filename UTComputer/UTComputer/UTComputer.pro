@@ -1,0 +1,39 @@
+QT += widgets \
+    testlib
+
+CONFIG += c++11
+
+
+HEADERS += \
+    calculator_exception.h \
+    literal.h \
+    complex_literal.h \
+    expression_literal.h \
+    number.h \
+    literal_factory.h \
+    atom_literal.h \
+    stack.h \
+    calculator.h \
+    mainwindow.h \
+    settings.h \
+    edit_atom_dialog.h
+
+SOURCES += \
+    calculator_exception.cpp \
+    main.cpp \
+    literal.cpp \
+    complex_literal.cpp \
+    tests/tests.cpp \
+    expression_literal.cpp \
+    number.cpp \
+    literal_factory.cpp \
+    atom_literal.cpp \
+    stack.cpp \
+    calculator.cpp \
+    mainwindow.cpp \
+    settings.cpp \
+    edit_atom_dialog.cpp
+
+FORMS += \
+    mainwindow.ui \
+    edit_atom_dialog.ui
