@@ -42,12 +42,27 @@ public:
         iterator() : current() {}
         Literal& operator*() const {return **current;}
         iterator& operator++() {current++; return *this;}
-        iterator operator++(int) {iterator tmp=*this; current++; return tmp;}
+        iterator operator++(int) {iterator tmp = *this; current++; return tmp;}
         bool operator==(const iterator& it) const {return current == it.current;}
         bool operator!=(const iterator& it) const {return current != it.current;}
     };
     iterator begin() {return iterator(literals.begin());}
     iterator end() {return iterator(literals.end());}
+
+    class reverse_iterator {
+        typename QStack<Literal*>::iterator current;
+
+    public:
+        reverse_iterator(typename QStack<Literal*>::iterator c) : current(c) {}
+        reverse_iterator() : current() {}
+        Literal& operator*() const {return **current;}
+        reverse_iterator& operator++() {current--; return *this;}
+        reverse_iterator operator++(int) {reverse_iterator tmp = *this; current--; return tmp;}
+        bool operator==(const reverse_iterator& it) const {return current == it.current;}
+        bool operator!=(const reverse_iterator& it) const {return current != it.current;}
+    };
+    reverse_iterator rbegin() {return reverse_iterator(literals.end());}
+    reverse_iterator rend() {return reverse_iterator(literals.begin());}
 };
 
 ostream& operator<<(ostream& f, const Stack& s);

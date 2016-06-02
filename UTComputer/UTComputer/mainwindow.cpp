@@ -63,18 +63,20 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     // Petit test des chaumières pour l'affichage
-    for(unsigned int i = 0; i < this->stack->size(); i++){
-//        Literal& literal = this->stack[i];
-//        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(literal.toString());
-    }
-
+    // On déclare ce dont on a besoin
     // On va bricoler les labels
-   QStringList labels;
-   for(unsigned int i = ui->tableWidget->rowCount(); i > 0; i--){
-       QString label = QString::number(i);
-       labels << label;
-   }
-   ui->tableWidget->setVerticalHeaderLabels(labels);
+    QStringList labels;
+    for(int i = 0; i < ui->tableWidget->rowCount(); i++){
+        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(QString::number(rand())));
+        QString label = QString::number(ui->tableWidget->rowCount() - i);
+        labels << label;
+    }
+    ui->tableWidget->setVerticalHeaderLabels(labels);
+
+//    int i = 0;
+//    for(Stack::iterator literal = this->stack->begin(); literal != this->stack->end(); ++literal, i++)
+//        ui->tableWidget->setItem(i, 0, new QTableWidgetItem((*literal).toString()));
+
 }
 
 MainWindow::~MainWindow()
@@ -140,16 +142,26 @@ void MainWindow::onBackspacePressed(){
 void MainWindow::appendLiteralInStack(){
     QString text = ui->commandInput->text();
 
+    if(text == "")
+        return;
+
     // On ajoute une littérale bidon sur la stack
     Literal& literal = this->factory.addLiteral(text);
     this->stack->push(literal);
+
+    for(Stack::iterator literal = this->stack->begin(); literal != this->stack->end(); ++literal)
+        qDebug() << (*literal).toString();
 
     // On efface puis on réécrit
     for(int i = 0; i < ui->tableWidget->rowCount(); i++)
         ui->tableWidget->item(i, 0)->setText("");
 
-//    for(int i = 0; i < this->stack->size(); i++)
-//        ui->tableWidget->item(i, 0)->setText(this->stack[i].toString());
+    int i = 0;
+    for(Stack::iterator literal = this->stack->begin(); literal != this->stack->end(); ++literal, i++)
+        if(i < ui->tableWidget->rowCount())
+            ui->tableWidget->item(i, 0)->setText((*literal).toString());
+        else
+            break;
 
     ui->commandInput->clear();
 }
