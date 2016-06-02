@@ -32,6 +32,22 @@ public:
 
     Literal& operator[](int i);
     const Literal& operator[](int i) const;
+
+    // On réimplémente un itérateur
+    class iterator {
+        typename QStack<Literal*>::iterator current;
+
+    public:
+        iterator(typename QStack<Literal*>::iterator c) : current(c) {}
+        iterator() : current() {}
+        Literal& operator*() const {return **current;}
+        iterator& operator++() {current++; return *this;}
+        iterator operator++(int) {iterator tmp=*this; current++; return tmp;}
+        bool operator==(const iterator& it) const {return current == it.current;}
+        bool operator!=(const iterator& it) const {return current != it.current;}
+    };
+    iterator begin() {return iterator(literals.begin());}
+    iterator end() {return iterator(literals.end());}
 };
 
 ostream& operator<<(ostream& f, const Stack& s);

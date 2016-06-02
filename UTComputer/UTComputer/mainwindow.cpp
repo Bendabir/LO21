@@ -57,17 +57,20 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setWindowTitle("UTComputer");
     this->setWindowIcon(QIcon(QCoreApplication::applicationDirPath() + "/icon.png"));
 
+    ui->tableWidget->setRowCount(this->settings->getNbLiteralsOnStack());
     ui->tableWidget->horizontalHeader()->setVisible(false);
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     // Petit test des chaumières pour l'affichage
-    for(unsigned int i = 0; i < this->settings->getNbLiteralsOnStack(); i++)
-        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(QString::number(this->settings->getNbLiteralsOnStack() - i).repeated(150)));
+    for(unsigned int i = 0; i < this->stack->size(); i++){
+//        Literal& literal = this->stack[i];
+//        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(literal.toString());
+    }
 
     // On va bricoler les labels
    QStringList labels;
-   for(unsigned int i = this->settings->getNbLiteralsOnStack(); i > 0; i--){
+   for(unsigned int i = ui->tableWidget->rowCount(); i > 0; i--){
        QString label = QString::number(i);
        labels << label;
    }
@@ -137,7 +140,16 @@ void MainWindow::onBackspacePressed(){
 void MainWindow::appendLiteralInStack(){
     QString text = ui->commandInput->text();
 
-    ui->tableWidget->setItem(ui->tableWidget->rowCount() + 1, 0, new QTableWidgetItem(text));
+    // On ajoute une littérale bidon sur la stack
+    Literal& literal = this->factory.addLiteral(text);
+    this->stack->push(literal);
+
+    // On efface puis on réécrit
+    for(int i = 0; i < ui->tableWidget->rowCount(); i++)
+        ui->tableWidget->item(i, 0)->setText("");
+
+//    for(int i = 0; i < this->stack->size(); i++)
+//        ui->tableWidget->item(i, 0)->setText(this->stack[i].toString());
 
     ui->commandInput->clear();
 }
