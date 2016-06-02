@@ -9,19 +9,20 @@ class Settings
 {
 private:
     bool playSound;
-    unsigned int nbMaxCharOnStack;
+    unsigned int nbLiteralsOnStack;
     bool displayKeyboard;
+
 public:
-    Settings();
+    Settings() : playSound(true), nbLiteralsOnStack(6), displayKeyboard(true){}
     Settings (bool sound, unsigned int maxChar, bool keyboard):
-        playSound(sound), nbMaxCharOnStack(maxChar), displayKeyboard(keyboard) {}
+        playSound(sound), nbLiteralsOnStack(maxChar), displayKeyboard(keyboard) {}
     //Accesseurs de PlaySound
     bool getPlaySound() const { return playSound; }
     void setPlaySound (bool playsound) { playSound = playsound; }
 
-    //Accesseurs de nbMaxCharOnStack
-    unsigned int getNbMaxCharOnStack() const { return nbMaxCharOnStack; }
-    void setNbMaxCharOnStack (unsigned int nb) { nbMaxCharOnStack = nb; }
+    //Accesseurs de nbLiteralsOnStack
+    unsigned int getNbLiteralsOnStack() const { return nbLiteralsOnStack; }
+    void setNbLiteralsOnStack (unsigned int nb) { nbLiteralsOnStack = nb; }
 
     //Accesseurs de displayKeyboard
     bool getDisplayKeyboard() const { return displayKeyboard; }

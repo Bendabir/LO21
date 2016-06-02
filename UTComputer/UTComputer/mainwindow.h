@@ -6,6 +6,8 @@
 
 #include "calculator.h"
 #include "edit_atom_dialog.h"
+#include "edit_programm_dialog.h"
+#include "settings_dialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -21,8 +23,9 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    QDialog* editProgrammDialog;
+    EditProgrammDialog* editProgrammDialog;
     EditAtomDialog* editVariablesDialog;
+    SettingsDialog* settingsDialog;
 
     void addTextToCommand(const QString& exp);
 
@@ -40,6 +43,8 @@ public slots:
     void on9Pressed();
     void onCommaPressed();
     void onBackspacePressed();
+
+    void appendLiteralInStack();
 
 
 };

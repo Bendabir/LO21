@@ -2,20 +2,21 @@
 #include "ui_mainwindow.h"
 
 #include <QPalette>
-
-#define STACK_SIZE 5
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     Calculator(),
     ui(new Ui::MainWindow),
-    editProgrammDialog(new QDialog(this)),
-    editVariablesDialog(new EditAtomDialog(this))
+    editProgrammDialog(new EditProgrammDialog(this)),
+    editVariablesDialog(new EditAtomDialog(this)),
+    settingsDialog(new SettingsDialog(this))
 {
     ui->setupUi(this);
 
-    editProgrammDialog->setWindowTitle("UTComputer - Edition des programmes");
-    editProgrammDialog->setFixedSize(640, 480);
+    this->setFixedSize(1160, 630);
+
+    ui->actionAfficher_le_clavier_cliquable->setChecked(this->settings->getDisplayKeyboard());
 
     // Mise en place via Qt Designer
     // On connecte tous les slots et les raccourcis
@@ -26,7 +27,8 @@ MainWindow::MainWindow(QWidget *parent) :
     // Afficher l'édition des programmes/variables
     QObject::connect(ui->actionEdition_des_programmes, SIGNAL(triggered(bool)), editProgrammDialog, SLOT(show()));
     QObject::connect(ui->actionEdition_des_variables, SIGNAL(triggered(bool)), editVariablesDialog, SLOT(show()));
-//    QObject::connect(ui->b0, SIGNAL(toggled(bool)), ui->commandInput, SLOT(setText(QString)));
+    QObject::connect(ui->actionOptions, SIGNAL(triggered(bool)), settingsDialog, SLOT(show()));
+
     QObject::connect(ui->b0, SIGNAL(pressed()), this, SLOT(on0Pressed()));
     QObject::connect(ui->b1, SIGNAL(pressed()), this, SLOT(on1Pressed()));
     QObject::connect(ui->b2, SIGNAL(pressed()), this, SLOT(on2Pressed()));
@@ -39,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->b9, SIGNAL(pressed()), this, SLOT(on9Pressed()));
     QObject::connect(ui->comma, SIGNAL(pressed()), this, SLOT(onCommaPressed()));
     QObject::connect(ui->backspace, SIGNAL(pressed()), this, SLOT(onBackspacePressed()));
+    QObject::connect(ui->commandInput, SIGNAL(returnPressed()), this, SLOT(appendLiteralInStack()));
 
     // On donne le focus dans la ligne de commandes
     ui->commandInput->setFocus();
@@ -47,6 +50,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionQuitter->setShortcut(QKeySequence::Quit);
     ui->actionAnnuler->setShortcut(QKeySequence::Undo);
     ui->actionR_tablir->setShortcut(QKeySequence::Redo);
+    ui->actionSauvegarder->setShortcut(QKeySequence::Save);
+    ui->actionCharger->setShortcut(QKeySequence::Open);
 
     // Paramètres de l'application
     this->setWindowTitle("UTComputer");
@@ -57,14 +62,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     // Petit test des chaumières pour l'affichage
-    for(unsigned int i = 0; i < STACK_SIZE; i++)
-        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(QString::number(STACK_SIZE - i)));
+    for(unsigned int i = 0; i < this->settings->getNbLiteralsOnStack(); i++)
+        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(QString::number(this->settings->getNbLiteralsOnStack() - i).repeated(150)));
 
     // On va bricoler les labels
    QStringList labels;
-   for(unsigned int i = STACK_SIZE; i > 0; i--){
+   for(unsigned int i = this->settings->getNbLiteralsOnStack(); i > 0; i--){
        QString label = QString::number(i);
-       label += " :";
        labels << label;
    }
    ui->tableWidget->setVerticalHeaderLabels(labels);
@@ -128,4 +132,12 @@ void MainWindow::onCommaPressed(){
 
 void MainWindow::onBackspacePressed(){
     ui->commandInput->backspace();
+}
+
+void MainWindow::appendLiteralInStack(){
+    QString text = ui->commandInput->text();
+
+    ui->tableWidget->setItem(ui->tableWidget->rowCount() + 1, 0, new QTableWidgetItem(text));
+
+    ui->commandInput->clear();
 }

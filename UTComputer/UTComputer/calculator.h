@@ -2,14 +2,16 @@
 #define CALCULATOR_H
 
 #include "stack.h"
+#include "settings.h"
 
 /*!
  * \brief La classe Calculator est la classe principale de l'application. C'est elle qui gère les calculs.
  * \brief C'est un singleton.
  */
 class Calculator {
-private:
+protected:
     Stack* stack;
+    Settings* settings;
     LiteralFactory factory;
 
     // On empêche la recopie et l'affectation

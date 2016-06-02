@@ -5,9 +5,7 @@
 
 //Calculator::Handler Calculator::handler = Calculator::Handler();
 
-Calculator::Calculator(){
-    stack = new Stack();
-}
+Calculator::Calculator() : stack(new Stack()), settings(new Settings()){}
 
 Calculator::~Calculator(){
     delete stack;
