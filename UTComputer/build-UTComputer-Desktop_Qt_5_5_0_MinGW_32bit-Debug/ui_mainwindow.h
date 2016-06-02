@@ -183,6 +183,7 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
         tableWidget->setSizePolicy(sizePolicy);
+        tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
         tableWidget->setRowCount(5);
         tableWidget->setColumnCount(1);
 

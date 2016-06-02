@@ -43,6 +43,8 @@ public:
         Literal& operator*() const {return **current;}
         iterator& operator++() {current++; return *this;}
         iterator operator++(int) {iterator tmp = *this; current++; return tmp;}
+        iterator& operator--() {current--; return *this;}
+        iterator operator--(int) {iterator tmp = *this; current--; return tmp;}
         bool operator==(const iterator& it) const {return current == it.current;}
         bool operator!=(const iterator& it) const {return current != it.current;}
     };
@@ -61,8 +63,8 @@ public:
         bool operator==(const reverse_iterator& it) const {return current == it.current;}
         bool operator!=(const reverse_iterator& it) const {return current != it.current;}
     };
-    reverse_iterator rbegin() {return reverse_iterator(literals.end());}
-    reverse_iterator rend() {return reverse_iterator(literals.begin());}
+    reverse_iterator rbegin() {QStack<Literal*>::iterator end = literals.end(); return reverse_iterator(--end);}
+    reverse_iterator rend() {QStack<Literal*>::iterator begin = literals.begin(); return reverse_iterator(--begin);}
 };
 
 ostream& operator<<(ostream& f, const Stack& s);

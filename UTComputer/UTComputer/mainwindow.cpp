@@ -149,16 +149,21 @@ void MainWindow::appendLiteralInStack(){
     Literal& literal = this->factory.addLiteral(text);
     this->stack->push(literal);
 
-    for(Stack::iterator literal = this->stack->begin(); literal != this->stack->end(); ++literal)
-        qDebug() << (*literal).toString();
+//    for(Stack::iterator literal = this->stack->begin(); literal != this->stack->end(); ++literal)
+//        qDebug() << (*literal).toString();
 
     // On efface puis on réécrit
     for(int i = 0; i < ui->tableWidget->rowCount(); i++)
         ui->tableWidget->item(i, 0)->setText("");
 
-    int i = 0;
-    for(Stack::iterator literal = this->stack->begin(); literal != this->stack->end(); ++literal, i++)
-        if(i < ui->tableWidget->rowCount())
+    int i = ui->tableWidget->rowCount() - 1;
+    // On traffique l'itérateur
+    Stack::iterator start = this->stack->end(),
+                    end = this->stack->begin();
+    start--;
+    end--;
+    for(Stack::iterator literal = start; literal != end; --literal, i--)
+        if(i >= 0)
             ui->tableWidget->item(i, 0)->setText((*literal).toString());
         else
             break;
