@@ -21,7 +21,8 @@ Il manque des opérateurs.
 
 | Opérateur | Priorité | Arité |
 |:---------:|:--------:|:--------:|
-| `()` | **8** | Pas vraiment un opérateur |
+| `()` | 9 | Pas vraiment un opérateur |
+| `$` | **8** | unaire |
 | `NEG` | 7 | unaire |
 | `NOT` | 7 | unaire |
 | `*` | **6** | binaire |
@@ -203,3 +204,9 @@ Provoque une erreur sur `LittéraleRéelle` ou `LittéraleComplexe`.
 |:--------:|:------:|
 | `LittéraleComplexe` ou `LittéraleNumérique` | `LittéraleEntière` (0 ou 1) |
 | `LittéraleExpression` | `LittéraleExpression` |
+
+## Design Pattern
+
+On utilise le design pattern Adapter (en objet serait mieux) pour réutiliser les classes QStack et QVector pour la pile et la/les factorie.
+Design pattern Factory Method.
+Peut-être Composite aussi.
