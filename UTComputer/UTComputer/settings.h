@@ -5,15 +5,19 @@
 #include <QWidget>
 #include <QSettings>
 
-class Settings
-{
+class Stack;
+class LiteralFactory;
+
+class Settings {
 private:
     bool playSound;
     unsigned int nbLiteralsOnStack;
     bool displayKeyboard;
 
 public:
-    Settings() : playSound(true), nbLiteralsOnStack(6), displayKeyboard(true){}
+    Settings() : playSound(true), nbLiteralsOnStack(5), displayKeyboard(true){
+        loadSettingsFromFile();
+    }
     Settings (bool sound, unsigned int maxChar, bool keyboard):
         playSound(sound), nbLiteralsOnStack(maxChar), displayKeyboard(keyboard) {}
     //Accesseurs de PlaySound
@@ -36,7 +40,7 @@ public:
     * qui est un répertoire du registre système*/
 
     void loadSettingsFromFile ();
-    void saveSettingsToFile();
+    void saveSettingsToFile(const Stack& stack, const LiteralFactory& fact);
 };
 
 #endif // SETTINGS_H

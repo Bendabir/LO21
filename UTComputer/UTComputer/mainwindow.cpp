@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow),
     editProgrammDialog(new EditProgrammDialog(this)),
     editVariablesDialog(new EditAtomDialog(this)),
-    settingsDialog(new SettingsDialog(this))
+    settingsDialog(new SettingsDialog(this->settings ,this))
 {
     ui->setupUi(this);
 
@@ -42,6 +42,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->comma, SIGNAL(pressed()), this, SLOT(onCommaPressed()));
     QObject::connect(ui->backspace, SIGNAL(pressed()), this, SLOT(onBackspacePressed()));
     QObject::connect(ui->commandInput, SIGNAL(returnPressed()), this, SLOT(appendLiteralInStack()));
+    QObject::connect(ui->actionSauvegarder, SIGNAL(triggered(bool)), this, SLOT(save()));
+    QObject::connect(ui->actionCharger, SIGNAL(triggered(bool)), this, SLOT(load()));
+
 
     // On donne le focus dans la ligne de commandes
     ui->commandInput->setFocus();
@@ -147,7 +150,7 @@ void MainWindow::appendLiteralInStack(){
         this->stack->push(literal);
     }
     catch(const CalculatorException& e){
-        ui->errorInput->setText(e.what());
+        setUserMessage(e.what());
     }
 
     // On efface puis on réécrit
@@ -162,4 +165,17 @@ void MainWindow::appendLiteralInStack(){
             break;
 
     ui->commandInput->clear();
+}
+
+void MainWindow::setUserMessage(const QString& message){
+    ui->errorInput->setText(message);
+}
+
+void MainWindow::save(){
+    this->settings->saveSettingsToFile(*(this->stack), this->factory);
+    setUserMessage("INFO : Les paramètres, la pile, les programmes et les variables ont été sauvegardés.");
+}
+void MainWindow::load(){
+    this->settings->loadSettingsFromFile();
+    setUserMessage("INFO : Les paramètres ont été chargés.");
 }

@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+class Settings;
+
 namespace Ui {
 class SettingsDialog;
 }
@@ -12,11 +14,15 @@ class SettingsDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit SettingsDialog(QWidget *parent = 0);
+    explicit SettingsDialog(Settings* s, QWidget *parent = 0);
     ~SettingsDialog();
 
 private:
     Ui::SettingsDialog *ui;
+    Settings* settings;
+
+public slots:
+    void save();
 };
 
 #endif // SETTINGS_DIALOG_H

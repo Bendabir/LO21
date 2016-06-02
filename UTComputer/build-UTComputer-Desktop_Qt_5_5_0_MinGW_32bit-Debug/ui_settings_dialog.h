@@ -30,10 +30,10 @@ public:
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
     QDialogButtonBox *buttonBox;
-    QSpinBox *spinBox;
+    QSpinBox *nbLiterals;
     QLabel *label;
-    QCheckBox *checkBox_2;
-    QCheckBox *checkBox;
+    QCheckBox *sound;
+    QCheckBox *keyboard;
 
     void setupUi(QDialog *SettingsDialog)
     {
@@ -55,28 +55,28 @@ public:
 
         gridLayout->addWidget(buttonBox, 3, 1, 1, 1);
 
-        spinBox = new QSpinBox(gridLayoutWidget);
-        spinBox->setObjectName(QStringLiteral("spinBox"));
-        spinBox->setMinimum(1);
-        spinBox->setMaximum(10);
-        spinBox->setValue(5);
+        nbLiterals = new QSpinBox(gridLayoutWidget);
+        nbLiterals->setObjectName(QStringLiteral("nbLiterals"));
+        nbLiterals->setMinimum(1);
+        nbLiterals->setMaximum(10);
+        nbLiterals->setValue(5);
 
-        gridLayout->addWidget(spinBox, 2, 1, 1, 1);
+        gridLayout->addWidget(nbLiterals, 2, 1, 1, 1);
 
         label = new QLabel(gridLayoutWidget);
         label->setObjectName(QStringLiteral("label"));
 
         gridLayout->addWidget(label, 2, 0, 1, 1);
 
-        checkBox_2 = new QCheckBox(gridLayoutWidget);
-        checkBox_2->setObjectName(QStringLiteral("checkBox_2"));
+        sound = new QCheckBox(gridLayoutWidget);
+        sound->setObjectName(QStringLiteral("sound"));
 
-        gridLayout->addWidget(checkBox_2, 1, 0, 1, 2);
+        gridLayout->addWidget(sound, 1, 0, 1, 2);
 
-        checkBox = new QCheckBox(gridLayoutWidget);
-        checkBox->setObjectName(QStringLiteral("checkBox"));
+        keyboard = new QCheckBox(gridLayoutWidget);
+        keyboard->setObjectName(QStringLiteral("keyboard"));
 
-        gridLayout->addWidget(checkBox, 0, 0, 1, 2);
+        gridLayout->addWidget(keyboard, 0, 0, 1, 2);
 
 
         retranslateUi(SettingsDialog);
@@ -90,8 +90,8 @@ public:
     {
         SettingsDialog->setWindowTitle(QApplication::translate("SettingsDialog", "Dialog", 0));
         label->setText(QApplication::translate("SettingsDialog", "Nombre d'\303\251l\303\251ments de la pile \303\240 afficher", 0));
-        checkBox_2->setText(QApplication::translate("SettingsDialog", "Jouer un son lors d'un message", 0));
-        checkBox->setText(QApplication::translate("SettingsDialog", "Afficher le clavier cliquable", 0));
+        sound->setText(QApplication::translate("SettingsDialog", "Jouer un son lors d'un message", 0));
+        keyboard->setText(QApplication::translate("SettingsDialog", "Afficher le clavier cliquable", 0));
     } // retranslateUi
 
 };

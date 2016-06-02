@@ -344,14 +344,14 @@ bool AtomLiteral::operator==(const Literal& l) const {
 //    else
 //        return *target == l;
 }
-bool AtomLiteral::operator!=(const Literal& l) const {}
-bool AtomLiteral::operator>=(const Literal& l) const {}
-bool AtomLiteral::operator>(const Literal& l) const {}
-bool AtomLiteral::operator<=(const Literal& l) const {}
-bool AtomLiteral::operator<(const Literal& l) const {}
-bool AtomLiteral::operator&&(const Literal& l) const {}
-bool AtomLiteral::operator||(const Literal& l) const {}
-bool AtomLiteral::operator!() const {}
+bool AtomLiteral::operator!=(const Literal& l) const {return false;}
+bool AtomLiteral::operator>=(const Literal& l) const {return false;}
+bool AtomLiteral::operator>(const Literal& l) const {return false;}
+bool AtomLiteral::operator<=(const Literal& l) const {return false;}
+bool AtomLiteral::operator<(const Literal& l) const {return false;}
+bool AtomLiteral::operator&&(const Literal& l) const {return false;}
+bool AtomLiteral::operator||(const Literal& l) const {return false;}
+bool AtomLiteral::operator!() const {return !*target;}
 
 QString AtomLiteral::eval() const {
     // On retourne la valeur de la variable pointée sous forme de chaine de caractères

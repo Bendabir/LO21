@@ -29,6 +29,8 @@ private:
 
     void addTextToCommand(const QString& exp);
 
+    void setUserMessage(const QString& message);
+
 public slots:
     // Ce qui modifie la barre de commande
     void on0Pressed();
@@ -46,7 +48,9 @@ public slots:
 
     void appendLiteralInStack();
 
-
+    // Pour les raccourcis
+    void save();
+    void load();
 };
 
 #endif // MAINWINDOW_H

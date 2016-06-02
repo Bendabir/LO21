@@ -51,6 +51,23 @@ public:
     iterator begin() {return iterator(literals.begin());}
     iterator end() {return iterator(literals.end());}
 
+    class const_iterator {
+        typename QStack<Literal*>::const_iterator current;
+
+    public:
+        const_iterator(typename QStack<Literal*>::const_iterator c) : current(c) {}
+        const_iterator() : current() {}
+        Literal& operator*() const {return **current;}
+        const_iterator& operator++() {current++; return *this;}
+        const_iterator operator++(int) {const_iterator tmp = *this; current++; return tmp;}
+        const_iterator& operator--() {current--; return *this;}
+        const_iterator operator--(int) {const_iterator tmp = *this; current--; return tmp;}
+        bool operator==(const const_iterator& it) const {return current == it.current;}
+        bool operator!=(const const_iterator& it) const {return current != it.current;}
+    };
+    const_iterator cbegin() const {return const_iterator(literals.cbegin());}
+    const_iterator cend() const {return const_iterator(literals.cend());}
+
     class reverse_iterator {
         typename QStack<Literal*>::iterator current;
 
