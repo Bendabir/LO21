@@ -11,5 +11,8 @@ INPUT(
 ./debug\stack.o
 ./debug\calculator.o
 ./debug\mainwindow.o
+./debug\settings.o
+./debug\edit_atom_dialog.o
 ./debug\moc_mainwindow.o
+./debug\moc_edit_atom_dialog.o
 );

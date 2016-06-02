@@ -37,6 +37,7 @@ public:
     QAction *actionA_propos_de_l_application;
     QAction *actionAnnuler;
     QAction *actionR_tablir;
+    QAction *actionAfficher_le_clavier_cliquable;
     QWidget *centralWidget;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout_2;
@@ -44,17 +45,17 @@ public:
     QTableWidget *tableWidget;
     QLineEdit *commandInput;
     QGridLayout *gridLayout_10;
-    QGridLayout *gridLayout_6;
+    QGridLayout *powerButtons;
     QPushButton *sqrt;
     QPushButton *exp;
     QPushButton *pow;
     QPushButton *ln;
-    QGridLayout *gridLayout_3;
+    QGridLayout *integerButtons;
     QPushButton *mod;
     QPushButton *div;
     QPushButton *den;
     QPushButton *num;
-    QGridLayout *gridLayout_8;
+    QGridLayout *stackButtons;
     QPushButton *lastop;
     QPushButton *swap;
     QPushButton *lastargs;
@@ -62,8 +63,43 @@ public:
     QPushButton *dup;
     QPushButton *undo;
     QPushButton *redo;
+    QGridLayout *trigoButtons;
+    QPushButton *arcsin;
+    QPushButton *arccos;
+    QPushButton *arctan;
+    QPushButton *cos;
+    QPushButton *sin;
+    QPushButton *tan;
+    QGridLayout *complexButtons;
+    QPushButton *im;
+    QPushButton *re;
+    QPushButton *arg;
+    QPushButton *norm;
+    QPushButton *dollar;
+    QGridLayout *numericPad;
+    QPushButton *b5;
+    QPushButton *neg;
+    QPushButton *b0;
+    QPushButton *b8;
+    QPushButton *b9;
+    QPushButton *b4;
+    QPushButton *b1;
+    QPushButton *divide;
+    QPushButton *b7;
+    QPushButton *times;
+    QPushButton *minus;
+    QPushButton *b6;
+    QPushButton *b3;
+    QPushButton *plus;
+    QPushButton *comma;
+    QPushButton *b2;
+    QPushButton *enter;
+    QPushButton *eval;
+    QPushButton *edit;
+    QPushButton *clear;
+    QPushButton *backspace;
     QGridLayout *gridLayout_9;
-    QGridLayout *gridLayout_7;
+    QGridLayout *logicalButtons;
     QPushButton *orb;
     QPushButton *notb;
     QPushButton *equalb;
@@ -73,48 +109,12 @@ public:
     QPushButton *gte;
     QPushButton *lt;
     QPushButton *andb;
-    QGridLayout *gridLayout_11;
+    QGridLayout *conditionalButtons;
     QPushButton *ift;
     QPushButton *ifte;
-    QGridLayout *gridLayout;
     QPushButton *rightBracket;
     QPushButton *leftBracket;
-    QPushButton *pushButton_58;
-    QGridLayout *gridLayout_2;
-    QPushButton *neg;
-    QPushButton *b0;
-    QPushButton *b5;
-    QPushButton *b1;
-    QPushButton *b4;
-    QPushButton *b9;
-    QPushButton *b8;
-    QPushButton *b7;
-    QPushButton *b6;
-    QPushButton *divide;
-    QPushButton *times;
-    QPushButton *minus;
-    QPushButton *plus;
-    QPushButton *comma;
-    QPushButton *b3;
-    QPushButton *b2;
-    QPushButton *enter;
-    QPushButton *eval;
-    QPushButton *edit;
-    QPushButton *clear;
-    QPushButton *backspace;
-    QGridLayout *gridLayout_5;
-    QPushButton *arcsin;
-    QPushButton *arccos;
-    QPushButton *arctan;
-    QPushButton *cos;
-    QPushButton *sin;
-    QPushButton *tan;
-    QGridLayout *gridLayout_4;
-    QPushButton *im;
-    QPushButton *re;
-    QPushButton *arg;
-    QPushButton *norm;
-    QPushButton *dollar;
+    QPushButton *whileb;
     QMenuBar *menuBar;
     QMenu *menuFichier;
     QMenu *menuEdition;
@@ -124,7 +124,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(997, 633);
+        MainWindow->resize(1163, 633);
         actionQuitter = new QAction(MainWindow);
         actionQuitter->setObjectName(QStringLiteral("actionQuitter"));
         actionAide = new QAction(MainWindow);
@@ -142,11 +142,15 @@ public:
         actionAnnuler->setShortcutContext(Qt::ApplicationShortcut);
         actionR_tablir = new QAction(MainWindow);
         actionR_tablir->setObjectName(QStringLiteral("actionR_tablir"));
+        actionAfficher_le_clavier_cliquable = new QAction(MainWindow);
+        actionAfficher_le_clavier_cliquable->setObjectName(QStringLiteral("actionAfficher_le_clavier_cliquable"));
+        actionAfficher_le_clavier_cliquable->setCheckable(true);
+        actionAfficher_le_clavier_cliquable->setChecked(true);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayoutWidget = new QWidget(centralWidget);
         verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(9, 9, 980, 591));
+        verticalLayoutWidget->setGeometry(QRect(9, 9, 1144, 591));
         verticalLayout_2 = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -193,16 +197,16 @@ public:
         gridLayout_10 = new QGridLayout();
         gridLayout_10->setSpacing(6);
         gridLayout_10->setObjectName(QStringLiteral("gridLayout_10"));
-        gridLayout_6 = new QGridLayout();
-        gridLayout_6->setSpacing(6);
-        gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
+        powerButtons = new QGridLayout();
+        powerButtons->setSpacing(6);
+        powerButtons->setObjectName(QStringLiteral("powerButtons"));
         sqrt = new QPushButton(verticalLayoutWidget);
         sqrt->setObjectName(QStringLiteral("sqrt"));
         sizePolicy.setHeightForWidth(sqrt->sizePolicy().hasHeightForWidth());
         sqrt->setSizePolicy(sizePolicy);
         sqrt->setBaseSize(QSize(30, 30));
 
-        gridLayout_6->addWidget(sqrt, 1, 0, 1, 1);
+        powerButtons->addWidget(sqrt, 1, 0, 1, 1);
 
         exp = new QPushButton(verticalLayoutWidget);
         exp->setObjectName(QStringLiteral("exp"));
@@ -210,7 +214,7 @@ public:
         exp->setSizePolicy(sizePolicy);
         exp->setBaseSize(QSize(30, 30));
 
-        gridLayout_6->addWidget(exp, 2, 0, 1, 1);
+        powerButtons->addWidget(exp, 2, 0, 1, 1);
 
         pow = new QPushButton(verticalLayoutWidget);
         pow->setObjectName(QStringLiteral("pow"));
@@ -218,7 +222,7 @@ public:
         pow->setSizePolicy(sizePolicy);
         pow->setBaseSize(QSize(30, 30));
 
-        gridLayout_6->addWidget(pow, 0, 0, 1, 1);
+        powerButtons->addWidget(pow, 0, 0, 1, 1);
 
         ln = new QPushButton(verticalLayoutWidget);
         ln->setObjectName(QStringLiteral("ln"));
@@ -226,21 +230,21 @@ public:
         ln->setSizePolicy(sizePolicy);
         ln->setBaseSize(QSize(30, 30));
 
-        gridLayout_6->addWidget(ln, 3, 0, 1, 1);
+        powerButtons->addWidget(ln, 3, 0, 1, 1);
 
 
-        gridLayout_10->addLayout(gridLayout_6, 1, 3, 1, 1);
+        gridLayout_10->addLayout(powerButtons, 1, 3, 1, 1);
 
-        gridLayout_3 = new QGridLayout();
-        gridLayout_3->setSpacing(6);
-        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
+        integerButtons = new QGridLayout();
+        integerButtons->setSpacing(6);
+        integerButtons->setObjectName(QStringLiteral("integerButtons"));
         mod = new QPushButton(verticalLayoutWidget);
         mod->setObjectName(QStringLiteral("mod"));
         sizePolicy.setHeightForWidth(mod->sizePolicy().hasHeightForWidth());
         mod->setSizePolicy(sizePolicy);
         mod->setBaseSize(QSize(30, 30));
 
-        gridLayout_3->addWidget(mod, 5, 2, 1, 1);
+        integerButtons->addWidget(mod, 5, 2, 1, 1);
 
         div = new QPushButton(verticalLayoutWidget);
         div->setObjectName(QStringLiteral("div"));
@@ -248,7 +252,7 @@ public:
         div->setSizePolicy(sizePolicy);
         div->setBaseSize(QSize(30, 30));
 
-        gridLayout_3->addWidget(div, 4, 2, 1, 1);
+        integerButtons->addWidget(div, 4, 2, 1, 1);
 
         den = new QPushButton(verticalLayoutWidget);
         den->setObjectName(QStringLiteral("den"));
@@ -256,7 +260,7 @@ public:
         den->setSizePolicy(sizePolicy);
         den->setBaseSize(QSize(30, 30));
 
-        gridLayout_3->addWidget(den, 3, 2, 1, 1);
+        integerButtons->addWidget(den, 3, 2, 1, 1);
 
         num = new QPushButton(verticalLayoutWidget);
         num->setObjectName(QStringLiteral("num"));
@@ -264,203 +268,184 @@ public:
         num->setSizePolicy(sizePolicy);
         num->setBaseSize(QSize(30, 30));
 
-        gridLayout_3->addWidget(num, 2, 2, 1, 1);
+        integerButtons->addWidget(num, 2, 2, 1, 1);
 
 
-        gridLayout_10->addLayout(gridLayout_3, 1, 2, 1, 1);
+        gridLayout_10->addLayout(integerButtons, 1, 2, 1, 1);
 
-        gridLayout_8 = new QGridLayout();
-        gridLayout_8->setSpacing(6);
-        gridLayout_8->setObjectName(QStringLiteral("gridLayout_8"));
+        stackButtons = new QGridLayout();
+        stackButtons->setSpacing(6);
+        stackButtons->setObjectName(QStringLiteral("stackButtons"));
         lastop = new QPushButton(verticalLayoutWidget);
         lastop->setObjectName(QStringLiteral("lastop"));
         sizePolicy.setHeightForWidth(lastop->sizePolicy().hasHeightForWidth());
         lastop->setSizePolicy(sizePolicy);
 
-        gridLayout_8->addWidget(lastop, 2, 0, 1, 1);
+        stackButtons->addWidget(lastop, 2, 0, 1, 1);
 
         swap = new QPushButton(verticalLayoutWidget);
         swap->setObjectName(QStringLiteral("swap"));
         sizePolicy.setHeightForWidth(swap->sizePolicy().hasHeightForWidth());
         swap->setSizePolicy(sizePolicy);
 
-        gridLayout_8->addWidget(swap, 0, 1, 1, 1);
+        stackButtons->addWidget(swap, 0, 1, 1, 1);
 
         lastargs = new QPushButton(verticalLayoutWidget);
         lastargs->setObjectName(QStringLiteral("lastargs"));
         sizePolicy.setHeightForWidth(lastargs->sizePolicy().hasHeightForWidth());
         lastargs->setSizePolicy(sizePolicy);
 
-        gridLayout_8->addWidget(lastargs, 2, 1, 1, 1);
+        stackButtons->addWidget(lastargs, 2, 1, 1, 1);
 
         drop = new QPushButton(verticalLayoutWidget);
         drop->setObjectName(QStringLiteral("drop"));
         sizePolicy.setHeightForWidth(drop->sizePolicy().hasHeightForWidth());
         drop->setSizePolicy(sizePolicy);
 
-        gridLayout_8->addWidget(drop, 1, 0, 1, 2);
+        stackButtons->addWidget(drop, 1, 0, 1, 2);
 
         dup = new QPushButton(verticalLayoutWidget);
         dup->setObjectName(QStringLiteral("dup"));
         sizePolicy.setHeightForWidth(dup->sizePolicy().hasHeightForWidth());
         dup->setSizePolicy(sizePolicy);
 
-        gridLayout_8->addWidget(dup, 0, 0, 1, 1);
+        stackButtons->addWidget(dup, 0, 0, 1, 1);
 
         undo = new QPushButton(verticalLayoutWidget);
         undo->setObjectName(QStringLiteral("undo"));
         sizePolicy.setHeightForWidth(undo->sizePolicy().hasHeightForWidth());
         undo->setSizePolicy(sizePolicy);
 
-        gridLayout_8->addWidget(undo, 3, 0, 1, 1);
+        stackButtons->addWidget(undo, 3, 0, 1, 1);
 
         redo = new QPushButton(verticalLayoutWidget);
         redo->setObjectName(QStringLiteral("redo"));
         sizePolicy.setHeightForWidth(redo->sizePolicy().hasHeightForWidth());
         redo->setSizePolicy(sizePolicy);
 
-        gridLayout_8->addWidget(redo, 3, 1, 1, 1);
+        stackButtons->addWidget(redo, 3, 1, 1, 1);
 
 
-        gridLayout_10->addLayout(gridLayout_8, 0, 0, 1, 1);
+        gridLayout_10->addLayout(stackButtons, 0, 0, 1, 1);
 
-        gridLayout_9 = new QGridLayout();
-        gridLayout_9->setSpacing(6);
-        gridLayout_9->setObjectName(QStringLiteral("gridLayout_9"));
-        gridLayout_7 = new QGridLayout();
-        gridLayout_7->setSpacing(6);
-        gridLayout_7->setObjectName(QStringLiteral("gridLayout_7"));
-        orb = new QPushButton(verticalLayoutWidget);
-        orb->setObjectName(QStringLiteral("orb"));
-        sizePolicy.setHeightForWidth(orb->sizePolicy().hasHeightForWidth());
-        orb->setSizePolicy(sizePolicy);
-        orb->setBaseSize(QSize(30, 30));
+        trigoButtons = new QGridLayout();
+        trigoButtons->setSpacing(6);
+        trigoButtons->setObjectName(QStringLiteral("trigoButtons"));
+        arcsin = new QPushButton(verticalLayoutWidget);
+        arcsin->setObjectName(QStringLiteral("arcsin"));
+        sizePolicy.setHeightForWidth(arcsin->sizePolicy().hasHeightForWidth());
+        arcsin->setSizePolicy(sizePolicy);
+        arcsin->setBaseSize(QSize(30, 30));
 
-        gridLayout_7->addWidget(orb, 1, 0, 1, 1);
+        trigoButtons->addWidget(arcsin, 1, 1, 1, 1);
 
-        notb = new QPushButton(verticalLayoutWidget);
-        notb->setObjectName(QStringLiteral("notb"));
-        sizePolicy.setHeightForWidth(notb->sizePolicy().hasHeightForWidth());
-        notb->setSizePolicy(sizePolicy);
-        notb->setBaseSize(QSize(30, 30));
+        arccos = new QPushButton(verticalLayoutWidget);
+        arccos->setObjectName(QStringLiteral("arccos"));
+        sizePolicy.setHeightForWidth(arccos->sizePolicy().hasHeightForWidth());
+        arccos->setSizePolicy(sizePolicy);
+        arccos->setBaseSize(QSize(30, 30));
 
-        gridLayout_7->addWidget(notb, 2, 0, 1, 1);
+        trigoButtons->addWidget(arccos, 0, 1, 1, 1);
 
-        equalb = new QPushButton(verticalLayoutWidget);
-        equalb->setObjectName(QStringLiteral("equalb"));
-        sizePolicy.setHeightForWidth(equalb->sizePolicy().hasHeightForWidth());
-        equalb->setSizePolicy(sizePolicy);
-        equalb->setBaseSize(QSize(30, 30));
+        arctan = new QPushButton(verticalLayoutWidget);
+        arctan->setObjectName(QStringLiteral("arctan"));
+        sizePolicy.setHeightForWidth(arctan->sizePolicy().hasHeightForWidth());
+        arctan->setSizePolicy(sizePolicy);
+        arctan->setBaseSize(QSize(30, 30));
 
-        gridLayout_7->addWidget(equalb, 0, 1, 1, 1);
+        trigoButtons->addWidget(arctan, 2, 1, 1, 1);
 
-        notEqual = new QPushButton(verticalLayoutWidget);
-        notEqual->setObjectName(QStringLiteral("notEqual"));
-        sizePolicy.setHeightForWidth(notEqual->sizePolicy().hasHeightForWidth());
-        notEqual->setSizePolicy(sizePolicy);
-        notEqual->setBaseSize(QSize(30, 30));
+        cos = new QPushButton(verticalLayoutWidget);
+        cos->setObjectName(QStringLiteral("cos"));
+        sizePolicy.setHeightForWidth(cos->sizePolicy().hasHeightForWidth());
+        cos->setSizePolicy(sizePolicy);
+        cos->setBaseSize(QSize(30, 30));
 
-        gridLayout_7->addWidget(notEqual, 0, 2, 1, 1);
+        trigoButtons->addWidget(cos, 0, 0, 1, 1);
 
-        lte = new QPushButton(verticalLayoutWidget);
-        lte->setObjectName(QStringLiteral("lte"));
-        sizePolicy.setHeightForWidth(lte->sizePolicy().hasHeightForWidth());
-        lte->setSizePolicy(sizePolicy);
-        lte->setBaseSize(QSize(30, 30));
+        sin = new QPushButton(verticalLayoutWidget);
+        sin->setObjectName(QStringLiteral("sin"));
+        sizePolicy.setHeightForWidth(sin->sizePolicy().hasHeightForWidth());
+        sin->setSizePolicy(sizePolicy);
+        sin->setBaseSize(QSize(30, 30));
 
-        gridLayout_7->addWidget(lte, 1, 2, 1, 1);
+        trigoButtons->addWidget(sin, 1, 0, 1, 1);
 
-        gt = new QPushButton(verticalLayoutWidget);
-        gt->setObjectName(QStringLiteral("gt"));
-        sizePolicy.setHeightForWidth(gt->sizePolicy().hasHeightForWidth());
-        gt->setSizePolicy(sizePolicy);
-        gt->setBaseSize(QSize(30, 30));
+        tan = new QPushButton(verticalLayoutWidget);
+        tan->setObjectName(QStringLiteral("tan"));
+        sizePolicy.setHeightForWidth(tan->sizePolicy().hasHeightForWidth());
+        tan->setSizePolicy(sizePolicy);
+        tan->setBaseSize(QSize(30, 30));
 
-        gridLayout_7->addWidget(gt, 2, 1, 1, 1);
-
-        gte = new QPushButton(verticalLayoutWidget);
-        gte->setObjectName(QStringLiteral("gte"));
-        sizePolicy.setHeightForWidth(gte->sizePolicy().hasHeightForWidth());
-        gte->setSizePolicy(sizePolicy);
-        gte->setBaseSize(QSize(30, 30));
-
-        gridLayout_7->addWidget(gte, 2, 2, 1, 1);
-
-        lt = new QPushButton(verticalLayoutWidget);
-        lt->setObjectName(QStringLiteral("lt"));
-        sizePolicy.setHeightForWidth(lt->sizePolicy().hasHeightForWidth());
-        lt->setSizePolicy(sizePolicy);
-        lt->setBaseSize(QSize(30, 30));
-
-        gridLayout_7->addWidget(lt, 1, 1, 1, 1);
-
-        andb = new QPushButton(verticalLayoutWidget);
-        andb->setObjectName(QStringLiteral("andb"));
-        sizePolicy.setHeightForWidth(andb->sizePolicy().hasHeightForWidth());
-        andb->setSizePolicy(sizePolicy);
-        andb->setBaseSize(QSize(30, 30));
-
-        gridLayout_7->addWidget(andb, 0, 0, 1, 1);
+        trigoButtons->addWidget(tan, 2, 0, 1, 1);
 
 
-        gridLayout_9->addLayout(gridLayout_7, 5, 1, 1, 1);
+        gridLayout_10->addLayout(trigoButtons, 0, 3, 1, 1);
 
-        gridLayout_11 = new QGridLayout();
-        gridLayout_11->setSpacing(6);
-        gridLayout_11->setObjectName(QStringLiteral("gridLayout_11"));
-        ift = new QPushButton(verticalLayoutWidget);
-        ift->setObjectName(QStringLiteral("ift"));
-        sizePolicy.setHeightForWidth(ift->sizePolicy().hasHeightForWidth());
-        ift->setSizePolicy(sizePolicy);
+        complexButtons = new QGridLayout();
+        complexButtons->setSpacing(6);
+        complexButtons->setObjectName(QStringLiteral("complexButtons"));
+        im = new QPushButton(verticalLayoutWidget);
+        im->setObjectName(QStringLiteral("im"));
+        sizePolicy.setHeightForWidth(im->sizePolicy().hasHeightForWidth());
+        im->setSizePolicy(sizePolicy);
+        im->setBaseSize(QSize(30, 30));
 
-        gridLayout_11->addWidget(ift, 1, 0, 1, 1);
+        complexButtons->addWidget(im, 2, 0, 1, 1);
 
-        ifte = new QPushButton(verticalLayoutWidget);
-        ifte->setObjectName(QStringLiteral("ifte"));
-        sizePolicy.setHeightForWidth(ifte->sizePolicy().hasHeightForWidth());
-        ifte->setSizePolicy(sizePolicy);
+        re = new QPushButton(verticalLayoutWidget);
+        re->setObjectName(QStringLiteral("re"));
+        sizePolicy.setHeightForWidth(re->sizePolicy().hasHeightForWidth());
+        re->setSizePolicy(sizePolicy);
+        re->setBaseSize(QSize(30, 30));
 
-        gridLayout_11->addWidget(ifte, 1, 1, 1, 1);
+        complexButtons->addWidget(re, 1, 0, 1, 1);
+
+        arg = new QPushButton(verticalLayoutWidget);
+        arg->setObjectName(QStringLiteral("arg"));
+        sizePolicy.setHeightForWidth(arg->sizePolicy().hasHeightForWidth());
+        arg->setSizePolicy(sizePolicy);
+        arg->setBaseSize(QSize(30, 30));
+
+        complexButtons->addWidget(arg, 1, 1, 1, 1);
+
+        norm = new QPushButton(verticalLayoutWidget);
+        norm->setObjectName(QStringLiteral("norm"));
+        sizePolicy.setHeightForWidth(norm->sizePolicy().hasHeightForWidth());
+        norm->setSizePolicy(sizePolicy);
+        norm->setBaseSize(QSize(30, 30));
+
+        complexButtons->addWidget(norm, 2, 1, 1, 1);
+
+        dollar = new QPushButton(verticalLayoutWidget);
+        dollar->setObjectName(QStringLiteral("dollar"));
+        sizePolicy.setHeightForWidth(dollar->sizePolicy().hasHeightForWidth());
+        dollar->setSizePolicy(sizePolicy);
+        dollar->setBaseSize(QSize(30, 30));
+
+        complexButtons->addWidget(dollar, 0, 0, 1, 2);
 
 
-        gridLayout_9->addLayout(gridLayout_11, 2, 1, 1, 1);
+        gridLayout_10->addLayout(complexButtons, 0, 2, 1, 1);
 
-        gridLayout = new QGridLayout();
-        gridLayout->setSpacing(6);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        rightBracket = new QPushButton(verticalLayoutWidget);
-        rightBracket->setObjectName(QStringLiteral("rightBracket"));
+        numericPad = new QGridLayout();
+        numericPad->setSpacing(6);
+        numericPad->setObjectName(QStringLiteral("numericPad"));
+        b5 = new QPushButton(verticalLayoutWidget);
+        b5->setObjectName(QStringLiteral("b5"));
+        sizePolicy.setHeightForWidth(b5->sizePolicy().hasHeightForWidth());
+        b5->setSizePolicy(sizePolicy);
+        b5->setBaseSize(QSize(30, 30));
 
-        gridLayout->addWidget(rightBracket, 0, 1, 1, 1);
+        numericPad->addWidget(b5, 2, 1, 1, 1);
 
-        leftBracket = new QPushButton(verticalLayoutWidget);
-        leftBracket->setObjectName(QStringLiteral("leftBracket"));
-
-        gridLayout->addWidget(leftBracket, 0, 0, 1, 1);
-
-
-        gridLayout_9->addLayout(gridLayout, 4, 1, 1, 1);
-
-        pushButton_58 = new QPushButton(verticalLayoutWidget);
-        pushButton_58->setObjectName(QStringLiteral("pushButton_58"));
-        sizePolicy.setHeightForWidth(pushButton_58->sizePolicy().hasHeightForWidth());
-        pushButton_58->setSizePolicy(sizePolicy);
-
-        gridLayout_9->addWidget(pushButton_58, 1, 1, 1, 1);
-
-
-        gridLayout_10->addLayout(gridLayout_9, 1, 0, 1, 1);
-
-        gridLayout_2 = new QGridLayout();
-        gridLayout_2->setSpacing(6);
-        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         neg = new QPushButton(verticalLayoutWidget);
         neg->setObjectName(QStringLiteral("neg"));
         sizePolicy.setHeightForWidth(neg->sizePolicy().hasHeightForWidth());
         neg->setSizePolicy(sizePolicy);
         neg->setBaseSize(QSize(30, 30));
 
-        gridLayout_2->addWidget(neg, 0, 3, 1, 1);
+        numericPad->addWidget(neg, 0, 3, 1, 1);
 
         b0 = new QPushButton(verticalLayoutWidget);
         b0->setObjectName(QStringLiteral("b0"));
@@ -468,39 +453,7 @@ public:
         b0->setSizePolicy(sizePolicy);
         b0->setBaseSize(QSize(30, 30));
 
-        gridLayout_2->addWidget(b0, 4, 0, 1, 2);
-
-        b5 = new QPushButton(verticalLayoutWidget);
-        b5->setObjectName(QStringLiteral("b5"));
-        sizePolicy.setHeightForWidth(b5->sizePolicy().hasHeightForWidth());
-        b5->setSizePolicy(sizePolicy);
-        b5->setBaseSize(QSize(30, 30));
-
-        gridLayout_2->addWidget(b5, 2, 1, 1, 1);
-
-        b1 = new QPushButton(verticalLayoutWidget);
-        b1->setObjectName(QStringLiteral("b1"));
-        sizePolicy.setHeightForWidth(b1->sizePolicy().hasHeightForWidth());
-        b1->setSizePolicy(sizePolicy);
-        b1->setBaseSize(QSize(30, 30));
-
-        gridLayout_2->addWidget(b1, 3, 0, 1, 1);
-
-        b4 = new QPushButton(verticalLayoutWidget);
-        b4->setObjectName(QStringLiteral("b4"));
-        sizePolicy.setHeightForWidth(b4->sizePolicy().hasHeightForWidth());
-        b4->setSizePolicy(sizePolicy);
-        b4->setBaseSize(QSize(30, 30));
-
-        gridLayout_2->addWidget(b4, 2, 0, 1, 1);
-
-        b9 = new QPushButton(verticalLayoutWidget);
-        b9->setObjectName(QStringLiteral("b9"));
-        sizePolicy.setHeightForWidth(b9->sizePolicy().hasHeightForWidth());
-        b9->setSizePolicy(sizePolicy);
-        b9->setBaseSize(QSize(30, 30));
-
-        gridLayout_2->addWidget(b9, 1, 2, 1, 1);
+        numericPad->addWidget(b0, 4, 0, 1, 2);
 
         b8 = new QPushButton(verticalLayoutWidget);
         b8->setObjectName(QStringLiteral("b8"));
@@ -508,23 +461,31 @@ public:
         b8->setSizePolicy(sizePolicy);
         b8->setBaseSize(QSize(30, 30));
 
-        gridLayout_2->addWidget(b8, 1, 1, 1, 1);
+        numericPad->addWidget(b8, 1, 1, 1, 1);
 
-        b7 = new QPushButton(verticalLayoutWidget);
-        b7->setObjectName(QStringLiteral("b7"));
-        sizePolicy.setHeightForWidth(b7->sizePolicy().hasHeightForWidth());
-        b7->setSizePolicy(sizePolicy);
-        b7->setBaseSize(QSize(30, 30));
+        b9 = new QPushButton(verticalLayoutWidget);
+        b9->setObjectName(QStringLiteral("b9"));
+        sizePolicy.setHeightForWidth(b9->sizePolicy().hasHeightForWidth());
+        b9->setSizePolicy(sizePolicy);
+        b9->setBaseSize(QSize(30, 30));
 
-        gridLayout_2->addWidget(b7, 1, 0, 1, 1);
+        numericPad->addWidget(b9, 1, 2, 1, 1);
 
-        b6 = new QPushButton(verticalLayoutWidget);
-        b6->setObjectName(QStringLiteral("b6"));
-        sizePolicy.setHeightForWidth(b6->sizePolicy().hasHeightForWidth());
-        b6->setSizePolicy(sizePolicy);
-        b6->setBaseSize(QSize(30, 30));
+        b4 = new QPushButton(verticalLayoutWidget);
+        b4->setObjectName(QStringLiteral("b4"));
+        sizePolicy.setHeightForWidth(b4->sizePolicy().hasHeightForWidth());
+        b4->setSizePolicy(sizePolicy);
+        b4->setBaseSize(QSize(30, 30));
 
-        gridLayout_2->addWidget(b6, 2, 2, 1, 1);
+        numericPad->addWidget(b4, 2, 0, 1, 1);
+
+        b1 = new QPushButton(verticalLayoutWidget);
+        b1->setObjectName(QStringLiteral("b1"));
+        sizePolicy.setHeightForWidth(b1->sizePolicy().hasHeightForWidth());
+        b1->setSizePolicy(sizePolicy);
+        b1->setBaseSize(QSize(30, 30));
+
+        numericPad->addWidget(b1, 3, 0, 1, 1);
 
         divide = new QPushButton(verticalLayoutWidget);
         divide->setObjectName(QStringLiteral("divide"));
@@ -532,7 +493,15 @@ public:
         divide->setSizePolicy(sizePolicy);
         divide->setBaseSize(QSize(30, 30));
 
-        gridLayout_2->addWidget(divide, 1, 3, 1, 1);
+        numericPad->addWidget(divide, 1, 3, 1, 1);
+
+        b7 = new QPushButton(verticalLayoutWidget);
+        b7->setObjectName(QStringLiteral("b7"));
+        sizePolicy.setHeightForWidth(b7->sizePolicy().hasHeightForWidth());
+        b7->setSizePolicy(sizePolicy);
+        b7->setBaseSize(QSize(30, 30));
+
+        numericPad->addWidget(b7, 1, 0, 1, 1);
 
         times = new QPushButton(verticalLayoutWidget);
         times->setObjectName(QStringLiteral("times"));
@@ -540,7 +509,7 @@ public:
         times->setSizePolicy(sizePolicy);
         times->setBaseSize(QSize(30, 30));
 
-        gridLayout_2->addWidget(times, 2, 3, 1, 1);
+        numericPad->addWidget(times, 2, 3, 1, 1);
 
         minus = new QPushButton(verticalLayoutWidget);
         minus->setObjectName(QStringLiteral("minus"));
@@ -548,23 +517,15 @@ public:
         minus->setSizePolicy(sizePolicy);
         minus->setBaseSize(QSize(30, 30));
 
-        gridLayout_2->addWidget(minus, 3, 3, 1, 1);
+        numericPad->addWidget(minus, 3, 3, 1, 1);
 
-        plus = new QPushButton(verticalLayoutWidget);
-        plus->setObjectName(QStringLiteral("plus"));
-        sizePolicy.setHeightForWidth(plus->sizePolicy().hasHeightForWidth());
-        plus->setSizePolicy(sizePolicy);
-        plus->setBaseSize(QSize(30, 30));
+        b6 = new QPushButton(verticalLayoutWidget);
+        b6->setObjectName(QStringLiteral("b6"));
+        sizePolicy.setHeightForWidth(b6->sizePolicy().hasHeightForWidth());
+        b6->setSizePolicy(sizePolicy);
+        b6->setBaseSize(QSize(30, 30));
 
-        gridLayout_2->addWidget(plus, 4, 3, 1, 1);
-
-        comma = new QPushButton(verticalLayoutWidget);
-        comma->setObjectName(QStringLiteral("comma"));
-        sizePolicy.setHeightForWidth(comma->sizePolicy().hasHeightForWidth());
-        comma->setSizePolicy(sizePolicy);
-        comma->setBaseSize(QSize(30, 30));
-
-        gridLayout_2->addWidget(comma, 4, 2, 1, 1);
+        numericPad->addWidget(b6, 2, 2, 1, 1);
 
         b3 = new QPushButton(verticalLayoutWidget);
         b3->setObjectName(QStringLiteral("b3"));
@@ -572,7 +533,23 @@ public:
         b3->setSizePolicy(sizePolicy);
         b3->setBaseSize(QSize(30, 30));
 
-        gridLayout_2->addWidget(b3, 3, 2, 1, 1);
+        numericPad->addWidget(b3, 3, 2, 1, 1);
+
+        plus = new QPushButton(verticalLayoutWidget);
+        plus->setObjectName(QStringLiteral("plus"));
+        sizePolicy.setHeightForWidth(plus->sizePolicy().hasHeightForWidth());
+        plus->setSizePolicy(sizePolicy);
+        plus->setBaseSize(QSize(30, 30));
+
+        numericPad->addWidget(plus, 4, 3, 1, 1);
+
+        comma = new QPushButton(verticalLayoutWidget);
+        comma->setObjectName(QStringLiteral("comma"));
+        sizePolicy.setHeightForWidth(comma->sizePolicy().hasHeightForWidth());
+        comma->setSizePolicy(sizePolicy);
+        comma->setBaseSize(QSize(30, 30));
+
+        numericPad->addWidget(comma, 4, 2, 1, 1);
 
         b2 = new QPushButton(verticalLayoutWidget);
         b2->setObjectName(QStringLiteral("b2"));
@@ -580,7 +557,7 @@ public:
         b2->setSizePolicy(sizePolicy);
         b2->setBaseSize(QSize(30, 30));
 
-        gridLayout_2->addWidget(b2, 3, 1, 1, 1);
+        numericPad->addWidget(b2, 3, 1, 1, 1);
 
         enter = new QPushButton(verticalLayoutWidget);
         enter->setObjectName(QStringLiteral("enter"));
@@ -591,7 +568,7 @@ public:
         enter->setAutoFillBackground(false);
         enter->setFlat(false);
 
-        gridLayout_2->addWidget(enter, 3, 4, 2, 1);
+        numericPad->addWidget(enter, 3, 4, 2, 1);
 
         eval = new QPushButton(verticalLayoutWidget);
         eval->setObjectName(QStringLiteral("eval"));
@@ -599,21 +576,21 @@ public:
         eval->setSizePolicy(sizePolicy);
         eval->setBaseSize(QSize(30, 30));
 
-        gridLayout_2->addWidget(eval, 2, 4, 1, 1);
+        numericPad->addWidget(eval, 2, 4, 1, 1);
 
         edit = new QPushButton(verticalLayoutWidget);
         edit->setObjectName(QStringLiteral("edit"));
         sizePolicy.setHeightForWidth(edit->sizePolicy().hasHeightForWidth());
         edit->setSizePolicy(sizePolicy);
 
-        gridLayout_2->addWidget(edit, 1, 4, 1, 1);
+        numericPad->addWidget(edit, 1, 4, 1, 1);
 
         clear = new QPushButton(verticalLayoutWidget);
         clear->setObjectName(QStringLiteral("clear"));
         sizePolicy.setHeightForWidth(clear->sizePolicy().hasHeightForWidth());
         clear->setSizePolicy(sizePolicy);
 
-        gridLayout_2->addWidget(clear, 0, 4, 1, 1);
+        numericPad->addWidget(clear, 0, 4, 1, 1);
 
         backspace = new QPushButton(verticalLayoutWidget);
         backspace->setObjectName(QStringLiteral("backspace"));
@@ -621,118 +598,140 @@ public:
         backspace->setSizePolicy(sizePolicy);
         backspace->setBaseSize(QSize(30, 30));
 
-        gridLayout_2->addWidget(backspace, 0, 0, 1, 3);
+        numericPad->addWidget(backspace, 0, 0, 1, 3);
 
 
-        gridLayout_10->addLayout(gridLayout_2, 0, 4, 2, 1);
+        gridLayout_10->addLayout(numericPad, 0, 4, 2, 1);
 
-        gridLayout_5 = new QGridLayout();
-        gridLayout_5->setSpacing(6);
-        gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
-        arcsin = new QPushButton(verticalLayoutWidget);
-        arcsin->setObjectName(QStringLiteral("arcsin"));
-        sizePolicy.setHeightForWidth(arcsin->sizePolicy().hasHeightForWidth());
-        arcsin->setSizePolicy(sizePolicy);
-        arcsin->setBaseSize(QSize(30, 30));
+        gridLayout_9 = new QGridLayout();
+        gridLayout_9->setSpacing(6);
+        gridLayout_9->setObjectName(QStringLiteral("gridLayout_9"));
+        logicalButtons = new QGridLayout();
+        logicalButtons->setSpacing(6);
+        logicalButtons->setObjectName(QStringLiteral("logicalButtons"));
+        orb = new QPushButton(verticalLayoutWidget);
+        orb->setObjectName(QStringLiteral("orb"));
+        sizePolicy.setHeightForWidth(orb->sizePolicy().hasHeightForWidth());
+        orb->setSizePolicy(sizePolicy);
+        orb->setBaseSize(QSize(30, 30));
 
-        gridLayout_5->addWidget(arcsin, 1, 1, 1, 1);
+        logicalButtons->addWidget(orb, 1, 0, 1, 1);
 
-        arccos = new QPushButton(verticalLayoutWidget);
-        arccos->setObjectName(QStringLiteral("arccos"));
-        sizePolicy.setHeightForWidth(arccos->sizePolicy().hasHeightForWidth());
-        arccos->setSizePolicy(sizePolicy);
-        arccos->setBaseSize(QSize(30, 30));
+        notb = new QPushButton(verticalLayoutWidget);
+        notb->setObjectName(QStringLiteral("notb"));
+        sizePolicy.setHeightForWidth(notb->sizePolicy().hasHeightForWidth());
+        notb->setSizePolicy(sizePolicy);
+        notb->setBaseSize(QSize(30, 30));
 
-        gridLayout_5->addWidget(arccos, 0, 1, 1, 1);
+        logicalButtons->addWidget(notb, 2, 0, 1, 1);
 
-        arctan = new QPushButton(verticalLayoutWidget);
-        arctan->setObjectName(QStringLiteral("arctan"));
-        sizePolicy.setHeightForWidth(arctan->sizePolicy().hasHeightForWidth());
-        arctan->setSizePolicy(sizePolicy);
-        arctan->setBaseSize(QSize(30, 30));
+        equalb = new QPushButton(verticalLayoutWidget);
+        equalb->setObjectName(QStringLiteral("equalb"));
+        sizePolicy.setHeightForWidth(equalb->sizePolicy().hasHeightForWidth());
+        equalb->setSizePolicy(sizePolicy);
+        equalb->setBaseSize(QSize(30, 30));
 
-        gridLayout_5->addWidget(arctan, 2, 1, 1, 1);
+        logicalButtons->addWidget(equalb, 0, 1, 1, 1);
 
-        cos = new QPushButton(verticalLayoutWidget);
-        cos->setObjectName(QStringLiteral("cos"));
-        sizePolicy.setHeightForWidth(cos->sizePolicy().hasHeightForWidth());
-        cos->setSizePolicy(sizePolicy);
-        cos->setBaseSize(QSize(30, 30));
+        notEqual = new QPushButton(verticalLayoutWidget);
+        notEqual->setObjectName(QStringLiteral("notEqual"));
+        sizePolicy.setHeightForWidth(notEqual->sizePolicy().hasHeightForWidth());
+        notEqual->setSizePolicy(sizePolicy);
+        notEqual->setBaseSize(QSize(30, 30));
 
-        gridLayout_5->addWidget(cos, 0, 0, 1, 1);
+        logicalButtons->addWidget(notEqual, 0, 2, 1, 1);
 
-        sin = new QPushButton(verticalLayoutWidget);
-        sin->setObjectName(QStringLiteral("sin"));
-        sizePolicy.setHeightForWidth(sin->sizePolicy().hasHeightForWidth());
-        sin->setSizePolicy(sizePolicy);
-        sin->setBaseSize(QSize(30, 30));
+        lte = new QPushButton(verticalLayoutWidget);
+        lte->setObjectName(QStringLiteral("lte"));
+        sizePolicy.setHeightForWidth(lte->sizePolicy().hasHeightForWidth());
+        lte->setSizePolicy(sizePolicy);
+        lte->setBaseSize(QSize(30, 30));
 
-        gridLayout_5->addWidget(sin, 1, 0, 1, 1);
+        logicalButtons->addWidget(lte, 1, 2, 1, 1);
 
-        tan = new QPushButton(verticalLayoutWidget);
-        tan->setObjectName(QStringLiteral("tan"));
-        sizePolicy.setHeightForWidth(tan->sizePolicy().hasHeightForWidth());
-        tan->setSizePolicy(sizePolicy);
-        tan->setBaseSize(QSize(30, 30));
+        gt = new QPushButton(verticalLayoutWidget);
+        gt->setObjectName(QStringLiteral("gt"));
+        sizePolicy.setHeightForWidth(gt->sizePolicy().hasHeightForWidth());
+        gt->setSizePolicy(sizePolicy);
+        gt->setBaseSize(QSize(30, 30));
 
-        gridLayout_5->addWidget(tan, 2, 0, 1, 1);
+        logicalButtons->addWidget(gt, 2, 1, 1, 1);
 
+        gte = new QPushButton(verticalLayoutWidget);
+        gte->setObjectName(QStringLiteral("gte"));
+        sizePolicy.setHeightForWidth(gte->sizePolicy().hasHeightForWidth());
+        gte->setSizePolicy(sizePolicy);
+        gte->setBaseSize(QSize(30, 30));
 
-        gridLayout_10->addLayout(gridLayout_5, 0, 3, 1, 1);
+        logicalButtons->addWidget(gte, 2, 2, 1, 1);
 
-        gridLayout_4 = new QGridLayout();
-        gridLayout_4->setSpacing(6);
-        gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
-        im = new QPushButton(verticalLayoutWidget);
-        im->setObjectName(QStringLiteral("im"));
-        sizePolicy.setHeightForWidth(im->sizePolicy().hasHeightForWidth());
-        im->setSizePolicy(sizePolicy);
-        im->setBaseSize(QSize(30, 30));
+        lt = new QPushButton(verticalLayoutWidget);
+        lt->setObjectName(QStringLiteral("lt"));
+        sizePolicy.setHeightForWidth(lt->sizePolicy().hasHeightForWidth());
+        lt->setSizePolicy(sizePolicy);
+        lt->setBaseSize(QSize(30, 30));
 
-        gridLayout_4->addWidget(im, 2, 0, 1, 1);
+        logicalButtons->addWidget(lt, 1, 1, 1, 1);
 
-        re = new QPushButton(verticalLayoutWidget);
-        re->setObjectName(QStringLiteral("re"));
-        sizePolicy.setHeightForWidth(re->sizePolicy().hasHeightForWidth());
-        re->setSizePolicy(sizePolicy);
-        re->setBaseSize(QSize(30, 30));
+        andb = new QPushButton(verticalLayoutWidget);
+        andb->setObjectName(QStringLiteral("andb"));
+        sizePolicy.setHeightForWidth(andb->sizePolicy().hasHeightForWidth());
+        andb->setSizePolicy(sizePolicy);
+        andb->setBaseSize(QSize(30, 30));
 
-        gridLayout_4->addWidget(re, 1, 0, 1, 1);
-
-        arg = new QPushButton(verticalLayoutWidget);
-        arg->setObjectName(QStringLiteral("arg"));
-        sizePolicy.setHeightForWidth(arg->sizePolicy().hasHeightForWidth());
-        arg->setSizePolicy(sizePolicy);
-        arg->setBaseSize(QSize(30, 30));
-
-        gridLayout_4->addWidget(arg, 1, 1, 1, 1);
-
-        norm = new QPushButton(verticalLayoutWidget);
-        norm->setObjectName(QStringLiteral("norm"));
-        sizePolicy.setHeightForWidth(norm->sizePolicy().hasHeightForWidth());
-        norm->setSizePolicy(sizePolicy);
-        norm->setBaseSize(QSize(30, 30));
-
-        gridLayout_4->addWidget(norm, 2, 1, 1, 1);
-
-        dollar = new QPushButton(verticalLayoutWidget);
-        dollar->setObjectName(QStringLiteral("dollar"));
-        sizePolicy.setHeightForWidth(dollar->sizePolicy().hasHeightForWidth());
-        dollar->setSizePolicy(sizePolicy);
-        dollar->setBaseSize(QSize(30, 30));
-
-        gridLayout_4->addWidget(dollar, 0, 0, 1, 2);
+        logicalButtons->addWidget(andb, 0, 0, 1, 1);
 
 
-        gridLayout_10->addLayout(gridLayout_4, 0, 2, 1, 1);
+        gridLayout_9->addLayout(logicalButtons, 4, 1, 1, 1);
+
+        conditionalButtons = new QGridLayout();
+        conditionalButtons->setSpacing(6);
+        conditionalButtons->setObjectName(QStringLiteral("conditionalButtons"));
+        ift = new QPushButton(verticalLayoutWidget);
+        ift->setObjectName(QStringLiteral("ift"));
+        sizePolicy.setHeightForWidth(ift->sizePolicy().hasHeightForWidth());
+        ift->setSizePolicy(sizePolicy);
+
+        conditionalButtons->addWidget(ift, 2, 0, 1, 1);
+
+        ifte = new QPushButton(verticalLayoutWidget);
+        ifte->setObjectName(QStringLiteral("ifte"));
+        sizePolicy.setHeightForWidth(ifte->sizePolicy().hasHeightForWidth());
+        ifte->setSizePolicy(sizePolicy);
+
+        conditionalButtons->addWidget(ifte, 2, 1, 1, 1);
+
+        rightBracket = new QPushButton(verticalLayoutWidget);
+        rightBracket->setObjectName(QStringLiteral("rightBracket"));
+
+        conditionalButtons->addWidget(rightBracket, 3, 1, 1, 1);
+
+        leftBracket = new QPushButton(verticalLayoutWidget);
+        leftBracket->setObjectName(QStringLiteral("leftBracket"));
+
+        conditionalButtons->addWidget(leftBracket, 3, 0, 1, 1);
+
+        whileb = new QPushButton(verticalLayoutWidget);
+        whileb->setObjectName(QStringLiteral("whileb"));
+        sizePolicy.setHeightForWidth(whileb->sizePolicy().hasHeightForWidth());
+        whileb->setSizePolicy(sizePolicy);
+
+        conditionalButtons->addWidget(whileb, 1, 0, 1, 2);
+
+
+        gridLayout_9->addLayout(conditionalButtons, 2, 1, 1, 1);
+
+
+        gridLayout_10->addLayout(gridLayout_9, 1, 0, 1, 1);
 
 
         verticalLayout_2->addLayout(gridLayout_10);
 
         MainWindow->setCentralWidget(centralWidget);
+        verticalLayoutWidget->raise();
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 997, 21));
+        menuBar->setGeometry(QRect(0, 0, 1163, 21));
         menuFichier = new QMenu(menuBar);
         menuFichier->setObjectName(QStringLiteral("menuFichier"));
         menuEdition = new QMenu(menuBar);
@@ -752,6 +751,7 @@ public:
         menuEdition->addSeparator();
         menuEdition->addAction(actionEdition_des_variables);
         menuEdition->addAction(actionEdition_des_programmes);
+        menuEdition->addAction(actionAfficher_le_clavier_cliquable);
         menuA_propos->addAction(actionAide);
         menuA_propos->addAction(actionA_propos_de_l_application);
 
@@ -764,13 +764,17 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         actionQuitter->setText(QApplication::translate("MainWindow", "Quitter", 0));
+        actionQuitter->setShortcut(QApplication::translate("MainWindow", "Ctrl+Q", 0));
         actionAide->setText(QApplication::translate("MainWindow", "Aide", 0));
         actionOptions->setText(QApplication::translate("MainWindow", "Param\303\250tres", 0));
         actionEdition_des_variables->setText(QApplication::translate("MainWindow", "Edition des variables", 0));
         actionEdition_des_programmes->setText(QApplication::translate("MainWindow", "Edition des programmes", 0));
         actionA_propos_de_l_application->setText(QApplication::translate("MainWindow", "A propos de l'application", 0));
         actionAnnuler->setText(QApplication::translate("MainWindow", "Annuler", 0));
+        actionAnnuler->setShortcut(QApplication::translate("MainWindow", "Ctrl+Z", 0));
         actionR_tablir->setText(QApplication::translate("MainWindow", "R\303\251tablir", 0));
+        actionR_tablir->setShortcut(QApplication::translate("MainWindow", "Ctrl+Y", 0));
+        actionAfficher_le_clavier_cliquable->setText(QApplication::translate("MainWindow", "Afficher le clavier cliquable", 0));
         sqrt->setText(QApplication::translate("MainWindow", "SQRT", 0));
         exp->setText(QApplication::translate("MainWindow", "EXP", 0));
         pow->setText(QApplication::translate("MainWindow", "POW", 0));
@@ -786,6 +790,38 @@ public:
         dup->setText(QApplication::translate("MainWindow", "DUP", 0));
         undo->setText(QApplication::translate("MainWindow", "UNDO", 0));
         redo->setText(QApplication::translate("MainWindow", "REDO", 0));
+        arcsin->setText(QApplication::translate("MainWindow", "ARCSIN", 0));
+        arccos->setText(QApplication::translate("MainWindow", "ARCCOS", 0));
+        arctan->setText(QApplication::translate("MainWindow", "ARCTAN", 0));
+        cos->setText(QApplication::translate("MainWindow", "COS", 0));
+        sin->setText(QApplication::translate("MainWindow", "SIN", 0));
+        tan->setText(QApplication::translate("MainWindow", "TAN", 0));
+        im->setText(QApplication::translate("MainWindow", "IM", 0));
+        re->setText(QApplication::translate("MainWindow", "RE", 0));
+        arg->setText(QApplication::translate("MainWindow", "ARG", 0));
+        norm->setText(QApplication::translate("MainWindow", "NORM", 0));
+        dollar->setText(QApplication::translate("MainWindow", "$", 0));
+        b5->setText(QApplication::translate("MainWindow", "5", 0));
+        neg->setText(QApplication::translate("MainWindow", "NEG", 0));
+        b0->setText(QApplication::translate("MainWindow", "0", 0));
+        b8->setText(QApplication::translate("MainWindow", "8", 0));
+        b9->setText(QApplication::translate("MainWindow", "9", 0));
+        b4->setText(QApplication::translate("MainWindow", "4", 0));
+        b1->setText(QApplication::translate("MainWindow", "1", 0));
+        divide->setText(QApplication::translate("MainWindow", "/", 0));
+        b7->setText(QApplication::translate("MainWindow", "7", 0));
+        times->setText(QApplication::translate("MainWindow", "*", 0));
+        minus->setText(QApplication::translate("MainWindow", "-", 0));
+        b6->setText(QApplication::translate("MainWindow", "6", 0));
+        b3->setText(QApplication::translate("MainWindow", "3", 0));
+        plus->setText(QApplication::translate("MainWindow", "+", 0));
+        comma->setText(QApplication::translate("MainWindow", ",", 0));
+        b2->setText(QApplication::translate("MainWindow", "2", 0));
+        enter->setText(QApplication::translate("MainWindow", "=", 0));
+        eval->setText(QApplication::translate("MainWindow", "EVAL", 0));
+        edit->setText(QApplication::translate("MainWindow", "EDIT", 0));
+        clear->setText(QApplication::translate("MainWindow", "CLEAR", 0));
+        backspace->setText(QApplication::translate("MainWindow", "BACKSPACE", 0));
         orb->setText(QApplication::translate("MainWindow", "OR", 0));
         notb->setText(QApplication::translate("MainWindow", "NOT", 0));
         equalb->setText(QApplication::translate("MainWindow", "=", 0));
@@ -799,39 +835,7 @@ public:
         ifte->setText(QApplication::translate("MainWindow", "IFTE", 0));
         rightBracket->setText(QApplication::translate("MainWindow", "]", 0));
         leftBracket->setText(QApplication::translate("MainWindow", "[", 0));
-        pushButton_58->setText(QApplication::translate("MainWindow", "WHILE", 0));
-        neg->setText(QApplication::translate("MainWindow", "NEG", 0));
-        b0->setText(QApplication::translate("MainWindow", "0", 0));
-        b5->setText(QApplication::translate("MainWindow", "5", 0));
-        b1->setText(QApplication::translate("MainWindow", "1", 0));
-        b4->setText(QApplication::translate("MainWindow", "4", 0));
-        b9->setText(QApplication::translate("MainWindow", "9", 0));
-        b8->setText(QApplication::translate("MainWindow", "8", 0));
-        b7->setText(QApplication::translate("MainWindow", "7", 0));
-        b6->setText(QApplication::translate("MainWindow", "6", 0));
-        divide->setText(QApplication::translate("MainWindow", "/", 0));
-        times->setText(QApplication::translate("MainWindow", "*", 0));
-        minus->setText(QApplication::translate("MainWindow", "-", 0));
-        plus->setText(QApplication::translate("MainWindow", "+", 0));
-        comma->setText(QApplication::translate("MainWindow", ",", 0));
-        b3->setText(QApplication::translate("MainWindow", "3", 0));
-        b2->setText(QApplication::translate("MainWindow", "2", 0));
-        enter->setText(QApplication::translate("MainWindow", "=", 0));
-        eval->setText(QApplication::translate("MainWindow", "EVAL", 0));
-        edit->setText(QApplication::translate("MainWindow", "EDIT", 0));
-        clear->setText(QApplication::translate("MainWindow", "CLEAR", 0));
-        backspace->setText(QApplication::translate("MainWindow", "BACKSPACE", 0));
-        arcsin->setText(QApplication::translate("MainWindow", "ARCSIN", 0));
-        arccos->setText(QApplication::translate("MainWindow", "ARCCOS", 0));
-        arctan->setText(QApplication::translate("MainWindow", "ARCTAN", 0));
-        cos->setText(QApplication::translate("MainWindow", "COS", 0));
-        sin->setText(QApplication::translate("MainWindow", "SIN", 0));
-        tan->setText(QApplication::translate("MainWindow", "TAN", 0));
-        im->setText(QApplication::translate("MainWindow", "IM", 0));
-        re->setText(QApplication::translate("MainWindow", "RE", 0));
-        arg->setText(QApplication::translate("MainWindow", "ARG", 0));
-        norm->setText(QApplication::translate("MainWindow", "NORM", 0));
-        dollar->setText(QApplication::translate("MainWindow", "$", 0));
+        whileb->setText(QApplication::translate("MainWindow", "WHILE", 0));
         menuFichier->setTitle(QApplication::translate("MainWindow", "Fichier", 0));
         menuEdition->setTitle(QApplication::translate("MainWindow", "Edition", 0));
         menuA_propos->setTitle(QApplication::translate("MainWindow", "A propos", 0));

@@ -11,5 +11,8 @@ INPUT(
 ./release\stack.o
 ./release\calculator.o
 ./release\mainwindow.o
+./release\settings.o
+./release\edit_atom_dialog.o
 ./release\moc_mainwindow.o
+./release\moc_edit_atom_dialog.o
 );

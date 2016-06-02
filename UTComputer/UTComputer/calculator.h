@@ -30,13 +30,11 @@ private:
 //    static Handler handler;
 
 public:
-    Calculator();
-    ~Calculator();
+    Calculator(); // En privé si Singleton
+    ~Calculator(); // En privé si Singleton
 
     // Accesseurs
     Stack& getStack() {return *stack;}
-
-    void command(const QString& exp);
 
 
 //    static Calculator& start(); // getInstance

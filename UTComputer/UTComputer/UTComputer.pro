@@ -14,7 +14,9 @@ HEADERS += \
     atom_literal.h \
     stack.h \
     calculator.h \
-    mainwindow.h
+    mainwindow.h \
+    settings.h \
+    edit_atom_dialog.h
 
 SOURCES += \
     calculator_exception.cpp \
@@ -28,7 +30,10 @@ SOURCES += \
     atom_literal.cpp \
     stack.cpp \
     calculator.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    settings.cpp \
+    edit_atom_dialog.cpp
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    edit_atom_dialog.ui
