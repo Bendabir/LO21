@@ -15,10 +15,10 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDialog>
-#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QWidget>
 
@@ -29,11 +29,12 @@ class Ui_SettingsDialog
 public:
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
-    QDialogButtonBox *buttonBox;
-    QSpinBox *nbLiterals;
     QLabel *label;
-    QCheckBox *sound;
     QCheckBox *keyboard;
+    QCheckBox *sound;
+    QSpinBox *nbLiterals;
+    QPushButton *applyButton;
+    QPushButton *closeButton;
 
     void setupUi(QDialog *SettingsDialog)
     {
@@ -46,14 +47,20 @@ public:
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        buttonBox = new QDialogButtonBox(gridLayoutWidget);
-        buttonBox->setObjectName(QStringLiteral("buttonBox"));
-        buttonBox->setLayoutDirection(Qt::LeftToRight);
-        buttonBox->setOrientation(Qt::Horizontal);
-        buttonBox->setStandardButtons(QDialogButtonBox::Apply|QDialogButtonBox::Close);
-        buttonBox->setCenterButtons(false);
+        label = new QLabel(gridLayoutWidget);
+        label->setObjectName(QStringLiteral("label"));
 
-        gridLayout->addWidget(buttonBox, 3, 1, 1, 1);
+        gridLayout->addWidget(label, 2, 0, 1, 1);
+
+        keyboard = new QCheckBox(gridLayoutWidget);
+        keyboard->setObjectName(QStringLiteral("keyboard"));
+
+        gridLayout->addWidget(keyboard, 0, 0, 1, 2);
+
+        sound = new QCheckBox(gridLayoutWidget);
+        sound->setObjectName(QStringLiteral("sound"));
+
+        gridLayout->addWidget(sound, 1, 0, 1, 2);
 
         nbLiterals = new QSpinBox(gridLayoutWidget);
         nbLiterals->setObjectName(QStringLiteral("nbLiterals"));
@@ -63,25 +70,18 @@ public:
 
         gridLayout->addWidget(nbLiterals, 2, 1, 1, 1);
 
-        label = new QLabel(gridLayoutWidget);
-        label->setObjectName(QStringLiteral("label"));
+        applyButton = new QPushButton(gridLayoutWidget);
+        applyButton->setObjectName(QStringLiteral("applyButton"));
 
-        gridLayout->addWidget(label, 2, 0, 1, 1);
+        gridLayout->addWidget(applyButton, 3, 1, 1, 1);
 
-        sound = new QCheckBox(gridLayoutWidget);
-        sound->setObjectName(QStringLiteral("sound"));
+        closeButton = new QPushButton(gridLayoutWidget);
+        closeButton->setObjectName(QStringLiteral("closeButton"));
 
-        gridLayout->addWidget(sound, 1, 0, 1, 2);
-
-        keyboard = new QCheckBox(gridLayoutWidget);
-        keyboard->setObjectName(QStringLiteral("keyboard"));
-
-        gridLayout->addWidget(keyboard, 0, 0, 1, 2);
+        gridLayout->addWidget(closeButton, 3, 0, 1, 1);
 
 
         retranslateUi(SettingsDialog);
-        QObject::connect(buttonBox, SIGNAL(accepted()), SettingsDialog, SLOT(accept()));
-        QObject::connect(buttonBox, SIGNAL(rejected()), SettingsDialog, SLOT(reject()));
 
         QMetaObject::connectSlotsByName(SettingsDialog);
     } // setupUi
@@ -90,8 +90,10 @@ public:
     {
         SettingsDialog->setWindowTitle(QApplication::translate("SettingsDialog", "Dialog", 0));
         label->setText(QApplication::translate("SettingsDialog", "Nombre d'\303\251l\303\251ments de la pile \303\240 afficher", 0));
-        sound->setText(QApplication::translate("SettingsDialog", "Jouer un son lors d'un message", 0));
         keyboard->setText(QApplication::translate("SettingsDialog", "Afficher le clavier cliquable", 0));
+        sound->setText(QApplication::translate("SettingsDialog", "Jouer un son lors d'un message", 0));
+        applyButton->setText(QApplication::translate("SettingsDialog", "Appliquer", 0));
+        closeButton->setText(QApplication::translate("SettingsDialog", "Fermer", 0));
     } // retranslateUi
 
 };

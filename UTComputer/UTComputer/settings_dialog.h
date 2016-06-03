@@ -22,7 +22,8 @@ private:
     Settings* settings;
 
 public slots:
-    void save();
+    void apply();
+    void enableApply();
 };
 
 #endif // SETTINGS_DIALOG_H

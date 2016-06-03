@@ -1,3 +1,5 @@
+#include <QDebug>
+
 #include "settings_dialog.h"
 #include "ui_settings_dialog.h"
 #include "settings.h"
@@ -16,6 +18,13 @@ SettingsDialog::SettingsDialog(Settings* s, QWidget *parent) :
     ui->keyboard->setChecked(settings->getDisplayKeyboard());
     ui->sound->setChecked(settings->getPlaySound());
     ui->nbLiterals->setValue(settings->getNbLiteralsOnStack());
+
+    // On connecte nos slots
+    QObject::connect(ui->closeButton, SIGNAL(pressed()), this, SLOT(close()));
+    QObject::connect(ui->applyButton, SIGNAL(pressed()), this, SLOT(apply()));
+    QObject::connect(ui->keyboard, SIGNAL(pressed()), this, SLOT(enableApply()));
+    QObject::connect(ui->sound, SIGNAL(pressed()), this, SLOT(enableApply()));
+    QObject::connect(ui->nbLiterals, SIGNAL(valueChanged(int)), this, SLOT(enableApply()));
 }
 
 SettingsDialog::~SettingsDialog()
@@ -23,6 +32,15 @@ SettingsDialog::~SettingsDialog()
     delete ui;
 }
 
-void SettingsDialog::save(){
+void SettingsDialog::apply(){
+    // On applique les modifs
+    settings->setDisplayKeyboard(ui->keyboard->isChecked());
+    settings->setPlaySound(ui->sound->isChecked());
+    settings->setNbLiteralsOnStack(ui->nbLiterals->value());
 
+    ui->applyButton->setDisabled(true);
+}
+
+void SettingsDialog::enableApply(){
+    ui->applyButton->setDisabled(false);
 }

@@ -23,19 +23,24 @@
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="3" column="1">
-     <widget class="QDialogButtonBox" name="buttonBox">
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Nombre d'éléments de la pile à afficher</string>
       </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="2">
+     <widget class="QCheckBox" name="keyboard">
+      <property name="text">
+       <string>Afficher le clavier cliquable</string>
       </property>
-      <property name="standardButtons">
-       <set>QDialogButtonBox::Apply|QDialogButtonBox::Close</set>
-      </property>
-      <property name="centerButtons">
-       <bool>false</bool>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="2">
+     <widget class="QCheckBox" name="sound">
+      <property name="text">
+       <string>Jouer un son lors d'un message</string>
       </property>
      </widget>
     </item>
@@ -52,24 +57,17 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="label">
+    <item row="3" column="1">
+     <widget class="QPushButton" name="applyButton">
       <property name="text">
-       <string>Nombre d'éléments de la pile à afficher</string>
+       <string>Appliquer</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="0" colspan="2">
-     <widget class="QCheckBox" name="sound">
+    <item row="3" column="0">
+     <widget class="QPushButton" name="closeButton">
       <property name="text">
-       <string>Jouer un son lors d'un message</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0" colspan="2">
-     <widget class="QCheckBox" name="keyboard">
-      <property name="text">
-       <string>Afficher le clavier cliquable</string>
+       <string>Fermer</string>
       </property>
      </widget>
     </item>
@@ -77,38 +75,5 @@
   </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>SettingsDialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>SettingsDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

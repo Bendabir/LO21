@@ -28,8 +28,8 @@ private:
     SettingsDialog* settingsDialog;
 
     void addTextToCommand(const QString& exp);
-
     void setUserMessage(const QString& message);
+    void refreshListView();
 
 public slots:
     // Ce qui modifie la barre de commande
@@ -45,6 +45,7 @@ public slots:
     void on9Pressed();
     void onCommaPressed();
     void onBackspacePressed();
+    void onClearPressed();
 
     void appendLiteralInStack();
 

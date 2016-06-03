@@ -746,7 +746,6 @@ public:
         verticalLayout_2->addLayout(gridLayout_10);
 
         MainWindow->setCentralWidget(centralWidget);
-        verticalLayoutWidget->raise();
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 1160, 21));
@@ -772,7 +771,6 @@ public:
         menuEdition->addSeparator();
         menuEdition->addAction(actionEdition_des_variables);
         menuEdition->addAction(actionEdition_des_programmes);
-        menuEdition->addAction(actionAfficher_le_clavier_cliquable);
         menuA_propos->addAction(actionAide);
         menuA_propos->addAction(actionA_propos_de_l_application);
 

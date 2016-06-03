@@ -48,6 +48,7 @@ public:
      * \param Référence sur la littérale à supprimer.
      */
     void removeLiteral(Literal& l);
+    Literal& addLiteralFromString(const QString& exp);
 
     /*!
      * \brief Renvoie le nombre de littérales créées (et toujours existantes) de la factory

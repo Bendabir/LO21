@@ -15,9 +15,7 @@ private:
     bool displayKeyboard;
 
 public:
-    Settings() : playSound(true), nbLiteralsOnStack(5), displayKeyboard(true){
-        loadSettingsFromFile();
-    }
+    Settings() : playSound(true), nbLiteralsOnStack(5), displayKeyboard(true){}
     Settings (bool sound, unsigned int maxChar, bool keyboard):
         playSound(sound), nbLiteralsOnStack(maxChar), displayKeyboard(keyboard) {}
     //Accesseurs de PlaySound
@@ -32,7 +30,7 @@ public:
     bool getDisplayKeyboard() const { return displayKeyboard; }
     void setDisplayKeyboard (bool dK) { displayKeyboard = dK; }
 
-    void loadSettingsFromFile();
+    void loadSettingsFromFile(Stack& stack, LiteralFactory& fact);
     void saveSettingsToFile(const Stack& stack, const LiteralFactory& fact);
 };
 

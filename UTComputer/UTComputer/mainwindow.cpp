@@ -9,14 +9,15 @@ MainWindow::MainWindow(QWidget *parent) :
     Calculator(),
     ui(new Ui::MainWindow),
     editProgrammDialog(new EditProgrammDialog(this)),
-    editVariablesDialog(new EditAtomDialog(this)),
-    settingsDialog(new SettingsDialog(this->settings ,this))
+    editVariablesDialog(new EditAtomDialog(this))
 {
     ui->setupUi(this);
 
     this->setFixedSize(1160, 630);
 
-    ui->actionAfficher_le_clavier_cliquable->setChecked(this->settings->getDisplayKeyboard());
+    // On charge les options
+    this->settings->loadSettingsFromFile(*(this->stack), this->factory);
+    settingsDialog = new SettingsDialog(this->settings ,this); // On ne peut pas le mettre en place avant que les settings soient chargées
 
     // Mise en place via Qt Designer
     // On connecte tous les slots et les raccourcis
@@ -41,10 +42,11 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->b9, SIGNAL(pressed()), this, SLOT(on9Pressed()));
     QObject::connect(ui->comma, SIGNAL(pressed()), this, SLOT(onCommaPressed()));
     QObject::connect(ui->backspace, SIGNAL(pressed()), this, SLOT(onBackspacePressed()));
+    QObject::connect(ui->clear, SIGNAL(pressed()), this, SLOT(onClearPressed()));
     QObject::connect(ui->commandInput, SIGNAL(returnPressed()), this, SLOT(appendLiteralInStack()));
     QObject::connect(ui->actionSauvegarder, SIGNAL(triggered(bool)), this, SLOT(save()));
+//    QObject::connect(this->settingsDialog->u)
     QObject::connect(ui->actionCharger, SIGNAL(triggered(bool)), this, SLOT(load()));
-
 
     // On donne le focus dans la ligne de commandes
     ui->commandInput->setFocus();
@@ -71,11 +73,18 @@ MainWindow::MainWindow(QWidget *parent) :
     // On va bricoler les labels
     QStringList labels;
     for(int i = 0; i < ui->tableWidget->rowCount(); i++){
-        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(QString::number(rand())));
+        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(""));
         QString label = QString::number(ui->tableWidget->rowCount() - i);
         labels << label;
     }
     ui->tableWidget->setVerticalHeaderLabels(labels);
+
+    int i = ui->tableWidget->rowCount() - 1;
+    for(Stack::reverse_iterator literal = this->stack->rbegin(); literal != this->stack->rend(); ++literal, i--)
+        if(i >= 0)
+            ui->tableWidget->item(i, 0)->setText((*literal).toString());
+        else
+            break;
 
     // Tests des chaumières
     Literal& test = this->factory.addLiteral(1, 5);
@@ -142,6 +151,11 @@ void MainWindow::onBackspacePressed(){
     ui->commandInput->backspace();
 }
 
+void MainWindow::onClearPressed(){
+    this->stack->clear();
+    refreshListView();
+}
+
 void MainWindow::appendLiteralInStack(){
     QString text = ui->commandInput->text().toUpper();
 
@@ -157,6 +171,35 @@ void MainWindow::appendLiteralInStack(){
         setUserMessage(e.what());
     }
 
+    refreshListView();
+
+    ui->commandInput->clear();
+}
+
+void MainWindow::setUserMessage(const QString& message){
+    ui->errorInput->setText(message);
+}
+
+void MainWindow::save(){
+    try{
+        this->settings->saveSettingsToFile(*(this->stack), this->factory);
+        setUserMessage("INFO : Les paramètres, la pile, les programmes et les variables ont été sauvegardés.");
+    }
+    catch(const CalculatorException& e){
+        setUserMessage(e.what());
+    }
+}
+void MainWindow::load(){
+    try{
+        this->settings->loadSettingsFromFile(*(this->stack), this->factory);
+        setUserMessage("INFO : Les paramètres ont été chargés.");
+    }
+    catch(const CalculatorException& e){
+        setUserMessage(e.what());
+    }
+}
+
+void MainWindow::refreshListView(){
     // On efface puis on réécrit
     for(int i = 0; i < ui->tableWidget->rowCount(); i++)
         ui->tableWidget->item(i, 0)->setText("");
@@ -167,19 +210,4 @@ void MainWindow::appendLiteralInStack(){
             ui->tableWidget->item(i, 0)->setText((*literal).toString());
         else
             break;
-
-    ui->commandInput->clear();
-}
-
-void MainWindow::setUserMessage(const QString& message){
-    ui->errorInput->setText(message);
-}
-
-void MainWindow::save(){
-    this->settings->saveSettingsToFile(*(this->stack), this->factory);
-    setUserMessage("INFO : Les paramètres, la pile, les programmes et les variables ont été sauvegardés.");
-}
-void MainWindow::load(){
-    this->settings->loadSettingsFromFile();
-    setUserMessage("INFO : Les paramètres ont été chargés.");
 }
