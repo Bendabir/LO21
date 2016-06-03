@@ -28,6 +28,7 @@ private:
     SettingsDialog* settingsDialog;
 
     void addTextToCommand(const QString& exp);
+    void executeOperator(const QString& op);
     void setUserMessage(const QString& message);
     void refreshListView();
 
@@ -46,6 +47,56 @@ public slots:
     void onCommaPressed();
     void onBackspacePressed();
     void onClearPressed();
+
+    void onDupPressed();
+    void onSwapPressed();
+    void onDropPressed();
+    void onLastopPressed();
+    void onLastargsPressed();
+    void onUndoPressed();
+    void onRedoPressed();
+    void onWhilePressed();
+    void onIftPressed();
+    void onIftePressed();
+    void onLeftBracketPressed();
+    void onRightBracketPressed();
+    void onAndPressed();
+    void onOrPressed();
+    void onNotPressed();
+    void onEqualPressed();
+    void onNotEqualPressed();
+    void onLtPressed();
+    void onLtePressed();
+    void onGtPressed();
+    void onGtePressed();
+    void onDollarPressed();
+    void onRePressed();
+    void onImPressed();
+    void onArgPressed();
+    void onNormPressed();
+    void onNumPressed();
+    void onDenPressed();
+    void onDivPressed();
+    void onModPressed();
+    void onCosPressed();
+    void onSinPressed();
+    void onTanPressed();
+    void onArccosPressed();
+    void onArcsinPressed();
+    void onArctanPressed();
+    void onPowPressed();
+    void onSqrtPressed();
+    void onExpPressed();
+    void onLnPressed();
+    void onQuotePressed();
+    void onNegPressed();
+    void onEditPressed();
+    void onEvalPressed();
+    void onDividePressed();
+    void onTimesPressed();
+    void onMinusPressed();
+    void onPlusPressed();
+    void onEnterPressed();
 
     void appendLiteralInStack();
 

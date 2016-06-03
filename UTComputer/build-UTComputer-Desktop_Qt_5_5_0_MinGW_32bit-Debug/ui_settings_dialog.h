@@ -29,12 +29,12 @@ class Ui_SettingsDialog
 public:
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
+    QPushButton *applyButton;
+    QPushButton *closeButton;
     QLabel *label;
     QCheckBox *keyboard;
     QCheckBox *sound;
     QSpinBox *nbLiterals;
-    QPushButton *applyButton;
-    QPushButton *closeButton;
 
     void setupUi(QDialog *SettingsDialog)
     {
@@ -47,6 +47,16 @@ public:
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
+        applyButton = new QPushButton(gridLayoutWidget);
+        applyButton->setObjectName(QStringLiteral("applyButton"));
+
+        gridLayout->addWidget(applyButton, 3, 1, 1, 1);
+
+        closeButton = new QPushButton(gridLayoutWidget);
+        closeButton->setObjectName(QStringLiteral("closeButton"));
+
+        gridLayout->addWidget(closeButton, 3, 0, 1, 1);
+
         label = new QLabel(gridLayoutWidget);
         label->setObjectName(QStringLiteral("label"));
 
@@ -70,16 +80,6 @@ public:
 
         gridLayout->addWidget(nbLiterals, 2, 1, 1, 1);
 
-        applyButton = new QPushButton(gridLayoutWidget);
-        applyButton->setObjectName(QStringLiteral("applyButton"));
-
-        gridLayout->addWidget(applyButton, 3, 1, 1, 1);
-
-        closeButton = new QPushButton(gridLayoutWidget);
-        closeButton->setObjectName(QStringLiteral("closeButton"));
-
-        gridLayout->addWidget(closeButton, 3, 0, 1, 1);
-
 
         retranslateUi(SettingsDialog);
 
@@ -89,11 +89,11 @@ public:
     void retranslateUi(QDialog *SettingsDialog)
     {
         SettingsDialog->setWindowTitle(QApplication::translate("SettingsDialog", "Dialog", 0));
+        applyButton->setText(QApplication::translate("SettingsDialog", "Appliquer", 0));
+        closeButton->setText(QApplication::translate("SettingsDialog", "Fermer", 0));
         label->setText(QApplication::translate("SettingsDialog", "Nombre d'\303\251l\303\251ments de la pile \303\240 afficher", 0));
         keyboard->setText(QApplication::translate("SettingsDialog", "Afficher le clavier cliquable", 0));
         sound->setText(QApplication::translate("SettingsDialog", "Jouer un son lors d'un message", 0));
-        applyButton->setText(QApplication::translate("SettingsDialog", "Appliquer", 0));
-        closeButton->setText(QApplication::translate("SettingsDialog", "Fermer", 0));
     } // retranslateUi
 
 };

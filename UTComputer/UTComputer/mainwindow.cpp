@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->actionEdition_des_variables, SIGNAL(triggered(bool)), editVariablesDialog, SLOT(show()));
     QObject::connect(ui->actionOptions, SIGNAL(triggered(bool)), settingsDialog, SLOT(show()));
 
+    // Les bouttons
     QObject::connect(ui->b0, SIGNAL(pressed()), this, SLOT(on0Pressed()));
     QObject::connect(ui->b1, SIGNAL(pressed()), this, SLOT(on1Pressed()));
     QObject::connect(ui->b2, SIGNAL(pressed()), this, SLOT(on2Pressed()));
@@ -43,6 +44,57 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->comma, SIGNAL(pressed()), this, SLOT(onCommaPressed()));
     QObject::connect(ui->backspace, SIGNAL(pressed()), this, SLOT(onBackspacePressed()));
     QObject::connect(ui->clear, SIGNAL(pressed()), this, SLOT(onClearPressed()));
+
+    QObject::connect(ui->dup, SIGNAL(pressed()), this, SLOT(onDupPressed()));
+    QObject::connect(ui->swap, SIGNAL(pressed()), this, SLOT(onSwapPressed()));
+    QObject::connect(ui->drop, SIGNAL(pressed()), this, SLOT(onDropPressed()));
+    QObject::connect(ui->lastop, SIGNAL(pressed()), this, SLOT(onLastopPressed()));
+    QObject::connect(ui->lastargs, SIGNAL(pressed()), this, SLOT(onLastargsPressed()));
+    QObject::connect(ui->undo, SIGNAL(pressed()), this, SLOT(onUndoPressed()));
+    QObject::connect(ui->redo, SIGNAL(pressed()), this, SLOT(onRedoPressed()));
+    QObject::connect(ui->whileb, SIGNAL(pressed()), this, SLOT(onWhilePressed()));
+    QObject::connect(ui->ift, SIGNAL(pressed()), this, SLOT(onIftPressed()));
+    QObject::connect(ui->ifte, SIGNAL(pressed()), this, SLOT(onIftePressed()));
+    QObject::connect(ui->leftBracket, SIGNAL(pressed()), this, SLOT(onLeftBracketPressed()));
+    QObject::connect(ui->rightBracket, SIGNAL(pressed()), this, SLOT(onRightBracketPressed()));
+    QObject::connect(ui->andb, SIGNAL(pressed()), this, SLOT(onAndPressed()));
+    QObject::connect(ui->orb, SIGNAL(pressed()), this, SLOT(onOrPressed()));
+    QObject::connect(ui->notb, SIGNAL(pressed()), this, SLOT(onNotPressed()));
+    QObject::connect(ui->equalb, SIGNAL(pressed()), this, SLOT(onEqualPressed()));
+    QObject::connect(ui->notEqual, SIGNAL(pressed()), this, SLOT(onNotEqualPressed()));
+    QObject::connect(ui->lt, SIGNAL(pressed()), this, SLOT(onLtPressed()));
+    QObject::connect(ui->lte, SIGNAL(pressed()), this, SLOT(onLtePressed()));
+    QObject::connect(ui->gt, SIGNAL(pressed()), this, SLOT(onGtPressed()));
+    QObject::connect(ui->gte, SIGNAL(pressed()), this, SLOT(onGtePressed()));
+    QObject::connect(ui->dollar, SIGNAL(pressed()), this, SLOT(onDollarPressed()));
+    QObject::connect(ui->re, SIGNAL(pressed()), this, SLOT(onRePressed()));
+    QObject::connect(ui->im, SIGNAL(pressed()), this, SLOT(onImPressed()));
+    QObject::connect(ui->arg, SIGNAL(pressed()), this, SLOT(onArgPressed()));
+    QObject::connect(ui->norm, SIGNAL(pressed()), this, SLOT(onNormPressed()));
+    QObject::connect(ui->num, SIGNAL(pressed()), this, SLOT(onNumPressed()));
+    QObject::connect(ui->den, SIGNAL(pressed()), this, SLOT(onDenPressed()));
+    QObject::connect(ui->div, SIGNAL(pressed()), this, SLOT(onDivPressed()));
+    QObject::connect(ui->mod, SIGNAL(pressed()), this, SLOT(onModPressed()));
+    QObject::connect(ui->cos, SIGNAL(pressed()), this, SLOT(onCosPressed()));
+    QObject::connect(ui->sin, SIGNAL(pressed()), this, SLOT(onSinPressed()));
+    QObject::connect(ui->tan, SIGNAL(pressed()), this, SLOT(onTanPressed()));
+    QObject::connect(ui->arccos, SIGNAL(pressed()), this, SLOT(onArccosPressed()));
+    QObject::connect(ui->arcsin, SIGNAL(pressed()), this, SLOT(onArcsinPressed()));
+    QObject::connect(ui->arctan, SIGNAL(pressed()), this, SLOT(onArctanPressed()));
+    QObject::connect(ui->pow, SIGNAL(pressed()), this, SLOT(onPowPressed()));
+    QObject::connect(ui->sqrt, SIGNAL(pressed()), this, SLOT(onSqrtPressed()));
+    QObject::connect(ui->exp, SIGNAL(pressed()), this, SLOT(onExpPressed()));
+    QObject::connect(ui->ln, SIGNAL(pressed()), this, SLOT(onLnPressed()));
+    QObject::connect(ui->quote, SIGNAL(pressed()), this, SLOT(onQuotePressed()));
+    QObject::connect(ui->neg, SIGNAL(pressed()), this, SLOT(onNegPressed()));
+    QObject::connect(ui->edit, SIGNAL(pressed()), this, SLOT(onEditPressed()));
+    QObject::connect(ui->eval, SIGNAL(pressed()), this, SLOT(onEvalPressed()));
+    QObject::connect(ui->divide, SIGNAL(pressed()), this, SLOT(onDividePressed()));
+    QObject::connect(ui->times, SIGNAL(pressed()), this, SLOT(onTimesPressed()));
+    QObject::connect(ui->minus, SIGNAL(pressed()), this, SLOT(onMinusPressed()));
+    QObject::connect(ui->plus, SIGNAL(pressed()), this, SLOT(onPlusPressed()));
+    QObject::connect(ui->enter, SIGNAL(pressed()), this, SLOT(onEnterPressed()));
+
     QObject::connect(ui->commandInput, SIGNAL(returnPressed()), this, SLOT(appendLiteralInStack()));
     QObject::connect(ui->actionSauvegarder, SIGNAL(triggered(bool)), this, SLOT(save()));
 //    QObject::connect(this->settingsDialog->u)
@@ -112,6 +164,17 @@ void MainWindow::addTextToCommand(const QString& exp){
     ui->commandInput->setText(text);
 }
 
+void MainWindow::executeOperator(const QString& op){
+    addTextToCommand(op);
+
+    // On exécute
+
+    // Puis on vide
+    ui->commandInput->clear();
+
+    refreshListView();
+}
+
 // On va faire d'une manière dégueu mais pas le temps de coder l'interface comme des vrais cowboys
 void MainWindow::on0Pressed(){
     addTextToCommand("0");
@@ -154,6 +217,157 @@ void MainWindow::onBackspacePressed(){
 void MainWindow::onClearPressed(){
     this->stack->clear();
     refreshListView();
+}
+
+void MainWindow::onDupPressed(){
+    executeOperator("DUP");
+}
+void MainWindow::onSwapPressed(){
+    executeOperator("SWAP");
+}
+void MainWindow::onDropPressed(){
+    executeOperator("DROP");
+}
+void MainWindow::onLastopPressed(){
+    executeOperator("LASTOP");
+}
+void MainWindow::onLastargsPressed(){
+    executeOperator("LASTARGS");
+}
+void MainWindow::onUndoPressed(){
+    executeOperator("UNDO");
+}
+void MainWindow::onRedoPressed(){
+    executeOperator("REDO");
+}
+void MainWindow::onWhilePressed(){
+    executeOperator("WHILE");
+}
+void MainWindow::onIftPressed(){
+    executeOperator("IFT");
+}
+void MainWindow::onIftePressed(){
+    executeOperator("IFTE");
+}
+void MainWindow::onLeftBracketPressed(){
+    addTextToCommand("[");
+}
+void MainWindow::onRightBracketPressed(){
+    addTextToCommand("]");
+}
+void MainWindow::onAndPressed(){
+    executeOperator("AND");
+}
+void MainWindow::onOrPressed(){
+    executeOperator("OR");
+}
+void MainWindow::onNotPressed(){
+    executeOperator("NOT");
+}
+void MainWindow::onEqualPressed(){
+    executeOperator("=");
+}
+void MainWindow::onNotEqualPressed(){
+    executeOperator("!=");
+}
+void MainWindow::onLtPressed(){
+    executeOperator("<");
+}
+void MainWindow::onLtePressed(){
+    executeOperator("<=");
+}
+void MainWindow::onGtPressed(){
+    executeOperator(">");
+}
+void MainWindow::onGtePressed(){
+    executeOperator(">=");
+}
+void MainWindow::onDollarPressed(){
+    executeOperator("$");
+}
+void MainWindow::onRePressed(){
+    executeOperator("RE");
+}
+void MainWindow::onImPressed(){
+    executeOperator("IM");
+}
+void MainWindow::onArgPressed(){
+    executeOperator("ARG");
+}
+void MainWindow::onNormPressed(){
+    executeOperator("NORM");
+}
+void MainWindow::onNumPressed(){
+    executeOperator("NUM");
+}
+void MainWindow::onDenPressed(){
+    executeOperator("DEN");
+}
+void MainWindow::onDivPressed(){
+    executeOperator("DIV");
+}
+void MainWindow::onModPressed(){
+    executeOperator("MOD");
+}
+void MainWindow::onCosPressed(){
+    executeOperator("COS");
+}
+void MainWindow::onSinPressed(){
+    executeOperator("SIN");
+}
+void MainWindow::onTanPressed(){
+    executeOperator("TAN");
+}
+void MainWindow::onArccosPressed(){
+    executeOperator("ARCCOS");
+}
+void MainWindow::onArcsinPressed(){
+    executeOperator("ARCSIN");
+}
+void MainWindow::onArctanPressed(){
+    executeOperator("ARCTAN");
+}
+void MainWindow::onPowPressed(){
+    executeOperator("POW");
+}
+void MainWindow::onSqrtPressed(){
+    executeOperator("SQRT");
+}
+void MainWindow::onExpPressed(){
+    executeOperator("EXP");
+}
+void MainWindow::onLnPressed(){
+    executeOperator("LN");
+}
+void MainWindow::onQuotePressed(){
+    addTextToCommand("'");
+}
+void MainWindow::onNegPressed(){
+    executeOperator("NEG");
+}
+void MainWindow::onEditPressed(){
+//    executeOperator("EDIT");
+}
+void MainWindow::onEvalPressed(){
+    executeOperator("EVAL");
+}
+void MainWindow::onDividePressed(){
+    executeOperator("/");
+}
+void MainWindow::onTimesPressed(){
+    executeOperator("*");
+}
+void MainWindow::onMinusPressed(){
+    executeOperator("-");
+}
+void MainWindow::onPlusPressed(){
+    executeOperator("+");
+}
+void MainWindow::onEnterPressed(){
+    // Execution de la commande
+
+    // Nettoyage
+    ui->commandInput->clear();
 }
 
 void MainWindow::appendLiteralInStack(){

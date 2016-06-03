@@ -117,7 +117,7 @@ public:
     QPushButton *edit;
     QPushButton *clear;
     QPushButton *backspace;
-    QPushButton *pushButton;
+    QPushButton *quote;
     QMenuBar *menuBar;
     QMenu *menuFichier;
     QMenu *menuEdition;
@@ -729,15 +729,15 @@ public:
 
         numericPad->addWidget(backspace, 0, 0, 1, 2);
 
-        pushButton = new QPushButton(verticalLayoutWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        quote = new QPushButton(verticalLayoutWidget);
+        quote->setObjectName(QStringLiteral("quote"));
         QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Expanding);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
-        pushButton->setSizePolicy(sizePolicy2);
+        sizePolicy2.setHeightForWidth(quote->sizePolicy().hasHeightForWidth());
+        quote->setSizePolicy(sizePolicy2);
 
-        numericPad->addWidget(pushButton, 0, 2, 1, 1);
+        numericPad->addWidget(quote, 0, 2, 1, 1);
 
 
         gridLayout_10->addLayout(numericPad, 0, 4, 2, 1);
@@ -857,7 +857,7 @@ public:
         edit->setText(QApplication::translate("MainWindow", "EDIT", 0));
         clear->setText(QApplication::translate("MainWindow", "CLEAR", 0));
         backspace->setText(QApplication::translate("MainWindow", "BACKSPACE", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "'", 0));
+        quote->setText(QApplication::translate("MainWindow", "'", 0));
         menuFichier->setTitle(QApplication::translate("MainWindow", "Fichier", 0));
         menuEdition->setTitle(QApplication::translate("MainWindow", "Edition", 0));
         menuA_propos->setTitle(QApplication::translate("MainWindow", "A propos", 0));
