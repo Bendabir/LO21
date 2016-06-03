@@ -76,6 +76,10 @@ MainWindow::MainWindow(QWidget *parent) :
         labels << label;
     }
     ui->tableWidget->setVerticalHeaderLabels(labels);
+
+    // Tests des chaumières
+    Literal& test = this->factory.addLiteral(1, 5);
+    this->factory.addLiteral("X1", &test);
 }
 
 MainWindow::~MainWindow()
@@ -139,7 +143,7 @@ void MainWindow::onBackspacePressed(){
 }
 
 void MainWindow::appendLiteralInStack(){
-    QString text = ui->commandInput->text();
+    QString text = ui->commandInput->text().toUpper();
 
     if(text == "")
         return;

@@ -2,6 +2,9 @@
 #include "expression_literal.h"
 
 AtomLiteral::AtomLiteral(LiteralFactory* m, const QString& a, Literal* t) : Literal(m), atom(a), target(t){
+    if(t == 0)
+        throw CalculatorException("Erreur : Une variable doit pointer sur quelque chose.");
+
     atom.replace(" ", ""); // On vire les espaces
 
     // On vérifie que le nom de la variable est valide

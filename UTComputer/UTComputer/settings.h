@@ -32,14 +32,7 @@ public:
     bool getDisplayKeyboard() const { return displayKeyboard; }
     void setDisplayKeyboard (bool dK) { displayKeyboard = dK; }
 
-    //pour sauvegarder https://openclassrooms.com/courses/enregistrer-vos-options-avec-qsettings
-    //QSettings::QSettings ( const QString &amp; organization, const QString &amp; application = QString(), QObject * parent = 0 )
-
-    /* Pour retrouver le fichier sous Windows:
-    *  HKEY_CURRENT_USER\Software\sdz\MonProgramme
-    * qui est un répertoire du registre système*/
-
-    void loadSettingsFromFile ();
+    void loadSettingsFromFile();
     void saveSettingsToFile(const Stack& stack, const LiteralFactory& fact);
 };
 

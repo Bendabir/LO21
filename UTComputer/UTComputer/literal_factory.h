@@ -72,6 +72,40 @@ public:
      * \return Vrai si le nom est déjà pris, faux sinon
      */
     bool existsAtom(const QString& atom) const;
+
+    class iterator {
+        typename QVector<Literal*>::iterator current;
+
+    public:
+        iterator(typename QVector<Literal*>::iterator c) : current(c) {}
+        iterator() : current() {}
+        Literal& operator*() const {return **current;}
+        iterator& operator++() {current++; return *this;}
+        iterator operator++(int) {iterator tmp = *this; current++; return tmp;}
+        iterator& operator--() {current--; return *this;}
+        iterator operator--(int) {iterator tmp = *this; current--; return tmp;}
+        bool operator==(const iterator& it) const {return current == it.current;}
+        bool operator!=(const iterator& it) const {return current != it.current;}
+    };
+    iterator begin() {return iterator(literals.begin());}
+    iterator end() {return iterator(literals.end());}
+
+    class const_iterator {
+        typename QVector<Literal*>::const_iterator current;
+
+    public:
+        const_iterator(typename QVector<Literal*>::const_iterator c) : current(c) {}
+        const_iterator() : current() {}
+        Literal& operator*() const {return **current;}
+        const_iterator& operator++() {current++; return *this;}
+        const_iterator operator++(int) {const_iterator tmp = *this; current++; return tmp;}
+        const_iterator& operator--() {current--; return *this;}
+        const_iterator operator--(int) {const_iterator tmp = *this; current--; return tmp;}
+        bool operator==(const const_iterator& it) const {return current == it.current;}
+        bool operator!=(const const_iterator& it) const {return current != it.current;}
+    };
+    const_iterator cbegin() const {return const_iterator(literals.cbegin());}
+    const_iterator cend() const {return const_iterator(literals.cend());}
 };
 
 #endif // LITERALFACTORY_H

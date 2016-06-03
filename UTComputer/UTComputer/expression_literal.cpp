@@ -348,9 +348,10 @@ QStringList ExpressionLiteral::getTokens() const {
     QString toParse(expression);
 
     // Notre regex pour spliter la chaine
-    // Ancienne regex : ([A-Z]+|[A-Z][0-9A-Z]*|[0-9.]+|[+\\-*/(),<>=]|<=|>=|!=)
-    // Traite : complexe | fonction | variable | nombre | opérateurs
-    QRegExp regex("((-?[0-9\\/]+\\$-?[0-9\\/]+)|[A-Z]+|[A-Z][0-9A-Z]*|[0-9.]+|[+\\-*\\/(),<>=]|<=|>=|!=)");
+    // Ancienne regex :
+    // Ancienne regex : ((-?[0-9\\/]+\\$-?[0-9\\/]+)|[A-Z]+|[A-Z][0-9A-Z]*|[0-9.]+|[+\\-*\\/(),<>=]|<=|>=|!=)
+    // Traite : fonction | variable | nombre | opérateurs
+    QRegExp regex("([A-Z]+|[A-Z][0-9A-Z]*|[0-9.]+|[+\\-*/(),<>=$]|<=|>=|!=)");
     QStringList tokens;
 
     // On découpe la chaine de caractères et on récupère une liste de tokens

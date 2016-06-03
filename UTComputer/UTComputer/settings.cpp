@@ -7,18 +7,63 @@
 void Settings::saveSettingsToFile(const Stack& stack, const LiteralFactory& fact){
      QSettings settings(QCoreApplication::applicationDirPath() +  "/settings.ini", QSettings::IniFormat);
 
+     // On stockes les variables et les littérales
+     QVector<const Literal*> programms;
+     QVector<const Literal*> variables;
+
+     for(LiteralFactory::const_iterator literal = fact.cbegin(); literal != fact.cend(); ++literal){
+         if((*literal).isProgramm())
+             programms.push_back(&*literal);
+
+         if((*literal).isAtom())
+             variables.push_back(&*literal);
+     }
+
      settings.beginGroup("Settings");
      settings.setValue("sound", playSound);
-     settings.setValue("Keyboard", displayKeyboard);
+     settings.setValue("keyboard", displayKeyboard);
      settings.setValue("nbLiteralsOnStack", nbLiteralsOnStack);
      settings.endGroup();
 
-     settings.beginGroup("Stack");
-     int i = 0;
-     for(Stack::const_iterator literal = stack.cbegin(); literal != stack.cend(); ++literal, i++){
-         settings.setValue(QString::number(i), (*literal).toString());
+     // On supprime l'ancienne pile et on la resauvegarde si besoin
+     settings.remove("Stack");
+     if(stack.size() > 0){
+         settings.beginWriteArray("Stack");
+         int i = stack.size() - 1;
+
+         for(Stack::const_iterator literal = stack.cbegin(); literal != stack.cend(); ++literal, --i){
+            settings.setArrayIndex(i);
+            settings.setValue("literal", (*literal).toString());
+         }
+
+         settings.endArray();
      }
-     settings.endGroup();
+
+     // On supprime les programmes puis on les resauvegardes
+     settings.remove("Programms");
+     if(programms.size() > 0){
+        settings.beginWriteArray("Programms");
+        int i = 0;
+        for(QVector<const Literal*>::const_iterator literal = programms.cbegin(); literal != programms.cend(); ++literal, i++){
+            settings.setArrayIndex(i);
+            settings.setValue("programm", (**literal).toString());
+        }
+
+        settings.endArray();
+     }
+
+     // On supprime les atomes puis on les resauvegardes
+     settings.remove("Atoms");
+     if(variables.size() > 0){
+        settings.beginWriteArray("Atoms");
+        int i = 0;
+        for(QVector<const Literal*>::const_iterator literal = variables.cbegin(); literal != variables.cend(); ++literal, i++){
+            settings.setArrayIndex(i);
+            settings.setValue((**literal).toString(), (**literal).eval());
+        }
+
+        settings.endArray();
+     }
 }
 
 void Settings::loadSettingsFromFile(){
@@ -26,7 +71,7 @@ void Settings::loadSettingsFromFile(){
 
     settings.beginGroup("Settings");
     playSound = settings.value("sound","false").toBool();
-    displayKeyboard = settings.value ("Keyboard","true").toBool();
+    displayKeyboard = settings.value ("keyboard","true").toBool();
     nbLiteralsOnStack = settings.value ("nbLiteralsOnStack","5").toUInt();
 
     if(nbLiteralsOnStack < 1)
@@ -36,4 +81,6 @@ void Settings::loadSettingsFromFile(){
         nbLiteralsOnStack = 10;
 
     settings.endGroup();
+
+    // On va tenter de recharger les données
 }
