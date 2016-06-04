@@ -108,8 +108,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QObject::connect(ui->commandInput, SIGNAL(returnPressed()), this, SLOT(appendLiteralInStack()));
     QObject::connect(ui->actionSauvegarder, SIGNAL(triggered(bool)), this, SLOT(save()));
-//    QObject::connect(this->settingsDialog->u)
-    QObject::connect(ui->actionCharger, SIGNAL(triggered(bool)), this, SLOT(load()));
     QObject::connect(settingsDialog, SIGNAL(settingsChanged()), this, SLOT(updateSettings()));
 
     // On donne le focus dans la ligne de commandes
@@ -438,15 +436,6 @@ void MainWindow::save(){
     try{
         this->settings->saveSettingsToFile(*(this->stack), this->factory);
         setUserMessage("INFO : Les paramètres, la pile, les programmes et les variables ont été sauvegardés.");
-    }
-    catch(const CalculatorException& e){
-        setUserMessage(e.what());
-    }
-}
-void MainWindow::load(){
-    try{
-        this->settings->loadSettingsFromFile(*(this->stack), this->factory);
-        setUserMessage("INFO : Les paramètres ont été chargés.");
     }
     catch(const CalculatorException& e){
         setUserMessage(e.what());

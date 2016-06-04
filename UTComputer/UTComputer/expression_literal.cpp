@@ -1,6 +1,8 @@
 #include "expression_literal.h"
 #include "complex_literal.h"
 
+#define MAX_LENGTH 150
+
 QString ExpressionLiteral::concat(const QString& op) const {
     // On ne traite que des fonctions
     QString exp = op + "(" + expression + ")";
@@ -198,7 +200,7 @@ QString ExpressionLiteral::eval() const {
 }
 
 QString ExpressionLiteral::toString() const {
-    int nbMaxChar = 20 - 5;
+    int nbMaxChar = MAX_LENGTH - 5;
 
     QString result = "'" + expression.mid(0, nbMaxChar);
 

@@ -807,7 +807,6 @@ public:
         menuBar->addAction(menuEdition->menuAction());
         menuBar->addAction(menuA_propos->menuAction());
         menuFichier->addAction(actionSauvegarder);
-        menuFichier->addAction(actionCharger);
         menuFichier->addSeparator();
         menuFichier->addAction(actionQuitter);
         menuEdition->addAction(actionAnnuler);

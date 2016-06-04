@@ -106,7 +106,6 @@ public slots:
 
     // Pour les raccourcis
     void save();
-    void load();
 };
 
 #endif // MAINWINDOW_H

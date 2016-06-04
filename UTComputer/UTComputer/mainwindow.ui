@@ -1334,7 +1334,6 @@
      <string>Fichier</string>
     </property>
     <addaction name="actionSauvegarder"/>
-    <addaction name="actionCharger"/>
     <addaction name="separator"/>
     <addaction name="actionQuitter"/>
    </widget>
