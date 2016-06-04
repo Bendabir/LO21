@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // On charge les options
     this->settings->loadSettingsFromFile(*(this->stack), this->factory);
     settingsDialog = new SettingsDialog(this->settings ,this); // On ne peut pas le mettre en place avant que les settings soient chargées
+    ui->widgetPad->setVisible(this->settings->getDisplayKeyboard());
 
     // Mise en place via Qt Designer
     // On connecte tous les slots et les raccourcis
@@ -102,6 +103,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->actionSauvegarder, SIGNAL(triggered(bool)), this, SLOT(save()));
 //    QObject::connect(this->settingsDialog->u)
     QObject::connect(ui->actionCharger, SIGNAL(triggered(bool)), this, SLOT(load()));
+    QObject::connect(settingsDialog, SIGNAL(settingsChanged()), this, SLOT(updateSettings()));
 
     // On donne le focus dans la ligne de commandes
     ui->commandInput->setFocus();
@@ -401,6 +403,25 @@ void MainWindow::appendLiteralInStack(){
     refreshListView();
 
     ui->commandInput->clear();
+}
+
+void MainWindow::updateSettings(){
+    // On met à jour les options dès que la fenêtre d'options nous envoie un signal de mise à jour
+    ui->widgetPad->setVisible(this->settings->getDisplayKeyboard());
+
+    // On met à jour la vue de la pile
+    ui->tableWidget->setRowCount(0);
+    ui->tableWidget->setRowCount(this->settings->getNbLiteralsOnStack());
+
+    QStringList labels;
+    for(int i = 0; i < ui->tableWidget->rowCount(); i++){
+        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(""));
+        QString label = QString::number(ui->tableWidget->rowCount() - i);
+        labels << label;
+    }
+    ui->tableWidget->setVerticalHeaderLabels(labels);
+
+    refreshListView();
 }
 
 void MainWindow::setUserMessage(const QString& message){

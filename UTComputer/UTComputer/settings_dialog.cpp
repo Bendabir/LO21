@@ -39,6 +39,8 @@ void SettingsDialog::apply(){
     settings->setNbLiteralsOnStack(ui->nbLiterals->value());
 
     ui->applyButton->setDisabled(true);
+
+    emit settingsChanged();
 }
 
 void SettingsDialog::enableApply(){

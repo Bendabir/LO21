@@ -102,6 +102,7 @@ public slots:
     void onRightParenthesisPressed();
 
     void appendLiteralInStack();
+    void updateSettings();
 
     // Pour les raccourcis
     void save();

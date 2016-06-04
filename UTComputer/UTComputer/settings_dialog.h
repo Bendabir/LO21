@@ -24,6 +24,9 @@ private:
 public slots:
     void apply();
     void enableApply();
+
+signals:
+    void settingsChanged();
 };
 
 #endif // SETTINGS_DIALOG_H
