@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->setFixedSize(1160, 630);
+    this->setFixedSize(1020, 610);
 
     // On charge les options
     this->settings->loadSettingsFromFile(*(this->stack), this->factory);
@@ -41,7 +41,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->b7, SIGNAL(pressed()), this, SLOT(on7Pressed()));
     QObject::connect(ui->b8, SIGNAL(pressed()), this, SLOT(on8Pressed()));
     QObject::connect(ui->b9, SIGNAL(pressed()), this, SLOT(on9Pressed()));
-    QObject::connect(ui->comma, SIGNAL(pressed()), this, SLOT(onCommaPressed()));
+    QObject::connect(ui->dot, SIGNAL(pressed()), this, SLOT(onDotPressed()));
     QObject::connect(ui->backspace, SIGNAL(pressed()), this, SLOT(onBackspacePressed()));
     QObject::connect(ui->clear, SIGNAL(pressed()), this, SLOT(onClearPressed()));
 
@@ -94,6 +94,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->minus, SIGNAL(pressed()), this, SLOT(onMinusPressed()));
     QObject::connect(ui->plus, SIGNAL(pressed()), this, SLOT(onPlusPressed()));
     QObject::connect(ui->enter, SIGNAL(pressed()), this, SLOT(onEnterPressed()));
+    QObject::connect(ui->comma, SIGNAL(pressed()), this, SLOT(onCommaPressed()));
+    QObject::connect(ui->leftParenthesis, SIGNAL(pressed()), this, SLOT(onLeftParenthesisPressed()));
+    QObject::connect(ui->rightParenthesis, SIGNAL(pressed()), this, SLOT(onRightParenthesisPressed()));
 
     QObject::connect(ui->commandInput, SIGNAL(returnPressed()), this, SLOT(appendLiteralInStack()));
     QObject::connect(ui->actionSauvegarder, SIGNAL(triggered(bool)), this, SLOT(save()));
@@ -151,14 +154,15 @@ MainWindow::~MainWindow()
 
 // Permet de changer le texte de la ligne de commande
 void MainWindow::addTextToCommand(const QString& exp){
-    QString text = ui->commandInput->text() + exp;
+    QString text = ui->commandInput->text();
 
     // Si on ne traite pas un point, on ajoute un espace, sinon on le remplace par un point
     // Cela permet de créer des nombres à virgule
-    if(exp != ".")
-        text += " ";
+
+    if(exp != "." && exp != "," && exp != "(" && exp != "." && exp != ")")
+        text += exp + " ";
     else
-        text = text.left(text.length() - 2) + exp;
+        text = text.left(text.length() - 1) + exp;
 
     // On prépare le texte
     ui->commandInput->setText(text);
@@ -206,7 +210,7 @@ void MainWindow::on8Pressed(){
 void MainWindow::on9Pressed(){
     addTextToCommand("9");
 }
-void MainWindow::onCommaPressed(){
+void MainWindow::onDotPressed(){
     addTextToCommand(".");
 }
 
@@ -369,6 +373,15 @@ void MainWindow::onEnterPressed(){
     // Nettoyage
     ui->commandInput->clear();
 }
+void MainWindow::onCommaPressed(){
+    addTextToCommand(",");
+}
+void MainWindow::onLeftParenthesisPressed(){
+    addTextToCommand("(");
+}
+void MainWindow::onRightParenthesisPressed(){
+    addTextToCommand(")");
+}
 
 void MainWindow::appendLiteralInStack(){
     QString text = ui->commandInput->text().toUpper();
@@ -391,6 +404,9 @@ void MainWindow::appendLiteralInStack(){
 }
 
 void MainWindow::setUserMessage(const QString& message){
+    if(this->settings->getPlaySound())
+        QApplication::beep();
+
     ui->errorInput->setText(message);
 }
 

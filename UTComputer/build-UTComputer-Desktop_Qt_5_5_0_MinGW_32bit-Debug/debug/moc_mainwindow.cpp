@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[67];
-    char stringdata0[900];
+    QByteArrayData data[70];
+    char stringdata0[964];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,67 +41,70 @@ QT_MOC_LITERAL(8, 78, 10), // "on6Pressed"
 QT_MOC_LITERAL(9, 89, 10), // "on7Pressed"
 QT_MOC_LITERAL(10, 100, 10), // "on8Pressed"
 QT_MOC_LITERAL(11, 111, 10), // "on9Pressed"
-QT_MOC_LITERAL(12, 122, 14), // "onCommaPressed"
-QT_MOC_LITERAL(13, 137, 18), // "onBackspacePressed"
-QT_MOC_LITERAL(14, 156, 14), // "onClearPressed"
-QT_MOC_LITERAL(15, 171, 12), // "onDupPressed"
-QT_MOC_LITERAL(16, 184, 13), // "onSwapPressed"
-QT_MOC_LITERAL(17, 198, 13), // "onDropPressed"
-QT_MOC_LITERAL(18, 212, 15), // "onLastopPressed"
-QT_MOC_LITERAL(19, 228, 17), // "onLastargsPressed"
-QT_MOC_LITERAL(20, 246, 13), // "onUndoPressed"
-QT_MOC_LITERAL(21, 260, 13), // "onRedoPressed"
-QT_MOC_LITERAL(22, 274, 14), // "onWhilePressed"
-QT_MOC_LITERAL(23, 289, 12), // "onIftPressed"
-QT_MOC_LITERAL(24, 302, 13), // "onIftePressed"
-QT_MOC_LITERAL(25, 316, 20), // "onLeftBracketPressed"
-QT_MOC_LITERAL(26, 337, 21), // "onRightBracketPressed"
-QT_MOC_LITERAL(27, 359, 12), // "onAndPressed"
-QT_MOC_LITERAL(28, 372, 11), // "onOrPressed"
-QT_MOC_LITERAL(29, 384, 12), // "onNotPressed"
-QT_MOC_LITERAL(30, 397, 14), // "onEqualPressed"
-QT_MOC_LITERAL(31, 412, 17), // "onNotEqualPressed"
-QT_MOC_LITERAL(32, 430, 11), // "onLtPressed"
-QT_MOC_LITERAL(33, 442, 12), // "onLtePressed"
-QT_MOC_LITERAL(34, 455, 11), // "onGtPressed"
-QT_MOC_LITERAL(35, 467, 12), // "onGtePressed"
-QT_MOC_LITERAL(36, 480, 15), // "onDollarPressed"
-QT_MOC_LITERAL(37, 496, 11), // "onRePressed"
-QT_MOC_LITERAL(38, 508, 11), // "onImPressed"
-QT_MOC_LITERAL(39, 520, 12), // "onArgPressed"
-QT_MOC_LITERAL(40, 533, 13), // "onNormPressed"
-QT_MOC_LITERAL(41, 547, 12), // "onNumPressed"
-QT_MOC_LITERAL(42, 560, 12), // "onDenPressed"
-QT_MOC_LITERAL(43, 573, 12), // "onDivPressed"
-QT_MOC_LITERAL(44, 586, 12), // "onModPressed"
-QT_MOC_LITERAL(45, 599, 12), // "onCosPressed"
-QT_MOC_LITERAL(46, 612, 12), // "onSinPressed"
-QT_MOC_LITERAL(47, 625, 12), // "onTanPressed"
-QT_MOC_LITERAL(48, 638, 15), // "onArccosPressed"
-QT_MOC_LITERAL(49, 654, 15), // "onArcsinPressed"
-QT_MOC_LITERAL(50, 670, 15), // "onArctanPressed"
-QT_MOC_LITERAL(51, 686, 12), // "onPowPressed"
-QT_MOC_LITERAL(52, 699, 13), // "onSqrtPressed"
-QT_MOC_LITERAL(53, 713, 12), // "onExpPressed"
-QT_MOC_LITERAL(54, 726, 11), // "onLnPressed"
-QT_MOC_LITERAL(55, 738, 14), // "onQuotePressed"
-QT_MOC_LITERAL(56, 753, 12), // "onNegPressed"
-QT_MOC_LITERAL(57, 766, 13), // "onEditPressed"
-QT_MOC_LITERAL(58, 780, 13), // "onEvalPressed"
-QT_MOC_LITERAL(59, 794, 15), // "onDividePressed"
-QT_MOC_LITERAL(60, 810, 14), // "onTimesPressed"
-QT_MOC_LITERAL(61, 825, 14), // "onMinusPressed"
-QT_MOC_LITERAL(62, 840, 13), // "onPlusPressed"
-QT_MOC_LITERAL(63, 854, 14), // "onEnterPressed"
-QT_MOC_LITERAL(64, 869, 20), // "appendLiteralInStack"
-QT_MOC_LITERAL(65, 890, 4), // "save"
-QT_MOC_LITERAL(66, 895, 4) // "load"
+QT_MOC_LITERAL(12, 122, 12), // "onDotPressed"
+QT_MOC_LITERAL(13, 135, 18), // "onBackspacePressed"
+QT_MOC_LITERAL(14, 154, 14), // "onClearPressed"
+QT_MOC_LITERAL(15, 169, 12), // "onDupPressed"
+QT_MOC_LITERAL(16, 182, 13), // "onSwapPressed"
+QT_MOC_LITERAL(17, 196, 13), // "onDropPressed"
+QT_MOC_LITERAL(18, 210, 15), // "onLastopPressed"
+QT_MOC_LITERAL(19, 226, 17), // "onLastargsPressed"
+QT_MOC_LITERAL(20, 244, 13), // "onUndoPressed"
+QT_MOC_LITERAL(21, 258, 13), // "onRedoPressed"
+QT_MOC_LITERAL(22, 272, 14), // "onWhilePressed"
+QT_MOC_LITERAL(23, 287, 12), // "onIftPressed"
+QT_MOC_LITERAL(24, 300, 13), // "onIftePressed"
+QT_MOC_LITERAL(25, 314, 20), // "onLeftBracketPressed"
+QT_MOC_LITERAL(26, 335, 21), // "onRightBracketPressed"
+QT_MOC_LITERAL(27, 357, 12), // "onAndPressed"
+QT_MOC_LITERAL(28, 370, 11), // "onOrPressed"
+QT_MOC_LITERAL(29, 382, 12), // "onNotPressed"
+QT_MOC_LITERAL(30, 395, 14), // "onEqualPressed"
+QT_MOC_LITERAL(31, 410, 17), // "onNotEqualPressed"
+QT_MOC_LITERAL(32, 428, 11), // "onLtPressed"
+QT_MOC_LITERAL(33, 440, 12), // "onLtePressed"
+QT_MOC_LITERAL(34, 453, 11), // "onGtPressed"
+QT_MOC_LITERAL(35, 465, 12), // "onGtePressed"
+QT_MOC_LITERAL(36, 478, 15), // "onDollarPressed"
+QT_MOC_LITERAL(37, 494, 11), // "onRePressed"
+QT_MOC_LITERAL(38, 506, 11), // "onImPressed"
+QT_MOC_LITERAL(39, 518, 12), // "onArgPressed"
+QT_MOC_LITERAL(40, 531, 13), // "onNormPressed"
+QT_MOC_LITERAL(41, 545, 12), // "onNumPressed"
+QT_MOC_LITERAL(42, 558, 12), // "onDenPressed"
+QT_MOC_LITERAL(43, 571, 12), // "onDivPressed"
+QT_MOC_LITERAL(44, 584, 12), // "onModPressed"
+QT_MOC_LITERAL(45, 597, 12), // "onCosPressed"
+QT_MOC_LITERAL(46, 610, 12), // "onSinPressed"
+QT_MOC_LITERAL(47, 623, 12), // "onTanPressed"
+QT_MOC_LITERAL(48, 636, 15), // "onArccosPressed"
+QT_MOC_LITERAL(49, 652, 15), // "onArcsinPressed"
+QT_MOC_LITERAL(50, 668, 15), // "onArctanPressed"
+QT_MOC_LITERAL(51, 684, 12), // "onPowPressed"
+QT_MOC_LITERAL(52, 697, 13), // "onSqrtPressed"
+QT_MOC_LITERAL(53, 711, 12), // "onExpPressed"
+QT_MOC_LITERAL(54, 724, 11), // "onLnPressed"
+QT_MOC_LITERAL(55, 736, 14), // "onQuotePressed"
+QT_MOC_LITERAL(56, 751, 12), // "onNegPressed"
+QT_MOC_LITERAL(57, 764, 13), // "onEditPressed"
+QT_MOC_LITERAL(58, 778, 13), // "onEvalPressed"
+QT_MOC_LITERAL(59, 792, 15), // "onDividePressed"
+QT_MOC_LITERAL(60, 808, 14), // "onTimesPressed"
+QT_MOC_LITERAL(61, 823, 14), // "onMinusPressed"
+QT_MOC_LITERAL(62, 838, 13), // "onPlusPressed"
+QT_MOC_LITERAL(63, 852, 14), // "onEnterPressed"
+QT_MOC_LITERAL(64, 867, 14), // "onCommaPressed"
+QT_MOC_LITERAL(65, 882, 24), // "onLeftParenthesisPressed"
+QT_MOC_LITERAL(66, 907, 25), // "onRightParenthesisPressed"
+QT_MOC_LITERAL(67, 933, 20), // "appendLiteralInStack"
+QT_MOC_LITERAL(68, 954, 4), // "save"
+QT_MOC_LITERAL(69, 959, 4) // "load"
 
     },
     "MainWindow\0on0Pressed\0\0on1Pressed\0"
     "on2Pressed\0on3Pressed\0on4Pressed\0"
     "on5Pressed\0on6Pressed\0on7Pressed\0"
-    "on8Pressed\0on9Pressed\0onCommaPressed\0"
+    "on8Pressed\0on9Pressed\0onDotPressed\0"
     "onBackspacePressed\0onClearPressed\0"
     "onDupPressed\0onSwapPressed\0onDropPressed\0"
     "onLastopPressed\0onLastargsPressed\0"
@@ -122,6 +125,8 @@ QT_MOC_LITERAL(66, 895, 4) // "load"
     "onEditPressed\0onEvalPressed\0onDividePressed\0"
     "onTimesPressed\0onMinusPressed\0"
     "onPlusPressed\0onEnterPressed\0"
+    "onCommaPressed\0onLeftParenthesisPressed\0"
+    "onRightParenthesisPressed\0"
     "appendLiteralInStack\0save\0load"
 };
 #undef QT_MOC_LITERAL
@@ -132,7 +137,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      65,   14, // methods
+      68,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -140,73 +145,79 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  339,    2, 0x0a /* Public */,
-       3,    0,  340,    2, 0x0a /* Public */,
-       4,    0,  341,    2, 0x0a /* Public */,
-       5,    0,  342,    2, 0x0a /* Public */,
-       6,    0,  343,    2, 0x0a /* Public */,
-       7,    0,  344,    2, 0x0a /* Public */,
-       8,    0,  345,    2, 0x0a /* Public */,
-       9,    0,  346,    2, 0x0a /* Public */,
-      10,    0,  347,    2, 0x0a /* Public */,
-      11,    0,  348,    2, 0x0a /* Public */,
-      12,    0,  349,    2, 0x0a /* Public */,
-      13,    0,  350,    2, 0x0a /* Public */,
-      14,    0,  351,    2, 0x0a /* Public */,
-      15,    0,  352,    2, 0x0a /* Public */,
-      16,    0,  353,    2, 0x0a /* Public */,
-      17,    0,  354,    2, 0x0a /* Public */,
-      18,    0,  355,    2, 0x0a /* Public */,
-      19,    0,  356,    2, 0x0a /* Public */,
-      20,    0,  357,    2, 0x0a /* Public */,
-      21,    0,  358,    2, 0x0a /* Public */,
-      22,    0,  359,    2, 0x0a /* Public */,
-      23,    0,  360,    2, 0x0a /* Public */,
-      24,    0,  361,    2, 0x0a /* Public */,
-      25,    0,  362,    2, 0x0a /* Public */,
-      26,    0,  363,    2, 0x0a /* Public */,
-      27,    0,  364,    2, 0x0a /* Public */,
-      28,    0,  365,    2, 0x0a /* Public */,
-      29,    0,  366,    2, 0x0a /* Public */,
-      30,    0,  367,    2, 0x0a /* Public */,
-      31,    0,  368,    2, 0x0a /* Public */,
-      32,    0,  369,    2, 0x0a /* Public */,
-      33,    0,  370,    2, 0x0a /* Public */,
-      34,    0,  371,    2, 0x0a /* Public */,
-      35,    0,  372,    2, 0x0a /* Public */,
-      36,    0,  373,    2, 0x0a /* Public */,
-      37,    0,  374,    2, 0x0a /* Public */,
-      38,    0,  375,    2, 0x0a /* Public */,
-      39,    0,  376,    2, 0x0a /* Public */,
-      40,    0,  377,    2, 0x0a /* Public */,
-      41,    0,  378,    2, 0x0a /* Public */,
-      42,    0,  379,    2, 0x0a /* Public */,
-      43,    0,  380,    2, 0x0a /* Public */,
-      44,    0,  381,    2, 0x0a /* Public */,
-      45,    0,  382,    2, 0x0a /* Public */,
-      46,    0,  383,    2, 0x0a /* Public */,
-      47,    0,  384,    2, 0x0a /* Public */,
-      48,    0,  385,    2, 0x0a /* Public */,
-      49,    0,  386,    2, 0x0a /* Public */,
-      50,    0,  387,    2, 0x0a /* Public */,
-      51,    0,  388,    2, 0x0a /* Public */,
-      52,    0,  389,    2, 0x0a /* Public */,
-      53,    0,  390,    2, 0x0a /* Public */,
-      54,    0,  391,    2, 0x0a /* Public */,
-      55,    0,  392,    2, 0x0a /* Public */,
-      56,    0,  393,    2, 0x0a /* Public */,
-      57,    0,  394,    2, 0x0a /* Public */,
-      58,    0,  395,    2, 0x0a /* Public */,
-      59,    0,  396,    2, 0x0a /* Public */,
-      60,    0,  397,    2, 0x0a /* Public */,
-      61,    0,  398,    2, 0x0a /* Public */,
-      62,    0,  399,    2, 0x0a /* Public */,
-      63,    0,  400,    2, 0x0a /* Public */,
-      64,    0,  401,    2, 0x0a /* Public */,
-      65,    0,  402,    2, 0x0a /* Public */,
-      66,    0,  403,    2, 0x0a /* Public */,
+       1,    0,  354,    2, 0x0a /* Public */,
+       3,    0,  355,    2, 0x0a /* Public */,
+       4,    0,  356,    2, 0x0a /* Public */,
+       5,    0,  357,    2, 0x0a /* Public */,
+       6,    0,  358,    2, 0x0a /* Public */,
+       7,    0,  359,    2, 0x0a /* Public */,
+       8,    0,  360,    2, 0x0a /* Public */,
+       9,    0,  361,    2, 0x0a /* Public */,
+      10,    0,  362,    2, 0x0a /* Public */,
+      11,    0,  363,    2, 0x0a /* Public */,
+      12,    0,  364,    2, 0x0a /* Public */,
+      13,    0,  365,    2, 0x0a /* Public */,
+      14,    0,  366,    2, 0x0a /* Public */,
+      15,    0,  367,    2, 0x0a /* Public */,
+      16,    0,  368,    2, 0x0a /* Public */,
+      17,    0,  369,    2, 0x0a /* Public */,
+      18,    0,  370,    2, 0x0a /* Public */,
+      19,    0,  371,    2, 0x0a /* Public */,
+      20,    0,  372,    2, 0x0a /* Public */,
+      21,    0,  373,    2, 0x0a /* Public */,
+      22,    0,  374,    2, 0x0a /* Public */,
+      23,    0,  375,    2, 0x0a /* Public */,
+      24,    0,  376,    2, 0x0a /* Public */,
+      25,    0,  377,    2, 0x0a /* Public */,
+      26,    0,  378,    2, 0x0a /* Public */,
+      27,    0,  379,    2, 0x0a /* Public */,
+      28,    0,  380,    2, 0x0a /* Public */,
+      29,    0,  381,    2, 0x0a /* Public */,
+      30,    0,  382,    2, 0x0a /* Public */,
+      31,    0,  383,    2, 0x0a /* Public */,
+      32,    0,  384,    2, 0x0a /* Public */,
+      33,    0,  385,    2, 0x0a /* Public */,
+      34,    0,  386,    2, 0x0a /* Public */,
+      35,    0,  387,    2, 0x0a /* Public */,
+      36,    0,  388,    2, 0x0a /* Public */,
+      37,    0,  389,    2, 0x0a /* Public */,
+      38,    0,  390,    2, 0x0a /* Public */,
+      39,    0,  391,    2, 0x0a /* Public */,
+      40,    0,  392,    2, 0x0a /* Public */,
+      41,    0,  393,    2, 0x0a /* Public */,
+      42,    0,  394,    2, 0x0a /* Public */,
+      43,    0,  395,    2, 0x0a /* Public */,
+      44,    0,  396,    2, 0x0a /* Public */,
+      45,    0,  397,    2, 0x0a /* Public */,
+      46,    0,  398,    2, 0x0a /* Public */,
+      47,    0,  399,    2, 0x0a /* Public */,
+      48,    0,  400,    2, 0x0a /* Public */,
+      49,    0,  401,    2, 0x0a /* Public */,
+      50,    0,  402,    2, 0x0a /* Public */,
+      51,    0,  403,    2, 0x0a /* Public */,
+      52,    0,  404,    2, 0x0a /* Public */,
+      53,    0,  405,    2, 0x0a /* Public */,
+      54,    0,  406,    2, 0x0a /* Public */,
+      55,    0,  407,    2, 0x0a /* Public */,
+      56,    0,  408,    2, 0x0a /* Public */,
+      57,    0,  409,    2, 0x0a /* Public */,
+      58,    0,  410,    2, 0x0a /* Public */,
+      59,    0,  411,    2, 0x0a /* Public */,
+      60,    0,  412,    2, 0x0a /* Public */,
+      61,    0,  413,    2, 0x0a /* Public */,
+      62,    0,  414,    2, 0x0a /* Public */,
+      63,    0,  415,    2, 0x0a /* Public */,
+      64,    0,  416,    2, 0x0a /* Public */,
+      65,    0,  417,    2, 0x0a /* Public */,
+      66,    0,  418,    2, 0x0a /* Public */,
+      67,    0,  419,    2, 0x0a /* Public */,
+      68,    0,  420,    2, 0x0a /* Public */,
+      69,    0,  421,    2, 0x0a /* Public */,
 
  // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -292,7 +303,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 7: _t->on7Pressed(); break;
         case 8: _t->on8Pressed(); break;
         case 9: _t->on9Pressed(); break;
-        case 10: _t->onCommaPressed(); break;
+        case 10: _t->onDotPressed(); break;
         case 11: _t->onBackspacePressed(); break;
         case 12: _t->onClearPressed(); break;
         case 13: _t->onDupPressed(); break;
@@ -344,9 +355,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 59: _t->onMinusPressed(); break;
         case 60: _t->onPlusPressed(); break;
         case 61: _t->onEnterPressed(); break;
-        case 62: _t->appendLiteralInStack(); break;
-        case 63: _t->save(); break;
-        case 64: _t->load(); break;
+        case 62: _t->onCommaPressed(); break;
+        case 63: _t->onLeftParenthesisPressed(); break;
+        case 64: _t->onRightParenthesisPressed(); break;
+        case 65: _t->appendLiteralInStack(); break;
+        case 66: _t->save(); break;
+        case 67: _t->load(); break;
         default: ;
         }
     }
@@ -380,13 +394,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 65)
+        if (_id < 68)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 65;
+        _id -= 68;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 65)
+        if (_id < 68)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 65;
+        _id -= 68;
     }
     return _id;
 }

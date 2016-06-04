@@ -44,7 +44,7 @@ public slots:
     void on7Pressed();
     void on8Pressed();
     void on9Pressed();
-    void onCommaPressed();
+    void onDotPressed();
     void onBackspacePressed();
     void onClearPressed();
 
@@ -97,6 +97,9 @@ public slots:
     void onMinusPressed();
     void onPlusPressed();
     void onEnterPressed();
+    void onCommaPressed();
+    void onLeftParenthesisPressed();
+    void onRightParenthesisPressed();
 
     void appendLiteralInStack();
 
