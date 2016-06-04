@@ -17,13 +17,13 @@ CXXFLAGS      = -pipe -fno-keep-inline-dllexport -g -std=c++0x -frtti -Wall -Wex
 INCPATH       = -I..\UTComputer -I. -IC:\Qt\5.5\mingw492_32\include -IC:\Qt\5.5\mingw492_32\include\QtWidgets -IC:\Qt\5.5\mingw492_32\include\QtGui -IC:\Qt\5.5\mingw492_32\include\QtANGLE -IC:\Qt\5.5\mingw492_32\include\QtTest -IC:\Qt\5.5\mingw492_32\include\QtCore -Idebug -I. -IC:\Qt\5.5\mingw492_32\mkspecs\win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-subsystem,console -mthreads
-LIBS        =        -LC:/Qt/5.5/mingw492_32/lib -lQt5Widgetsd -lQt5Guid -lQt5Testd -lQt5Cored 
+LIBS        =        -LC:/Qt/5.5/mingw492_32/lib -lQt5Widgetsd -lQt5Guid -lQt5Testd -lQt5Cored debug\UTComputer_resource_res.o 
 QMAKE         = C:\Qt\5.5\mingw492_32\bin\qmake.exe
 IDC           = idc
 IDL           = midl
 ZIP           = zip -r -9
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = debug\UTComputer_resource_res.o
 COPY          = copy /y
 SED           = $(QMAKE) -install sed
 COPY_FILE     = copy /y
@@ -138,8 +138,11 @@ DESTDIR_TARGET = debug\UTComputer.exe
 first: all
 all: Makefile.Debug  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET): ui_mainwindow.h ui_edit_atom_dialog.h ui_edit_programm_dialog.h ui_settings_dialog.h $(OBJECTS) 
+$(DESTDIR_TARGET): ui_mainwindow.h ui_edit_atom_dialog.h ui_edit_programm_dialog.h ui_settings_dialog.h $(OBJECTS) debug/UTComputer_resource_res.o
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) object_script.UTComputer.Debug  $(LIBS)
+
+debug/UTComputer_resource_res.o: UTComputer_resource.rc
+	windres -i UTComputer_resource.rc -o debug\UTComputer_resource_res.o --include-dir=. $(DEFINES)
 
 qmake: FORCE
 	@$(QMAKE) -spec win32-g++ "CONFIG+=debug" -o Makefile.Debug ..\UTComputer\UTComputer.pro
@@ -151,6 +154,7 @@ dist:
 
 clean: compiler_clean 
 	-$(DEL_FILE) debug\calculator_exception.o debug\main.o debug\literal.o debug\complex_literal.o debug\tests.o debug\expression_literal.o debug\number.o debug\literal_factory.o debug\atom_literal.o debug\stack.o debug\calculator.o debug\mainwindow.o debug\settings.o debug\edit_atom_dialog.o debug\edit_programm_dialog.o debug\settings_dialog.o debug\moc_mainwindow.o debug\moc_edit_atom_dialog.o debug\moc_edit_programm_dialog.o debug\moc_settings_dialog.o
+	-$(DEL_FILE) debug\UTComputer_resource_res.o
 
 distclean: clean 
 	-$(DEL_FILE) $(DESTDIR_TARGET)
@@ -1715,6 +1719,20 @@ debug/settings.o: ../UTComputer/settings.cpp C:/Qt/5.5/mingw492_32/include/QtCor
 		C:/Qt/5.5/mingw492_32/include/QtCore/qisenum.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qobject_impl.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qeventloop.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qdebug.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qhash.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpair.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmap.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtextstream.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qiodevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlocale.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvariant.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qshareddata.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvector.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qset.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
 		../UTComputer/settings.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QObject \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
@@ -1725,18 +1743,14 @@ debug/settings.o: ../UTComputer/settings.cpp C:/Qt/5.5/mingw492_32/include/QtCor
 		C:/Qt/5.5/mingw492_32/include/QtGui/qpaintdevice.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qrect.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qsize.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qpalette.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qcolor.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qrgb.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qbrush.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qpair.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qvector.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qmatrix.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qpolygon.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qregion.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qdatastream.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qiodevice.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qline.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qtransform.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qpainterpath.h \
@@ -1744,8 +1758,6 @@ debug/settings.o: ../UTComputer/settings.cpp C:/Qt/5.5/mingw492_32/include/QtCor
 		C:/Qt/5.5/mingw492_32/include/QtGui/qpixelformat.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qpixmap.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qsharedpointer.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qshareddata.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qhash.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qsharedpointer_impl.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qfont.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qfontmetrics.h \
@@ -1754,13 +1766,6 @@ debug/settings.o: ../UTComputer/settings.cpp C:/Qt/5.5/mingw492_32/include/QtCor
 		C:/Qt/5.5/mingw492_32/include/QtGui/qcursor.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qkeysequence.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qevent.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qvariant.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qmap.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qdebug.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qtextstream.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qlocale.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qset.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qurl.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qurlquery.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qfile.h \
@@ -2100,11 +2105,9 @@ debug/edit_programm_dialog.o: ../UTComputer/edit_programm_dialog.cpp ../UTComput
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\edit_programm_dialog.o ..\UTComputer\edit_programm_dialog.cpp
 
-debug/settings_dialog.o: ../UTComputer/settings_dialog.cpp ../UTComputer/settings_dialog.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdialog.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qwidget.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qwindowdefs.h \
+debug/settings_dialog.o: ../UTComputer/settings_dialog.cpp C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qdebug.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qalgorithms.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qglobal.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qconfig.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qfeatures.h \
@@ -2133,24 +2136,27 @@ debug/settings_dialog.o: ../UTComputer/settings_dialog.cpp ../UTComputer/setting
 		C:/Qt/5.5/mingw492_32/include/QtCore/qglobalstatic.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qmutex.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qnumeric.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectdefs.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qnamespace.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectdefs_impl.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qwindowdefs_win.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qobject.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qstring.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qhash.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qchar.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qbytearray.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qiterator.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlist.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qrefcount.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qarraydata.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qstringbuilder.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qlist.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qalgorithms.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qiterator.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qbytearraylist.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbytearray.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qnamespace.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstring.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstringbuilder.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qstringlist.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qregexp.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qstringmatcher.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpair.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmap.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtextstream.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qiodevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobject.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectdefs.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectdefs_impl.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qcoreevent.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qscopedpointer.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qmetatype.h \
@@ -2158,22 +2164,31 @@ debug/settings_dialog.o: ../UTComputer/settings_dialog.cpp ../UTComputer/setting
 		C:/Qt/5.5/mingw492_32/include/QtCore/qcontainerfwd.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qisenum.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qobject_impl.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlocale.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvariant.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qshareddata.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvector.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qset.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
+		../UTComputer/settings_dialog.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdialog.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qwidget.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qwindowdefs.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qwindowdefs_win.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qmargins.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qpaintdevice.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qrect.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qsize.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qpalette.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qcolor.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qrgb.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qbrush.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qpair.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qvector.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qmatrix.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qpolygon.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qregion.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qdatastream.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qiodevice.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qline.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qtransform.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qpainterpath.h \
@@ -2181,8 +2196,6 @@ debug/settings_dialog.o: ../UTComputer/settings_dialog.cpp ../UTComputer/setting
 		C:/Qt/5.5/mingw492_32/include/QtGui/qpixelformat.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qpixmap.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qsharedpointer.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qshareddata.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qhash.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qsharedpointer_impl.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qfont.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qfontmetrics.h \
@@ -2191,13 +2204,6 @@ debug/settings_dialog.o: ../UTComputer/settings_dialog.cpp ../UTComputer/setting
 		C:/Qt/5.5/mingw492_32/include/QtGui/qcursor.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qkeysequence.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qevent.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qvariant.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qmap.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qdebug.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qtextstream.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qlocale.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qset.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qurl.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qurlquery.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qfile.h \
@@ -2222,8 +2228,6 @@ debug/settings_dialog.o: ../UTComputer/settings_dialog.cpp ../UTComputer/setting
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QCheckBox \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qcheckbox.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialogButtonBox \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdialogbuttonbox.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGridLayout \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
@@ -2249,6 +2253,8 @@ debug/settings_dialog.o: ../UTComputer/settings_dialog.cpp ../UTComputer/setting
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlabel.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QSpinBox \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qspinbox.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget \

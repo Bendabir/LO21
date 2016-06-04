@@ -3,6 +3,7 @@ QT += widgets \
 
 CONFIG += c++11
 
+RC_ICONS = icon.ico
 
 HEADERS += \
     calculator_exception.h \
