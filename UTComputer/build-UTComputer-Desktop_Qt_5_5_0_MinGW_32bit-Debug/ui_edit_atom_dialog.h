@@ -13,12 +13,12 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
-#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLineEdit>
-#include <QtWidgets/QListWidget>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -28,46 +28,45 @@ class Ui_EditAtomDialog
 public:
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
-    QDialogButtonBox *buttonBox;
-    QListWidget *listWidget;
+    QPushButton *close;
+    QPushButton *apply;
     QLineEdit *lineEdit;
+    QComboBox *comboBox;
 
     void setupUi(QDialog *EditAtomDialog)
     {
         if (EditAtomDialog->objectName().isEmpty())
             EditAtomDialog->setObjectName(QStringLiteral("EditAtomDialog"));
-        EditAtomDialog->resize(640, 480);
+        EditAtomDialog->resize(640, 140);
         gridLayoutWidget = new QWidget(EditAtomDialog);
         gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(10, 10, 621, 461));
+        gridLayoutWidget->setGeometry(QRect(10, 10, 621, 121));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        buttonBox = new QDialogButtonBox(gridLayoutWidget);
-        buttonBox->setObjectName(QStringLiteral("buttonBox"));
-        buttonBox->setOrientation(Qt::Horizontal);
-        buttonBox->setStandardButtons(QDialogButtonBox::Close|QDialogButtonBox::Save);
+        close = new QPushButton(gridLayoutWidget);
+        close->setObjectName(QStringLiteral("close"));
 
-        gridLayout->addWidget(buttonBox, 2, 0, 1, 1);
+        gridLayout->addWidget(close, 2, 0, 1, 1);
 
-        listWidget = new QListWidget(gridLayoutWidget);
-        listWidget->setObjectName(QStringLiteral("listWidget"));
-        listWidget->setResizeMode(QListView::Adjust);
-        listWidget->setGridSize(QSize(0, 30));
-        listWidget->setSortingEnabled(true);
+        apply = new QPushButton(gridLayoutWidget);
+        apply->setObjectName(QStringLiteral("apply"));
 
-        gridLayout->addWidget(listWidget, 0, 0, 1, 1);
+        gridLayout->addWidget(apply, 2, 1, 1, 1);
 
         lineEdit = new QLineEdit(gridLayoutWidget);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
         lineEdit->setMinimumSize(QSize(0, 30));
 
-        gridLayout->addWidget(lineEdit, 1, 0, 1, 1);
+        gridLayout->addWidget(lineEdit, 1, 0, 1, 2);
+
+        comboBox = new QComboBox(gridLayoutWidget);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
+
+        gridLayout->addWidget(comboBox, 0, 0, 1, 2);
 
 
         retranslateUi(EditAtomDialog);
-        QObject::connect(buttonBox, SIGNAL(accepted()), EditAtomDialog, SLOT(accept()));
-        QObject::connect(buttonBox, SIGNAL(rejected()), EditAtomDialog, SLOT(reject()));
 
         QMetaObject::connectSlotsByName(EditAtomDialog);
     } // setupUi
@@ -75,6 +74,8 @@ public:
     void retranslateUi(QDialog *EditAtomDialog)
     {
         EditAtomDialog->setWindowTitle(QApplication::translate("EditAtomDialog", "Dialog", 0));
+        close->setText(QApplication::translate("EditAtomDialog", "Fermer", 0));
+        apply->setText(QApplication::translate("EditAtomDialog", "Appliquer", 0));
     } // retranslateUi
 
 };

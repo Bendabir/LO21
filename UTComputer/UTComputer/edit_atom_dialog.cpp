@@ -1,22 +1,34 @@
 #include "edit_atom_dialog.h"
 #include "ui_edit_atom_dialog.h"
 
-EditAtomDialog::EditAtomDialog(QWidget *parent) :
+#include "literal.h"
+#include "literal_factory.h"
+
+EditAtomDialog::EditAtomDialog(LiteralFactory* f, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::EditAtomDialog)
+    ui(new Ui::EditAtomDialog),
+    factory(f)
 {
     ui->setupUi(this);
 
     this->setWindowTitle("UTComputer - Edition des variables");
-    this->setFixedSize(640, 480);
 
-    ui->listWidget->addItem("X1");
-    ui->listWidget->addItem("Y3");
-    ui->listWidget->addItem("Y2");
-    ui->listWidget->addItem("Z");
+    // On ajoute les atomes
+    for(LiteralFactory::iterator literal = factory->begin(); literal != factory->end(); ++literal)
+        if((*literal).isAtom())
+            ui->comboBox->addItem((*literal).toString(), (*literal).eval());
+
+    QObject::connect(ui->comboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(showAtomContent()));
+    QObject::connect(ui->close, SIGNAL(pressed()), this, SLOT(close()));
+
+    showAtomContent();
 }
 
 EditAtomDialog::~EditAtomDialog()
 {
     delete ui;
+}
+
+void EditAtomDialog::showAtomContent(){
+    ui->lineEdit->setText(ui->comboBox->currentData().toString());
 }

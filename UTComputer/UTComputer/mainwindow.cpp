@@ -8,8 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     Calculator(),
     ui(new Ui::MainWindow),
-    editProgrammDialog(new EditProgrammDialog(this)),
-    editVariablesDialog(new EditAtomDialog(this))
+    editProgrammDialog(new EditProgrammDialog(this))
 {
     ui->setupUi(this);
 
@@ -19,6 +18,14 @@ MainWindow::MainWindow(QWidget *parent) :
     this->settings->loadSettingsFromFile(*(this->stack), this->factory);
     settingsDialog = new SettingsDialog(this->settings ,this); // On ne peut pas le mettre en place avant que les settings soient chargées
     ui->widgetPad->setVisible(this->settings->getDisplayKeyboard());
+
+    // Tests des chaumières
+    Literal& test = this->factory.addLiteral(1, 5);
+    Literal& test2 = this->factory.addLiteral(Number(-2,5), 2);
+    this->factory.addLiteral("X1", &test);
+    this->factory.addLiteral("Y2", &test2);
+
+    editVariablesDialog = new EditAtomDialog(&(this->factory), this);
 
     // Mise en place via Qt Designer
     // On connecte tous les slots et les raccourcis
@@ -142,10 +149,6 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->tableWidget->item(i, 0)->setText((*literal).toString());
         else
             break;
-
-    // Tests des chaumières
-    Literal& test = this->factory.addLiteral(1, 5);
-    this->factory.addLiteral("X1", &test);
 }
 
 MainWindow::~MainWindow()
