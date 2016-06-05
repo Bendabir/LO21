@@ -770,20 +770,7 @@
        </item>
        <item row="0" column="0">
         <layout class="QGridLayout" name="stackButtons">
-         <item row="2" column="0">
-          <widget class="QPushButton" name="lastop">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>LASTOP</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
+         <item row="1" column="2">
           <widget class="QPushButton" name="swap">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -796,7 +783,20 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
+         <item row="3" column="0">
+          <widget class="QPushButton" name="lastop">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>LASTOP</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
           <widget class="QPushButton" name="lastargs">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -809,20 +809,7 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="0" colspan="2">
-          <widget class="QPushButton" name="drop">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>DROP</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
+         <item row="1" column="0">
           <widget class="QPushButton" name="dup">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -835,7 +822,20 @@
            </property>
           </widget>
          </item>
-         <item row="3" column="0">
+         <item row="4" column="2">
+          <widget class="QPushButton" name="redo">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>REDO</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
           <widget class="QPushButton" name="undo">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -848,8 +848,22 @@
            </property>
           </widget>
          </item>
-         <item row="3" column="1">
-          <widget class="QPushButton" name="redo">
+         <item row="2" column="2">
+          <widget class="QPushButton" name="sto">
+           <property name="text">
+            <string>STO</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QPushButton" name="forget">
+           <property name="text">
+            <string>FORGET</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="3">
+          <widget class="QPushButton" name="drop">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -857,7 +871,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>REDO</string>
+            <string>DROP</string>
            </property>
           </widget>
          </item>

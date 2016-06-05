@@ -39,7 +39,7 @@ void LiteralFactory::removeLiteral(Literal& l){
 
 Literal& LiteralFactory::addLiteralFromString(const QString& exp){
     // Si on a une expression
-    if(exp[0] == '\'' && exp[exp.length() - 1] == '\''){
+    if(isExpression(exp)){
         QString expression = exp;
         return addLiteral(expression.replace("'", ""));
     }

@@ -126,16 +126,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     updateSettings();
 
-    Literal& x1 = this->factory.findLiteral("X1");
-
-    qDebug() << x1.toString() << " : " << x1.eval();
-
-    try {
-        qDebug() << (x1 == x1);
-    }
-    catch(const CalculatorException& e){
-        qDebug() << e.what();
-    }
+    qDebug() << isExpression("'1 + 2'") << isProgramm("'1 + 2'");
+    qDebug() << isExpression("[1 2 + SIN]") << isProgramm("[1 2 + SIN]");
 }
 
 MainWindow::~MainWindow()

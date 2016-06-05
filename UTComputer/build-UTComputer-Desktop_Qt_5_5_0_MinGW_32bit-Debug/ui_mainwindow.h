@@ -91,13 +91,15 @@ public:
     QPushButton *num;
     QPushButton *rightParenthesis;
     QGridLayout *stackButtons;
-    QPushButton *lastop;
     QPushButton *swap;
+    QPushButton *lastop;
     QPushButton *lastargs;
-    QPushButton *drop;
     QPushButton *dup;
-    QPushButton *undo;
     QPushButton *redo;
+    QPushButton *undo;
+    QPushButton *sto;
+    QPushButton *forget;
+    QPushButton *drop;
     QWidget *widgetPad;
     QGridLayout *gridLayout;
     QGridLayout *numericPad;
@@ -536,54 +538,64 @@ public:
         stackButtons = new QGridLayout();
         stackButtons->setSpacing(6);
         stackButtons->setObjectName(QStringLiteral("stackButtons"));
-        lastop = new QPushButton(verticalLayoutWidget);
-        lastop->setObjectName(QStringLiteral("lastop"));
-        sizePolicy.setHeightForWidth(lastop->sizePolicy().hasHeightForWidth());
-        lastop->setSizePolicy(sizePolicy);
-
-        stackButtons->addWidget(lastop, 2, 0, 1, 1);
-
         swap = new QPushButton(verticalLayoutWidget);
         swap->setObjectName(QStringLiteral("swap"));
         sizePolicy.setHeightForWidth(swap->sizePolicy().hasHeightForWidth());
         swap->setSizePolicy(sizePolicy);
 
-        stackButtons->addWidget(swap, 0, 1, 1, 1);
+        stackButtons->addWidget(swap, 1, 2, 1, 1);
+
+        lastop = new QPushButton(verticalLayoutWidget);
+        lastop->setObjectName(QStringLiteral("lastop"));
+        sizePolicy.setHeightForWidth(lastop->sizePolicy().hasHeightForWidth());
+        lastop->setSizePolicy(sizePolicy);
+
+        stackButtons->addWidget(lastop, 3, 0, 1, 1);
 
         lastargs = new QPushButton(verticalLayoutWidget);
         lastargs->setObjectName(QStringLiteral("lastargs"));
         sizePolicy.setHeightForWidth(lastargs->sizePolicy().hasHeightForWidth());
         lastargs->setSizePolicy(sizePolicy);
 
-        stackButtons->addWidget(lastargs, 2, 1, 1, 1);
-
-        drop = new QPushButton(verticalLayoutWidget);
-        drop->setObjectName(QStringLiteral("drop"));
-        sizePolicy.setHeightForWidth(drop->sizePolicy().hasHeightForWidth());
-        drop->setSizePolicy(sizePolicy);
-
-        stackButtons->addWidget(drop, 1, 0, 1, 2);
+        stackButtons->addWidget(lastargs, 3, 2, 1, 1);
 
         dup = new QPushButton(verticalLayoutWidget);
         dup->setObjectName(QStringLiteral("dup"));
         sizePolicy.setHeightForWidth(dup->sizePolicy().hasHeightForWidth());
         dup->setSizePolicy(sizePolicy);
 
-        stackButtons->addWidget(dup, 0, 0, 1, 1);
-
-        undo = new QPushButton(verticalLayoutWidget);
-        undo->setObjectName(QStringLiteral("undo"));
-        sizePolicy.setHeightForWidth(undo->sizePolicy().hasHeightForWidth());
-        undo->setSizePolicy(sizePolicy);
-
-        stackButtons->addWidget(undo, 3, 0, 1, 1);
+        stackButtons->addWidget(dup, 1, 0, 1, 1);
 
         redo = new QPushButton(verticalLayoutWidget);
         redo->setObjectName(QStringLiteral("redo"));
         sizePolicy.setHeightForWidth(redo->sizePolicy().hasHeightForWidth());
         redo->setSizePolicy(sizePolicy);
 
-        stackButtons->addWidget(redo, 3, 1, 1, 1);
+        stackButtons->addWidget(redo, 4, 2, 1, 1);
+
+        undo = new QPushButton(verticalLayoutWidget);
+        undo->setObjectName(QStringLiteral("undo"));
+        sizePolicy.setHeightForWidth(undo->sizePolicy().hasHeightForWidth());
+        undo->setSizePolicy(sizePolicy);
+
+        stackButtons->addWidget(undo, 4, 0, 1, 1);
+
+        sto = new QPushButton(verticalLayoutWidget);
+        sto->setObjectName(QStringLiteral("sto"));
+
+        stackButtons->addWidget(sto, 2, 2, 1, 1);
+
+        forget = new QPushButton(verticalLayoutWidget);
+        forget->setObjectName(QStringLiteral("forget"));
+
+        stackButtons->addWidget(forget, 2, 0, 1, 1);
+
+        drop = new QPushButton(verticalLayoutWidget);
+        drop->setObjectName(QStringLiteral("drop"));
+        sizePolicy.setHeightForWidth(drop->sizePolicy().hasHeightForWidth());
+        drop->setSizePolicy(sizePolicy);
+
+        stackButtons->addWidget(drop, 0, 0, 1, 3);
 
 
         gridLayout_10->addLayout(stackButtons, 0, 0, 1, 1);
@@ -877,13 +889,15 @@ public:
         den->setText(QApplication::translate("MainWindow", "DEN", 0));
         num->setText(QApplication::translate("MainWindow", "NUM", 0));
         rightParenthesis->setText(QApplication::translate("MainWindow", ")", 0));
-        lastop->setText(QApplication::translate("MainWindow", "LASTOP", 0));
         swap->setText(QApplication::translate("MainWindow", "SWAP", 0));
+        lastop->setText(QApplication::translate("MainWindow", "LASTOP", 0));
         lastargs->setText(QApplication::translate("MainWindow", "LASTARGS", 0));
-        drop->setText(QApplication::translate("MainWindow", "DROP", 0));
         dup->setText(QApplication::translate("MainWindow", "DUP", 0));
-        undo->setText(QApplication::translate("MainWindow", "UNDO", 0));
         redo->setText(QApplication::translate("MainWindow", "REDO", 0));
+        undo->setText(QApplication::translate("MainWindow", "UNDO", 0));
+        sto->setText(QApplication::translate("MainWindow", "STO", 0));
+        forget->setText(QApplication::translate("MainWindow", "FORGET", 0));
+        drop->setText(QApplication::translate("MainWindow", "DROP", 0));
         neg->setText(QApplication::translate("MainWindow", "NEG", 0));
         b5->setText(QApplication::translate("MainWindow", "5", 0));
         b0->setText(QApplication::translate("MainWindow", "0", 0));

@@ -333,6 +333,8 @@ bool isVariable(const QString& str);
  * \param Opérateur dont l'on souhaite connaitre la priorité
  * \return Priorité de l'opérateur
  */
+bool isExpression(const QString& str);
+bool isProgramm(const QString& str);
 int getPriority(const QString& o);
 
 #endif // LITERAL_H

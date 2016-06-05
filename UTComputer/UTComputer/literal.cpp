@@ -143,6 +143,14 @@ bool isVariable(const QString& str){
     return regex.indexIn(var) != -1; // On vérifie que l'on a trouvé un identifieur de variable
 }
 
+bool isExpression(const QString& str){
+    return str[0] == '\'' && str[str.length() - 1] == '\'';
+}
+
+bool isProgramm(const QString& str){
+    return str[0] == '[' && str[str.length() - 1] == ']';
+}
+
 int getPriority(const QString& o){
     QMap<QString, int> priorities;
     priorities["+"] = 5;
