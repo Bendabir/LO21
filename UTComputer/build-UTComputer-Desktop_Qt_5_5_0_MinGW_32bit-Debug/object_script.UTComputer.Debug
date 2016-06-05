@@ -15,7 +15,6 @@ INPUT(
 ./debug\edit_atom_dialog.o
 ./debug\edit_programm_dialog.o
 ./debug\settings_dialog.o
-./debug\programm_literal.o
 ./debug\moc_mainwindow.o
 ./debug\moc_edit_atom_dialog.o
 ./debug\moc_edit_programm_dialog.o

@@ -125,6 +125,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->setSelectionMode(QTableWidget::NoSelection);
 
     updateSettings();
+
+    Literal& x1 = this->factory.findLiteral("X1");
+
+    qDebug() << x1.toString() << " : " << x1.eval();
+
+    try {
+        qDebug() << (x1 == x1);
+    }
+    catch(const CalculatorException& e){
+        qDebug() << e.what();
+    }
 }
 
 MainWindow::~MainWindow()
