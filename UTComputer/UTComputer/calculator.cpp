@@ -107,7 +107,7 @@ void Calculator::command(const QString& c) {
             };
         }
         //si c'est un programme
-        if (isProgramm(c))
+        if (isProgramm()) // pourquoi il ne le trouve pas?
         {
             int Arity = getArity(c);
             if (Arity == 2)
@@ -228,12 +228,6 @@ void Calculator::command(const QString& c) {
                 }
             }
         }
-
-        //si c'est un atom
-     /* if (isAtom(c))
-        {
-
-        }*/
         if (isOperator(c))
         {
             int Arity = getArity(c);
