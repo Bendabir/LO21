@@ -24,6 +24,10 @@ private:
 private slots:
     void showAtomContent();
     void updateVariablesList();
+    void improvedShow();
+
+signals:
+    void isShown();
 };
 
 #endif // EDIT_ATOM_DIALOG_H
