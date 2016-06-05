@@ -358,14 +358,153 @@ bool AtomLiteral::operator==(const Literal& l) const {
         }
     }
 }
-bool AtomLiteral::operator!=(const Literal& l) const {return false;}
-bool AtomLiteral::operator>=(const Literal& l) const {return false;}
-bool AtomLiteral::operator>(const Literal& l) const {return false;}
-bool AtomLiteral::operator<=(const Literal& l) const {return false;}
-bool AtomLiteral::operator<(const Literal& l) const {return false;}
-bool AtomLiteral::operator&&(const Literal& l) const {return false;}
-bool AtomLiteral::operator||(const Literal& l) const {return false;}
-bool AtomLiteral::operator!() const {return !*target;}
+bool AtomLiteral::operator!=(const Literal& l) const {
+    try{
+        return !(*this == l);
+    }
+    catch(const CalculatorException& e){
+        throw e;
+    }
+}
+bool AtomLiteral::operator>=(const Literal& l) const {
+    // Si l'argument est un atome, on teste entre les valeurs pointée, sinon on fait un test basique
+    if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        try {
+            return getTarget() >= literal.getTarget();
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+    else{
+        try{
+            return getTarget() >= l;
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+}
+bool AtomLiteral::operator>(const Literal& l) const {
+    // Si l'argument est un atome, on teste entre les valeurs pointée, sinon on fait un test basique
+    if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        try {
+            return getTarget() > literal.getTarget();
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+    else{
+        try{
+            return getTarget() > l;
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+}
+
+bool AtomLiteral::operator<=(const Literal& l) const {
+    // Si l'argument est un atome, on teste entre les valeurs pointée, sinon on fait un test basique
+    if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        try {
+            return getTarget() <= literal.getTarget();
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+    else{
+        try{
+            return getTarget() <= l;
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+}
+
+bool AtomLiteral::operator<(const Literal& l) const {
+    // Si l'argument est un atome, on teste entre les valeurs pointée, sinon on fait un test basique
+    if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        try {
+            return getTarget() < literal.getTarget();
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+    else{
+        try{
+            return getTarget() < l;
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+}
+
+bool AtomLiteral::operator&&(const Literal& l) const {
+    // Si l'argument est un atome, on teste entre les valeurs pointée, sinon on fait un test basique
+    if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        try {
+            return getTarget() && literal.getTarget();
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+    else{
+        try{
+            return getTarget() && l;
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+}
+
+bool AtomLiteral::operator||(const Literal& l) const {
+    // Si l'argument est un atome, on teste entre les valeurs pointée, sinon on fait un test basique
+    if(l.isAtom()){
+        const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
+
+        try {
+            return getTarget() || literal.getTarget();
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+    else{
+        try{
+            return getTarget() || l;
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+}
+
+bool AtomLiteral::operator!() const {
+    try {
+        return !getTarget();
+    }
+    catch(const CalculatorException& e){
+        throw e;
+    }
+}
 
 QString AtomLiteral::eval() const {
     // On retourne la valeur de la variable pointée sous forme de chaine de caractères
