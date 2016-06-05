@@ -36,6 +36,7 @@ public:
      * \return Littérale pointée
      */
     Literal& getTarget(bool allSons = true) const;
+    void setTarget(Literal& l){target = &l;}
 
     // Pour savoir ce que l'on traite
     bool isInteger() const;

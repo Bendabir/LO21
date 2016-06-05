@@ -1,7 +1,8 @@
+#include <QDebug>
+
 #include "edit_atom_dialog.h"
 #include "ui_edit_atom_dialog.h"
-
-#include "literal.h"
+#include "atom_literal.h"
 #include "literal_factory.h"
 
 EditAtomDialog::EditAtomDialog(LiteralFactory* f, QWidget *parent) :
@@ -14,7 +15,9 @@ EditAtomDialog::EditAtomDialog(LiteralFactory* f, QWidget *parent) :
     this->setWindowTitle("UTComputer - Edition des variables");
 
     QObject::connect(this, SIGNAL(isShown()), this, SLOT(updateVariablesList()));
+    QObject::connect(ui->apply, SIGNAL(pressed()), this, SLOT(editVariable()));
 
+    ui->errorLine->setText("Pas de message pour le moment.");
     updateVariablesList();
 }
 
@@ -47,4 +50,26 @@ void EditAtomDialog::improvedShow(){
     // Permet de savoir quand la fenêtre est ouverte, utile pour mettre à jour l'affichage à chaque ouverture.
     show();
     emit isShown();
+}
+
+void EditAtomDialog::editVariable(){
+    // On va mettre à jour la variable
+    QString content = ui->lineEdit->text();
+
+    // On essaye de mettre à jour
+    try {
+        AtomLiteral& atom = dynamic_cast<AtomLiteral&>(factory->findLiteral(ui->comboBox->currentText()));
+        Literal& literal = factory->addLiteralFromString(content);
+
+        // On remplace la cible puis on supprime l'ancienne
+        atom.setTarget(literal);
+
+        factory->removeLiteral(atom.getTarget());
+
+        ui->errorLine->setText("Pas de message pour le moment.");
+    }
+    catch(const CalculatorException& e){
+        ui->lineEdit->setText(factory->findLiteral(ui->comboBox->currentText()).eval());
+        ui->errorLine->setText(e.what());
+    }
 }

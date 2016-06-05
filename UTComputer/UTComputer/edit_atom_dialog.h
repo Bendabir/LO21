@@ -25,6 +25,7 @@ private slots:
     void showAtomContent();
     void updateVariablesList();
     void improvedShow();
+    void editVariable();
 
 signals:
     void isShown();

@@ -19,6 +19,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -28,42 +29,66 @@ class Ui_EditAtomDialog
 public:
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
+    QSpacerItem *horizontalSpacer;
     QPushButton *close;
     QPushButton *apply;
+    QSpacerItem *horizontalSpacer_2;
     QLineEdit *lineEdit;
     QComboBox *comboBox;
+    QLineEdit *errorLine;
 
     void setupUi(QDialog *EditAtomDialog)
     {
         if (EditAtomDialog->objectName().isEmpty())
             EditAtomDialog->setObjectName(QStringLiteral("EditAtomDialog"));
-        EditAtomDialog->resize(640, 140);
+        EditAtomDialog->resize(640, 190);
         gridLayoutWidget = new QWidget(EditAtomDialog);
         gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(10, 10, 621, 121));
+        gridLayoutWidget->setGeometry(QRect(10, 10, 621, 171));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer, 3, 0, 1, 1);
+
         close = new QPushButton(gridLayoutWidget);
         close->setObjectName(QStringLiteral("close"));
 
-        gridLayout->addWidget(close, 2, 0, 1, 1);
+        gridLayout->addWidget(close, 3, 1, 1, 1);
 
         apply = new QPushButton(gridLayoutWidget);
         apply->setObjectName(QStringLiteral("apply"));
 
-        gridLayout->addWidget(apply, 2, 1, 1, 1);
+        gridLayout->addWidget(apply, 3, 2, 1, 1);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_2, 3, 3, 1, 1);
 
         lineEdit = new QLineEdit(gridLayoutWidget);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
         lineEdit->setMinimumSize(QSize(0, 30));
 
-        gridLayout->addWidget(lineEdit, 1, 0, 1, 2);
+        gridLayout->addWidget(lineEdit, 2, 0, 1, 4);
 
         comboBox = new QComboBox(gridLayoutWidget);
         comboBox->setObjectName(QStringLiteral("comboBox"));
+        comboBox->setMinimumSize(QSize(0, 30));
 
-        gridLayout->addWidget(comboBox, 0, 0, 1, 2);
+        gridLayout->addWidget(comboBox, 1, 0, 1, 4);
+
+        errorLine = new QLineEdit(gridLayoutWidget);
+        errorLine->setObjectName(QStringLiteral("errorLine"));
+        errorLine->setMinimumSize(QSize(0, 30));
+        QFont font;
+        font.setBold(true);
+        font.setItalic(false);
+        font.setWeight(75);
+        errorLine->setFont(font);
+        errorLine->setReadOnly(true);
+
+        gridLayout->addWidget(errorLine, 0, 0, 1, 4);
 
 
         retranslateUi(EditAtomDialog);
