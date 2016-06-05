@@ -5,8 +5,6 @@ Number::Number(double num, double den) : numerator(num), denominator(den){
     simplify();
 }
 
-//Number::Number(bool value) : numerator(value ? 1 : 0), denominator(1){}
-
 void Number::simplify(){
     // Si on a des nombres à virgule, on convertit en rapport entier
     double numeratorWholePart,
@@ -30,8 +28,10 @@ void Number::simplify(){
             return;
         }
 
-        if(denominator == 0)
-            throw CalculatorException("Erreur : Un dénominateur ne peut pas être nul.");
+        if(denominator == 0){
+            denominator = 1;
+            return;
+        }
 
         int a = numerator,
             b = denominator;

@@ -13,15 +13,7 @@ EditAtomDialog::EditAtomDialog(LiteralFactory* f, QWidget *parent) :
 
     this->setWindowTitle("UTComputer - Edition des variables");
 
-    // On ajoute les atomes
-    for(LiteralFactory::iterator literal = factory->begin(); literal != factory->end(); ++literal)
-        if((*literal).isAtom())
-            ui->comboBox->addItem((*literal).toString(), (*literal).eval());
-
-    QObject::connect(ui->comboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(showAtomContent()));
-    QObject::connect(ui->close, SIGNAL(pressed()), this, SLOT(close()));
-
-    showAtomContent();
+    updateVariablesList();
 }
 
 EditAtomDialog::~EditAtomDialog()
@@ -31,4 +23,16 @@ EditAtomDialog::~EditAtomDialog()
 
 void EditAtomDialog::showAtomContent(){
     ui->lineEdit->setText(ui->comboBox->currentData().toString());
+}
+
+void EditAtomDialog::updateVariablesList(){
+    // On ajoute les atomes
+    for(LiteralFactory::iterator literal = factory->begin(); literal != factory->end(); ++literal)
+        if((*literal).isAtom())
+            ui->comboBox->addItem((*literal).toString(), (*literal).eval());
+
+    QObject::connect(ui->comboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(showAtomContent()));
+    QObject::connect(ui->close, SIGNAL(pressed()), this, SLOT(close()));
+
+    showAtomContent();
 }

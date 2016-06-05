@@ -23,6 +23,7 @@ private:
 
 private slots:
     void showAtomContent();
+    void updateVariablesList();
 };
 
 #endif // EDIT_ATOM_DIALOG_H

@@ -49,6 +49,7 @@ public:
      */
     void removeLiteral(Literal& l);
     Literal& addLiteralFromString(const QString& exp);
+    Literal& findLiteral(const QString& literal);
 
     /*!
      * \brief Renvoie le nombre de littérales créées (et toujours existantes) de la factory

@@ -28,13 +28,35 @@ bool isNumber(const QString& str){
 }
 
 bool isComplex(const QString& str){
-    if(str.indexOf("$") != -1)
+    if(str.indexOf("$") == -1)
+        return false;
+
+    QStringList parts = str.split("$");
+
+    if(parts.length() > 2)
+        return false;
+
+    QString re = parts[0],
+            im = parts[1];
+
+    if((isRational(re) || isNumber(re)) && (isRational(im) || isNumber(im)))
         return true;
     return false;
 }
 
 bool isRational(const QString& str){
-    if(str.indexOf("/") != -1)
+    if(str.indexOf("/") == -1)
+        return false;
+
+    QStringList parts = str.split("/");
+
+    if(parts.length() > 2)
+        return false;
+
+    QString num = parts[0],
+            den = parts[1];
+
+    if(isNumber(num) && isNumber(den))
         return true;
     return false;
 }

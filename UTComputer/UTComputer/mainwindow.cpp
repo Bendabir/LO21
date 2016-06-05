@@ -12,28 +12,31 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // Paramètres de l'application
+    this->setWindowTitle("UTComputer");
     this->setFixedSize(1020, 610);
 
-    // On charge les options
-    this->settings->loadSettingsFromFile(*(this->stack), this->factory);
-    settingsDialog = new SettingsDialog(this->settings ,this); // On ne peut pas le mettre en place avant que les settings soient chargées
-    ui->widgetPad->setVisible(this->settings->getDisplayKeyboard());
+    // On donne le focus dans la ligne de commandes
+    ui->commandInput->setFocus();
+    ui->errorInput->setText("Aucun message pour le moment.");
 
-    // Tests des chaumières
-    Literal& test = this->factory.addLiteral(1, 5);
-    Literal& test2 = this->factory.addLiteral(Number(-2,5), 2);
-    this->factory.addLiteral("X1", &test);
-    this->factory.addLiteral("Y2", &test2);
+    // On charge les options
+    try{
+        this->settings->loadSettingsFromFile(*(this->stack), this->factory);
+    }
+    catch(const CalculatorException& e){
+        setUserMessage(e.what());
+    }
+
+    settingsDialog = new SettingsDialog(this->settings ,this); // On ne peut pas le mettre en place avant que les settings soient chargées
 
     editVariablesDialog = new EditAtomDialog(&(this->factory), this);
 
     // Mise en place via Qt Designer
     // On connecte tous les slots et les raccourcis
 
-    // Quitte l'application
+    // Afficher l'édition des programmes/variables, etc.
     QObject::connect(ui->actionQuitter, SIGNAL(triggered(bool)), this, SLOT(close()));
-
-    // Afficher l'édition des programmes/variables
     QObject::connect(ui->actionEdition_des_programmes, SIGNAL(triggered(bool)), editProgrammDialog, SLOT(show()));
     QObject::connect(ui->actionEdition_des_variables, SIGNAL(triggered(bool)), editVariablesDialog, SLOT(show()));
     QObject::connect(ui->actionOptions, SIGNAL(triggered(bool)), settingsDialog, SLOT(show()));
@@ -52,7 +55,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->dot, SIGNAL(pressed()), this, SLOT(onDotPressed()));
     QObject::connect(ui->backspace, SIGNAL(pressed()), this, SLOT(onBackspacePressed()));
     QObject::connect(ui->clear, SIGNAL(pressed()), this, SLOT(onClearPressed()));
-
     QObject::connect(ui->dup, SIGNAL(pressed()), this, SLOT(onDupPressed()));
     QObject::connect(ui->swap, SIGNAL(pressed()), this, SLOT(onSwapPressed()));
     QObject::connect(ui->drop, SIGNAL(pressed()), this, SLOT(onDropPressed()));
@@ -106,47 +108,23 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->leftParenthesis, SIGNAL(pressed()), this, SLOT(onLeftParenthesisPressed()));
     QObject::connect(ui->rightParenthesis, SIGNAL(pressed()), this, SLOT(onRightParenthesisPressed()));
 
+    // La gestion du controleur etc.
     QObject::connect(ui->commandInput, SIGNAL(returnPressed()), this, SLOT(appendLiteralInStack()));
     QObject::connect(ui->actionSauvegarder, SIGNAL(triggered(bool)), this, SLOT(save()));
     QObject::connect(settingsDialog, SIGNAL(settingsChanged()), this, SLOT(updateSettings()));
-
-    // On donne le focus dans la ligne de commandes
-    ui->commandInput->setFocus();
-    ui->errorInput->setText("Aucun message pour le moment.");
 
     // Raccourcis
     ui->actionQuitter->setShortcut(QKeySequence::Quit);
     ui->actionAnnuler->setShortcut(QKeySequence::Undo);
     ui->actionR_tablir->setShortcut(QKeySequence::Redo);
     ui->actionSauvegarder->setShortcut(QKeySequence::Save);
-    ui->actionCharger->setShortcut(QKeySequence::Open);
 
-    // Paramètres de l'application
-    this->setWindowTitle("UTComputer");
-    this->setWindowIcon(QIcon(QCoreApplication::applicationDirPath() + "/icon.png"));
-
-    ui->tableWidget->setRowCount(this->settings->getNbLiteralsOnStack());
     ui->tableWidget->horizontalHeader()->setVisible(false);
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->setSelectionMode(QTableWidget::NoSelection);
 
-    // Petit test des chaumières pour l'affichage
-    // On déclare ce dont on a besoin
-    // On va bricoler les labels
-    QStringList labels;
-    for(int i = 0; i < ui->tableWidget->rowCount(); i++){
-        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(""));
-        QString label = QString::number(ui->tableWidget->rowCount() - i);
-        labels << label;
-    }
-    ui->tableWidget->setVerticalHeaderLabels(labels);
-
-    int i = ui->tableWidget->rowCount() - 1;
-    for(Stack::reverse_iterator literal = this->stack->rbegin(); literal != this->stack->rend(); ++literal, i--)
-        if(i >= 0)
-            ui->tableWidget->item(i, 0)->setText((*literal).toString());
-        else
-            break;
+    updateSettings();
 }
 
 MainWindow::~MainWindow()

@@ -1,3 +1,5 @@
+#include <QDebug>
+
 #include "literal_factory.h"
 #include "complex_literal.h"
 #include "expression_literal.h"
@@ -11,13 +13,23 @@ Literal& LiteralFactory::addLiteral(const Number& re, const Number& im){
 }
 
 Literal& LiteralFactory::addLiteral(const QString& expression){
-    literals.append(new ExpressionLiteral(this, expression)); // On extrait la chaine expression
-    return *literals.last();
+    try {
+        literals.append(new ExpressionLiteral(this, expression)); // On extrait la chaine expression
+        return *literals.last();
+    }
+    catch(const CalculatorException& e){
+        throw e;
+    }
 }
 
 Literal& LiteralFactory::addLiteral(const QString& atom, Literal* target){
-    literals.append(new AtomLiteral(this, atom, target));
-    return *literals.last();
+    try {
+        literals.append(new AtomLiteral(this, atom, target));
+        return *literals.last();
+    }
+    catch(const CalculatorException& e){
+        throw e;
+    }
 }
 
 void LiteralFactory::removeLiteral(Literal& l){
@@ -26,19 +38,25 @@ void LiteralFactory::removeLiteral(Literal& l){
 }
 
 Literal& LiteralFactory::addLiteralFromString(const QString& exp){
-    // On cherche à savoir ce que l'on traite
-    if(*exp.begin() == '\'' && *exp.end() == '\''){
+    // Si on a une expression
+    if(exp[0] == '\'' && exp[exp.length() - 1] == '\''){
         QString expression = exp;
         return addLiteral(expression.replace("'", ""));
     }
-//    else if(*exp.begin() == '[' && *exp.end() == ']'){
+    // Sinon, on regarde si c'est un entier
+    else if(isNumber(exp)){
+        return addLiteral(exp.toDouble());
+    }
+    // Sinon, si c'est un rationnel
+    else if(isRational(exp)){
+        QStringList parts = exp.split("/");
+        double num = parts[0].toDouble(),
+               den = parts[1].toDouble();
 
-//    }
-    else if(exp.indexOf("$") != -1){
+        return addLiteral(Number(num, den));
+    }
+    else if(isComplex(exp)){
         QStringList parts = exp.split("$");
-
-        if(parts.length() > 2)
-            throw CalculatorException("Erreur : Impossibler de générer une littérale à partir de la chaine \"" + exp + "\".");
 
         try{
             ComplexLiteral& re = dynamic_cast<ComplexLiteral&>(addLiteralFromString(parts[0]));
@@ -55,20 +73,16 @@ Literal& LiteralFactory::addLiteralFromString(const QString& exp){
             throw e;
         }
     }
-    else if(exp.indexOf("$") == -1 && exp.indexOf("/") != -1){
-        QStringList parts = exp.split("/");
-
-        if(parts.length() > 2)
-            throw CalculatorException("Erreur : Impossibler de générer une littérale à partir de la chaine \"" + exp + "\".");
-
-        return addLiteral(Number(parts[0].toDouble(), parts[1].toDouble()));
-
-    }
-    else if(isNumber(exp)){
-        return addLiteral(exp.toDouble());
-    }
     else
         throw CalculatorException("Erreur : Impossibler de générer une littérale à partir de la chaine \"" + exp + "\".");
+}
+
+Literal& LiteralFactory::findLiteral(const QString& literal){
+    for(LiteralFactory::iterator l = begin(); l != end(); ++l)
+        if((*l).toString() == literal)
+            return *l;
+
+    throw CalculatorException("Erreur : Impossible de trouver la littérale " + literal + " .");
 }
 
 bool LiteralFactory::existsAtom(const QString& atom) const {
