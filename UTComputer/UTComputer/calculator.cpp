@@ -94,7 +94,7 @@ unsigned int getArity(const QString &c){
 void Calculator::command(const QString& c) {
     //cas ou on a juste a ajouter la litterale a la pile: complexe/rationnelle//reelle/entier
     if (isNumber(c) || isComplex(c))
-        stack->push(factory.addLiteral(c));
+        stack->push(factory.addLiteralFromString(c)); //on ajoute a la pile en creer une nouvelle literale à partir de la chaine de caractère passé en paramètre
 
     else {
         if (isExpression(c))//si c'est une expression (c a d avec les ' ')
@@ -107,10 +107,10 @@ void Calculator::command(const QString& c) {
             };
         }
         //si c'est un programme
-        if (isProgramm()) // pourquoi il ne le trouve pas?
+        if (isProgramm()) // pourquoi il ne trouve pas la fonction?
         {
             int Arity = getArity(c);
-            if (Arity == 2)
+            if (Arity == 2) //quand l'arité du programme est de deux
             {
                 factory.removeLiteral(stack->top());//on recupere la premire opérande dans l1
                 Literal& l1 = stack->pop();
@@ -131,10 +131,10 @@ void Calculator::command(const QString& c) {
                     stack->push(res);
                 }
             }
-            if (Arity == 1)
+            if (Arity == 1)//quand le programme a une arité de 1
             {
-                factory.removeLiteral(stack->top());//on recupere la premire opérande dans l1
-                Literal& l1 = stack->pop();
+                factory.removeLiteral(stack->top());//on supprime de la factory la reference du top de la pile
+                Literal& l1 = stack->pop(); //on recupere la premire opérande dans l1
 
                 if (c == "SIN")
                 {
@@ -188,7 +188,7 @@ void Calculator::command(const QString& c) {
                 }
                 if (c == "DEN")
                 {
-                    try {
+                    try { // on test qu'il n'y a pas de probleme avec le dénominateur
                         Literal& res = l1.den();
                         stack->push(res);
                     }
@@ -203,7 +203,7 @@ void Calculator::command(const QString& c) {
                 }
                 if (c == "IM")
                 {
-                    try {
+                    try { //on test qu'il n'y a pas de probleme avec la partie imaginaire
                         Literal& res = l1.im();
                         stack->push(res);
                     }
@@ -230,14 +230,15 @@ void Calculator::command(const QString& c) {
         }
         if (isOperator(c))
         {
-            int Arity = getArity(c);
-            if(Arity==2)
-            {
-                factory.removeLiteral(stack->top());//on recupere la premire opérande dans l1
-                Literal& l1 = stack->pop();
+            int Arity = getArity(c); //on récupère l'arité de l'opérande
 
-                factory.removeLiteral(stack->top());//on recupere la deuxieme opérande dans l2
-                Literal& l2 = stack->pop();
+            if(Arity==2) //si l'arité vaut 2
+            {
+                factory.removeLiteral(stack->top()); //on retire de la factory la reférence sur le top de la pile
+                Literal& l1 = stack->pop();//on recupere la premire opérande dans l1
+
+                factory.removeLiteral(stack->top()); //on retire de la factory la reférence sur le top de la pile
+                Literal& l2 = stack->pop();//on recupere la deuxieme opérande dans l2
 
              //les operateurs arithmétiques basiques
                 if (c == "+")
@@ -397,10 +398,10 @@ void Calculator::command(const QString& c) {
             }
 
 
-            if (Arity==1)
+            if (Arity==1) //si l'arité vaut 1
             {
-                factory.removeLiteral(stack->top());//on recupere la premire opérande dans l1
-                Literal& l1 = stack->pop();
+                factory.removeLiteral(stack->top()); //on retire de la factory la reférence sur le top de la pile
+                Literal& l1 = stack->pop();//on recupere la premire opérande dans l1
                 if (c == "NOT")
                 {
                     try {
