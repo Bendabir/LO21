@@ -82,9 +82,9 @@ public:
         errorLine->setObjectName(QStringLiteral("errorLine"));
         errorLine->setMinimumSize(QSize(0, 30));
         QFont font;
-        font.setBold(true);
+        font.setBold(false);
         font.setItalic(false);
-        font.setWeight(75);
+        font.setWeight(50);
         errorLine->setFont(font);
         errorLine->setReadOnly(true);
 

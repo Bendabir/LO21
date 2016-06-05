@@ -15,10 +15,12 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
-#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPlainTextEdit>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -28,9 +30,13 @@ class Ui_EditProgrammDialog
 public:
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
+    QPushButton *close;
+    QSpacerItem *horizontalSpacer;
+    QPushButton *apply;
+    QSpacerItem *horizontalSpacer_2;
     QPlainTextEdit *plainTextEdit;
-    QDialogButtonBox *buttonBox;
     QComboBox *comboBox;
+    QLineEdit *errorLine;
 
     void setupUi(QDialog *EditProgrammDialog)
     {
@@ -46,27 +52,44 @@ public:
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
+        close = new QPushButton(gridLayoutWidget);
+        close->setObjectName(QStringLiteral("close"));
+
+        gridLayout->addWidget(close, 3, 1, 1, 1);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer, 3, 0, 1, 1);
+
+        apply = new QPushButton(gridLayoutWidget);
+        apply->setObjectName(QStringLiteral("apply"));
+
+        gridLayout->addWidget(apply, 3, 2, 1, 1);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_2, 3, 3, 1, 1);
+
         plainTextEdit = new QPlainTextEdit(gridLayoutWidget);
         plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
 
-        gridLayout->addWidget(plainTextEdit, 1, 0, 1, 1);
-
-        buttonBox = new QDialogButtonBox(gridLayoutWidget);
-        buttonBox->setObjectName(QStringLiteral("buttonBox"));
-        buttonBox->setOrientation(Qt::Horizontal);
-        buttonBox->setStandardButtons(QDialogButtonBox::Close|QDialogButtonBox::Save);
-
-        gridLayout->addWidget(buttonBox, 2, 0, 1, 1);
+        gridLayout->addWidget(plainTextEdit, 2, 0, 1, 4);
 
         comboBox = new QComboBox(gridLayoutWidget);
         comboBox->setObjectName(QStringLiteral("comboBox"));
+        comboBox->setMinimumSize(QSize(0, 30));
 
-        gridLayout->addWidget(comboBox, 0, 0, 1, 1);
+        gridLayout->addWidget(comboBox, 1, 0, 1, 4);
+
+        errorLine = new QLineEdit(gridLayoutWidget);
+        errorLine->setObjectName(QStringLiteral("errorLine"));
+        errorLine->setMinimumSize(QSize(0, 30));
+        errorLine->setReadOnly(true);
+
+        gridLayout->addWidget(errorLine, 0, 0, 1, 4);
 
 
         retranslateUi(EditProgrammDialog);
-        QObject::connect(buttonBox, SIGNAL(accepted()), EditProgrammDialog, SLOT(accept()));
-        QObject::connect(buttonBox, SIGNAL(rejected()), EditProgrammDialog, SLOT(reject()));
 
         QMetaObject::connectSlotsByName(EditProgrammDialog);
     } // setupUi
@@ -74,6 +97,8 @@ public:
     void retranslateUi(QDialog *EditProgrammDialog)
     {
         EditProgrammDialog->setWindowTitle(QApplication::translate("EditProgrammDialog", "Dialog", 0));
+        close->setText(QApplication::translate("EditProgrammDialog", "Fermer", 0));
+        apply->setText(QApplication::translate("EditProgrammDialog", "Appliquer", 0));
         comboBox->setCurrentText(QString());
     } // retranslateUi
 

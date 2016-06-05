@@ -8,7 +8,10 @@ EditProgrammDialog::EditProgrammDialog(QWidget *parent) :
     ui->setupUi(this);
 
     this->setWindowTitle("UTComputer - Edition des programmes");
-    this->setFixedSize(640, 480);
+    ui->errorLine->setText("Aucun message pour le moment.");
+
+    // On connecte les slots
+    QObject::connect(ui->close, SIGNAL(pressed()), this, SLOT(close()));
 
     // Juste pour du test
     QStringList programms;

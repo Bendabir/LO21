@@ -442,7 +442,7 @@ bool ComplexLiteral::operator==(const Literal& l) const {
         // z = z' <=> {|z| = |z'| ET arg(z) = arg(z')[2PI]}
         const ComplexLiteral& literal = dynamic_cast<const ComplexLiteral&>(l);
 
-        return (complexNorm() == literal.complexNorm()) && (complexArg().mod(2 * M_PI) == (literal.complexArg().mod(2 * M_PI)));
+        return (complexNorm() == literal.complexNorm()) && (complexArg() == (literal.complexArg()));
     }
     // Si on a une expression litérale, on fait une conversion et on compare
     else if(l.isExpression()){

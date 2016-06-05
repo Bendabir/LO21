@@ -16,8 +16,10 @@ EditAtomDialog::EditAtomDialog(LiteralFactory* f, QWidget *parent) :
 
     QObject::connect(this, SIGNAL(isShown()), this, SLOT(updateVariablesList()));
     QObject::connect(ui->apply, SIGNAL(pressed()), this, SLOT(editVariable()));
+    QObject::connect(ui->comboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(showAtomContent()));
+    QObject::connect(ui->close, SIGNAL(pressed()), this, SLOT(close()));
 
-    ui->errorLine->setText("Pas de message pour le moment.");
+    ui->errorLine->setText("Aucun message pour le moment.");
     updateVariablesList();
 }
 
@@ -37,11 +39,12 @@ void EditAtomDialog::updateVariablesList(){
 
     // On ajoute les atomes
     for(LiteralFactory::iterator literal = factory->begin(); literal != factory->end(); ++literal)
-        if((*literal).isAtom())
-            ui->comboBox->addItem((*literal).toString(), (*literal).eval());
+        if((*literal).isAtom()){
+            AtomLiteral& atom = dynamic_cast<AtomLiteral&>(*literal);
 
-    QObject::connect(ui->comboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(showAtomContent()));
-    QObject::connect(ui->close, SIGNAL(pressed()), this, SLOT(close()));
+            if(!atom.getTarget().isProgramm())
+                ui->comboBox->addItem((*literal).toString(), (*literal).eval());
+        }
 
     showAtomContent();
 }
@@ -66,7 +69,11 @@ void EditAtomDialog::editVariable(){
 
         factory->removeLiteral(atom.getTarget());
 
-        ui->errorLine->setText("Pas de message pour le moment.");
+        ui->errorLine->setText("Aucun message pour le moment.");
+
+        int index = ui->comboBox->currentIndex();
+        updateVariablesList();
+        ui->comboBox->setCurrentIndex(index);
     }
     catch(const CalculatorException& e){
         ui->lineEdit->setText(factory->findLiteral(ui->comboBox->currentText()).eval());
