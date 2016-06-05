@@ -19,7 +19,8 @@ HEADERS += \
     settings.h \
     edit_atom_dialog.h \
     edit_programm_dialog.h \
-    settings_dialog.h
+    settings_dialog.h \
+    programm_literal.h
 
 SOURCES += \
     calculator_exception.cpp \
@@ -37,7 +38,8 @@ SOURCES += \
     settings.cpp \
     edit_atom_dialog.cpp \
     edit_programm_dialog.cpp \
-    settings_dialog.cpp
+    settings_dialog.cpp \
+    programm_literal.cpp
 
 FORMS += \
     mainwindow.ui \

@@ -15,6 +15,7 @@ INPUT(
 ./release\edit_atom_dialog.o
 ./release\edit_programm_dialog.o
 ./release\settings_dialog.o
+./release\programm_literal.o
 ./release\moc_mainwindow.o
 ./release\moc_edit_atom_dialog.o
 ./release\moc_edit_programm_dialog.o

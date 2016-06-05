@@ -4,6 +4,7 @@
 #include "complex_literal.h"
 #include "expression_literal.h"
 #include "atom_literal.h"
+#include "programm_literal.h"
 
 LiteralFactory::LiteralFactory() : literals(QVector<Literal*>()){}
 
@@ -14,7 +15,12 @@ Literal& LiteralFactory::addLiteral(const Number& re, const Number& im){
 
 Literal& LiteralFactory::addLiteral(const QString& expression){
     try {
-        literals.append(new ExpressionLiteral(this, expression)); // On extrait la chaine expression
+        // Si pas de crochet, c'est une expression
+        if(expression[0] == '[' && expression[expression.length() - 1] == ']')
+            literals.append(new ProgrammLiteral(this, QString(expression).mid(1, expression.length() - 2)));
+        else
+            literals.append(new ExpressionLiteral(this, expression)); // On extrait la chaine expression
+
         return *literals.last();
     }
     catch(const CalculatorException& e){
@@ -42,6 +48,15 @@ Literal& LiteralFactory::addLiteralFromString(const QString& exp){
     if(exp[0] == '\'' && exp[exp.length() - 1] == '\''){
         QString expression = exp;
         return addLiteral(expression.replace("'", ""));
+    }
+    // Si on a un programme
+    else if(exp[0] == '[' && exp[exp.length() - 1] == ']'){
+        try {
+            return addLiteral(exp.mid(1, exp.length() - 2));
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
     }
     // Sinon, on regarde si c'est un entier
     else if(isNumber(exp)){

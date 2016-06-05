@@ -303,12 +303,22 @@ ostream& operator<<(ostream& f, const QString& str);
 ostream& operator<<(ostream& f, const Literal& l);
 
 /*!
- * \brief Permet de vérifier si une chaine de caractères est un nombre (réel, entier ou complexe). Un rationnel est considéré comme une disivion d'entiers.
+ * \brief Permet de vérifier si une chaine de caractères est un nombre (réel ou entier ou complexe)
  * \param Nombre à vérifier
  * \return Vrai si c'est un nombre, faux sinon
  */
 bool isNumber(const QString& str);
+/*!
+ * \brief Permet de vérifier si une chaine de caractères est un rationel.
+ * \param Nombre à vérifier
+ * \return Vrai si c'est un rationnel, faux sinon
+ */
 bool isComplex(const QString& str);
+/*!
+ * \brief Permet de vérifier si une chaine de caractères est un complexe (éventuellement composé de rationnels).
+ * \param Nombre à vérifier
+ * \return Vrai si c'est un complexe, faux sinon
+ */
 bool isRational(const QString& str);
 /*!
  * \brief Permet de vérifier si une chaine de caractères est une fonction.
