@@ -398,17 +398,10 @@ void MainWindow::execute(){
         setUserMessage(e.what());
     }
 
+
     refreshListView();
 
     ui->commandInput->clear();
-
-    for(int i = 0; i < this->factory.size(); i++)
-        if((this->factory)[i].isAtom())
-            qDebug() << (this->factory)[i].toString() << " : " << (this->factory)[i].eval();
-
-    qDebug() << endl;
-
-    qDebug() << this->factory.existsAtom("Y2") << endl;
 }
 
 void MainWindow::updateSettings(){
