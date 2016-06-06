@@ -559,7 +559,7 @@ void Calculator::commandTest(const QString& c){
         // On applique de manière récursive
         for(int i = 0; i < commands.length(); i++){
             // On vérifie ce que c'est avant de lancer
-            if(isOperator(commands[i]) || isStackOperator(commands[i]) || isFunction(commands[i]) || isNumber(commands[i]) || isExpression(commands[i]) || isProgramm(commands[i])){
+            if(isOperator(commands[i]) || isStackOperator(commands[i]) || isFunction(commands[i]) || isNumber(commands[i]) || isExpression(commands[i]) || isProgramm(commands[i]) || factory.existsAtom(commands[i])){
                 try {
                     this->commandTest(commands[i]);
                 }
