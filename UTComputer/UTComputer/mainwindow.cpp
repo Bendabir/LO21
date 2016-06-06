@@ -110,6 +110,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->comma, SIGNAL(pressed()), this, SLOT(onCommaPressed()));
     QObject::connect(ui->leftParenthesis, SIGNAL(pressed()), this, SLOT(onLeftParenthesisPressed()));
     QObject::connect(ui->rightParenthesis, SIGNAL(pressed()), this, SLOT(onRightParenthesisPressed()));
+    QObject::connect(ui->sto, SIGNAL(pressed()), this, SLOT(onStoPressed()));
+    QObject::connect(ui->forget, SIGNAL(pressed()), this, SLOT(onForgetPressed()));
 
     // La gestion du controleur etc.
     QObject::connect(ui->commandInput, SIGNAL(returnPressed()), this, SLOT(execute()));

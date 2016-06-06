@@ -399,7 +399,7 @@ void Calculator::commandTest(const QString& c){
 
         if(op == "DUP"){
             try {
-                Literal& dup = factory.addLiteralFromString(stack->top().toString());
+                Literal& dup = stack->top();
                 stack->push(dup);
 
                 // On retient l'argument dans lastargs
