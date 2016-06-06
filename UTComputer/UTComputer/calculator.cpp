@@ -1,4 +1,5 @@
 #include <QStringList>
+#include <QDebug>
 
 #include "calculator.h"
 #include "literal.h"
@@ -86,7 +87,10 @@ unsigned int getArity(const QString &c){
 }
 
 void Calculator::commandTest(const QString& c){
-    QString commandText = c.toUpper();
+    if(c.isEmpty())
+        return;
+
+    QString commandText = c.toUpper().trimmed();
 
     // On vérifie que l'on ne traite pas un unique programme ou expression
     // Si on traite un programme
@@ -370,6 +374,8 @@ void Calculator::commandTest(const QString& c){
             if(!error){
                 for(int i = 0; i < operatorArity; i++)
                     factory.removeLiteral(*literals[i]);
+
+                lastop = op; // On sauvegarde le dernier opérateur
             }
         }
         else
@@ -448,12 +454,22 @@ void Calculator::commandTest(const QString& c){
             Literal& atom = stack->pop(); // L'identificateur
             Literal& target = stack->pop(); // La variable pointée
 
-            try {
-                Literal& variable = factory.addLiteral(atom.toString().replace("'", ""), &target);
+            QString atomName = atom.toString().replace("'", "");
 
-                stack->push(variable);
+            try {
+                // On regarde si la variable existe, sinon on écrase
+                if(factory.existsAtom(atomName)){
+                    AtomLiteral& variable = dynamic_cast<AtomLiteral&>(factory.findLiteral(atomName));
+                    variable.setTarget(target);
+                    factory.removeLiteral(variable.getTarget());
+                    stack->push(variable);
+                }
+                else{
+                    Literal& variable = factory.addLiteral(atomName, &target);
+                    stack->push(variable);
+                }
+
                 factory.removeLiteral(atom);
-                factory.removeLiteral(target);
             }
             catch(const CalculatorException& e){
                 // On rétablit
@@ -466,11 +482,11 @@ void Calculator::commandTest(const QString& c){
 
         if(op == "FORGET"){
             if(stack->size() < 1)
-                throw CalculatorException("Erreur : La pile est vide.");
+                throw CalculatorException("Erreur : Il faut d'abord empiler la variable à supprimer.");
+
+            Literal& l = stack->pop();
 
             try {
-                Literal& l = stack->pop();
-
                 if(!l.isAtom())
                     throw CalculatorException("Erreur : Impossible de supprimer la variable car ce n'en est pas une.");
 
@@ -478,11 +494,20 @@ void Calculator::commandTest(const QString& c){
                 factory.removeLiteral(l);
             }
             catch(const CalculatorException& e){
+                stack->push(l); // On rétablit
+
                 throw e;
             }
         }
 
+        if(op == "LASTOP"){
+            qDebug() << lastop;
+//            commandTest(lastop);
+        }
+
         // Manque UNDO, REDO, LASTOP, LASTARGS
+        if(op != "LASTOP")
+            lastop = op; // On sauvegarde l'opérateur
 
     }
     // Sinon, si on trouve un atome
@@ -503,18 +528,18 @@ void Calculator::commandTest(const QString& c){
         QStringList commands = commandText.split(" ");
 
         // On applique de manière récursive
-        for(QStringList::iterator token = commands.begin(); token != commands.end(); ++token){
+        for(int i = 0; i < commands.length(); i++){
             // On vérifie ce que c'est avant de lancer
-            if(isOperator(*token) || isFunction(*token) || isNumber(*token) || isExpression(*token) || isProgramm(*token)){
+            if(isOperator(commands[i]) || isFunction(commands[i]) || isNumber(commands[i]) || isExpression(commands[i]) || isProgramm(commands[i])){
                 try {
-                    this->commandTest(*token);
+                    this->commandTest(commands[i]);
                 }
                 catch(const CalculatorException& e){
                     throw e; // On propage en cas d'erreur
                 }
             }
             else
-                throw CalculatorException("Erreur : Commande non reconnue.");
+                throw CalculatorException("Erreur : Commande ou variable non reconnue.");
         }
     }
 }

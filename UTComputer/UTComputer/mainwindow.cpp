@@ -4,6 +4,8 @@
 #include <QPalette>
 #include <QDebug>
 
+const QString defaultMessage = "Aucun message pour le moment.";
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     Calculator(),
@@ -18,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // On donne le focus dans la ligne de commandes
     ui->commandInput->setFocus();
-    ui->errorInput->setText("Aucun message pour le moment.");
+    ui->errorInput->setText(defaultMessage);
 
     // On charge les options
     try{
@@ -112,6 +114,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->commandInput, SIGNAL(returnPressed()), this, SLOT(appendLiteralInStack()));
     QObject::connect(ui->actionSauvegarder, SIGNAL(triggered(bool)), this, SLOT(save()));
     QObject::connect(settingsDialog, SIGNAL(settingsChanged()), this, SLOT(updateSettings()));
+    QObject::connect(this, SIGNAL(destroyed(QObject*)), this, SLOT(save()));
 
     // Raccourcis
     ui->actionQuitter->setShortcut(QKeySequence::Quit);
@@ -380,6 +383,12 @@ void MainWindow::onLeftParenthesisPressed(){
 void MainWindow::onRightParenthesisPressed(){
     addTextToCommand(")");
 }
+void MainWindow::onStoPressed(){
+    executeOperator("STO");
+}
+void MainWindow::onForgetPressed(){
+    executeOperator("FORGET");
+}
 
 void MainWindow::appendLiteralInStack(){
     QString text = ui->commandInput->text().toUpper();
@@ -387,9 +396,10 @@ void MainWindow::appendLiteralInStack(){
     if(text == "")
         return;
 
-    // On ajoute une littérale bidon sur la stack
+    // On tente l'exécution
     try{
         this->commandTest(text);
+        setUserMessage(defaultMessage);
     }
     catch(const CalculatorException& e){
         setUserMessage(e.what());
@@ -420,7 +430,7 @@ void MainWindow::updateSettings(){
 }
 
 void MainWindow::setUserMessage(const QString& message){
-    if(this->settings->getPlaySound())
+    if(this->settings->getPlaySound() && message != defaultMessage)
         QApplication::beep();
 
     ui->errorInput->setText(message);

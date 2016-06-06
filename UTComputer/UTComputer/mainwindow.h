@@ -105,6 +105,8 @@ public slots:
     void onCommaPressed();
     void onLeftParenthesisPressed();
     void onRightParenthesisPressed();
+    void onStoPressed();
+    void onForgetPressed();
 
     void appendLiteralInStack();
     void updateSettings();

@@ -508,7 +508,7 @@ bool AtomLiteral::operator!() const {
 
 QString AtomLiteral::eval() const {
     // On retourne la valeur de la variable pointée sous forme de chaine de caractères
-    return target->toString();
+    return getTarget().toString();
 }
 QString AtomLiteral::toString() const {
     // On retourne le nom de la variable

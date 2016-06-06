@@ -14,6 +14,8 @@ protected:
     Settings* settings;
     LiteralFactory factory;
 
+    QString lastop;
+
     // On empêche la recopie et l'affectation
     Calculator(const Calculator& c);
     Calculator& operator=(const Calculator& c);

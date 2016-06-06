@@ -90,6 +90,7 @@ void Settings::loadSettingsFromFile(Stack &stack, LiteralFactory &fact){
 //        settings.setArrayIndex(i);
 //        fact.addLiteral(settings.value("programm").toString()); // Mal géré, peut mieux faire
 //    }
+//    settings.endArray();
 
     int atomsSize = settings.beginReadArray("Atoms");
     for(int i = 0; i < atomsSize; i++){
@@ -105,6 +106,7 @@ void Settings::loadSettingsFromFile(Stack &stack, LiteralFactory &fact){
             throw e;
         }
     }
+    settings.endArray();
 
     // On charge la pile
     int stackSize = settings.beginReadArray("Stack");
