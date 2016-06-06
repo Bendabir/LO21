@@ -85,22 +85,6 @@ void Settings::loadSettingsFromFile(Stack &stack, LiteralFactory &fact){
 
     settings.endGroup();
 
-    // On charge la pile
-    int stackSize = settings.beginReadArray("Stack");
-    for(int i = stackSize - 1; i >= 0; i--){
-        settings.setArrayIndex(i);
-        QString literal = settings.value("literal").toString();
-
-        try {
-            Literal& l = fact.addLiteralFromString(literal);
-            stack.push(l);
-        }
-        catch(const CalculatorException& e){
-            throw e;
-        }
-    }
-    settings.endArray();
-
 //    int programmsSize = settings.beginArray("Programms");
 //    for(int i = 0; i < programmsSize; i++){
 //        settings.setArrayIndex(i);
@@ -121,4 +105,27 @@ void Settings::loadSettingsFromFile(Stack &stack, LiteralFactory &fact){
             throw e;
         }
     }
+
+    // On charge la pile
+    int stackSize = settings.beginReadArray("Stack");
+    for(int i = stackSize - 1; i >= 0; i--){
+        settings.setArrayIndex(i);
+        QString literal = settings.value("literal").toString();
+
+        try {
+            // On vérifie si c'est un atome
+            if(fact.existsAtom(literal)){
+                Literal& atom = fact.findLiteral(literal);
+                stack.push(atom);
+            }
+            else{
+                Literal& l = fact.addLiteralFromString(literal);
+                stack.push(l);
+            }
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+    settings.endArray();
 }

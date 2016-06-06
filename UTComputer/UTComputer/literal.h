@@ -335,6 +335,7 @@ bool isVariable(const QString& str);
  */
 bool isExpression(const QString& str);
 bool isProgramm(const QString& str);
+bool isStackOperator(const QString& op);
 int getPriority(const QString& o);
 
 #endif // LITERAL_H

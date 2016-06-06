@@ -33,8 +33,16 @@ Literal& LiteralFactory::addLiteral(const QString& atom, Literal* target){
 }
 
 void LiteralFactory::removeLiteral(Literal& l){
+    // On vire les variables et leur cible
+    if(l.isAtom()){
+        AtomLiteral& atom = dynamic_cast<AtomLiteral&>(l);
+
+        literals.removeAll(&atom.getTarget());
+    }
+
     if(literals.removeAll(&l) == 0)
         throw CalculatorException("Erreur : L'élément à supprimer n'existe pas.");
+
 }
 
 Literal& LiteralFactory::addLiteralFromString(const QString& exp){

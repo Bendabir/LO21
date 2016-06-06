@@ -23,13 +23,13 @@ public:
     ~Calculator(); // En privé si Singleton
 
     void command(const QString& c);
+    void commandTest(const QString& commantText);
 
     // Accesseurs
     Stack& getStack() {return *stack;}
 
 };
 
-bool isExpression(const QString& c);
 unsigned int getArity(const QString &c);
 
 #endif // CALCULATOR_H

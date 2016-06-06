@@ -2,18 +2,12 @@
 
 #include "calculator.h"
 #include "literal.h"
+#include "atom_literal.h"
 
 Calculator::Calculator() : stack(new Stack()), settings(new Settings()){}
 
 Calculator::~Calculator(){
     delete stack;
-}
-
-bool isExpression(const QString& c){
-    if (c[0]=='\'' && c[c.size()]=='\'')
-        return true;
-    else
-        return false;
 }
 
 unsigned int getArity(const QString &c){
@@ -91,9 +85,443 @@ unsigned int getArity(const QString &c){
         return 1;
 }
 
+void Calculator::commandTest(const QString& c){
+    QString commandText = c.toUpper();
+
+    // On vérifie que l'on ne traite pas un unique programme ou expression
+    // Si on traite un programme
+    // Si on a un nombre, on le créait. A noter qu'on ne peut pas créer de complexes ou de rationnels directements ! (Même si on le fait pour charger les paramètres)
+    if(isNumber(commandText) || isProgramm(commandText) || isExpression(commandText)){
+        try {
+            stack->push(factory.addLiteralFromString(commandText));
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+    else if(isOperator(commandText) || isFunction(commandText)){
+        QString op = commandText;
+        int operatorArity = getArity(op);
+        bool error = false;
+
+        // Si on a suffisamment d'arguments dans la pile pour appliquer l'opérateur
+        if(stack->size() >= operatorArity){
+            // On récupère les litérales
+            QVector<Literal*> literals;
+
+            for(int i = 0; i < operatorArity; i++)
+                literals.append(&stack->pop()); // On pop la littérale, on les supprimera après
+
+            // On traite
+            if(op == "+"){
+                Literal& res = *literals[1] + *literals[0];
+                stack->push(res);
+            }
+
+            if(op == "-"){
+                Literal& res = *literals[1] - *literals[0];
+                stack->push(res);
+            }
+
+            if(op == "*"){
+                Literal& res = *literals[1] * *literals[0];
+                stack->push(res);
+            }
+
+            if(op == "/"){
+                try {
+                    Literal& res = *literals[1] / *literals[0];
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+            if(op == "DIV"){
+                try {
+                    Literal& res = literals[1]->div(*literals[0]);
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+            if(op == "MOD"){
+                try {
+                    Literal& res = literals[1]->mod(*literals[0]);
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+            if(op == "POW"){
+                try {
+                    Literal& res = literals[1]->pow(*literals[0]);
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+            if(op == "NEG"){
+                Literal& res = -*literals[0];
+                stack->push(res);
+            }
+
+            if(op == "SIN"){
+                Literal& res = literals[0]->sin();
+                stack->push(res);
+            }
+
+            if(op == "COS"){
+                Literal& res = literals[0]->cos();
+                stack->push(res);
+            }
+
+            if(op == "TAN"){
+                Literal& res = literals[0]->tan();
+                stack->push(res);
+            }
+
+            if(op == "ARCSIN"){
+                try {
+                    Literal& res = literals[0]->arcsin();
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+            if(op == "ARCCOS"){
+                try {
+                    Literal& res = literals[0]->arccos();
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+            if(op == "ARCTAN"){
+                Literal& res = literals[0]->arctan();
+                stack->push(res);
+            }
+
+            if(op == "SQRT"){
+                try {
+                    Literal& res = literals[0]->sqrt();
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+            if(op == "EXP"){
+                Literal& res = literals[0]->exp();
+                stack->push(res);
+            }
+
+            if(op == "LN"){
+                try {
+                    Literal& res = literals[0]->ln();
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+
+            if(op == "DEN"){
+                try {
+                    Literal& res = literals[0]->den();
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+
+            if(op == "NUM"){
+                try {
+                    Literal& res = literals[0]->num();
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+
+            if(op == "$"){
+                try {
+                    Literal& res = literals[1]->$(*literals[0]);
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+            if(op == "RE"){
+                Literal& res = literals[0]->re();
+                stack->push(res);
+            }
+
+            if(op == "IM"){
+                Literal& res = literals[0]->im();
+                stack->push(res);
+            }
+
+            if(op == "ARG"){
+                try {
+                    Literal& res = literals[0]->arg();
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+            if(op == "NORM"){
+                try {
+                    Literal& res = literals[0]->norm();
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+            // On supprime les litérales si pas d'erreurs
+            if(!error){
+                for(int i = 0; i < operatorArity; i++)
+                    factory.removeLiteral(*literals[i]);
+            }
+        }
+        else
+            throw CalculatorException("Erreur : Il n'y a pas assez d'arguments dans la pile pour appliquer " + commandText + ".");
+    }
+    // Si on traite des opérateurs de pile
+    else if(isStackOperator(commandText)){
+        QString op = commandText;
+
+        if(op == "CLEAR"){
+            while(!stack->empty())
+                factory.removeLiteral(stack->pop());
+        }
+
+        if(op == "DUP"){
+            try {
+                Literal& dup = factory.addLiteralFromString(stack->top().toString());
+                stack->push(dup);
+            }
+            catch(const CalculatorException& e){
+                throw e;
+            }
+        }
+
+        if(op == "DROP"){
+            try{
+                factory.removeLiteral(stack->pop());
+            }
+            catch(const CalculatorException& e){
+                throw e;
+            }
+        }
+
+        if(op == "SWAP"){
+            if(stack->size() < 2)
+                throw CalculatorException("Erreur : Impossible d'échanger les deux premiers éléments de la pile (pas assez d'éléments).");
+
+            try {
+                Literal& l1 = stack->pop();
+                Literal& l2 = stack->pop();
+
+                stack->push(l1);
+                stack->push(l2);
+            }
+            catch(const CalculatorException& e){
+                throw e;
+            }
+        }
+
+        if(op == "EVAL"){
+            if(stack->size() < 1)
+                throw CalculatorException("Erreur : Impossible d'évaluer le premier élément de la pile car elle est vide.");
+
+            Literal& l = stack->pop();
+
+            try {
+                commandTest(l.eval());
+
+                // Si ce n'est pas un atome ou un fils d'atome, il faudrait supprimer
+//                if(!l.isAtom()){
+//                    factory.removeLiteral(l);
+//                }
+            }
+            catch(const CalculatorException& e){
+                // On rétablit
+                stack->push(l);
+
+                throw e;
+            }
+        }
+
+        if(op == "STO"){
+            if(stack->size() < 2)
+                throw CalculatorException("Erreur : Pas assez d'éléments dans la pile pour créer une variable.");
+
+            Literal& atom = stack->pop(); // L'identificateur
+            Literal& target = stack->pop(); // La variable pointée
+
+            try {
+                Literal& variable = factory.addLiteral(atom.toString().replace("'", ""), &target);
+
+                stack->push(variable);
+                factory.removeLiteral(atom);
+                factory.removeLiteral(target);
+            }
+            catch(const CalculatorException& e){
+                // On rétablit
+                stack->push(target);
+                stack->push(atom);
+
+                throw e;
+            }
+        }
+
+        if(op == "FORGET"){
+            if(stack->size() < 1)
+                throw CalculatorException("Erreur : La pile est vide.");
+
+            try {
+                Literal& l = stack->pop();
+
+                if(!l.isAtom())
+                    throw CalculatorException("Erreur : Impossible de supprimer la variable car ce n'en est pas une.");
+
+                // On supprime la variable et sa cible
+                factory.removeLiteral(l);
+            }
+            catch(const CalculatorException& e){
+                throw e;
+            }
+        }
+
+        // Manque UNDO, REDO, LASTOP, LASTARGS
+
+    }
+    // Sinon, si on trouve un atome
+    else if(factory.existsAtom(commandText)) {
+        // On le récupère et on push sa cible
+        try {
+            Literal& atom = factory.findLiteral(commandText);
+            stack->push(atom);
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
+    }
+    else {
+        // Sinon, si on trouve un atom
+
+        // On récupère les commandes, splitée selon les espaces et on va les traiter une par une.
+        QStringList commands = commandText.split(" ");
+
+        // On applique de manière récursive
+        for(QStringList::iterator token = commands.begin(); token != commands.end(); ++token){
+            // On vérifie ce que c'est avant de lancer
+            if(isOperator(*token) || isFunction(*token) || isNumber(*token) || isExpression(*token) || isProgramm(*token)){
+                try {
+                    this->commandTest(*token);
+                }
+                catch(const CalculatorException& e){
+                    throw e; // On propage en cas d'erreur
+                }
+            }
+            else
+                throw CalculatorException("Erreur : Commande non reconnue.");
+        }
+    }
+}
+
 void Calculator::command(const QString& c) {
     //cas ou on a juste a ajouter la litterale a la pile: complexe/rationnelle//reelle/entier
-    if (isNumber(c) || isComplex(c))
+    if (isNumber(c) || isComplex(c) || isRational(c))
         stack->push(factory.addLiteralFromString(c)); //on ajoute a la pile en creer une nouvelle literale à partir de la chaine de caractère passé en paramètre
 
     else {
@@ -107,7 +535,7 @@ void Calculator::command(const QString& c) {
             };
         }
         //si c'est un programme
-        if (isProgramm()) // pourquoi il ne trouve pas la fonction?
+        if (isProgramm(c)) // pourquoi il ne trouve pas la fonction?
         {
             int Arity = getArity(c);
             if (Arity == 2) //quand l'arité du programme est de deux

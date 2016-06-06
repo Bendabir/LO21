@@ -151,6 +151,43 @@ bool isProgramm(const QString& str){
     return str[0] == '[' && str[str.length() - 1] == ']';
 }
 
+bool isStackOperator(const QString& op){
+    if(op == "CLEAR")
+        return true;
+    if(op == "EDIT")
+        return true;
+    if(op == "EVAL")
+        return true;
+    if(op == "DROP")
+        return true;
+    if(op == "DUP")
+        return true;
+    if(op == "SWAP")
+        return true;
+    if(op == "FORGET")
+        return true;
+    if(op == "STO")
+        return true;
+    if(op == "LASTOP")
+        return true;
+    if(op == "LASTARGS")
+        return true;
+    if(op == "UNDO")
+        return true;
+    if(op == "REDO")
+        return true;
+    if(op == "WHILE")
+        return true;
+    if(op == "IFT")
+        return true;
+    if(op == "IFTE")
+        return true;
+    if(op == "WHILE")
+        return true;
+
+    return false;
+}
+
 int getPriority(const QString& o){
     QMap<QString, int> priorities;
     priorities["+"] = 5;

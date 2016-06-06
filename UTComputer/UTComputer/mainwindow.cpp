@@ -165,6 +165,12 @@ void MainWindow::executeOperator(const QString& op){
     addTextToCommand(op);
 
     // On exécute
+    try {
+        this->commandTest(ui->commandInput->text().trimmed());
+    }
+    catch(const CalculatorException& e){
+        setUserMessage(e.what());
+    }
 
     // Puis on vide
     ui->commandInput->clear();
@@ -212,8 +218,7 @@ void MainWindow::onBackspacePressed(){
 }
 
 void MainWindow::onClearPressed(){
-    this->stack->clear();
-    refreshListView();
+    executeOperator("CLEAR");
 }
 
 void MainWindow::onDupPressed(){
@@ -343,7 +348,7 @@ void MainWindow::onNegPressed(){
     executeOperator("NEG");
 }
 void MainWindow::onEditPressed(){
-//    executeOperator("EDIT");
+    editProgrammDialog->show();
 }
 void MainWindow::onEvalPressed(){
     executeOperator("EVAL");
@@ -384,9 +389,7 @@ void MainWindow::appendLiteralInStack(){
 
     // On ajoute une littérale bidon sur la stack
     try{
-        Literal& literal = this->factory.addLiteral(text);
-        this->stack->push(literal);
-//        undoStack->push(new QUndoCommand(literal.toString()));
+        this->commandTest(text);
     }
     catch(const CalculatorException& e){
         setUserMessage(e.what());
