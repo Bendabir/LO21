@@ -449,16 +449,11 @@ void Calculator::commandTest(const QString& c){
             Literal& l = stack->pop();
 
             try {
-                commandTest(l.eval()); // Pose un problème
+                commandTest(l.eval()); // Pose un problème (sauf si l'on autorise l'ajout de rationnels ou de complexes depuis leur forme string
 
                 // On sauvegarde la litérale utilisée
                 cleanLastArgs();
                 lastargs.push_back(&l);
-
-                // Si ce n'est pas un atome ou un fils d'atome, il faudrait supprimer
-//                if(!l.isAtom()){
-//                    factory.removeLiteral(l);
-//                }
             }
             catch(const CalculatorException& e){
                 // On rétablit
