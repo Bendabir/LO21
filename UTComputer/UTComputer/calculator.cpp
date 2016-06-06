@@ -95,7 +95,7 @@ void Calculator::commandTest(const QString& c){
     // On vérifie que l'on ne traite pas un unique programme ou expression
     // Si on traite un programme
     // Si on a un nombre, on le créait. A noter qu'on ne peut pas créer de complexes ou de rationnels directements ! (Même si on le fait pour charger les paramètres)
-    if(isNumber(commandText) || isProgramm(commandText) || isExpression(commandText)){
+    if(isNumber(commandText) || isProgramm(commandText) || isExpression(commandText) || isComplex(commandText) || isRational(commandText)){
         try {
             stack->push(factory.addLiteralFromString(commandText));
         }
@@ -449,7 +449,7 @@ void Calculator::commandTest(const QString& c){
             Literal& l = stack->pop();
 
             try {
-                commandTest(l.eval());
+                commandTest(l.eval()); // Pose un problème
 
                 // On sauvegarde la litérale utilisée
                 cleanLastArgs();
@@ -481,8 +481,8 @@ void Calculator::commandTest(const QString& c){
                 // On regarde si la variable existe, sinon on écrase
                 if(factory.existsAtom(atomName)){
                     AtomLiteral& variable = dynamic_cast<AtomLiteral&>(factory.findLiteral(atomName));
-                    variable.setTarget(target);
                     factory.removeLiteral(variable.getTarget());
+                    variable.setTarget(target);
                     stack->push(variable);
                 }
                 else{
@@ -559,7 +559,7 @@ void Calculator::commandTest(const QString& c){
         // On applique de manière récursive
         for(int i = 0; i < commands.length(); i++){
             // On vérifie ce que c'est avant de lancer
-            if(isOperator(commands[i]) || isStackOperator(commands[i]) || isFunction(commands[i]) || isNumber(commands[i]) || isExpression(commands[i]) || isProgramm(commands[i])){
+            if(isOperator(commands[i]) || isStackOperator(commands[i]) || isFunction(commands[i]) || isNumber(commands[i]) || isExpression(commands[i]) || isProgramm(commands[i]) || isVariable(commands[i])){
                 try {
                     this->commandTest(commands[i]);
                 }
