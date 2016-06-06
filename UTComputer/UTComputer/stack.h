@@ -4,6 +4,7 @@
 #include <QStack>
 
 #include "literal.h"
+#include "memento.h"
 
 class Calculator;
 
@@ -12,7 +13,6 @@ class Calculator;
  */
 class Stack {
     friend class Calculator;
-
 private:
     QStack<Literal*> literals;
 
@@ -33,6 +33,18 @@ public:
 
     Literal& operator[](int i);
     const Literal& operator[](int i) const;
+
+    //pour le memento
+    /*!
+     * \brief stackMemento permet de creer un memento de la pile
+     * \return renvoi une QStack de literal* avec:  new Memento(literals)
+     */
+    Memento * stackMemento();
+    /*!
+     * \brief restoreMemento permet de charger l'attribut literal de la stack avec le memento stocké en mémoire
+     * \param mem
+     */
+    void restoreMemento (Memento* mem);
 
     // On réimplémente un itérateur
     class iterator {
@@ -86,5 +98,7 @@ public:
 };
 
 ostream& operator<<(ostream& f, const Stack& s);
+
+
 
 #endif // STACK_H

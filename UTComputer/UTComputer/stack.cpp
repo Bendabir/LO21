@@ -47,3 +47,13 @@ ostream& operator<<(ostream& f, const Stack& s){
 
     return f;
 }
+
+Memento * Stack::stackMemento() {
+    return new Memento(literals);
+}
+
+void Stack::restoreMemento (Memento* mem){
+    if(mem->state.isEmpty()==false)
+        literals= mem->state;
+    else throw ("Pas de memento en mémoire");
+}
