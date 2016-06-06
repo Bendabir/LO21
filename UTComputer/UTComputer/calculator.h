@@ -18,29 +18,18 @@ protected:
     Calculator(const Calculator& c);
     Calculator& operator=(const Calculator& c);
 
-    // Le handler du singleton
-//    class Handler {
-//        friend class Calculator;
-
-//    private:
-//        Calculator* instance;
-
-//        Handler() : instance(0) {}
-//        ~Handler(){delete instance;}
-//    };
-
-//    static Handler handler;
-
 public:
     Calculator(); // En privé si Singleton
     ~Calculator(); // En privé si Singleton
 
+    void command(const QString& c);
+
     // Accesseurs
     Stack& getStack() {return *stack;}
 
-
-//    static Calculator& start(); // getInstance
-//    static void stop(); // freeInstance
 };
+
+bool isExpression(const QString& c);
+unsigned int getArity(const QString &c);
 
 #endif // CALCULATOR_H
