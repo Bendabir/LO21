@@ -376,7 +376,7 @@ void Calculator::commandTest(const QString& c){
 
                 // On sauvegarde les littérales dans lastargs
                 for(int i = 0; i < operatorArity; i++)
-                    lastargs.push_back(literals[i]);
+                    lastargs.push_front(literals[i]);
 
                 lastop = op; // On sauvegarde le dernier opérateur
             }
@@ -389,8 +389,12 @@ void Calculator::commandTest(const QString& c){
         QString op = commandText;
 
         if(op == "CLEAR"){
-            while(!stack->empty())
-                factory.removeLiteral(stack->pop());
+            while(!stack->empty()){
+                Literal& pop = stack->pop();
+
+                if(!pop.isAtom())
+                    factory.removeLiteral(pop);
+            }
         }
 
         if(op == "DUP"){
@@ -555,7 +559,7 @@ void Calculator::commandTest(const QString& c){
         // On applique de manière récursive
         for(int i = 0; i < commands.length(); i++){
             // On vérifie ce que c'est avant de lancer
-            if(isOperator(commands[i]) || isFunction(commands[i]) || isNumber(commands[i]) || isExpression(commands[i]) || isProgramm(commands[i])){
+            if(isOperator(commands[i]) || isStackOperator(commands[i]) || isFunction(commands[i]) || isNumber(commands[i]) || isExpression(commands[i]) || isProgramm(commands[i])){
                 try {
                     this->commandTest(commands[i]);
                 }

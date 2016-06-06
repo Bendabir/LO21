@@ -230,6 +230,10 @@ QString ExpressionLiteral::evaluate() const {
                 Literal& atom = this->manager->findLiteral(token);
                 output.append(atom.eval()); // A voir si on évalue la variable dans l'évaluation (ou si on la laisse telle qu'elle) et si oui, si on l'évalue sur une itération ou sur toute sa chaine de référence
             }
+            // Si on a qu'un seul token, on déclare surement une variable donc on ne renvoie pas d'erreur
+            else if(tokens.length() == 1){
+                output.append(token);
+            }
             else
                 throw CalculatorException("Erreur : Le nom d'atome " + token + " n'existe pas.");
         }
