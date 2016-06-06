@@ -115,8 +115,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Raccourcis
     ui->actionQuitter->setShortcut(QKeySequence::Quit);
-    ui->actionAnnuler->setShortcut(QKeySequence::Undo);
-    ui->actionR_tablir->setShortcut(QKeySequence::Redo);
+
     ui->actionSauvegarder->setShortcut(QKeySequence::Save);
 
     ui->tableWidget->horizontalHeader()->setVisible(false);
@@ -126,8 +125,18 @@ MainWindow::MainWindow(QWidget *parent) :
 
     updateSettings();
 
-    qDebug() << isExpression("'1 + 2'") << isProgramm("'1 + 2'");
-    qDebug() << isExpression("[1 2 + SIN]") << isProgramm("[1 2 + SIN]");
+    // Tests
+//    undoStack = new QUndoStack(this);
+//    undoView = new QUndoView(undoStack);
+//    undoView->setWindowTitle("Historique");
+//    undoView->show();
+//    undoView->setAttribute(Qt::WA_QuitOnClose, false);
+
+//    ui->actionAnnuler = undoStack->createUndoAction(this, "Annuler");
+//    ui->actionR_tablir = undoStack->createRedoAction(this, "Rétablir");
+
+    ui->actionAnnuler->setShortcut(QKeySequence::Undo);
+    ui->actionR_tablir->setShortcut(QKeySequence::Redo);
 }
 
 MainWindow::~MainWindow()
@@ -377,6 +386,7 @@ void MainWindow::appendLiteralInStack(){
     try{
         Literal& literal = this->factory.addLiteral(text);
         this->stack->push(literal);
+//        undoStack->push(new QUndoCommand(literal.toString()));
     }
     catch(const CalculatorException& e){
         setUserMessage(e.what());

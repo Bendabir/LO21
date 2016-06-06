@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QDialog>
+#include <QUndoView>
+#include <QUndoStack>
 
 #include "calculator.h"
 #include "edit_atom_dialog.h"
@@ -26,6 +28,9 @@ private:
     EditProgrammDialog* editProgrammDialog;
     EditAtomDialog* editVariablesDialog;
     SettingsDialog* settingsDialog;
+
+//    QUndoView* undoView;
+//    QUndoStack* undoStack;
 
     void addTextToCommand(const QString& exp);
     void executeOperator(const QString& op);
