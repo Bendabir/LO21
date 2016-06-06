@@ -96,7 +96,9 @@ DIST          =  ..\UTComputer\calculator_exception.h \
 		..\UTComputer\settings.h \
 		..\UTComputer\edit_atom_dialog.h \
 		..\UTComputer\edit_programm_dialog.h \
-		..\UTComputer\settings_dialog.h ..\UTComputer\calculator_exception.cpp \
+		..\UTComputer\settings_dialog.h \
+		programm_literal.h \
+		..\UTComputer\memento.h ..\UTComputer\calculator_exception.cpp \
 		..\UTComputer\main.cpp \
 		..\UTComputer\literal.cpp \
 		..\UTComputer\complex_literal.cpp \
@@ -280,6 +282,26 @@ release/moc_mainwindow.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow 
 		C:/Qt/5.5/mingw492_32/include/QtGui/qicon.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdialog.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QUndoView \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qundoview.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlistview.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qvalidator.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qslider.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractslider.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyle.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QUndoStack \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qundostack.h \
 		../UTComputer/calculator.h \
 		../UTComputer/stack.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QStack \
@@ -292,6 +314,7 @@ release/moc_mainwindow.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow 
 		../UTComputer/literal_factory.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QVector \
 		../UTComputer/number.h \
+		../UTComputer/memento.h \
 		../UTComputer/settings.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QObject \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
@@ -816,6 +839,7 @@ release/main.o: ../UTComputer/main.cpp C:/Qt/5.5/mingw492_32/include/QtWidgets/Q
 		../UTComputer/atom_literal.h \
 		../UTComputer/calculator.h \
 		../UTComputer/stack.h \
+		../UTComputer/memento.h \
 		../UTComputer/settings.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QObject \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
@@ -828,6 +852,25 @@ release/main.o: ../UTComputer/main.cpp C:/Qt/5.5/mingw492_32/include/QtWidgets/Q
 		C:/Qt/5.5/mingw492_32/include/QtGui/qicon.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdialog.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QUndoView \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qundoview.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlistview.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qvalidator.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qslider.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractslider.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyle.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QUndoStack \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qundostack.h \
 		../UTComputer/edit_atom_dialog.h \
 		../UTComputer/edit_programm_dialog.h \
 		../UTComputer/settings_dialog.h
@@ -1357,7 +1400,8 @@ release/stack.o: ../UTComputer/stack.cpp ../UTComputer/stack.h \
 		../UTComputer/calculator_exception.h \
 		../UTComputer/literal_factory.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QVector \
-		../UTComputer/number.h
+		../UTComputer/number.h \
+		../UTComputer/memento.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\stack.o ..\UTComputer\stack.cpp
 
 release/calculator.o: ../UTComputer/calculator.cpp C:/Qt/5.5/mingw492_32/include/QtCore/QStringList \
@@ -1403,19 +1447,11 @@ release/calculator.o: ../UTComputer/calculator.cpp C:/Qt/5.5/mingw492_32/include
 		C:/Qt/5.5/mingw492_32/include/QtCore/qstringbuilder.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qregexp.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qstringmatcher.h \
-		../UTComputer/calculator.h \
-		../UTComputer/stack.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QStack \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qstack.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qvector.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
-		../UTComputer/literal.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QString \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QMap \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qmap.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qpair.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qdebug.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qhash.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpair.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmap.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtextstream.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qiodevice.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qobject.h \
@@ -1431,12 +1467,22 @@ release/calculator.o: ../UTComputer/calculator.cpp C:/Qt/5.5/mingw492_32/include
 		C:/Qt/5.5/mingw492_32/include/QtCore/qlocale.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qvariant.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qshareddata.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvector.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qset.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
+		../UTComputer/calculator.h \
+		../UTComputer/stack.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QStack \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstack.h \
+		../UTComputer/literal.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QString \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QMap \
 		../UTComputer/calculator_exception.h \
 		../UTComputer/literal_factory.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QVector \
 		../UTComputer/number.h \
+		../UTComputer/memento.h \
 		../UTComputer/settings.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QObject \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
@@ -1477,7 +1523,8 @@ release/calculator.o: ../UTComputer/calculator.cpp C:/Qt/5.5/mingw492_32/include
 		C:/Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QSettings \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qsettings.h
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsettings.h \
+		../UTComputer/atom_literal.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\calculator.o ..\UTComputer\calculator.cpp
 
 release/mainwindow.o: ../UTComputer/mainwindow.cpp ../UTComputer/mainwindow.h \
@@ -1588,6 +1635,26 @@ release/mainwindow.o: ../UTComputer/mainwindow.cpp ../UTComputer/mainwindow.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qicon.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdialog.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QUndoView \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qundoview.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlistview.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qvalidator.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qslider.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractslider.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyle.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QUndoStack \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qundostack.h \
 		../UTComputer/calculator.h \
 		../UTComputer/stack.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QStack \
@@ -1600,6 +1667,7 @@ release/mainwindow.o: ../UTComputer/mainwindow.cpp ../UTComputer/mainwindow.h \
 		../UTComputer/literal_factory.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QVector \
 		../UTComputer/number.h \
+		../UTComputer/memento.h \
 		../UTComputer/settings.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QObject \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
@@ -1629,21 +1697,6 @@ release/mainwindow.o: ../UTComputer/mainwindow.cpp ../UTComputer/mainwindow.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qitemselectionmodel.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qvalidator.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qslider.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractslider.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyle.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QLineEdit \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlineedit.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qtextcursor.h \
@@ -1662,7 +1715,8 @@ release/mainwindow.o: ../UTComputer/mainwindow.cpp ../UTComputer/mainwindow.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtableview.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/5.5/mingw492_32/include/QtGui/QPalette \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug
+		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		C:/Qt/5.5/mingw492_32/include/QtGui/QKeyEvent
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\UTComputer\mainwindow.cpp
 
 release/settings.o: ../UTComputer/settings.cpp C:/Qt/5.5/mingw492_32/include/QtCore/QCoreApplication \
@@ -1785,7 +1839,8 @@ release/settings.o: ../UTComputer/settings.cpp C:/Qt/5.5/mingw492_32/include/QtC
 		../UTComputer/calculator_exception.h \
 		../UTComputer/literal_factory.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QVector \
-		../UTComputer/number.h
+		../UTComputer/number.h \
+		../UTComputer/memento.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\settings.o ..\UTComputer\settings.cpp
 
 release/edit_atom_dialog.o: ../UTComputer/edit_atom_dialog.cpp C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
