@@ -372,8 +372,11 @@ void Calculator::commandTest(const QString& c){
 
             // On supprime les litérales si pas d'erreurs
             if(!error){
+                cleanLastArgs();
+
+                // On sauvegarde les littérales dans lastargs
                 for(int i = 0; i < operatorArity; i++)
-                    factory.removeLiteral(*literals[i]);
+                    lastargs.push_back(literals[i]);
 
                 lastop = op; // On sauvegarde le dernier opérateur
             }
@@ -394,6 +397,10 @@ void Calculator::commandTest(const QString& c){
             try {
                 Literal& dup = factory.addLiteralFromString(stack->top().toString());
                 stack->push(dup);
+
+                // On retient l'argument dans lastargs
+                cleanLastArgs();
+                lastargs.push_back(&dup);
             }
             catch(const CalculatorException& e){
                 throw e;
@@ -402,7 +409,9 @@ void Calculator::commandTest(const QString& c){
 
         if(op == "DROP"){
             try{
-                factory.removeLiteral(stack->pop());
+                // On nettoie lastargs (nettoie la factory au passage) puis on retient le dernier élément dépilé
+                cleanLastArgs();
+                lastargs.push_back(&stack->pop());
             }
             catch(const CalculatorException& e){
                 throw e;
@@ -419,6 +428,10 @@ void Calculator::commandTest(const QString& c){
 
                 stack->push(l1);
                 stack->push(l2);
+
+                cleanLastArgs();
+                lastargs.push_back(&l1);
+                lastargs.push_back(&l2);
             }
             catch(const CalculatorException& e){
                 throw e;
@@ -433,6 +446,10 @@ void Calculator::commandTest(const QString& c){
 
             try {
                 commandTest(l.eval());
+
+                // On sauvegarde la litérale utilisée
+                cleanLastArgs();
+                lastargs.push_back(&l);
 
                 // Si ce n'est pas un atome ou un fils d'atome, il faudrait supprimer
 //                if(!l.isAtom()){
@@ -500,12 +517,20 @@ void Calculator::commandTest(const QString& c){
             }
         }
 
-        if(op == "LASTOP"){
-            qDebug() << lastop;
-//            commandTest(lastop);
+        if(op == "LASTOP")
+            commandTest(lastop);
+
+        if(op == "LASTARGS"){
+            if(lastargs.isEmpty())
+                throw CalculatorException("Erreur : Impossible d'utiliser les dernières opérandes car il n'y en avait pas.");
+
+            for(int i = lastargs.length() - 1; i >= 0; i--)
+                stack->push(*lastargs[i]);
         }
 
-        // Manque UNDO, REDO, LASTOP, LASTARGS
+        // Manque UNDO, REDO
+
+        // On sauvegarde le dernier opérateur
         if(op != "LASTOP")
             lastop = op; // On sauvegarde l'opérateur
 
@@ -544,330 +569,11 @@ void Calculator::commandTest(const QString& c){
     }
 }
 
-void Calculator::command(const QString& c) {
-    //cas ou on a juste a ajouter la litterale a la pile: complexe/rationnelle//reelle/entier
-    if (isNumber(c) || isComplex(c) || isRational(c))
-        stack->push(factory.addLiteralFromString(c)); //on ajoute a la pile en creer une nouvelle literale à partir de la chaine de caractère passé en paramètre
+void Calculator::cleanLastArgs(){
+    // On supprime les littérales dans lastargs
+    for(int i = 0; i < lastargs.length(); i++)
+        if(!lastargs[i]->isAtom())
+            factory.removeLiteral(*lastargs[i]);
 
-    else {
-        if (isExpression(c))//si c'est une expression (c a d avec les ' ')
-        {
-        try{
-           stack->push(factory.addLiteral(c));
-            }
-        catch (const CalculatorException& e){
-                cout << e.what()<<"\n";
-            };
-        }
-        //si c'est un programme
-        if (isProgramm(c)) // pourquoi il ne trouve pas la fonction?
-        {
-            int Arity = getArity(c);
-            if (Arity == 2) //quand l'arité du programme est de deux
-            {
-                factory.removeLiteral(stack->top());//on recupere la premire opérande dans l1
-                Literal& l1 = stack->pop();
-
-                factory.removeLiteral(stack->top());//on recupere la deuxieme opérande dans l2
-                Literal& l2 = stack->pop();
-
-                if (c == "MOD"){
-                    Literal& res = l1.mod(l2);
-                    stack->push(res);
-                }
-                if (c == "DIV"){
-                    Literal& res = l1.div(l2);
-                    stack->push(res);
-                }
-                if (c == "POW"){
-                    Literal& res = l1.pow(l2);
-                    stack->push(res);
-                }
-            }
-            if (Arity == 1)//quand le programme a une arité de 1
-            {
-                factory.removeLiteral(stack->top());//on supprime de la factory la reference du top de la pile
-                Literal& l1 = stack->pop(); //on recupere la premire opérande dans l1
-
-                if (c == "SIN")
-                {
-                    Literal& res = l1.sin();
-                    stack->push(res);
-                }
-                if (c == "COS")
-                {
-                    Literal& res = l1.cos();
-                    stack->push(res);
-                }
-                if (c == "TAN")
-                {
-                    Literal& res = l1.tan();
-                    stack->push(res);
-                }
-                if (c == "ARCSIN")
-                {
-                    Literal& res = l1.arcsin();
-                    stack->push(res);
-                }
-                if (c == "ARCCOS")
-                {
-                    Literal& res = l1.arccos();
-                    stack->push(res);
-                }
-                if (c == "ARCTAN")
-                {
-                    Literal& res = l1.arctan();
-                    stack->push(res);
-                }
-                if (c == "SQRT")
-                {
-                    Literal& res = l1.sqrt();
-                    stack->push(res);
-                }
-                if (c == "EXP")
-                {
-                    Literal& res = l1.exp();
-                    stack->push(res);
-                }
-                if (c == "LN")
-                {
-                    Literal& res = l1.ln();
-                    stack->push(res);
-                }
-                if (c == "NUM")
-                {
-                    Literal& res = l1.num();
-                    stack->push(res);
-                }
-                if (c == "DEN")
-                {
-                    try { // on test qu'il n'y a pas de probleme avec le dénominateur
-                        Literal& res = l1.den();
-                        stack->push(res);
-                    }
-                    catch (CalculatorException& e){
-                        cout<<e.what()<<"\n";
-                    }
-                }
-                if (c == "RE")
-                {
-                    Literal& res = l1.re();
-                    stack->push(res);
-                }
-                if (c == "IM")
-                {
-                    try { //on test qu'il n'y a pas de probleme avec la partie imaginaire
-                        Literal& res = l1.im();
-                        stack->push(res);
-                    }
-                    catch (CalculatorException& e){
-                        cout<<e.what()<<"\n";
-                    }
-                }
-                if (c == "ARG")
-                {
-                    try {
-                        Literal& res = l1.arg();
-                        stack->push(res);
-                    }
-                    catch (CalculatorException& e){
-                        cout<<e.what()<<"\n";
-                    }
-                }
-                if (c == "NORM")
-                {
-                    Literal& res = l1.norm();
-                    stack->push(res);
-                }
-            }
-        }
-        if (isOperator(c))
-        {
-            int Arity = getArity(c); //on récupère l'arité de l'opérande
-
-            if(Arity==2) //si l'arité vaut 2
-            {
-                factory.removeLiteral(stack->top()); //on retire de la factory la reférence sur le top de la pile
-                Literal& l1 = stack->pop();//on recupere la premire opérande dans l1
-
-                factory.removeLiteral(stack->top()); //on retire de la factory la reférence sur le top de la pile
-                Literal& l2 = stack->pop();//on recupere la deuxieme opérande dans l2
-
-             //les operateurs arithmétiques basiques
-                if (c == "+")
-                {
-                    try {
-                    Literal& res = l1+l2;
-                    stack->push(res); // on empile la Literal&
-                    }
-                    catch (CalculatorException& e){
-                        cout << e.what()<<"\n";
-                    }
-                }
-
-                if (c == "-")
-                {
-                    try {
-                    Literal& res = l1-l2;
-                    stack->push(res); // on empile la Literal&
-                    }
-                    catch (CalculatorException& e){
-                        cout << e.what()<<"\n";
-                    }
-                }
-
-                if (c == "*")
-                {
-                    try {
-                    Literal& res = l1*l2;
-                    stack->push(res); // on empile la Literal&
-                    }
-                    catch (CalculatorException& e){
-                        cout << e.what()<<"\n";
-                    }
-                }
-
-                if (c == "/")
-                {
-                    try {
-                    Literal& res = l1/l2;
-                    stack->push(res); // on empile la Literal&
-                    }
-                    catch (CalculatorException& e){
-                        cout << e.what()<<"\n";
-                    }
-                }
-
-
-             //les operateurs binaires logiques
-             /*   if (c == "<")
-                {
-                    try {
-                    if (l1 < l2)
-                        Literal& res (1);
-                    else
-                        Literal& res (0);
-                    }
-                    catch (CalculatorException & e){
-                        cout << e.what()<<"\n";
-                    }
-                }
-                if (c == ">")
-                {
-                    try {
-                    if (l1 > l2)
-                        return Literal& res (1);
-                    else
-                        return Literal& res (0);
-                    }
-                    catch (CalculatorException & e){
-                        cout << e.what()<<"\n";
-                    }
-                }
-                if (c == "<=")
-                {
-                    try {
-                    if (l1 <= l2)
-                        return Literal& res (1);
-                    else
-                        return Literal& res (0);
-                    }
-                    catch (CalculatorException & e){
-                        cout << e.what()<<"\n";
-                    }
-                }
-                if (c == ">=")
-                {
-                    try {
-                    if (l1 >= l2)
-                        return Literal& res (1);
-                    else
-                        return Literal& res (0);
-                    }
-                    catch (CalculatorException & e){
-                        cout << e.what()<<"\n";
-                    }
-                }
-                if (c == "=")
-                {
-                    try {
-                    if (l1 == l2)
-                        return Literal& res (1);
-                    else
-                        return Literal& res (0);
-                    }
-                    catch (CalculatorException & e){
-                        cout << e.what()<<"\n";
-                    }
-                }
-                if (c == "!=")
-                {
-                    try {
-                    if (l1 < l2)
-                        return Literal& res (1);
-                    else
-                        return Literal& res (0);
-                    }
-                    catch (CalculatorException & e){
-                        cout << e.what()<<"\n";
-                    }
-                }
-                if (c == "AND")
-                {
-                    try {
-                    if (l1 && l2)
-                        return Literal& res (1);
-                    else
-                        return Literal& res (0);
-                    }
-                    catch (CalculatorException & e){
-                        cout << e.what()<<"\n";
-                    }
-                }
-                if (c == "OR")
-                {
-                    try {
-                    if (l1 || l2)
-                        return Literal& res (1);
-                    else
-                        return Literal& res (0);
-                    }
-                    catch (CalculatorException & e){
-                        cout << e.what()<<"\n";
-                    }
-                }
-                   */
-
-
-                if (c == "$") {
-                    try{
-                        Literal& res = l1.$(l2);
-                        stack->push(res); // on empile la Literal&
-                    }
-                    catch (CalculatorException& e){
-                        cout<<e.what()<<"\n";
-                    }
-                }
-            }
-
-
-            if (Arity==1) //si l'arité vaut 1
-            {
-                factory.removeLiteral(stack->top()); //on retire de la factory la reférence sur le top de la pile
-                Literal& l1 = stack->pop();//on recupere la premire opérande dans l1
-                if (c == "NOT")
-                {
-                    try {
-                        !l1;
-                    }
-                    catch (CalculatorException& e)
-                    {
-                        cout<<e.what()<<"\n";
-                    }
-                }
-            }
-
-        }
-
-    }
+    lastargs.clear();
 }

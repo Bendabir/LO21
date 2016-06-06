@@ -15,10 +15,15 @@ protected:
     LiteralFactory factory;
 
     QString lastop;
+    QVector<Literal*> lastargs;
 
+private:
     // On empêche la recopie et l'affectation
     Calculator(const Calculator& c);
     Calculator& operator=(const Calculator& c);
+
+    void cleanLastArgs();
+
 
 public:
     Calculator(); // En privé si Singleton

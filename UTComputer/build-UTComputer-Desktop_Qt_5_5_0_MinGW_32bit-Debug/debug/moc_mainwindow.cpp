@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[72];
-    char stringdata0[1003];
+    char stringdata0[990];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -98,9 +98,9 @@ QT_MOC_LITERAL(65, 882, 24), // "onLeftParenthesisPressed"
 QT_MOC_LITERAL(66, 907, 25), // "onRightParenthesisPressed"
 QT_MOC_LITERAL(67, 933, 12), // "onStoPressed"
 QT_MOC_LITERAL(68, 946, 15), // "onForgetPressed"
-QT_MOC_LITERAL(69, 962, 20), // "appendLiteralInStack"
-QT_MOC_LITERAL(70, 983, 14), // "updateSettings"
-QT_MOC_LITERAL(71, 998, 4) // "save"
+QT_MOC_LITERAL(69, 962, 7), // "execute"
+QT_MOC_LITERAL(70, 970, 14), // "updateSettings"
+QT_MOC_LITERAL(71, 985, 4) // "save"
 
     },
     "MainWindow\0on0Pressed\0\0on1Pressed\0"
@@ -129,8 +129,8 @@ QT_MOC_LITERAL(71, 998, 4) // "save"
     "onPlusPressed\0onEnterPressed\0"
     "onCommaPressed\0onLeftParenthesisPressed\0"
     "onRightParenthesisPressed\0onStoPressed\0"
-    "onForgetPressed\0appendLiteralInStack\0"
-    "updateSettings\0save"
+    "onForgetPressed\0execute\0updateSettings\0"
+    "save"
 };
 #undef QT_MOC_LITERAL
 
@@ -367,7 +367,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 64: _t->onRightParenthesisPressed(); break;
         case 65: _t->onStoPressed(); break;
         case 66: _t->onForgetPressed(); break;
-        case 67: _t->appendLiteralInStack(); break;
+        case 67: _t->execute(); break;
         case 68: _t->updateSettings(); break;
         case 69: _t->save(); break;
         default: ;

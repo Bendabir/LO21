@@ -108,7 +108,7 @@ public slots:
     void onStoPressed();
     void onForgetPressed();
 
-    void appendLiteralInStack();
+    void execute();
     void updateSettings();
 
     // Pour les raccourcis

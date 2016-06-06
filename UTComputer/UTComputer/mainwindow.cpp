@@ -3,6 +3,7 @@
 
 #include <QPalette>
 #include <QDebug>
+#include <QKeyEvent>
 
 const QString defaultMessage = "Aucun message pour le moment.";
 
@@ -111,10 +112,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->rightParenthesis, SIGNAL(pressed()), this, SLOT(onRightParenthesisPressed()));
 
     // La gestion du controleur etc.
-    QObject::connect(ui->commandInput, SIGNAL(returnPressed()), this, SLOT(appendLiteralInStack()));
+    QObject::connect(ui->commandInput, SIGNAL(returnPressed()), this, SLOT(execute()));
     QObject::connect(ui->actionSauvegarder, SIGNAL(triggered(bool)), this, SLOT(save()));
     QObject::connect(settingsDialog, SIGNAL(settingsChanged()), this, SLOT(updateSettings()));
-    QObject::connect(this, SIGNAL(destroyed(QObject*)), this, SLOT(save()));
 
     // Raccourcis
     ui->actionQuitter->setShortcut(QKeySequence::Quit);
@@ -150,6 +150,9 @@ MainWindow::~MainWindow()
 
 // Permet de changer le texte de la ligne de commande
 void MainWindow::addTextToCommand(const QString& exp){
+    if(exp.isEmpty())
+        return;
+
     QString text = ui->commandInput->text();
 
     // Si on ne traite pas un point, on ajoute un espace, sinon on le remplace par un point
@@ -165,20 +168,15 @@ void MainWindow::addTextToCommand(const QString& exp){
 }
 
 void MainWindow::executeOperator(const QString& op){
+    if(op.isEmpty())
+        return;
+
     addTextToCommand(op);
 
-    // On exécute
-    try {
-        this->commandTest(ui->commandInput->text().trimmed());
-    }
-    catch(const CalculatorException& e){
-        setUserMessage(e.what());
-    }
+    QString text = ui->commandInput->text().trimmed();
 
-    // Puis on vide
-    ui->commandInput->clear();
-
-    refreshListView();
+    // On tente l'exécution
+    execute();
 }
 
 // On va faire d'une manière dégueu mais pas le temps de coder l'interface comme des vrais cowboys
@@ -370,9 +368,7 @@ void MainWindow::onPlusPressed(){
 }
 void MainWindow::onEnterPressed(){
     // Execution de la commande
-
-    // Nettoyage
-    ui->commandInput->clear();
+    execute();
 }
 void MainWindow::onCommaPressed(){
     addTextToCommand(",");
@@ -390,11 +386,8 @@ void MainWindow::onForgetPressed(){
     executeOperator("FORGET");
 }
 
-void MainWindow::appendLiteralInStack(){
-    QString text = ui->commandInput->text().toUpper();
-
-    if(text == "")
-        return;
+void MainWindow::execute(){
+    QString text = ui->commandInput->text().trimmed();
 
     // On tente l'exécution
     try{
