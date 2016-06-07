@@ -1363,16 +1363,8 @@
     <addaction name="actionEdition_des_variables"/>
     <addaction name="actionEdition_des_programmes"/>
    </widget>
-   <widget class="QMenu" name="menuA_propos">
-    <property name="title">
-     <string>A propos</string>
-    </property>
-    <addaction name="actionAide"/>
-    <addaction name="actionA_propos_de_l_application"/>
-   </widget>
    <addaction name="menuFichier"/>
    <addaction name="menuEdition"/>
-   <addaction name="menuA_propos"/>
   </widget>
   <action name="actionQuitter">
    <property name="text">

@@ -128,7 +128,6 @@ public:
     QMenuBar *menuBar;
     QMenu *menuFichier;
     QMenu *menuEdition;
-    QMenu *menuA_propos;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -811,13 +810,10 @@ public:
         menuFichier->setObjectName(QStringLiteral("menuFichier"));
         menuEdition = new QMenu(menuBar);
         menuEdition->setObjectName(QStringLiteral("menuEdition"));
-        menuA_propos = new QMenu(menuBar);
-        menuA_propos->setObjectName(QStringLiteral("menuA_propos"));
         MainWindow->setMenuBar(menuBar);
 
         menuBar->addAction(menuFichier->menuAction());
         menuBar->addAction(menuEdition->menuAction());
-        menuBar->addAction(menuA_propos->menuAction());
         menuFichier->addAction(actionSauvegarder);
         menuFichier->addSeparator();
         menuFichier->addAction(actionQuitter);
@@ -828,8 +824,6 @@ public:
         menuEdition->addSeparator();
         menuEdition->addAction(actionEdition_des_variables);
         menuEdition->addAction(actionEdition_des_programmes);
-        menuA_propos->addAction(actionAide);
-        menuA_propos->addAction(actionA_propos_de_l_application);
 
         retranslateUi(MainWindow);
 
@@ -922,7 +916,6 @@ public:
         drop->setText(QApplication::translate("MainWindow", "DROP", 0));
         menuFichier->setTitle(QApplication::translate("MainWindow", "Fichier", 0));
         menuEdition->setTitle(QApplication::translate("MainWindow", "Edition", 0));
-        menuA_propos->setTitle(QApplication::translate("MainWindow", "A propos", 0));
     } // retranslateUi
 
 };

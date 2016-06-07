@@ -23,6 +23,8 @@ unsigned int getArity(const QString &c){
         return 2;
     if (c == "DIV")
         return 2;
+    if (c == "MOD")
+        return 2;
     if (c == "POW")
         return 2;
 
@@ -59,7 +61,6 @@ unsigned int getArity(const QString &c){
         return 1;
     if (c == "NORM")
         return 1;
-    if (c == "MOD");
 
 //operateurs binaires logiques
     if (c == ">")
@@ -670,10 +671,10 @@ void Calculator::commandTest(const QString& c){
     }
     // Sinon, si on trouve un atome
     else if(factory.existsAtom(commandText)) {
-        // On le récupère et on push sa cible
+        // On le récupère et on push l'atome (sinon, on ne peut pas le supprimer)
         try {
             AtomLiteral& atom = dynamic_cast<AtomLiteral&>(factory.findLiteral(commandText));
-            stack->push(atom.getTarget());
+            stack->push(atom);
         }
         catch(const CalculatorException& e){
             throw e;

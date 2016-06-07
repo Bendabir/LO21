@@ -47,12 +47,20 @@ void EditAtomDialog::updateVariablesList(){
                 ui->comboBox->addItem((*literal).toString(), (*literal).eval());
         }
 
-    if(ui->comboBox->count() == 0)
-        ui->comboBox->setDisabled(true);
-    else
-        ui->comboBox->setEnabled(true);
-
     showAtomContent();
+
+    if(ui->comboBox->count() == 0){
+        ui->comboBox->setDisabled(true);
+        ui->lineEdit->setDisabled(true);
+        ui->apply->setDisabled(true);
+        ui->errorLine->setText("Aucune variable à éditer pour le moment.");
+    }
+    else{
+        ui->comboBox->setEnabled(true);
+        ui->lineEdit->setEnabled(true);
+        ui->apply->setEnabled(true);
+        ui->errorLine->setText("Aucun message pour le moment.");
+    }
 }
 
 void EditAtomDialog::improvedShow(){

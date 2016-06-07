@@ -49,12 +49,20 @@ void EditProgrammDialog::updateVariablesList(){
                 ui->comboBox->addItem((*literal).toString(), (*literal).eval());
         }
 
-    if(ui->comboBox->count() == 0)
-        ui->comboBox->setDisabled(true);
-    else
-        ui->comboBox->setEnabled(true);
-
     showAtomContent();
+
+    if(ui->comboBox->count() == 0){
+        ui->comboBox->setDisabled(true);
+        ui->plainTextEdit->setDisabled(true);
+        ui->apply->setDisabled(true);
+        ui->errorLine->setText("Aucun programme à éditer pour le moment.");
+    }
+    else{
+        ui->comboBox->setEnabled(true);
+        ui->plainTextEdit->setEnabled(true);
+        ui->apply->setEnabled(true);
+        ui->errorLine->setText("Aucun message pour le moment.");
+    }
 }
 
 void EditProgrammDialog::improvedShow(){
