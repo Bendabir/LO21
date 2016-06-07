@@ -18,6 +18,7 @@ EditAtomDialog::EditAtomDialog(LiteralFactory* f, QWidget *parent) :
     QObject::connect(ui->apply, SIGNAL(pressed()), this, SLOT(editVariable()));
     QObject::connect(ui->comboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(showAtomContent()));
     QObject::connect(ui->close, SIGNAL(pressed()), this, SLOT(close()));
+    QObject::connect(ui->lineEdit, SIGNAL(textChanged(QString)), this, SLOT(enableLineEdit()));
 
     ui->errorLine->setText("Aucun message pour le moment.");
     updateVariablesList();
@@ -74,9 +75,15 @@ void EditAtomDialog::editVariable(){
         int index = ui->comboBox->currentIndex();
         updateVariablesList();
         ui->comboBox->setCurrentIndex(index);
+
+        ui->apply->setDisabled(true);
     }
     catch(const CalculatorException& e){
         ui->lineEdit->setText(factory->findLiteral(ui->comboBox->currentText()).eval());
         ui->errorLine->setText(e.what());
     }
+}
+
+void EditAtomDialog::enableLineEdit(){
+    ui->apply->setEnabled(true);
 }
