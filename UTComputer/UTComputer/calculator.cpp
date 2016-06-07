@@ -85,6 +85,8 @@ unsigned int getArity(const QString &c){
 //operateurs unaires logiques
     if (c== "NOT")
         return 1;
+
+    return 0;
 }
 
 void Calculator::commandTest(const QString& c){

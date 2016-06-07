@@ -67,6 +67,8 @@ Literal& ComplexLiteral::operator+(const Literal& l) const {
         QString programm = "[ " + eval() + " " + l.eval() + " + ]";
         return this->manager->addLiteral(programm);
     }
+    else
+        throw CalculatorException("Erreur : Impossible d'appliquer l'opérateur + sur ces opérandes.");
 
     // Autres cas
 }
@@ -102,6 +104,8 @@ Literal& ComplexLiteral::operator-(const Literal& l) const {
         QString programm = "[ " + eval() + " " + l.eval() + " - ]";
         return this->manager->addLiteral(programm);
     }
+    else
+        throw CalculatorException("Erreur : Impossible d'appliquer l'opérateur + sur ces opérandes.");
 }
 Literal& ComplexLiteral::operator*(const Literal& l) const {
     if(l.isComplex()){
@@ -140,6 +144,8 @@ Literal& ComplexLiteral::operator*(const Literal& l) const {
         QString programm = "[ " + eval() + " " + l.eval() + " * ]";
         return this->manager->addLiteral(programm);
     }
+    else
+        throw CalculatorException("Erreur : Impossible d'appliquer l'opérateur + sur ces opérandes.");
 }
 Literal& ComplexLiteral::operator/(const Literal& l) const {
     if(l.isComplex()){
@@ -196,6 +202,8 @@ Literal& ComplexLiteral::operator/(const Literal& l) const {
         QString programm = "[ " + eval() + " " + l.eval() + " / ]";
         return this->manager->addLiteral(programm);
     }
+    else
+        throw CalculatorException("Erreur : Impossible d'appliquer l'opérateur + sur ces opérandes.");
 }
 Literal& ComplexLiteral::div(const Literal& l) const {
     // Ne s'applique que sur des entiers
