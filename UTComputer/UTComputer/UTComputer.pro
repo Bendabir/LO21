@@ -21,7 +21,8 @@ HEADERS += \
     edit_programm_dialog.h \
     settings_dialog.h \
     memento.h \
-    string_literal.h
+    string_literal.h \
+    programm_literal.h
 
 SOURCES += \
     calculator_exception.cpp \
@@ -40,7 +41,8 @@ SOURCES += \
     edit_atom_dialog.cpp \
     edit_programm_dialog.cpp \
     settings_dialog.cpp \
-    string_literal.cpp
+    string_literal.cpp \
+    programm_literal.cpp
 
 FORMS += \
     mainwindow.ui \

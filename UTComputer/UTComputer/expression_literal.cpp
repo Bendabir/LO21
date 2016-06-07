@@ -1,8 +1,6 @@
 #include "expression_literal.h"
 #include "complex_literal.h"
 
-#define MAX_LENGTH 150
-
 QString ExpressionLiteral::concat(const QString& op) const {
     // On ne traite que des fonctions
     QString exp = op + "(" + expression + ")";
@@ -45,7 +43,7 @@ QString ExpressionLiteral::concat(const QString& op, const Literal& l) const {
     return exp;
 }
 
-ExpressionLiteral::ExpressionLiteral(LiteralFactory* m, const QString& exp) : StringLiteral(m), expression(exp){
+ExpressionLiteral::ExpressionLiteral(LiteralFactory* m, const QString& exp) : StringLiteral(m, exp){
     expression.replace(" ", ""); // On vire les espaces
 
     // Si l'expression est vide, on ne prend pas et on vérifie qu'elle est valide

@@ -8,15 +8,17 @@
 
 #include "literal.h"
 
+#define MAX_LENGTH 150
+
 class StringLiteral : public Literal {
-private:
+protected:
     QString expression;
 
     virtual QString concat(const QString& op) const = 0;
     virtual QString concat(const QString& op, const Literal& l) const = 0;
 
 public:
-    StringLiteral(LiteralFactory* m) : Literal(m){}
+    StringLiteral(LiteralFactory* m, const QString& exp) : Literal(m), expression(exp){}
     virtual ~StringLiteral(){}
 
     // Pour savoir ce que l'on traite

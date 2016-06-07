@@ -15,8 +15,6 @@ class ExpressionLiteral : public StringLiteral {
     friend class LiteralFactory;
 
 private:
-    QString expression;
-
     /*!
      * \brief Permet d'appliquer un opérateur unaire à l'expression.
      * \param Opérateur à appliquer
