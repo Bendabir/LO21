@@ -167,9 +167,11 @@ void MainWindow::executeOperator(const QString& op){
     addTextToCommand(op);
 
     // On tente l'exécution seulement si on n'est pas une expression
-    int quoteNumber = ui->commandInput->text().trimmed().count('\'');
+    QString command = ui->commandInput->text().trimmed();
+    int quoteNumber = command.count('\''),
+        bracketNumber = command.count('[') + command.count(']');
 
-    if(quoteNumber % 2 == 0)
+    if(quoteNumber % 2 == 0 && bracketNumber % 2 == 0)
         execute();
 }
 
@@ -452,9 +454,10 @@ void MainWindow::executeOnOperatorPressed(){
     QString command = ui->commandInput->text().trimmed();
     QString::iterator end = command.end();
     QChar last = *(--end);
-    int quoteNumber = command.count('\'');
+    int quoteNumber = command.count('\''),
+        bracketNumber = command.count('[') + command.count(']');
 
     // On vérifie que l'on est pas dans une expression
-    if(quoteNumber % 2 == 0 && (last == '+' || last == '-' || last == '*' || last == '/' || last == '$'))
+    if(quoteNumber % 2 == 0 && bracketNumber % 2 == 0 && (last == '+' || last == '-' || last == '*' || last == '/' || last == '$'))
         execute();
 }

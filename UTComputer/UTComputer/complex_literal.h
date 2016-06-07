@@ -101,6 +101,7 @@ public:
      * \return Le conjuguée du complexe.
      */
     Literal& conj() const;
+    QString eval() const;
 };
 
 #endif // COMPLEXLITERAL_H

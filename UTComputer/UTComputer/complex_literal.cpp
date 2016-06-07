@@ -29,10 +29,6 @@ bool ComplexLiteral::isRational() const {
 bool ComplexLiteral::isComplex() const {
     // Même si la partie imaginaire est nulle, on a quand même un complexe (qui peut être entier, réel ou rationnel si cette partie est nulle)
     return true;
-
-
-    // Si la partie imaginaire est nulle, on n'a pas un complexe
-//    return imaginary != 0;
 }
 bool ComplexLiteral::isExpression() const {return false;}
 bool ComplexLiteral::isProgramm() const {return false;}
@@ -67,6 +63,10 @@ Literal& ComplexLiteral::operator+(const Literal& l) const {
 
         return *this + literal.getTarget();
     }
+    else if(l.isProgramm()){
+        QString programm = "[ " + eval() + " " + l.eval() + " + ]";
+        return this->manager->addLiteral(programm);
+    }
 
     // Autres cas
 }
@@ -97,6 +97,10 @@ Literal& ComplexLiteral::operator-(const Literal& l) const {
         const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
 
         return *this - literal.getTarget();
+    }
+    else if(l.isProgramm()){
+        QString programm = "[ " + eval() + " " + l.eval() + " - ]";
+        return this->manager->addLiteral(programm);
     }
 }
 Literal& ComplexLiteral::operator*(const Literal& l) const {
@@ -131,6 +135,10 @@ Literal& ComplexLiteral::operator*(const Literal& l) const {
         const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
 
         return *this * literal.getTarget();
+    }
+    else if(l.isProgramm()){
+        QString programm = "[ " + eval() + " " + l.eval() + " * ]";
+        return this->manager->addLiteral(programm);
     }
 }
 Literal& ComplexLiteral::operator/(const Literal& l) const {
@@ -184,6 +192,10 @@ Literal& ComplexLiteral::operator/(const Literal& l) const {
             throw e; // On propage à cause du ping-pong
         }
     }
+    else if(l.isProgramm()){
+        QString programm = "[ " + eval() + " " + l.eval() + " / ]";
+        return this->manager->addLiteral(programm);
+    }
 }
 Literal& ComplexLiteral::div(const Literal& l) const {
     // Ne s'applique que sur des entiers
@@ -209,6 +221,10 @@ Literal& ComplexLiteral::div(const Literal& l) const {
         catch(const CalculatorException& e){
             throw e;
         }
+    }
+    else if(l.isProgramm()){
+        QString programm = "[ " + eval() + " " + l.eval() + " DIV ]";
+        return this->manager->addLiteral(programm);
     }
     // Autres cas à gérer
     else
@@ -239,6 +255,10 @@ Literal& ComplexLiteral::mod(const Literal& l) const {
             throw e;
         }
     }
+    else if(l.isProgramm()){
+        QString programm = "[ " + eval() + " " + l.eval() + " MOD ]";
+        return this->manager->addLiteral(programm);
+    }
     // Autres cas à gérer
     else
         throw CalculatorException("Erreur : DIV ne peut s'appliquer que sur des entiers.");
@@ -267,6 +287,10 @@ Literal& ComplexLiteral::pow(const Literal& l) const {
         catch(const CalculatorException& e){
             throw e;
         }
+    }
+    else if(l.isProgramm()){
+        QString programm = "[ " + eval() + " " + l.eval() + " POW ]";
+        return this->manager->addLiteral(programm);
     }
     else
         throw CalculatorException("Erreur : POW ne peut pas s'appliquer sur ces opérandes.");
@@ -416,6 +440,10 @@ Literal& ComplexLiteral::$(const Literal& l) const {
         const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
 
         return this->$(literal.getTarget());
+    }
+    else if(l.isProgramm()){
+        QString programm = "[ " + eval() + " " + l.eval() + " $ ]";
+        return this->manager->addLiteral(programm);
     }
     else
         throw CalculatorException("Erreur : Impossible de créer un complexe à partir de ces opérandes.");
@@ -574,6 +602,10 @@ Literal& ComplexLiteral::operator!() const {
         return this->manager->addBoolLiteral(!real);
     else
         return this->manager->addBoolLiteral(false); // Forcément quelque chose différent de 0
+}
+
+QString ComplexLiteral::eval() const {
+    return real.toString() + " " + imaginary.toString() + " $";
 }
 
 QString ComplexLiteral::toString() const {
