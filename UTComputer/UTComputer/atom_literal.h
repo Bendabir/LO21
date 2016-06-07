@@ -36,6 +36,10 @@ public:
      * \return Littérale pointée
      */
     Literal& getTarget(bool allSons = true) const;
+    /*!
+     * \brief Permet de mettre à jour la littérale pointée par la variable.
+     * \param l : Litérale à pointer
+     */
     void setTarget(Literal& l){target = &l;}
 
     // Pour savoir ce que l'on traite

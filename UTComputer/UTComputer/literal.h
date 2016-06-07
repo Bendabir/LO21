@@ -40,42 +40,42 @@ public:
     // Pour savoir ce que l'on traite
     /*!
      * \brief Permet de savoir si la Literal traitée est un entier.
-     * \return Vrai si c'est un entier, faux sinon
+     * \return Vrai si c'est un entier, 0 sinon
      */
     virtual bool isInteger() const = 0;
     /*!
      * \brief Permet de savoir si la Literal traitée est un réel.
-     * \return Vrai si c'est un réel, faux sinon
+     * \return Vrai si c'est un réel, 0 sinon
      */
     virtual bool isReal() const = 0;
     /*!
      * \brief Permet de savoir si la Literal traitée est un rationnel.
-     * \return Vrai si c'est un rationnel, faux sinon
+     * \return Vrai si c'est un rationnel, 0 sinon
      */
     virtual bool isRational() const = 0;
     /*!
      * \brief Permet de savoir si la Literal traitée est un complexe.
-     * \return Vrai si c'est un complexe, faux sinon
+     * \return Vrai si c'est un complexe, 0 sinon
      */
     virtual bool isComplex() const = 0;
     /*!
      * \brief Permet de savoir si la Literal traitée est une expression littérale.
-     * \return Vrai si c'est une expression littérale, faux sinon
+     * \return Vrai si c'est une expression littérale, 0 sinon
      */
     virtual bool isExpression() const = 0;
     /*!
      * \brief Permet de savoir si la Literal traitée est un programme littéral.
-     * \return Vrai si c'est un programme littéral, faux sinon
+     * \return Vrai si c'est un programme littéral, 0 sinon
      */
     virtual bool isProgramm() const = 0;
     /*!
      * \brief Permet de savoir si la Literal traitée est une littérale atome.
-     * \return Vrai si c'est une littérale atome, faux sinon
+     * \return Vrai si c'est une littérale atome, 0 sinon
      */
     virtual bool isAtom() const = 0;
     /*!
      * \brief Permet de savoir si la Literal traitée est une littérale entière, réelle ou rationnelle.
-     * \return Vrai si c'est une littérale entière, réelle ou rationnelle; faux sinon
+     * \return Vrai si c'est une littérale entière, réelle ou rationnelle; 0 sinon
      */
     bool isNumber() const;
 
@@ -221,54 +221,54 @@ public:
     /*!
      * \brief Compare deux littérales entre elles. Egalité selon les cas.
      * \param Une autre littérale.
-     * \return Booléen (vrai si les littérales sont jugées égales, faux sinon)
+     * \return Literal(1 si les littérales sont jugées égales, 0 sinon)
      */
     virtual Literal& operator==(const Literal& l) const = 0;
     /*!
      * \brief Compare deux littérales entre elles. Inégalité selon les cas.
      * \param l : Une autre littérale.
-     * \return Booléen (vrai si les littérales sont jugées inégales, faux sinon)
+     * \return Literal(1 si les littérales sont jugées inégales, 0 sinon)
      */
     virtual Literal& operator!=(const Literal& l) const = 0;
     /*!
      * \brief Compare deux littérales entre elles. Supériorité ou égalité selon les cas.
      * \param l : Une autre littérale.
-     * \return Booléen (vrai si la littérale passée en argument est jugée inférieure ou égale à l'autre, faux sinon)
+     * \return Literal(1 si la littérale passée en argument est jugée inférieure ou égale à l'autre, 0 sinon)
      */
     virtual Literal& operator>=(const Literal& l) const = 0;
     /*!
      * \brief Compare deux littérales entre elles. Supériorité selon les cas.
      * \param l : Une autre littérale.
-     * \return Booléen (vrai si la littérale passée en argument est jugée inférieure à l'autre, faux sinon)
+     * \return Literal(1 si la littérale passée en argument est jugée inférieure à l'autre, 0 sinon)
      */
     virtual Literal& operator>(const Literal& l) const = 0;
     /*!
      * \brief Compare deux littérales entre elles. Infériorité ou égalité selon les cas.
      * \param l : Une autre littérale.
-     * \return Booléen (vrai si la littérale passée en argument est jugée supérieure ou égale à l'autre, faux sinon)
+     * \return Literal(1 si la littérale passée en argument est jugée supérieure ou égale à l'autre, 0 sinon)
      */
     virtual Literal& operator<=(const Literal& l) const = 0;
     /*!
      * \brief Compare deux littérales entre elles. Infériorité selon les cas.
      * \param l : Une autre littérale.
-     * \return Booléen (vrai si la littérale passée en argument est jugée inférieure à l'autre, faux sinon)
+     * \return Literal(1 si la littérale passée en argument est jugée inférieure à l'autre, 0 sinon)
      */
     virtual Literal& operator<(const Literal& l) const = 0;
     /*!
      * \brief Compare la valeur de deux littérales (0 vaut faux, tout autre valeur vaut vrai).
      * \param l : Une autre littérale.
-     * \return Booléen (vrai si les deux littérales sont jugées vraies, faux sinon)
+     * \return Literal(1 si les deux littérales sont jugées vraies, 0 sinon)
      */
     virtual Literal& operator&&(const Literal& l) const = 0;
     /*!
      * \brief Compare la valeur de deux littérales (0 vaut faux, tout autre valeur vaut vrai).
      * \param l : Une autre littérale.
-     * \return Booléen (vrai si au moins une des deux littérales est jugée vraie, faux sinon)
+     * \return Literal(1 si au moins une des deux littérales est jugée vraie, 0 sinon)
      */
     virtual Literal& operator||(const Literal& l) const = 0;
     /*!
      * \brief Renvoie le booléen opposé correspondant à la littérale sur laquelle s'applique l'opérateur
-     * \return Booléen (vrai si la littérale était jugée "fausse", faux sinon)
+     * \return Literal(1 si la littérale était jugée "fausse", 0 sinon)
      */
     virtual Literal& operator!() const = 0;
 
@@ -303,12 +303,22 @@ ostream& operator<<(ostream& f, const QString& str);
 ostream& operator<<(ostream& f, const Literal& l);
 
 /*!
- * \brief Permet de vérifier si une chaine de caractères est un nombre (réel, entier ou complexe). Un rationnel est considéré comme une disivion d'entiers.
+ * \brief Permet de vérifier si une chaine de caractères est un nombre (réel ou entier)
  * \param Nombre à vérifier
  * \return Vrai si c'est un nombre, faux sinon
  */
 bool isNumber(const QString& str);
+/*!
+ * \brief Permet de vérifier si une chaine de caractères est un complexe.
+ * \param Nombre à vérifier
+ * \return Vrai si c'est un complexe, faux sinon
+ */
 bool isComplex(const QString& str);
+/*!
+ * \brief Permet de vérifier si une chaine de caractères est un rationnel.
+ * \param Nombre à vérifier
+ * \return Vrai si c'est un rationnel, faux sinon
+ */
 bool isRational(const QString& str);
 /*!
  * \brief Permet de vérifier si une chaine de caractères est une fonction.
@@ -334,7 +344,17 @@ bool isVariable(const QString& str);
  * \return Priorité de l'opérateur
  */
 bool isExpression(const QString& str);
+/*!
+ * \brief Permet de vérifier si une chaine de caractères est un programme (commence par '[' et termine par ']').
+ * \param Nombre à vérifier
+ * \return Vrai si c'est un programme, faux sinon
+ */
 bool isProgramm(const QString& str);
+/*!
+ * \brief Permet de vérifier si une chaine de caractères est un opérateur de pile (DUP, DROP, etc.). Gère aussi les opérateurs conditionnels.
+ * \param Nombre à vérifier
+ * \return Vrai si c'est un opérateur de pile ou conditionnel, faux sinon
+ */
 bool isStackOperator(const QString& op);
 int getPriority(const QString& o);
 

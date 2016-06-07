@@ -10,6 +10,7 @@ Calculator::Calculator() : stack(new Stack()), settings(new Settings()){}
 
 Calculator::~Calculator(){
     delete stack;
+    delete settings;
 }
 
 unsigned int getArity(const QString &c){
@@ -90,7 +91,7 @@ unsigned int getArity(const QString &c){
     return 0;
 }
 
-void Calculator::commandTest(const QString& c){
+void Calculator::command(const QString& c){
     if(c.isEmpty())
         return;
 
@@ -587,7 +588,7 @@ void Calculator::commandTest(const QString& c){
             Literal& l = stack->pop();
 
             try {
-                commandTest(l.eval()); // Pose un problème (sauf si l'on autorise l'ajout de rationnels ou de complexes depuis leur forme string
+                command(l.eval()); // Pose un problème (sauf si l'on autorise l'ajout de rationnels ou de complexes depuis leur forme string
 
                 // On sauvegarde la litérale utilisée
                 cleanLastArgs();
@@ -655,7 +656,7 @@ void Calculator::commandTest(const QString& c){
         }
 
         if(op == "LASTOP")
-            commandTest(lastop);
+            command(lastop);
 
         if(op == "LASTARGS"){
             if(lastargs.isEmpty())
@@ -679,7 +680,7 @@ void Calculator::commandTest(const QString& c){
 
             // Si le dernier argument dépilé est vrai
             if(literals[1]->toString() == "1")
-                commandTest(literals[0]->eval());
+                command(literals[0]->eval());
         }
 
         if(op == "IFTE"){
@@ -696,9 +697,9 @@ void Calculator::commandTest(const QString& c){
 
             // Si le dernier argument dépilé est vrai
             if(literals[2]->toString() == "1")
-                commandTest(literals[1]->eval());
+                command(literals[1]->eval());
             else
-                commandTest(literals[0]->eval());
+                command(literals[0]->eval());
         }
 
         // Manque UNDO, REDO
@@ -749,7 +750,7 @@ void Calculator::commandTest(const QString& c){
                 // On vérifie ce que c'est avant de lancer
                 if(isOperator(commands[i]) || isStackOperator(commands[i]) || isFunction(commands[i]) || isNumber(commands[i]) || isExpression(commands[i]) || isProgramm(commands[i]) || factory.existsAtom(commands[i])){
                     try {
-                        this->commandTest(commands[i]);
+                        this->command(commands[i]);
                     }
                     catch(const CalculatorException& e){
                         throw e; // On propage en cas d'erreur

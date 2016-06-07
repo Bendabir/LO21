@@ -41,19 +41,6 @@ void Settings::saveSettingsToFile(const Stack& stack, const LiteralFactory& fact
          settings.endArray();
      }
 
-//     // On supprime les programmes puis on les resauvegardes
-//     settings.remove("Programms");
-//     if(programms.size() > 0){
-//        settings.beginWriteArray("Programms");
-//        int i = 0;
-//        for(QVector<const Literal*>::const_iterator literal = programms.cbegin(); literal != programms.cend(); ++literal, i++){
-//            settings.setArrayIndex(i);
-//            settings.setValue("programm", (**literal).toString());
-//        }
-
-//        settings.endArray();
-//     }
-
      // On supprime les atomes puis on les resauvegardes
      settings.remove("Atoms");
      if(variables.size() > 0){
@@ -84,13 +71,6 @@ void Settings::loadSettingsFromFile(Stack &stack, LiteralFactory &fact){
         nbLiteralsOnStack = 10;
 
     settings.endGroup();
-
-//    int programmsSize = settings.beginArray("Programms");
-//    for(int i = 0; i < programmsSize; i++){
-//        settings.setArrayIndex(i);
-//        fact.addLiteral(settings.value("programm").toString()); // Mal géré, peut mieux faire
-//    }
-//    settings.endArray();
 
     int atomsSize = settings.beginReadArray("Atoms");
     for(int i = 0; i < atomsSize; i++){

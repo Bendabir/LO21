@@ -627,9 +627,3 @@ QString ComplexLiteral::toString() const {
     return result;
 }
 
-// Pas forcément utile mais peu servir.
-Literal& ComplexLiteral::conj() const {
-    // On risque de la duplication si c'est un réel mais tant pis
-    return this->manager->addLiteral(real, -imaginary);
-}
-

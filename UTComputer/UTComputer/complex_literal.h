@@ -97,10 +97,10 @@ public:
      */
     Number complexNorm() const;
     /*!
-     * \brief Calcule le conjugué du complexe. Fonction pas forcément utile (et non demandée dans l'énoncée).
-     * \return Le conjuguée du complexe.
+     * \brief Redéfinition de l'évaluation d'un complexe. Renvoie le complexe sous forme de commande.
+     * \brief Exemple : 1$2 --> 1 2 $
+     * \return Commande associée au complexe
      */
-    Literal& conj() const;
     QString eval() const;
 };
 

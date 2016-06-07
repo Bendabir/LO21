@@ -9,7 +9,7 @@
 #include "string_literal.h"
 
 /*!
- * \brief La classe ExpressionLiteral permet de gérer les expression littérales.
+ * \brief La classe ExpressionLiteral permet de gérer les expression littérales. Elle hérite d'une classe intermédiaire, spécialisée dans les Literal à base de chaine de caractères.
  */
 class ExpressionLiteral : public StringLiteral {
     friend class LiteralFactory;
@@ -44,7 +44,15 @@ public:
 
     Literal& operator-() const;
 
+    /*!
+     * \brief Réimplémentation de la fonction eval() qui retourne maintenant une chaine de caractères interprétable par la commande, correspondant à l'expression infixe évaluée.
+     * \return Commande postfixe
+     */
     QString eval() const;
+    /*!
+     * \brief Permet d'afficher l'expression (possiblement tronquée)
+     * \return Expression postfixe, entre single quotes.
+     */
     QString toString() const;
 
     /*!
