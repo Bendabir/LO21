@@ -221,7 +221,7 @@ QString ExpressionLiteral::evaluate() const {
         QString token = tokens[i];
 
         // Si le token est un nombre, on le stocke en sortie
-        if(::isNumber(token) || ::isComplex(token))
+        if(::isNumber(token))
             output.append(token);
 
         // Si c'est une variable, on va faire quelques tests pour être sûrs

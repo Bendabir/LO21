@@ -175,10 +175,10 @@ void MainWindow::executeOperator(const QString& op){
 
     addTextToCommand(op);
 
-    QString text = ui->commandInput->text().trimmed();
-
     // On tente l'exécution
     execute();
+
+    ui->commandInput->clear();
 }
 
 // On va faire d'une manière dégueu mais pas le temps de coder l'interface comme des vrais cowboys
@@ -395,15 +395,14 @@ void MainWindow::execute(){
     try{
         this->commandTest(text);
         setUserMessage(defaultMessage);
+        ui->commandInput->clear();
     }
     catch(const CalculatorException& e){
         setUserMessage(e.what());
     }
 
-
     refreshListView();
 
-    ui->commandInput->clear();
 }
 
 void MainWindow::updateSettings(){
