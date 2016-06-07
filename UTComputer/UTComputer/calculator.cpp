@@ -682,6 +682,25 @@ void Calculator::commandTest(const QString& c){
                 commandTest(literals[0]->eval());
         }
 
+        if(op == "IFTE"){
+            // On dépile deux arguments
+            QVector<Literal*> literals;
+
+            for(int i = 0; i < 3; i++){
+                Literal& res = stack->pop();
+
+                cleanLastArgs();
+                lastargs.append(&res);
+                literals.append(&res); // On pop la littérale, on les supprimera après
+            }
+
+            // Si le dernier argument dépilé est vrai
+            if(literals[2]->toString() == "1")
+                commandTest(literals[1]->eval());
+            else
+                commandTest(literals[0]->eval());
+        }
+
         // Manque UNDO, REDO
 
         // On sauvegarde le dernier opérateur

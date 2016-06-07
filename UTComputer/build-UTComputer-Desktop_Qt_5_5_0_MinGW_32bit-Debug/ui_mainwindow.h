@@ -321,6 +321,7 @@ public:
 
         whileb = new QPushButton(verticalLayoutWidget);
         whileb->setObjectName(QStringLiteral("whileb"));
+        whileb->setEnabled(false);
         sizePolicy.setHeightForWidth(whileb->sizePolicy().hasHeightForWidth());
         whileb->setSizePolicy(sizePolicy);
 
