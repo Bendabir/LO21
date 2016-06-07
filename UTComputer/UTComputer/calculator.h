@@ -14,7 +14,7 @@ protected:
     Settings* settings;
     LiteralFactory factory;
 
-    //les deux tableaux de QStack pour sauvegarder les undo et redo
+    //les deux tableaux de Memento pour sauvegarder les undo et redo
     static Memento* undostack[20];
     static Memento* redostack[20];
     //les indices de ces tableaux
