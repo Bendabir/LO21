@@ -14,14 +14,14 @@ bool ComplexLiteral::isInteger() const {
 }
 bool ComplexLiteral::isReal() const {
     // Si la partie imaginaire est nulle, on regarde la partie réelle
-    if(imaginary == 0)
+    if(imaginary == Number(0))
         return real.isReal();
     else
         return false;
 }
 bool ComplexLiteral::isRational() const {
     // Si la partie imaginaire est nulle, on regarde la partie réelle
-    if(imaginary == 0)
+    if(imaginary == Number(0))
         return real.isRational();
     else
         return false;
@@ -436,13 +436,13 @@ Number ComplexLiteral::complexNorm() const {
 }
 
 // Opérateurs logiques
-bool ComplexLiteral::operator==(const Literal& l) const {
+Literal& ComplexLiteral::operator==(const Literal& l) const {
     // Si on a deux complexes
     if(l.isComplex()){
         // z = z' <=> {|z| = |z'| ET arg(z) = arg(z')[2PI]}
         const ComplexLiteral& literal = dynamic_cast<const ComplexLiteral&>(l);
 
-        return (complexNorm() == literal.complexNorm()) && (complexArg() == (literal.complexArg()));
+        return this->manager->addLiteral((complexNorm() == literal.complexNorm()) && (complexArg() == (literal.complexArg()))); // Retourne un Number
     }
     // Si on a une expression litérale, on fait une conversion et on compare
     else if(l.isExpression()){
@@ -451,18 +451,32 @@ bool ComplexLiteral::operator==(const Literal& l) const {
         return literal == *this;
     }
     else
-        return false; // Si ce n'est pas une égalité de complexe, c'est différent
+        return this->manager->addLiteral(0); // Si ce n'est pas une égalité de complexe, c'est différent
 }
-bool ComplexLiteral::operator!=(const Literal& l) const {
-    return !(*this == l);
+Literal& ComplexLiteral::operator!=(const Literal& l) const {
+    // Si on a deux complexes
+    if(l.isComplex()){
+        // z = z' <=> {|z| = |z'| ET arg(z) = arg(z')[2PI]}
+        const ComplexLiteral& literal = dynamic_cast<const ComplexLiteral&>(l);
+
+        return this->manager->addLiteral((complexNorm() != literal.complexNorm()) || (complexArg() != (literal.complexArg()))); // Retourne un Number
+    }
+    // Si on a une expression litérale, on fait une conversion et on compare
+    else if(l.isExpression()){
+        const ExpressionLiteral& literal = dynamic_cast<const ExpressionLiteral&>(l);
+
+        return literal != *this;
+    }
+    else
+        return this->manager->addLiteral(1); // Si c'est différent
 }
-bool ComplexLiteral::operator>=(const Literal& l) const {
+Literal& ComplexLiteral::operator>=(const Literal& l) const {
     // On peut facilement déterminer que deux complexes sont égaux ou différents, mais on ne peut pas les comparer
     // Si on a deux réels
     if(isNumber() && l.isNumber() && l.isComplex()){
         const ComplexLiteral& literal = dynamic_cast<const ComplexLiteral&>(l);
 
-        return real >= literal.real;
+        return this->manager->addLiteral(real >= literal.real);
     }
     // Si on a une expression litérale, on fait une conversion et on compare
     else if(l.isExpression()){
@@ -471,15 +485,15 @@ bool ComplexLiteral::operator>=(const Literal& l) const {
         return literal >= *this;
     }
     else
-        return false; // Si pas de comparaison possible. Retourner une erreur ?
+        return this->manager->addLiteral(0); // Si pas de comparaison possible. Retourner une erreur ?
 }
-bool ComplexLiteral::operator>(const Literal& l) const {
+Literal& ComplexLiteral::operator>(const Literal& l) const {
     // On peut facilement déterminer que deux complexes sont égaux ou différents, mais on ne peut pas les comparer
     // Si on a deux réels
     if(isNumber() && l.isNumber() && l.isComplex()){
         const ComplexLiteral& literal = dynamic_cast<const ComplexLiteral&>(l);
 
-        return real > literal.real;
+        return this->manager->addLiteral(real > literal.real);
     }
     // Si on a une expression litérale, on fait une conversion et on compare
     else if(l.isExpression()){
@@ -488,15 +502,15 @@ bool ComplexLiteral::operator>(const Literal& l) const {
         return literal > *this;
     }
     else
-        return false; // Si pas de comparaison possible. Retourner une erreur ?
+        return this->manager->addLiteral(0); // Si pas de comparaison possible. Retourner une erreur ?
 }
-bool ComplexLiteral::operator<=(const Literal& l) const {
+Literal& ComplexLiteral::operator<=(const Literal& l) const {
     // On peut facilement déterminer que deux complexes sont égaux ou différents, mais on ne peut pas les comparer
     // Si on a deux réels
     if(isNumber() && l.isNumber() && l.isComplex()){
         const ComplexLiteral& literal = dynamic_cast<const ComplexLiteral&>(l);
 
-        return real <= literal.real;
+        return this->manager->addLiteral(real <= literal.real);
     }
     // Si on a une expression litérale, on fait une conversion et on compare
     else if(l.isExpression()){
@@ -505,15 +519,15 @@ bool ComplexLiteral::operator<=(const Literal& l) const {
         return literal <= *this;
     }
     else
-        return false; // Si pas de comparaison possible. Retourner une erreur ?
+        return this->manager->addLiteral(0); // Si pas de comparaison possible. Retourner une erreur ?
 }
-bool ComplexLiteral::operator<(const Literal& l) const {
+Literal& ComplexLiteral::operator<(const Literal& l) const {
     // On peut facilement déterminer que deux complexes sont égaux ou différents, mais on ne peut pas les comparer
     // Si on a deux réels
     if(isNumber() && l.isNumber() && l.isComplex()){
         const ComplexLiteral& literal = dynamic_cast<const ComplexLiteral&>(l);
 
-        return real < literal.real;
+        return this->manager->addLiteral(real < literal.real);
     }
     // Si on a une expression litérale, on fait une conversion et on compare
     else if(l.isExpression()){
@@ -522,44 +536,44 @@ bool ComplexLiteral::operator<(const Literal& l) const {
         return literal < *this;
     }
     else
-        return false; // Si pas de comparaison possible. Retourner une erreur ?
+        return this->manager->addLiteral(0); // Si pas de comparaison possible. Retourner une erreur ?
 }
-bool ComplexLiteral::operator&&(const Literal& l) const {
+Literal& ComplexLiteral::operator&&(const Literal& l) const {
     if(isInteger()){
         if(l.isInteger() && l.isComplex()){
             const ComplexLiteral& literal = dynamic_cast<const ComplexLiteral&>(l);
 
-            return  real && literal.real;
+            return  this->manager->addLiteral(real && literal.real);
         }
         else
-            return real && Number(1);
+            return this->manager->addLiteral(real && Number(1));
     }
     else {
         if(l.isInteger() && l.isComplex()){
             const ComplexLiteral& literal = dynamic_cast<const ComplexLiteral&>(l);
 
-            return  Number(1) && literal.real;
+            return  this->manager->addLiteral(Number(1) && literal.real);
         }
         else
-            return true;
+            return this->manager->addLiteral(1);
     }
 }
-bool ComplexLiteral::operator||(const Literal& l) const {
+Literal& ComplexLiteral::operator||(const Literal& l) const {
     // Si on a deux entiers
     if(isInteger() && (l.isInteger() && l.isComplex())){
         const ComplexLiteral& literal = dynamic_cast<const ComplexLiteral&>(l);
 
-        return  real || literal.real;
+        return  this->manager->addLiteral(real || literal.real);
     }
     else
-        return true; // Sinon, on a forcément au moins un argument vrai
+        return this->manager->addLiteral(1); // Sinon, on a forcément au moins un argument vrai
 }
-bool ComplexLiteral::operator!() const {
+Literal& ComplexLiteral::operator!() const {
     // On vérifie que ce n'est pas la littérale entière 0
     if(isInteger())
-        return !real;
+        return this->manager->addLiteral(!real);
     else
-        return false; // Forcément quelque chose différent de 0
+        return this->manager->addLiteral(0); // Forcément quelque chose différent de 0
 }
 
 QString ComplexLiteral::toString() const {

@@ -74,15 +74,15 @@ public:
     Literal& $(const Literal& l) const;
 
     // Opérateurs logiques
-    bool operator==(const Literal& l) const;
-    bool operator!=(const Literal& l) const;
-    bool operator>=(const Literal& l) const;
-    bool operator>(const Literal& l) const;
-    bool operator<=(const Literal& l) const;
-    bool operator<(const Literal& l) const;
-    bool operator&&(const Literal& l) const;
-    bool operator||(const Literal& l) const;
-    bool operator!() const;
+    Literal& operator==(const Literal& l) const;
+    Literal& operator!=(const Literal& l) const;
+    Literal& operator>=(const Literal& l) const;
+    Literal& operator>(const Literal& l) const;
+    Literal& operator<=(const Literal& l) const;
+    Literal& operator<(const Literal& l) const;
+    Literal& operator&&(const Literal& l) const;
+    Literal& operator||(const Literal& l) const;
+    Literal& operator!() const;
 
     QString eval() const;
     QString toString() const;

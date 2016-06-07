@@ -32,6 +32,20 @@ Literal& LiteralFactory::addLiteral(const QString& atom, Literal* target){
     }
 }
 
+Literal& LiteralFactory::addLiteral(bool test){
+    try {
+        if(test)
+            literals.append(new ComplexLiteral(this, 1));
+        else
+            literals.append(new ComplexLiteral(this, 0));
+
+        return *literals.last();
+    }
+    catch(const CalculatorException& e){
+        throw e;
+    }
+}
+
 void LiteralFactory::removeLiteral(Literal& l){
     // On vire les variables et leur cible
     if(l.isAtom()){

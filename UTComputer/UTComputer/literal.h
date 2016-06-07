@@ -223,54 +223,54 @@ public:
      * \param Une autre littérale.
      * \return Booléen (vrai si les littérales sont jugées égales, faux sinon)
      */
-    virtual bool operator==(const Literal& l) const = 0;
+    virtual Literal& operator==(const Literal& l) const = 0;
     /*!
      * \brief Compare deux littérales entre elles. Inégalité selon les cas.
      * \param l : Une autre littérale.
      * \return Booléen (vrai si les littérales sont jugées inégales, faux sinon)
      */
-    virtual bool operator!=(const Literal& l) const = 0;
+    virtual Literal& operator!=(const Literal& l) const = 0;
     /*!
      * \brief Compare deux littérales entre elles. Supériorité ou égalité selon les cas.
      * \param l : Une autre littérale.
      * \return Booléen (vrai si la littérale passée en argument est jugée inférieure ou égale à l'autre, faux sinon)
      */
-    virtual bool operator>=(const Literal& l) const = 0;
+    virtual Literal& operator>=(const Literal& l) const = 0;
     /*!
      * \brief Compare deux littérales entre elles. Supériorité selon les cas.
      * \param l : Une autre littérale.
      * \return Booléen (vrai si la littérale passée en argument est jugée inférieure à l'autre, faux sinon)
      */
-    virtual bool operator>(const Literal& l) const = 0;
+    virtual Literal& operator>(const Literal& l) const = 0;
     /*!
      * \brief Compare deux littérales entre elles. Infériorité ou égalité selon les cas.
      * \param l : Une autre littérale.
      * \return Booléen (vrai si la littérale passée en argument est jugée supérieure ou égale à l'autre, faux sinon)
      */
-    virtual bool operator<=(const Literal& l) const = 0;
+    virtual Literal& operator<=(const Literal& l) const = 0;
     /*!
      * \brief Compare deux littérales entre elles. Infériorité selon les cas.
      * \param l : Une autre littérale.
      * \return Booléen (vrai si la littérale passée en argument est jugée inférieure à l'autre, faux sinon)
      */
-    virtual bool operator<(const Literal& l) const = 0;
+    virtual Literal& operator<(const Literal& l) const = 0;
     /*!
      * \brief Compare la valeur de deux littérales (0 vaut faux, tout autre valeur vaut vrai).
      * \param l : Une autre littérale.
      * \return Booléen (vrai si les deux littérales sont jugées vraies, faux sinon)
      */
-    virtual bool operator&&(const Literal& l) const = 0;
+    virtual Literal& operator&&(const Literal& l) const = 0;
     /*!
      * \brief Compare la valeur de deux littérales (0 vaut faux, tout autre valeur vaut vrai).
      * \param l : Une autre littérale.
      * \return Booléen (vrai si au moins une des deux littérales est jugée vraie, faux sinon)
      */
-    virtual bool operator||(const Literal& l) const = 0;
+    virtual Literal& operator||(const Literal& l) const = 0;
     /*!
      * \brief Renvoie le booléen opposé correspondant à la littérale sur laquelle s'applique l'opérateur
      * \return Booléen (vrai si la littérale était jugée "fausse", faux sinon)
      */
-    virtual bool operator!() const = 0;
+    virtual Literal& operator!() const = 0;
 
     /*!
      * \brief Convertit la littérale en chaine de caractères (QString).

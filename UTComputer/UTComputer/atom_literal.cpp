@@ -337,7 +337,7 @@ Literal& AtomLiteral::$(const Literal& l) const {
 }
 
 // Opérateurs logiques
-bool AtomLiteral::operator==(const Literal& l) const {
+Literal& AtomLiteral::operator==(const Literal& l) const {
     // Si l'argument est un atome, on teste entre les valeurs pointée, sinon on fait un test basique
     if(l.isAtom()){
         const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
@@ -358,7 +358,7 @@ bool AtomLiteral::operator==(const Literal& l) const {
         }
     }
 }
-bool AtomLiteral::operator!=(const Literal& l) const {
+Literal& AtomLiteral::operator!=(const Literal& l) const {
     try{
         return !(*this == l);
     }
@@ -366,7 +366,7 @@ bool AtomLiteral::operator!=(const Literal& l) const {
         throw e;
     }
 }
-bool AtomLiteral::operator>=(const Literal& l) const {
+Literal& AtomLiteral::operator>=(const Literal& l) const {
     // Si l'argument est un atome, on teste entre les valeurs pointée, sinon on fait un test basique
     if(l.isAtom()){
         const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
@@ -387,7 +387,7 @@ bool AtomLiteral::operator>=(const Literal& l) const {
         }
     }
 }
-bool AtomLiteral::operator>(const Literal& l) const {
+Literal& AtomLiteral::operator>(const Literal& l) const {
     // Si l'argument est un atome, on teste entre les valeurs pointée, sinon on fait un test basique
     if(l.isAtom()){
         const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
@@ -409,7 +409,7 @@ bool AtomLiteral::operator>(const Literal& l) const {
     }
 }
 
-bool AtomLiteral::operator<=(const Literal& l) const {
+Literal& AtomLiteral::operator<=(const Literal& l) const {
     // Si l'argument est un atome, on teste entre les valeurs pointée, sinon on fait un test basique
     if(l.isAtom()){
         const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
@@ -431,7 +431,7 @@ bool AtomLiteral::operator<=(const Literal& l) const {
     }
 }
 
-bool AtomLiteral::operator<(const Literal& l) const {
+Literal& AtomLiteral::operator<(const Literal& l) const {
     // Si l'argument est un atome, on teste entre les valeurs pointée, sinon on fait un test basique
     if(l.isAtom()){
         const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
@@ -453,7 +453,7 @@ bool AtomLiteral::operator<(const Literal& l) const {
     }
 }
 
-bool AtomLiteral::operator&&(const Literal& l) const {
+Literal& AtomLiteral::operator&&(const Literal& l) const {
     // Si l'argument est un atome, on teste entre les valeurs pointée, sinon on fait un test basique
     if(l.isAtom()){
         const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
@@ -475,7 +475,7 @@ bool AtomLiteral::operator&&(const Literal& l) const {
     }
 }
 
-bool AtomLiteral::operator||(const Literal& l) const {
+Literal& AtomLiteral::operator||(const Literal& l) const {
     // Si l'argument est un atome, on teste entre les valeurs pointée, sinon on fait un test basique
     if(l.isAtom()){
         const AtomLiteral& literal = dynamic_cast<const AtomLiteral&>(l);
@@ -497,7 +497,7 @@ bool AtomLiteral::operator||(const Literal& l) const {
     }
 }
 
-bool AtomLiteral::operator!() const {
+Literal& AtomLiteral::operator!() const {
     try {
         return !getTarget();
     }

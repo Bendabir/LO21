@@ -43,6 +43,7 @@ public:
      * \return
      */
     Literal& addLiteral(const QString& atom, Literal* target);
+    Literal& addLiteral(bool test);
     /*!
      * \brief Permet de supprimer une littérale passée en argument. Provoque une erreur si la littérale à supprimer n'existait pas.
      * \param Référence sur la littérale à supprimer.
