@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_EditAtomDialog_t {
     QByteArrayData data[8];
-    char stringdata0[101];
+    char stringdata0[98];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,12 +36,12 @@ QT_MOC_LITERAL(3, 24, 15), // "showAtomContent"
 QT_MOC_LITERAL(4, 40, 19), // "updateVariablesList"
 QT_MOC_LITERAL(5, 60, 12), // "improvedShow"
 QT_MOC_LITERAL(6, 73, 12), // "editVariable"
-QT_MOC_LITERAL(7, 86, 14) // "enableLineEdit"
+QT_MOC_LITERAL(7, 86, 11) // "enableApply"
 
     },
     "EditAtomDialog\0isShown\0\0showAtomContent\0"
     "updateVariablesList\0improvedShow\0"
-    "editVariable\0enableLineEdit"
+    "editVariable\0enableApply"
 };
 #undef QT_MOC_LITERAL
 
@@ -92,7 +92,7 @@ void EditAtomDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 2: _t->updateVariablesList(); break;
         case 3: _t->improvedShow(); break;
         case 4: _t->editVariable(); break;
-        case 5: _t->enableLineEdit(); break;
+        case 5: _t->enableApply(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {

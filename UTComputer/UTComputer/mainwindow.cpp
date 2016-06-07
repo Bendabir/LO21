@@ -10,8 +10,7 @@ const QString defaultMessage = "Aucun message pour le moment.";
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     Calculator(),
-    ui(new Ui::MainWindow),
-    editProgrammDialog(new EditProgrammDialog(this))
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
@@ -34,13 +33,14 @@ MainWindow::MainWindow(QWidget *parent) :
     settingsDialog = new SettingsDialog(this->settings ,this); // On ne peut pas le mettre en place avant que les settings soient chargées
 
     editVariablesDialog = new EditAtomDialog(&(this->factory), this);
+    editProgrammDialog = new EditProgrammDialog(&(this->factory), this);
 
     // Mise en place via Qt Designer
     // On connecte tous les slots et les raccourcis
 
     // Afficher l'édition des programmes/variables, etc.
     QObject::connect(ui->actionQuitter, SIGNAL(triggered(bool)), this, SLOT(close()));
-    QObject::connect(ui->actionEdition_des_programmes, SIGNAL(triggered(bool)), editProgrammDialog, SLOT(show()));
+    QObject::connect(ui->actionEdition_des_programmes, SIGNAL(triggered(bool)), editProgrammDialog, SLOT(improvedShow()));
     QObject::connect(ui->actionEdition_des_variables, SIGNAL(triggered(bool)), editVariablesDialog, SLOT(improvedShow()));
     QObject::connect(ui->actionOptions, SIGNAL(triggered(bool)), settingsDialog, SLOT(show()));
 

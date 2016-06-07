@@ -26,7 +26,7 @@ private slots:
     void updateVariablesList();
     void improvedShow();
     void editVariable();
-    void enableLineEdit();
+    void enableApply();
 
 signals:
     void isShown();

@@ -13,14 +13,14 @@ EditAtomDialog::EditAtomDialog(LiteralFactory* f, QWidget *parent) :
     ui->setupUi(this);
 
     this->setWindowTitle("UTComputer - Edition des variables");
+    ui->errorLine->setText("Aucun message pour le moment.");
 
     QObject::connect(this, SIGNAL(isShown()), this, SLOT(updateVariablesList()));
     QObject::connect(ui->apply, SIGNAL(pressed()), this, SLOT(editVariable()));
     QObject::connect(ui->comboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(showAtomContent()));
     QObject::connect(ui->close, SIGNAL(pressed()), this, SLOT(close()));
-    QObject::connect(ui->lineEdit, SIGNAL(textChanged(QString)), this, SLOT(enableLineEdit()));
+    QObject::connect(ui->lineEdit, SIGNAL(textChanged(QString)), this, SLOT(enableApply()));
 
-    ui->errorLine->setText("Aucun message pour le moment.");
     updateVariablesList();
 }
 
@@ -46,6 +46,11 @@ void EditAtomDialog::updateVariablesList(){
             if(!atom.getTarget().isProgramm())
                 ui->comboBox->addItem((*literal).toString(), (*literal).eval());
         }
+
+    if(ui->comboBox->count() == 0)
+        ui->comboBox->setDisabled(true);
+    else
+        ui->comboBox->setEnabled(true);
 
     showAtomContent();
 }
@@ -84,6 +89,6 @@ void EditAtomDialog::editVariable(){
     }
 }
 
-void EditAtomDialog::enableLineEdit(){
+void EditAtomDialog::enableApply(){
     ui->apply->setEnabled(true);
 }
