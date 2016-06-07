@@ -1,4 +1,5 @@
 #include <QStringList>
+#include <QRegExp>
 #include <QDebug>
 
 #include "calculator.h"
@@ -664,6 +665,23 @@ void Calculator::commandTest(const QString& c){
                 stack->push(*lastargs[i]);
         }
 
+        if(op == "IFT"){
+            // On dépile deux arguments
+            QVector<Literal*> literals;
+
+            for(int i = 0; i < 2; i++){
+                Literal& res = stack->pop();
+
+                cleanLastArgs();
+                lastargs.append(&res);
+                literals.append(&res); // On pop la littérale, on les supprimera après
+            }
+
+            // Si le dernier argument dépilé est vrai
+            if(literals[1]->toString() == "1")
+                commandTest(literals[0]->eval());
+        }
+
         // Manque UNDO, REDO
 
         // On sauvegarde le dernier opérateur
@@ -683,9 +701,17 @@ void Calculator::commandTest(const QString& c){
         }
     }
     else {
+        // On récupère les commandes, splitée selon une regex et on va les traiter une par une.
+        QRegExp regex("(\\[.+\\]|\\w+|<=?|>=?|!?=|'.+')");
 
-        // On récupère les commandes, splitée selon les espaces et on va les traiter une par une.
-        QStringList commands = commandText.split(" ");
+        QStringList commands;
+
+        // On découpe la chaine de caractères et on récupère une liste de tokens
+        int pos = 0;
+        while ((pos = regex.indexIn(commandText, pos)) != -1) {
+            commands << regex.cap(1);
+            pos += regex.matchedLength();
+        }
 
         // Sinon, si on trouve un atome inexistant, on crée une chaine qui prend la valeur de l'atome
         if(commands.length() == 1){
