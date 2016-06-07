@@ -6,7 +6,10 @@
 #include "literal.h"
 #include "atom_literal.h"
 
-Calculator::Calculator() : stack(new Stack()), settings(new Settings()){}
+Calculator::Calculator() : stack(new Stack()), settings(new Settings()){
+    numCommand = 0;
+    indexUndo = 0;
+}
 
 Calculator::~Calculator(){
     delete stack;
@@ -769,4 +772,25 @@ void Calculator::cleanLastArgs(){
             factory.removeLiteral(*lastargs[i]);
 
     lastargs.clear();
+}
+
+void Calculator::undo(){
+    if (numCommand==0)
+        throw("aucune action effectuée!");
+    else{
+        redostack[indexUndo%20]=stack->stackMemento();//on stock la pile en cours dans le redostack
+        indexUndo++;
+        stack->restoreMemento(undostack[numCommand%20]);//on restaure la pile avec le numero de la command actuel
+        numCommand--;
+    }
+}
+
+void Calculator::redo(){
+    if(indexUndo==0)
+        throw("aucune action effectuée!");
+    else{
+        stack->restoreMemento(redostack[indexUndo]);//on restaure la pile avec celle sauvegardé dans redostack à l'indice indexUndo
+        indexUndo--; //on décrémente cet index
+    }
+
 }

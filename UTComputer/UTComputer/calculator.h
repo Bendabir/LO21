@@ -14,6 +14,14 @@ protected:
     Settings* settings;
     LiteralFactory factory;
 
+    //les deux tableaux de QStack pour sauvegarder les undo et redo
+    static Memento* undostack[20];
+    static Memento* redostack[20];
+    //les indices de ces tableaux
+    static int numCommand;
+    static int indexUndo;
+
+
     QString lastop;
     QVector<Literal*> lastargs;
 
@@ -47,6 +55,11 @@ public:
      * \return Référence sur la pile.
      */
     Stack& getStack() {return *stack;}
+
+    //fonction undo() et redo()
+    static void undo();
+    void static redo();
+
 
 };
 
