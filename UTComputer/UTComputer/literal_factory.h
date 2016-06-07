@@ -43,13 +43,31 @@ public:
      * \return
      */
     Literal& addLiteral(const QString& atom, Literal* target);
+    /*!
+     * \brief Permet d'ajouter une litérale valant 0 ou 1 en fonction du booléen passé en paramètre
+     * \param test : Booléen que l'on souhaite "convertir"
+     * \return Litéral valant 1 si le booléen était vrai, 0 sinon
+     */
     Literal& addBoolLiteral(bool test);
     /*!
      * \brief Permet de supprimer une littérale passée en argument. Provoque une erreur si la littérale à supprimer n'existait pas.
      * \param Référence sur la littérale à supprimer.
      */
     void removeLiteral(Literal& l);
+    /*!
+     * \brief Permet d'ajouter une litérale à partir de la forme qu'elle devrait avoir une fois la fonction toString() appliquée.
+     * \brief Exemple : "1$2" permet de créer la litérale complexe 1$2
+     * \brief Déclenche une erreur s'il est impossible de créer une littérale à partir de la chaine de caractères.
+     * \param exp : Chaine de caractères à convertir en litérale
+     * \return La litérale créée
+     */
     Literal& addLiteralFromString(const QString& exp);
+    /*!
+     * \brief Permet de retrouver une litérale à partir de la valeur qu'elle devrait avoir une fois la fonction toString() appliquée.
+     * \brief Déclenche une erreur si la littérale correspondante n'existe pas.
+     * \param literal : Littérale sous forme de chaine de caractères.
+     * \return Référence sur la littérale trouvée.
+     */
     Literal& findLiteral(const QString& literal);
 
     /*!
@@ -76,6 +94,9 @@ public:
      */
     bool existsAtom(const QString& atom) const;
 
+    /*!
+     * \brief Adaptateur de la classe iterator de QVector<Literal*> pour plus de facilité d'utilisation.
+     */
     class iterator {
         typename QVector<Literal*>::iterator current;
 
@@ -90,9 +111,20 @@ public:
         bool operator==(const iterator& it) const {return current == it.current;}
         bool operator!=(const iterator& it) const {return current != it.current;}
     };
+    /*!
+     * \brief Renvoie un iterator qui correspond à la première litérale du manager.
+     * \return iterator
+     */
     iterator begin() {return iterator(literals.begin());}
+    /*!
+     * \brief Renvoie un iterator qui correspond à la dernière litérale du manager.
+     * \return iterator
+     */
     iterator end() {return iterator(literals.end());}
 
+    /*!
+     * \brief Adaptateur de la classe const_iterator de QVector<Literal*> pour plus de facilité d'utilisation.
+     */
     class const_iterator {
         typename QVector<Literal*>::const_iterator current;
 
@@ -107,7 +139,15 @@ public:
         bool operator==(const const_iterator& it) const {return current == it.current;}
         bool operator!=(const const_iterator& it) const {return current != it.current;}
     };
+    /*!
+     * \brief Renvoie un const_iterator qui correspond à la première litérale du manager.
+     * \return iterator
+     */
     const_iterator cbegin() const {return const_iterator(literals.cbegin());}
+    /*!
+     * \brief Renvoie un const_iterator qui correspond à la dernière litérale du manager.
+     * \return iterator
+     */
     const_iterator cend() const {return const_iterator(literals.cend());}
 };
 

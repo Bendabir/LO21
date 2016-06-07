@@ -32,7 +32,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">UTComputer
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">1.0</span>
    </div>
   </td>
  </tr>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -106,6 +107,7 @@ $(document).ready(function(){initNavTree('class_literal_factory.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="class_literal_factory-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -118,8 +120,19 @@ $(document).ready(function(){initNavTree('class_literal_factory.html','');});
 
 <p><code>#include &lt;<a class="el" href="literal__factory_8h_source.html">literal_factory.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory_1_1const__iterator.html">const_iterator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adaptateur de la classe <a class="el" href="class_literal_factory_1_1const__iterator.html" title="Adaptateur de la classe const_iterator de QVector&lt;Literal*&gt; pour plus de facilité d&#39;utilisation...">const_iterator</a> de QVector&lt;Literal*&gt; pour plus de facilité d'utilisation.  <a href="class_literal_factory_1_1const__iterator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory_1_1iterator.html">iterator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adaptateur de la classe iterator de QVector&lt;Literal*&gt; pour plus de facilité d'utilisation.  <a href="class_literal_factory_1_1iterator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a56ad68cf36938de64bbd93cbda8d19de"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a56ad68cf36938de64bbd93cbda8d19de">LiteralFactory</a> ()</td></tr>
+<tr class="separator:a56ad68cf36938de64bbd93cbda8d19de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5e98acfb80be3ef4785bb554f4a4c09"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_literal.html">Literal</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#ac5e98acfb80be3ef4785bb554f4a4c09">addLiteral</a> (const <a class="el" href="class_number.html">Number</a> &amp;re, const <a class="el" href="class_number.html">Number</a> &amp;im=0)</td></tr>
 <tr class="memdesc:ac5e98acfb80be3ef4785bb554f4a4c09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute une littérale complexe et la lie à la factory.  <a href="#ac5e98acfb80be3ef4785bb554f4a4c09">More...</a><br /></td></tr>
 <tr class="separator:ac5e98acfb80be3ef4785bb554f4a4c09"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,9 +142,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a80be309cd2ca001377d978e25eccf001"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_literal.html">Literal</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a80be309cd2ca001377d978e25eccf001">addLiteral</a> (const QString &amp;atom, <a class="el" href="class_literal.html">Literal</a> *target)</td></tr>
 <tr class="memdesc:a80be309cd2ca001377d978e25eccf001"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'ajouter une variable pointant sur une autre littérale.  <a href="#a80be309cd2ca001377d978e25eccf001">More...</a><br /></td></tr>
 <tr class="separator:a80be309cd2ca001377d978e25eccf001"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a780238539ca125e42429963b6fe516b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_literal.html">Literal</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a780238539ca125e42429963b6fe516b2">addBoolLiteral</a> (bool test)</td></tr>
+<tr class="memdesc:a780238539ca125e42429963b6fe516b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'ajouter une litérale valant 0 ou 1 en fonction du booléen passé en paramètre.  <a href="#a780238539ca125e42429963b6fe516b2">More...</a><br /></td></tr>
+<tr class="separator:a780238539ca125e42429963b6fe516b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8401d933bed9b95aa50c08e26bdc0d18"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a8401d933bed9b95aa50c08e26bdc0d18">removeLiteral</a> (<a class="el" href="class_literal.html">Literal</a> &amp;l)</td></tr>
 <tr class="memdesc:a8401d933bed9b95aa50c08e26bdc0d18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de supprimer une littérale passée en argument. Provoque une erreur si la littérale à supprimer n'existait pas.  <a href="#a8401d933bed9b95aa50c08e26bdc0d18">More...</a><br /></td></tr>
 <tr class="separator:a8401d933bed9b95aa50c08e26bdc0d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac69310f22483a416896eb3dac10d4452"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_literal.html">Literal</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#ac69310f22483a416896eb3dac10d4452">addLiteralFromString</a> (const QString &amp;exp)</td></tr>
+<tr class="memdesc:ac69310f22483a416896eb3dac10d4452"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'ajouter une litérale à partir de la forme qu'elle devrait avoir une fois la fonction toString() appliquée.  <a href="#ac69310f22483a416896eb3dac10d4452">More...</a><br /></td></tr>
+<tr class="separator:ac69310f22483a416896eb3dac10d4452"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a020af7be2b909da05ef58497616da49b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_literal.html">Literal</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a020af7be2b909da05ef58497616da49b">findLiteral</a> (const QString &amp;literal)</td></tr>
+<tr class="memdesc:a020af7be2b909da05ef58497616da49b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de retrouver une litérale à partir de la valeur qu'elle devrait avoir une fois la fonction toString() appliquée.  <a href="#a020af7be2b909da05ef58497616da49b">More...</a><br /></td></tr>
+<tr class="separator:a020af7be2b909da05ef58497616da49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a041197ead79fd37ca7b9176295aadae1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a041197ead79fd37ca7b9176295aadae1">size</a> () const </td></tr>
 <tr class="memdesc:a041197ead79fd37ca7b9176295aadae1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renvoie le nombre de littérales créées (et toujours existantes) de la factory.  <a href="#a041197ead79fd37ca7b9176295aadae1">More...</a><br /></td></tr>
 <tr class="separator:a041197ead79fd37ca7b9176295aadae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,10 +166,63 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1e5f990266a6ee110ebc2d606f02f446"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a1e5f990266a6ee110ebc2d606f02f446">existsAtom</a> (const QString &amp;atom) const </td></tr>
 <tr class="memdesc:a1e5f990266a6ee110ebc2d606f02f446"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de vérifier si un nom de variable (atome) est déjà utilisé.  <a href="#a1e5f990266a6ee110ebc2d606f02f446">More...</a><br /></td></tr>
 <tr class="separator:a1e5f990266a6ee110ebc2d606f02f446"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17203128a5aaa661cbdcae9e21bd4904"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_literal_factory_1_1iterator.html">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a17203128a5aaa661cbdcae9e21bd4904">begin</a> ()</td></tr>
+<tr class="memdesc:a17203128a5aaa661cbdcae9e21bd4904"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renvoie un iterator qui correspond à la première litérale du manager.  <a href="#a17203128a5aaa661cbdcae9e21bd4904">More...</a><br /></td></tr>
+<tr class="separator:a17203128a5aaa661cbdcae9e21bd4904"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d21ce016fc3a896475e3ba141767a2a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_literal_factory_1_1iterator.html">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a7d21ce016fc3a896475e3ba141767a2a">end</a> ()</td></tr>
+<tr class="memdesc:a7d21ce016fc3a896475e3ba141767a2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renvoie un iterator qui correspond à la dernière litérale du manager.  <a href="#a7d21ce016fc3a896475e3ba141767a2a">More...</a><br /></td></tr>
+<tr class="separator:a7d21ce016fc3a896475e3ba141767a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f581de2c6e6a5b40210fc593438bd33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_literal_factory_1_1const__iterator.html">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a8f581de2c6e6a5b40210fc593438bd33">cbegin</a> () const </td></tr>
+<tr class="memdesc:a8f581de2c6e6a5b40210fc593438bd33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renvoie un <a class="el" href="class_literal_factory_1_1const__iterator.html" title="Adaptateur de la classe const_iterator de QVector&lt;Literal*&gt; pour plus de facilité d&#39;utilisation...">const_iterator</a> qui correspond à la première litérale du manager.  <a href="#a8f581de2c6e6a5b40210fc593438bd33">More...</a><br /></td></tr>
+<tr class="separator:a8f581de2c6e6a5b40210fc593438bd33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5eed4ac51a8c1735cbfd6af75364000d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_literal_factory_1_1const__iterator.html">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a5eed4ac51a8c1735cbfd6af75364000d">cend</a> () const </td></tr>
+<tr class="memdesc:a5eed4ac51a8c1735cbfd6af75364000d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renvoie un <a class="el" href="class_literal_factory_1_1const__iterator.html" title="Adaptateur de la classe const_iterator de QVector&lt;Literal*&gt; pour plus de facilité d&#39;utilisation...">const_iterator</a> qui correspond à la dernière litérale du manager.  <a href="#a5eed4ac51a8c1735cbfd6af75364000d">More...</a><br /></td></tr>
+<tr class="separator:a5eed4ac51a8c1735cbfd6af75364000d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Permet de créer des littérales (quelconques) et les stocker. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a56ad68cf36938de64bbd93cbda8d19de"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LiteralFactory::LiteralFactory </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a780238539ca125e42429963b6fe516b2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_literal.html">Literal</a> &amp; LiteralFactory::addBoolLiteral </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>test</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet d'ajouter une litérale valant 0 ou 1 en fonction du booléen passé en paramètre. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">test</td><td>: Booléen que l'on souhaite "convertir" </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Litéral valant 1 si le booléen était vrai, 0 sinon </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ac5e98acfb80be3ef4785bb554f4a4c09"></a>
 <div class="memitem">
 <div class="memproto">
@@ -245,6 +320,109 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ac69310f22483a416896eb3dac10d4452"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_literal.html">Literal</a> &amp; LiteralFactory::addLiteralFromString </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>exp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet d'ajouter une litérale à partir de la forme qu'elle devrait avoir une fois la fonction toString() appliquée. </p>
+<p>Exemple : "1$2" permet de créer la litérale complexe 1$2 Déclenche une erreur s'il est impossible de créer une littérale à partir de la chaine de caractères. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">exp</td><td>: Chaine de caractères à convertir en litérale </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>La litérale créée </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a17203128a5aaa661cbdcae9e21bd4904"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_literal_factory_1_1iterator.html">iterator</a> LiteralFactory::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Renvoie un iterator qui correspond à la première litérale du manager. </p>
+<dl class="section return"><dt>Returns</dt><dd>iterator </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8f581de2c6e6a5b40210fc593438bd33"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_literal_factory_1_1const__iterator.html">const_iterator</a> LiteralFactory::cbegin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Renvoie un <a class="el" href="class_literal_factory_1_1const__iterator.html" title="Adaptateur de la classe const_iterator de QVector&lt;Literal*&gt; pour plus de facilité d&#39;utilisation...">const_iterator</a> qui correspond à la première litérale du manager. </p>
+<dl class="section return"><dt>Returns</dt><dd>iterator </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5eed4ac51a8c1735cbfd6af75364000d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_literal_factory_1_1const__iterator.html">const_iterator</a> LiteralFactory::cend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Renvoie un <a class="el" href="class_literal_factory_1_1const__iterator.html" title="Adaptateur de la classe const_iterator de QVector&lt;Literal*&gt; pour plus de facilité d&#39;utilisation...">const_iterator</a> qui correspond à la dernière litérale du manager. </p>
+<dl class="section return"><dt>Returns</dt><dd>iterator </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a697eeb0ab97eb9c1de32227c36c07df6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -271,6 +449,32 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a7d21ce016fc3a896475e3ba141767a2a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_literal_factory_1_1iterator.html">iterator</a> LiteralFactory::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Renvoie un iterator qui correspond à la dernière litérale du manager. </p>
+<dl class="section return"><dt>Returns</dt><dd>iterator </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a1e5f990266a6ee110ebc2d606f02f446"></a>
 <div class="memitem">
 <div class="memproto">
@@ -293,6 +497,31 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Vrai si le nom est déjà pris, faux sinon </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a020af7be2b909da05ef58497616da49b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_literal.html">Literal</a> &amp; LiteralFactory::findLiteral </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>literal</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de retrouver une litérale à partir de la valeur qu'elle devrait avoir une fois la fonction toString() appliquée. </p>
+<p>Déclenche une erreur si la littérale correspondante n'existe pas. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">literal</td><td>: Littérale sous forme de chaine de caractères. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Référence sur la littérale trouvée. </dd></dl>
 
 </div>
 </div>
@@ -381,7 +610,7 @@ Public Member Functions</h2></td></tr>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>UTComputer/<a class="el" href="literal__factory_8h_source.html">literal_factory.h</a></li>
-<li>UTComputer/literal_factory.cpp</li>
+<li>UTComputer/<a class="el" href="literal__factory_8cpp.html">literal_factory.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

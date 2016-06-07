@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['number',['Number',['../class_number.html',1,'']]]
+  ['literal',['Literal',['../class_literal.html',1,'']]],
+  ['literalfactory',['LiteralFactory',['../class_literal_factory.html',1,'']]]
 ];

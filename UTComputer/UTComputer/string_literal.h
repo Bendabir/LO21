@@ -10,11 +10,25 @@
 
 #define MAX_LENGTH 150
 
+/*!
+ * \brief Classe intermédiaire qui permet d'implémenter les Litérales gérée à base de chaines de caractères
+ */
 class StringLiteral : public Literal {
 protected:
     QString expression;
 
+    /*!
+     * \brief Permet de concaténer la littérale avec un opérateur
+     * \param op : Opérateur à concaténer.
+     * \return Le résultat de la concaténation
+     */
     virtual QString concat(const QString& op) const = 0;
+    /*!
+     * \brief Permet de concaténer la littérale avec une littérale et un opérateur
+     * \param op : Opérateur à concaténer.
+     * \param l : Litérale à concaténer
+     * \return Le résultat de la concaténation
+     */
     virtual QString concat(const QString& op, const Literal& l) const = 0;
 
 public:
@@ -32,8 +46,8 @@ public:
 
     // Accesseurs
     /*!
-     * \brief Accesseur de l'expression.
-     * \return Expression infixe, sans guillemets.
+     * \brief Accesseur de la littérale.
+     * \return Littérale, sans fioritures.
      */
     const QString& getExpression() const {return expression;}
 

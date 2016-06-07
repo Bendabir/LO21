@@ -387,7 +387,7 @@ void MainWindow::execute(){
 
     // On tente l'exécution
     try{
-        this->commandTest(text);
+        this->command(text);
         setUserMessage(defaultMessage);
         ui->commandInput->clear();
     }

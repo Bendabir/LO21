@@ -15,6 +15,9 @@ namespace Ui {
 class MainWindow;
 }
 
+/*!
+ * \brief Fenêtre principale de l'application
+ */
 class MainWindow : public QMainWindow, public Calculator
 {
     Q_OBJECT
@@ -29,16 +32,31 @@ private:
     EditAtomDialog* editVariablesDialog;
     SettingsDialog* settingsDialog;
 
-//    QUndoView* undoView;
-//    QUndoStack* undoStack;
-
+    /*!
+     * \brief Permet d'ajouter du texte dans la commande. Utile pour le clavier cliquable, afin de séparer les chiffres etc.
+     * \param exp : Texte à ajouter
+     */
     void addTextToCommand(const QString& exp);
+    /*!
+     * \brief Ajoute un opérateur dans la barre de commande puis exécute la commande directement.
+     * \param op : Opérateur à ajouter
+     */
     void executeOperator(const QString& op);
+    /*!
+     * \brief Permet d'afficher un message à l'utilisateur (lors d'un retour d'erreur par exemple)."
+     * \param message : Message à afficher
+     */
     void setUserMessage(const QString& message);
+    /*!
+     * \brief Permet de mettre à jour la vue graphique de la pile de calcul à partir du contenu de la pile de calcul. Appelé à chaque exécution.
+     */
     void refreshListView();
 
 public slots:
     // Ce qui modifie la barre de commande
+    /*!
+     * \brief Permet d'ajouter 0 dans la barre de commande. Le principe est le même pour tous les autres slots non détaillés. Les slots relatifs aux opérateurs exécutent la commande (sauf si l'on est en train d'écrir un programme ou une expression).
+     */
     void on0Pressed();
     void on1Pressed();
     void on2Pressed();
@@ -108,11 +126,23 @@ public slots:
     void onStoPressed();
     void onForgetPressed();
 
+    /*!
+     * \brief Permet d'exécuter la commande écrite.
+     */
     void execute();
+    /*!
+     * \brief Permet de mettre à jour les options de l'application
+     */
     void updateSettings();
+    /*!
+     * \brief Permet d'exécuter la commande écrite lors de la frappe de +, -, *, / ou $.
+     */
     void executeOnOperatorPressed();
 
     // Pour les raccourcis
+    /*!
+     * \brief Permet de sauvegarder le contexte de l'application dans un fichier INI. Sauvegarder automatique à la fermeture de l'application.
+     */
     void save();
 };
 

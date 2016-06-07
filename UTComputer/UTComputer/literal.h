@@ -339,23 +339,28 @@ bool isOperator(const QString& str);
  */
 bool isVariable(const QString& str);
 /*!
- * \brief Permet de connaitre la priorité d'un opérateur. Ne fait pas de vérification sur la validité de l'opérateur.
- * \param Opérateur dont l'on souhaite connaitre la priorité
- * \return Priorité de l'opérateur
+ * \brief Permet de vérifier si une chaine de caractères est une expression (commence et termine par ''').
+ * \param Expression à vérifier
+ * \return Vrai si c'est une expression, faux sinon
  */
 bool isExpression(const QString& str);
 /*!
  * \brief Permet de vérifier si une chaine de caractères est un programme (commence par '[' et termine par ']').
- * \param Nombre à vérifier
+ * \param Programme à vérifier
  * \return Vrai si c'est un programme, faux sinon
  */
 bool isProgramm(const QString& str);
 /*!
  * \brief Permet de vérifier si une chaine de caractères est un opérateur de pile (DUP, DROP, etc.). Gère aussi les opérateurs conditionnels.
- * \param Nombre à vérifier
+ * \param Opérateur à vérifier
  * \return Vrai si c'est un opérateur de pile ou conditionnel, faux sinon
  */
 bool isStackOperator(const QString& op);
+/*!
+ * \brief Permet de connaitre la priorité d'un opérateur. Ne fait pas de vérification sur la validité de l'opérateur.
+ * \param Opérateur dont l'on souhaite connaitre la priorité
+ * \return Priorité de l'opérateur
+ */
 int getPriority(const QString& o);
 
 #endif // LITERAL_H
