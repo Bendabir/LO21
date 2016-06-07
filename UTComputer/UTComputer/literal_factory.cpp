@@ -32,7 +32,7 @@ Literal& LiteralFactory::addLiteral(const QString& atom, Literal* target){
     }
 }
 
-Literal& LiteralFactory::addLiteral(bool test){
+Literal& LiteralFactory::addBoolLiteral(bool test){
     try {
         if(test)
             literals.append(new ComplexLiteral(this, 1));

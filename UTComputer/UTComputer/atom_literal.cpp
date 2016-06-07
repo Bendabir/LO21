@@ -19,7 +19,7 @@ AtomLiteral::AtomLiteral(LiteralFactory* m, const QString& a, Literal* t) : Lite
         throw CalculatorException("Erreur : Le nom de variable " + atom + " n'est pas valide.");
 
     // On vérifie que ce n'est pas un nom réservé
-    if(isOperator(atom) || isFunction(atom))
+    if(isOperator(atom) || isFunction(atom) || isStackOperator(atom))
         throw CalculatorException("Erreur : " + atom + " est réservé.");
 
     // On va vérifier que ce nom n'existe pas déjà

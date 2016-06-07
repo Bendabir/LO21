@@ -370,6 +370,140 @@ void Calculator::commandTest(const QString& c){
                 }
             }
 
+            // Opérateurs logiques des familles
+            if(op == "="){
+                try {
+                    Literal& res = *literals[1] == *literals[0];
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+            if(op == "!="){
+                try {
+                    Literal& res = *literals[1] != *literals[0];
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+            if(op == ">="){
+                try {
+                    Literal& res = *literals[1] >= *literals[0];
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+            if(op == ">"){
+                try {
+                    Literal& res = *literals[1] > *literals[0];
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+            if(op == "<="){
+                try {
+                    Literal& res = *literals[1] <= *literals[0];
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+            if(op == "<"){
+                try {
+                    Literal& res = *literals[1] < *literals[0];
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+            if(op == "NOT"){
+                try {
+                    Literal& res = !*literals[0];
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit
+                    stack->push(*literals[0]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+            if(op == "AND"){
+                try {
+                    Literal& res = *literals[1] && *literals[0];
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+            if(op == "OR"){
+                try {
+                    Literal& res = *literals[1] || *literals[0];
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+            }
+
+
             // On supprime les litérales si pas d'erreurs
             if(!error){
                 cleanLastArgs();

@@ -160,38 +160,38 @@ Literal& ExpressionLiteral::$(const Literal &l) const {
 Literal& ExpressionLiteral::operator==(const Literal& l) const {
     // On vérifie que l'évaluation des chaînes donne la même chose
     // Cela permet de faire abstraction des parenthèses de priorité (parfois superflues) dans les expressions
-    return this->manager->addLiteral(eval() == l.eval());
+    return this->manager->addBoolLiteral(eval() == l.eval());
 }
 Literal& ExpressionLiteral::operator!=(const Literal& l) const {
-    return this->manager->addLiteral(eval() != l.eval());
+    return this->manager->addBoolLiteral(eval() != l.eval());
 }
 Literal& ExpressionLiteral::operator>=(const Literal& l) const {
-    return this->manager->addLiteral(eval() >= l.eval());
+    return this->manager->addBoolLiteral(eval() >= l.eval());
 }
 Literal& ExpressionLiteral::operator>(const Literal& l) const  {
-    return this->manager->addLiteral(eval() > l.eval());
+    return this->manager->addBoolLiteral(eval() > l.eval());
 }
 Literal& ExpressionLiteral::operator<=(const Literal& l) const  {
-    return this->manager->addLiteral(eval() <= l.eval());
+    return this->manager->addBoolLiteral(eval() <= l.eval());
 }
 Literal& ExpressionLiteral::operator<(const Literal& l) const  {
-    return this->manager->addLiteral(eval() < l.eval());
+    return this->manager->addBoolLiteral(eval() < l.eval());
 }
 Literal& ExpressionLiteral::operator&&(const Literal& l) const {
     // Si la littérale passée en argument est un entier
     if(l.isInteger() && l.isComplex()){
         const ComplexLiteral& literal = dynamic_cast<const ComplexLiteral&>(l);
 
-        return this->manager->addLiteral(Number(1) && literal.getReal());
+        return this->manager->addBoolLiteral(Number(1) && literal.getReal());
     }
     else
-        return this->manager->addLiteral(1); // Forcément des littérales différentes de 0
+        return this->manager->addBoolLiteral(true); // Forcément des littérales différentes de 0
 }
 Literal& ExpressionLiteral::operator||(const Literal& l) const {
-    return this->manager->addLiteral(1); // Vrai dans tous les cas
+    return this->manager->addBoolLiteral(true); // Vrai dans tous les cas
 }
 Literal& ExpressionLiteral::operator!() const {
-    return this->manager->addLiteral(0); // Toujours faux
+    return this->manager->addBoolLiteral(false); // Toujours faux
 }
 
 // Permet de récupérer la chaine évaluée même lorsque l'on a une référence sur une litérale (dynamique)
