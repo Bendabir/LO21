@@ -60,6 +60,12 @@ public:
     static void undo();
     void static redo();
 
+    /*!
+     * \brief Fonction qui permet de stocker dans undoStack l'état de la pile à ce moment
+     * \param index (indice de la commande undo, vaut l'attribut numCommand)
+     */
+    void storeUndo(int index);
+
 
 };
 

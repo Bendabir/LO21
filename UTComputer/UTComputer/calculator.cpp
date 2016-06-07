@@ -794,3 +794,8 @@ void Calculator::redo(){
     }
 
 }
+
+void Calculator::storeUndo(int index){
+    undostack[index%20]=stack->stackMemento();//on sauvegarde l'état de la stack dans un Memento dans le tableau de pile undostack
+    index++;
+}
