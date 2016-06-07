@@ -45,7 +45,7 @@ QString ExpressionLiteral::concat(const QString& op, const Literal& l) const {
     return exp;
 }
 
-ExpressionLiteral::ExpressionLiteral(LiteralFactory* m, const QString& exp) : Literal(m), expression(exp){
+ExpressionLiteral::ExpressionLiteral(LiteralFactory* m, const QString& exp) : StringLiteral(m), expression(exp){
     expression.replace(" ", ""); // On vire les espaces
 
     // Si l'expression est vide, on ne prend pas et on vérifie qu'elle est valide
@@ -61,38 +61,38 @@ ExpressionLiteral::ExpressionLiteral(LiteralFactory* m, const QString& exp) : Li
 }
 
 // Pour savoir ce que l'on traite
-bool ExpressionLiteral::isInteger() const {return false;}
-bool ExpressionLiteral::isReal() const {return false;}
-bool ExpressionLiteral::isRational() const {return false;}
-bool ExpressionLiteral::isComplex() const {return false;}
-bool ExpressionLiteral::isExpression() const {return true;}
-bool ExpressionLiteral::isProgramm() const {return false;}
-bool ExpressionLiteral::isAtom() const {return false;}
+//bool ExpressionLiteral::isInteger() const {return false;}
+//bool ExpressionLiteral::isReal() const {return false;}
+//bool ExpressionLiteral::isRational() const {return false;}
+//bool ExpressionLiteral::isComplex() const {return false;}
+//bool ExpressionLiteral::isExpression() const {return true;}
+//bool ExpressionLiteral::isProgramm() const {return false;}
+//bool ExpressionLiteral::isAtom() const {return false;}
 
 // Opérateurs numériques
-Literal& ExpressionLiteral::operator+(const Literal& l) const {
-    // Ici, on ne se prend pas la tête : Dans tous les cas, la litérale passée en argument devient une expression
-    return this->manager->addLiteral(concat("+", l));
-}
-Literal& ExpressionLiteral::operator-(const Literal& l) const {
-    return this->manager->addLiteral(concat("-", l));
-}
-Literal& ExpressionLiteral::operator*(const Literal& l) const {
-    return this->manager->addLiteral(concat("*", l));
-}
-Literal& ExpressionLiteral::operator/(const Literal& l) const {
-    return this->manager->addLiteral(concat("/", l));
-}
-// On va peut être ajouter des sécurités sur les conversions
-Literal& ExpressionLiteral::div(const Literal& l) const {
-    return this->manager->addLiteral(concat("DIV", l));
-}
-Literal& ExpressionLiteral::mod(const Literal& l) const {
-    return this->manager->addLiteral(concat("MOD", l));
-}
-Literal& ExpressionLiteral::pow(const Literal& l) const {
-    return this->manager->addLiteral(concat("POW", l));
-}
+//Literal& ExpressionLiteral::operator+(const Literal& l) const {
+//    // Ici, on ne se prend pas la tête : Dans tous les cas, la litérale passée en argument devient une expression
+//    return this->manager->addLiteral(concat("+", l));
+//}
+//Literal& ExpressionLiteral::operator-(const Literal& l) const {
+//    return this->manager->addLiteral(concat("-", l));
+//}
+//Literal& ExpressionLiteral::operator*(const Literal& l) const {
+//    return this->manager->addLiteral(concat("*", l));
+//}
+//Literal& ExpressionLiteral::operator/(const Literal& l) const {
+//    return this->manager->addLiteral(concat("/", l));
+//}
+//// On va peut être ajouter des sécurités sur les conversions
+//Literal& ExpressionLiteral::div(const Literal& l) const {
+//    return this->manager->addLiteral(concat("DIV", l));
+//}
+//Literal& ExpressionLiteral::mod(const Literal& l) const {
+//    return this->manager->addLiteral(concat("MOD", l));
+//}
+//Literal& ExpressionLiteral::pow(const Literal& l) const {
+//    return this->manager->addLiteral(concat("POW", l));
+//}
 Literal& ExpressionLiteral::operator-() const {
     QString result = "-";
     if(nbTokens() > 1)
@@ -105,94 +105,94 @@ Literal& ExpressionLiteral::operator-() const {
 
     return this->manager->addLiteral(result);
 }
-Literal& ExpressionLiteral::sin() const {
-    return this->manager->addLiteral(concat("SIN"));
-}
-Literal& ExpressionLiteral::arcsin() const {
-    return this->manager->addLiteral(concat("ARCSIN"));
-}
-Literal& ExpressionLiteral::cos() const {
-    return this->manager->addLiteral(concat("COS"));
-}
-Literal& ExpressionLiteral::arccos() const {
-    return this->manager->addLiteral(concat("ARCCOS"));
-}
-Literal& ExpressionLiteral::tan() const {
-    return this->manager->addLiteral(concat("TAN"));
-}
-Literal& ExpressionLiteral::arctan() const {
-    return this->manager->addLiteral(concat("ARCTAN"));
-}
-Literal& ExpressionLiteral::sqrt() const {
-    return this->manager->addLiteral(concat("SQRT"));
-}
-Literal& ExpressionLiteral::ln() const {
-    return this->manager->addLiteral(concat("LN"));
-}
-Literal& ExpressionLiteral::exp() const {
-    return this->manager->addLiteral(concat("SIN"));
-}
-Literal& ExpressionLiteral::num() const {
-    return this->manager->addLiteral(concat("NUM"));
-}
-Literal& ExpressionLiteral::den() const {
-    return this->manager->addLiteral(concat("DEN"));
-}
-Literal& ExpressionLiteral::re() const {
-    return this->manager->addLiteral(concat("RE"));
-}
-Literal& ExpressionLiteral::im() const {
-    return this->manager->addLiteral(concat("IM"));
-}
-Literal& ExpressionLiteral::arg() const {
-    return this->manager->addLiteral(concat("ARG"));
-}
-Literal& ExpressionLiteral::norm() const {
-    return this->manager->addLiteral(concat("NORM"));
-}
-Literal& ExpressionLiteral::$(const Literal &l) const {
-    return this->manager->addLiteral(concat("$", l));
-}
+//Literal& ExpressionLiteral::sin() const {
+//    return this->manager->addLiteral(concat("SIN"));
+//}
+//Literal& ExpressionLiteral::arcsin() const {
+//    return this->manager->addLiteral(concat("ARCSIN"));
+//}
+//Literal& ExpressionLiteral::cos() const {
+//    return this->manager->addLiteral(concat("COS"));
+//}
+//Literal& ExpressionLiteral::arccos() const {
+//    return this->manager->addLiteral(concat("ARCCOS"));
+//}
+//Literal& ExpressionLiteral::tan() const {
+//    return this->manager->addLiteral(concat("TAN"));
+//}
+//Literal& ExpressionLiteral::arctan() const {
+//    return this->manager->addLiteral(concat("ARCTAN"));
+//}
+//Literal& ExpressionLiteral::sqrt() const {
+//    return this->manager->addLiteral(concat("SQRT"));
+//}
+//Literal& ExpressionLiteral::ln() const {
+//    return this->manager->addLiteral(concat("LN"));
+//}
+//Literal& ExpressionLiteral::exp() const {
+//    return this->manager->addLiteral(concat("SIN"));
+//}
+//Literal& ExpressionLiteral::num() const {
+//    return this->manager->addLiteral(concat("NUM"));
+//}
+//Literal& ExpressionLiteral::den() const {
+//    return this->manager->addLiteral(concat("DEN"));
+//}
+//Literal& ExpressionLiteral::re() const {
+//    return this->manager->addLiteral(concat("RE"));
+//}
+//Literal& ExpressionLiteral::im() const {
+//    return this->manager->addLiteral(concat("IM"));
+//}
+//Literal& ExpressionLiteral::arg() const {
+//    return this->manager->addLiteral(concat("ARG"));
+//}
+//Literal& ExpressionLiteral::norm() const {
+//    return this->manager->addLiteral(concat("NORM"));
+//}
+//Literal& ExpressionLiteral::$(const Literal &l) const {
+//    return this->manager->addLiteral(concat("$", l));
+//}
 
-// Opérateurs logiques
-// Pour le moment, on compare juste sur les chaines évaluées.
-// A voir si on fait le calcul des chaines et on vérifie que la valeur renvoyée est identique
-Literal& ExpressionLiteral::operator==(const Literal& l) const {
-    // On vérifie que l'évaluation des chaînes donne la même chose
-    // Cela permet de faire abstraction des parenthèses de priorité (parfois superflues) dans les expressions
-    return this->manager->addBoolLiteral(eval() == l.eval());
-}
-Literal& ExpressionLiteral::operator!=(const Literal& l) const {
-    return this->manager->addBoolLiteral(eval() != l.eval());
-}
-Literal& ExpressionLiteral::operator>=(const Literal& l) const {
-    return this->manager->addBoolLiteral(eval() >= l.eval());
-}
-Literal& ExpressionLiteral::operator>(const Literal& l) const  {
-    return this->manager->addBoolLiteral(eval() > l.eval());
-}
-Literal& ExpressionLiteral::operator<=(const Literal& l) const  {
-    return this->manager->addBoolLiteral(eval() <= l.eval());
-}
-Literal& ExpressionLiteral::operator<(const Literal& l) const  {
-    return this->manager->addBoolLiteral(eval() < l.eval());
-}
-Literal& ExpressionLiteral::operator&&(const Literal& l) const {
-    // Si la littérale passée en argument est un entier
-    if(l.isInteger() && l.isComplex()){
-        const ComplexLiteral& literal = dynamic_cast<const ComplexLiteral&>(l);
+//// Opérateurs logiques
+//// Pour le moment, on compare juste sur les chaines évaluées.
+//// A voir si on fait le calcul des chaines et on vérifie que la valeur renvoyée est identique
+//Literal& ExpressionLiteral::operator==(const Literal& l) const {
+//    // On vérifie que l'évaluation des chaînes donne la même chose
+//    // Cela permet de faire abstraction des parenthèses de priorité (parfois superflues) dans les expressions
+//    return this->manager->addBoolLiteral(eval() == l.eval());
+//}
+//Literal& ExpressionLiteral::operator!=(const Literal& l) const {
+//    return this->manager->addBoolLiteral(eval() != l.eval());
+//}
+//Literal& ExpressionLiteral::operator>=(const Literal& l) const {
+//    return this->manager->addBoolLiteral(eval() >= l.eval());
+//}
+//Literal& ExpressionLiteral::operator>(const Literal& l) const  {
+//    return this->manager->addBoolLiteral(eval() > l.eval());
+//}
+//Literal& ExpressionLiteral::operator<=(const Literal& l) const  {
+//    return this->manager->addBoolLiteral(eval() <= l.eval());
+//}
+//Literal& ExpressionLiteral::operator<(const Literal& l) const  {
+//    return this->manager->addBoolLiteral(eval() < l.eval());
+//}
+//Literal& ExpressionLiteral::operator&&(const Literal& l) const {
+//    // Si la littérale passée en argument est un entier
+//    if(l.isInteger() && l.isComplex()){
+//        const ComplexLiteral& literal = dynamic_cast<const ComplexLiteral&>(l);
 
-        return this->manager->addBoolLiteral(Number(1) && literal.getReal());
-    }
-    else
-        return this->manager->addBoolLiteral(true); // Forcément des littérales différentes de 0
-}
-Literal& ExpressionLiteral::operator||(const Literal& l) const {
-    return this->manager->addBoolLiteral(true); // Vrai dans tous les cas
-}
-Literal& ExpressionLiteral::operator!() const {
-    return this->manager->addBoolLiteral(false); // Toujours faux
-}
+//        return this->manager->addBoolLiteral(Number(1) && literal.getReal());
+//    }
+//    else
+//        return this->manager->addBoolLiteral(true); // Forcément des littérales différentes de 0
+//}
+//Literal& ExpressionLiteral::operator||(const Literal& l) const {
+//    return this->manager->addBoolLiteral(true); // Vrai dans tous les cas
+//}
+//Literal& ExpressionLiteral::operator!() const {
+//    return this->manager->addBoolLiteral(false); // Toujours faux
+//}
 
 // Permet de récupérer la chaine évaluée même lorsque l'on a une référence sur une litérale (dynamique)
 QString ExpressionLiteral::eval() const {

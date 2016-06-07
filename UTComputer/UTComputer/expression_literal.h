@@ -6,12 +6,12 @@
 #include <QStack>
 #include <QRegularExpression>
 
-#include "literal.h"
+#include "string_literal.h"
 
 /*!
  * \brief La classe ExpressionLiteral permet de gérer les expression littérales.
  */
-class ExpressionLiteral : public Literal {
+class ExpressionLiteral : public StringLiteral {
     friend class LiteralFactory;
 
 private:
@@ -42,57 +42,57 @@ private:
 public:
 
     // Pour savoir ce que l'on traite
-    bool isInteger() const;
-    bool isReal() const;
-    bool isRational() const;
-    bool isComplex() const;
-    bool isExpression() const;
-    bool isProgramm() const;
-    bool isAtom() const;
+//    bool isInteger() const;
+//    bool isReal() const;
+//    bool isRational() const;
+//    bool isComplex() const;
+    bool isExpression() const {return true;}
+    bool isProgramm() const {return false;}
+//    bool isAtom() const;
 
     // Accesseurs
-    /*!
-     * \brief Accesseur de l'expression.
-     * \return Expression infixe, sans guillemets.
-     */
-    const QString& getExpression() const {return expression;}
+//    /*!
+//     * \brief Accesseur de l'expression.
+//     * \return Expression infixe, sans guillemets.
+//     */
+//    const QString& getExpression() const {return expression;}
 
     // Opérateurs numériques
-    Literal& operator+(const Literal& l) const;
-    Literal& operator-(const Literal& l) const;
-    Literal& operator*(const Literal& l) const;
-    Literal& operator/(const Literal& l) const;
-    Literal& div(const Literal& l) const;
-    Literal& mod(const Literal& l) const;
-    Literal& pow(const Literal& l) const;
+//    Literal& operator+(const Literal& l) const;
+//    Literal& operator-(const Literal& l) const;
+//    Literal& operator*(const Literal& l) const;
+//    Literal& operator/(const Literal& l) const;
+//    Literal& div(const Literal& l) const;
+//    Literal& mod(const Literal& l) const;
+//    Literal& pow(const Literal& l) const;
     Literal& operator-() const;
-    Literal& sin() const;
-    Literal& arcsin() const;
-    Literal& cos() const;
-    Literal& arccos() const;
-    Literal& tan() const;
-    Literal& arctan() const;
-    Literal& sqrt() const;
-    Literal& ln() const;
-    Literal& exp() const;
-    Literal& num() const;
-    Literal& den() const;
-    Literal& re() const;
-    Literal& im() const;
-    Literal& arg() const;
-    Literal& norm() const;
-    Literal& $(const Literal &l) const;
+//    Literal& sin() const;
+//    Literal& arcsin() const;
+//    Literal& cos() const;
+//    Literal& arccos() const;
+//    Literal& tan() const;
+//    Literal& arctan() const;
+//    Literal& sqrt() const;
+//    Literal& ln() const;
+//    Literal& exp() const;
+//    Literal& num() const;
+//    Literal& den() const;
+//    Literal& re() const;
+//    Literal& im() const;
+//    Literal& arg() const;
+//    Literal& norm() const;
+//    Literal& $(const Literal &l) const;
 
     // Opérateurs logiques
-    Literal& operator==(const Literal& l) const;
-    Literal& operator!=(const Literal& l) const;
-    Literal& operator>=(const Literal& l) const;
-    Literal& operator>(const Literal& l) const;
-    Literal& operator<=(const Literal& l) const;
-    Literal& operator<(const Literal& l) const;
-    Literal& operator&&(const Literal& l) const;
-    Literal& operator||(const Literal& l) const;
-    Literal& operator!() const;
+//    Literal& operator==(const Literal& l) const;
+//    Literal& operator!=(const Literal& l) const;
+//    Literal& operator>=(const Literal& l) const;
+//    Literal& operator>(const Literal& l) const;
+//    Literal& operator<=(const Literal& l) const;
+//    Literal& operator<(const Literal& l) const;
+//    Literal& operator&&(const Literal& l) const;
+//    Literal& operator||(const Literal& l) const;
+//    Literal& operator!() const;
 
     QString eval() const;
     QString toString() const;
