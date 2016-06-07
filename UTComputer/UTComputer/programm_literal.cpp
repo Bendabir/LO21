@@ -10,6 +10,9 @@ QString ProgrammLiteral::concat(const QString& op, const Literal& l) const {
 }
 
 ProgrammLiteral::ProgrammLiteral(LiteralFactory* m, const QString& exp) : StringLiteral(m, exp){
+    // On remplace les suites d'espaces/sauts par des espaces uniques
+    expression.replace(QRegExp("\\s+"), " ");
+
     // Si l'expression est vide, on ne prend pas et on vérifie qu'elle est valide
     if(expression.length() == 0)
         throw CalculatorException("Erreur : Le programme entré est vide.");
