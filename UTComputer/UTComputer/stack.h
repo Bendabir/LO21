@@ -30,6 +30,7 @@ public:
     bool empty() const {return literals.empty();}
     int size() const {return literals.size();}
     void clear(){literals.clear();}
+    bool contains(Literal& l) const {return literals.contains(&l);}
 
     Literal& operator[](int i);
     const Literal& operator[](int i) const;

@@ -563,15 +563,15 @@ void Calculator::commandTest(const QString& c){
                 }
             }
             else
-                throw CalculatorException("Erreur : Commande ou variable non reconnue.");
+                throw CalculatorException("Erreur : Commande ou variable non reconnue ou opération impossible.");
         }
     }
 }
 
 void Calculator::cleanLastArgs(){
-    // On supprime les littérales dans lastargs
+    // On supprime les littérales dans lastargs si ce n'est pas un atome et si ce n'est pas dans la pile
     for(int i = 0; i < lastargs.length(); i++)
-        if(!lastargs[i]->isAtom())
+        if(!lastargs[i]->isAtom() && !stack->contains(*lastargs[i]))
             factory.removeLiteral(*lastargs[i]);
 
     lastargs.clear();
