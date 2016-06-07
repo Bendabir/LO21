@@ -110,6 +110,7 @@ public slots:
 
     void execute();
     void updateSettings();
+    void executeOnOperatorPressed();
 
     // Pour les raccourcis
     void save();

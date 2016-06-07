@@ -672,33 +672,42 @@ void Calculator::commandTest(const QString& c){
     else if(factory.existsAtom(commandText)) {
         // On le récupère et on push sa cible
         try {
-            Literal& atom = factory.findLiteral(commandText);
-            stack->push(atom);
+            AtomLiteral& atom = dynamic_cast<AtomLiteral&>(factory.findLiteral(commandText));
+            stack->push(atom.getTarget());
         }
         catch(const CalculatorException& e){
             throw e;
         }
     }
     else {
-        // Sinon, si on trouve un atom
 
         // On récupère les commandes, splitée selon les espaces et on va les traiter une par une.
         QStringList commands = commandText.split(" ");
 
-        // On applique de manière récursive
-        for(int i = 0; i < commands.length(); i++){
-            // On vérifie ce que c'est avant de lancer
-            if(isOperator(commands[i]) || isStackOperator(commands[i]) || isFunction(commands[i]) || isNumber(commands[i]) || isExpression(commands[i]) || isProgramm(commands[i]) || factory.existsAtom(commands[i])){
-                try {
-                    this->commandTest(commands[i]);
-                }
-                catch(const CalculatorException& e){
-                    throw e; // On propage en cas d'erreur
-                }
+        // Sinon, si on trouve un atome inexistant, on crée une chaine qui prend la valeur de l'atome
+        if(commands.length() == 1){
+            try{
+                stack->push(factory.addLiteralFromString("'" + commands[0] + "'"));
             }
-            else
-                throw CalculatorException("Erreur : Commande ou variable non reconnue ou opération impossible.");
+            catch(const CalculatorException& e){
+                throw e;
+            }
         }
+        else
+            // On applique de manière récursive
+            for(int i = 0; i < commands.length(); i++){
+                // On vérifie ce que c'est avant de lancer
+                if(isOperator(commands[i]) || isStackOperator(commands[i]) || isFunction(commands[i]) || isNumber(commands[i]) || isExpression(commands[i]) || isProgramm(commands[i]) || factory.existsAtom(commands[i])){
+                    try {
+                        this->commandTest(commands[i]);
+                    }
+                    catch(const CalculatorException& e){
+                        throw e; // On propage en cas d'erreur
+                    }
+                }
+                else
+                    throw CalculatorException("Erreur : Commande ou variable non reconnue ou opération impossible.");
+            }
     }
 }
 

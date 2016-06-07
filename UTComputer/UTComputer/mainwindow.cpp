@@ -117,10 +117,12 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->commandInput, SIGNAL(returnPressed()), this, SLOT(execute()));
     QObject::connect(ui->actionSauvegarder, SIGNAL(triggered(bool)), this, SLOT(save()));
     QObject::connect(settingsDialog, SIGNAL(settingsChanged()), this, SLOT(updateSettings()));
+    QObject::connect(ui->commandInput, SIGNAL(textChanged(QString)), this, SLOT(executeOnOperatorPressed()));
 
     // Raccourcis
     ui->actionQuitter->setShortcut(QKeySequence::Quit);
-
+    ui->actionAnnuler->setShortcut(QKeySequence::Undo);
+    ui->actionR_tablir->setShortcut(QKeySequence::Redo);
     ui->actionSauvegarder->setShortcut(QKeySequence::Save);
 
     ui->tableWidget->horizontalHeader()->setVisible(false);
@@ -129,25 +131,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->setSelectionMode(QTableWidget::NoSelection);
 
     updateSettings();
-
-    // Tests
-//    undoStack = new QUndoStack(this);
-//    undoView = new QUndoView(undoStack);
-//    undoView->setWindowTitle("Historique");
-//    undoView->show();
-//    undoView->setAttribute(Qt::WA_QuitOnClose, false);
-
-//    ui->actionAnnuler = undoStack->createUndoAction(this, "Annuler");
-//    ui->actionR_tablir = undoStack->createRedoAction(this, "Rétablir");
-
-    ui->actionAnnuler->setShortcut(QKeySequence::Undo);
-    ui->actionR_tablir->setShortcut(QKeySequence::Redo);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
     delete editProgrammDialog;
+
+    save();
 }
 
 // Permet de changer le texte de la ligne de commande
@@ -175,10 +166,11 @@ void MainWindow::executeOperator(const QString& op){
 
     addTextToCommand(op);
 
-    // On tente l'exécution
-    execute();
+    // On tente l'exécution seulement si on n'est pas une expression
+    int quoteNumber = ui->commandInput->text().trimmed().count('\'');
 
-    ui->commandInput->clear();
+    if(quoteNumber % 2 == 0)
+        execute();
 }
 
 // On va faire d'une manière dégueu mais pas le temps de coder l'interface comme des vrais cowboys
@@ -398,6 +390,7 @@ void MainWindow::execute(){
         ui->commandInput->clear();
     }
     catch(const CalculatorException& e){
+        // Un petit UNDO pour revenir à l'état avant l'erreur ?
         setUserMessage(e.what());
     }
 
@@ -452,4 +445,16 @@ void MainWindow::refreshListView(){
             ui->tableWidget->item(i, 0)->setText((*literal).toString());
         else
             break;
+}
+
+// On fait une surchage un peu crade pour binder les touches +, -, *, / et $
+void MainWindow::executeOnOperatorPressed(){
+    QString command = ui->commandInput->text().trimmed();
+    QString::iterator end = command.end();
+    QChar last = *(--end);
+    int quoteNumber = command.count('\'');
+
+    // On vérifie que l'on est pas dans une expression
+    if(quoteNumber % 2 == 0 && (last == '+' || last == '-' || last == '*' || last == '/' || last == '$'))
+        execute();
 }
