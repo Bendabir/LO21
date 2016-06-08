@@ -57,6 +57,6 @@ void Stack::restoreMemento(Memento* mem, LiteralFactory& f){
     // Lors de la restauration, on redéclare les litérales dans la factory
     // Sinon, elles sont encore affichées mais sans être référencées dans le manager
     literals.clear();
-    for(int i = mem->state.size() - 1; i >= 0; i--)
+    for(int i = 0; i < mem->state.size(); i++)
         literals.push(&f.addLiteralFromString(mem->state[i]->toString()));
 }

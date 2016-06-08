@@ -98,7 +98,7 @@ void Calculator::command(const QString& c){
 
     QString commandText = c.toUpper().trimmed();
 
-    // On sauvegarde l'état de la pile
+    // On sauvegarde l'état de la pile (sauf quand on fait une commande qui touche au memento
     if(commandText != "UNDO" && commandText != "REDO"){
         // Si on a atteint la fin du tableau, on décale tout pour continuer à stocker
         if(mementoIndex >= HISTORY_SIZE - 1){
@@ -114,8 +114,6 @@ void Calculator::command(const QString& c){
                   topIndex = mementoIndex;
 
         mementoIndex++;
-
-        qDebug() << "INDEX : " << mementoIndex;
     }
 
     // On vérifie que l'on ne traite pas un unique programme ou expression
@@ -904,17 +902,15 @@ void Calculator::undo(){
     if(mementoIndex == 0)
         throw CalculatorException("Erreur : Impossible d'annuler car aucune action n'a été effectuée !");
 
-    stack->restoreMemento(mementoList[--mementoIndex], factory);
+    // On sauvegarde avant de faire un undo
+    mementoList[mementoIndex] = stack->createMemento();
 
-    qDebug() << "UNDOING : " + mementoIndex;
+    stack->restoreMemento(mementoList[--mementoIndex], factory);
 }
 
 void Calculator::redo(){
     if(mementoIndex > topIndex)
         throw CalculatorException("Erreur : Impossible de rétablir car il n'y a plus rien à rétablir.");
 
-    qDebug() << "REDOING : " + mementoIndex;
-
-    stack->restoreMemento(mementoList[mementoIndex++], factory);
-
+    stack->restoreMemento(mementoList[++mementoIndex], factory);
 }
