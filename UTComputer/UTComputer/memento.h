@@ -10,7 +10,7 @@ private:
     QStack<Literal*> state;
 
 public:
-    Memento(QStack <Literal*> l) : state(l){}
+    Memento(const QStack <Literal*>& l) : state(l){}
 };
 
 

@@ -4,6 +4,8 @@
 #include "stack.h"
 #include "settings.h"
 
+#define HISTORY_SIZE 20
+
 /*!
  * \brief La classe Calculator est la classe principale de l'application. C'est elle qui gère les calculs.
  * \brief Elle compose la pile, le manager des littérales ainsi que les options de l'application.
@@ -15,12 +17,12 @@ protected:
     LiteralFactory factory;
 
     //les deux tableaux de Memento pour sauvegarder les undo et redo
-    Memento* undostack[20];
-    Memento* redostack[20];
+    Memento* undoStack[HISTORY_SIZE];
+    Memento* redoStack[HISTORY_SIZE];
+
     //les indices de ces tableaux
     int numCommand;
     int indexUndo;
-
 
     QString lastop;
     QVector<Literal*> lastargs;
@@ -62,12 +64,8 @@ public:
 
     /*!
      * \brief Fonction qui permet de stocker dans undoStack l'état de la pile à ce moment
-     * \param index (indice de la commande undo, vaut l'attribut numCommand)
      */
-
-    void storeUndo(int index);
-
-
+    void storeUndo();
 };
 
 /*!

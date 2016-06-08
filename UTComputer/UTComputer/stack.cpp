@@ -1,4 +1,5 @@
 #include "stack.h"
+#include "memento.h"
 
 Stack::Stack() : literals(QStack<Literal*>()){}
 
@@ -48,11 +49,11 @@ ostream& operator<<(ostream& f, const Stack& s){
     return f;
 }
 
-Memento * Stack::stackMemento() {
+Memento* Stack::stackMemento(){
     return new Memento(literals);
 }
 
-void Stack::restoreMemento (Memento* mem){
+void Stack::restoreMemento(Memento* mem){
     if(!mem->state.isEmpty())
         literals = mem->state;
     else

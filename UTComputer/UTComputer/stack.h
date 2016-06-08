@@ -4,8 +4,8 @@
 #include <QStack>
 
 #include "literal.h"
-#include "memento.h"
 
+class Memento;
 class Calculator;
 
 /*!
