@@ -118,8 +118,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->actionSauvegarder, SIGNAL(triggered(bool)), this, SLOT(save()));
     QObject::connect(settingsDialog, SIGNAL(settingsChanged()), this, SLOT(updateSettings()));
     QObject::connect(ui->commandInput, SIGNAL(textChanged(QString)), this, SLOT(executeOnOperatorPressed()));
-    QObject::connect(ui->actionAnnuler, SIGNAL(triggered(bool)), this, SLOT(undoSlot()));
-    QObject::connect(ui->actionR_tablir, SIGNAL(triggered(bool)), this, SLOT(redoSlot()));
+    QObject::connect(ui->actionAnnuler, SIGNAL(triggered(bool)), this, SLOT(onUndoPressed()));
+    QObject::connect(ui->actionR_tablir, SIGNAL(triggered(bool)), this, SLOT(onRedoPressed()));
 
     // Raccourcis
     ui->actionQuitter->setShortcut(QKeySequence::Quit);
@@ -142,10 +142,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    try{
+        this->settings->saveSettingsToFile(*(this->stack), this->factory);
+    }
+    catch(...){
+    }
+
     delete ui;
     delete editProgrammDialog;
-
-    save();
+    delete editVariablesDialog;
+    delete settingsDialog;
 }
 
 // Permet de changer le texte de la ligne de commande
@@ -486,24 +492,4 @@ void MainWindow::executeOnOperatorPressed(){
     // On vérifie que l'on est pas dans une expression
     if(quoteNumber % 2 == 0 && bracketNumber % 2 == 0 && (last == '+' || last == '-' || last == '*' || last == '/' || last == '$'))
         execute();
-}
-
-void MainWindow::undoSlot(){
-    try {
-        undo();
-        refreshListView();
-    }
-    catch(const CalculatorException& e){
-        setUserMessage(e.what());
-    }
-}
-
-void MainWindow::redoSlot(){
-    try {
-        redo();
-        refreshListView();
-    }
-    catch(const CalculatorException& e){
-        setUserMessage(e.what());
-    }
 }
