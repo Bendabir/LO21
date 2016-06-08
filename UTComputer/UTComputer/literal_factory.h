@@ -93,6 +93,12 @@ public:
      * \return Vrai si le nom est déjà pris, faux sinon
      */
     bool existsAtom(const QString& atom) const;
+    /*!
+     * \brief Permet de vérifier si une littérale existe.
+     * \param Le nom de la littérale à vérifier
+     * \return Vrai si la littérale existe, faux sinon
+     */
+    bool existsLiteral(const QString& l) const;
 
     /*!
      * \brief Adaptateur de la classe iterator de QVector<Literal*> pour plus de facilité d'utilisation.
@@ -103,7 +109,7 @@ public:
     public:
         iterator(typename QVector<Literal*>::iterator c) : current(c) {}
         iterator() : current() {}
-        Literal& operator*() const {return **current;}
+        Literal& operator*() {return **current;}
         iterator& operator++() {current++; return *this;}
         iterator operator++(int) {iterator tmp = *this; current++; return tmp;}
         iterator& operator--() {current--; return *this;}
@@ -131,7 +137,7 @@ public:
     public:
         const_iterator(typename QVector<Literal*>::const_iterator c) : current(c) {}
         const_iterator() : current() {}
-        Literal& operator*() const {return **current;}
+        const Literal& operator*() const {return **current;}
         const_iterator& operator++() {current++; return *this;}
         const_iterator operator++(int) {const_iterator tmp = *this; current++; return tmp;}
         const_iterator& operator--() {current--; return *this;}

@@ -34,6 +34,8 @@ unsigned int getArity(const QString &c){
         return 2;
     if (c == "POW")
         return 2;
+    if (c== "$")
+        return 2;
 
  //operateurs unaires numériques
     if (c== "NEG")
@@ -85,8 +87,6 @@ unsigned int getArity(const QString &c){
     if (c== "AND")
         return 2;
     if (c== "OR")
-        return 2;
-    if (c== "$")
         return 2;
 
 //operateurs unaires logiques
@@ -563,6 +563,8 @@ void Calculator::command(const QString& c){
 
         if(op == "CLEAR"){
             while(!stack->empty()){
+                cleanLastArgs();
+
                 Literal& pop = stack->pop();
 
                 if(!pop.isAtom())
@@ -658,7 +660,9 @@ void Calculator::command(const QString& c){
                     stack->push(variable);
                 }
 
-                factory.removeLiteral(atom);
+                cleanLastArgs();
+                lastargs.push_back(&atom);
+                lastargs.push_back(&target);
             }
             catch(const CalculatorException& e){
                 // On rétablit
@@ -678,8 +682,6 @@ void Calculator::command(const QString& c){
             try {
                 if(!l.isAtom())
                     throw CalculatorException("Erreur : Impossible de supprimer la variable car ce n'en est pas une.");
-
-                QString name = l.toString();
 
                 // On supprime la variable et sa cible
                 factory.removeLiteral(l);
@@ -706,22 +708,28 @@ void Calculator::command(const QString& c){
             // On dépile deux arguments
             QVector<Literal*> literals;
 
+            if(stack->size() < 2)
+                throw CalculatorException("Erreur : Pas assez d'arguments dans pile pour effectuer le test.");
+
             for(int i = 0; i < 2; i++){
                 Literal& res = stack->pop();
 
                 cleanLastArgs();
-                lastargs.append(&res);
+                lastargs.push_back(&res);
                 literals.append(&res); // On pop la littérale, on les supprimera après
             }
 
             // Si le dernier argument dépilé est vrai
-            if(literals[1]->toString() == "1")
+            if(literals[1]->toString() != "0")
                 command(literals[0]->eval());
         }
 
         if(op == "IFTE"){
             // On dépile deux arguments
             QVector<Literal*> literals;
+
+            if(stack->size() < 3)
+                throw CalculatorException("Erreur : Pas assez d'arguments dans pile pour effectuer le test.");
 
             for(int i = 0; i < 3; i++){
                 Literal& res = stack->pop();
@@ -732,7 +740,7 @@ void Calculator::command(const QString& c){
             }
 
             // Si le dernier argument dépilé est vrai
-            if(literals[2]->toString() == "1")
+            if(literals[2]->toString() != "0")
                 command(literals[1]->eval());
             else
                 command(literals[0]->eval());
@@ -769,8 +777,6 @@ void Calculator::command(const QString& c){
             pos += regex.matchedLength();
         }
 
-        qDebug() << commands;
-
         // Sinon, si on trouve un atome inexistant, on crée une chaine qui prend la valeur de l'atome
         if(commands.length() == 1){
             try{
@@ -793,16 +799,23 @@ void Calculator::command(const QString& c){
                     }
                 }
                 else
-                    throw CalculatorException("Erreur : Commande ou variable non reconnue ou opération impossible.");
+                    throw CalculatorException("Erreur : Commande non reconnue ou opération impossible.");
             }
     }
 }
 
 void Calculator::cleanLastArgs(){
-    // On supprime les littérales dans lastargs si ce n'est pas un atome et si ce n'est pas dans la pile
-    for(int i = 0; i < lastargs.length(); i++)
-        if(!lastargs[i]->isAtom() && !stack->contains(*lastargs[i]))
+    // On supprime les littérales dans lastargs si ce n'est pas un atome et si ce n'est pas dans la pile. Il ne faut pas supprimer les cibles de variables non plus
+    for(int i = 0; i < lastargs.length(); i++){
+        QString exp = lastargs[i]->toString();
+
+        if(!lastargs[i]->isAtom() && !stack->contains(*lastargs[i])){
+            exp += " (Removed)";
             factory.removeLiteral(*lastargs[i]);
+        }
+
+        qDebug() << exp;
+    }
 
     lastargs.clear();
 }

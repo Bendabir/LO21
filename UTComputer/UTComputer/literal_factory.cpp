@@ -112,12 +112,20 @@ Literal& LiteralFactory::addLiteralFromString(const QString& exp){
         throw CalculatorException("Erreur : Impossibler de générer une littérale à partir de la chaine \"" + exp + "\".");
 }
 
-Literal& LiteralFactory::findLiteral(const QString& literal){
+Literal& LiteralFactory::findLiteral(const QString& literal) {
     for(LiteralFactory::iterator l = begin(); l != end(); ++l)
         if((*l).toString() == literal)
             return *l;
 
     throw CalculatorException("Erreur : Impossible de trouver la littérale " + literal + " .");
+}
+
+bool LiteralFactory::existsLiteral(const QString& l) const {
+    for(LiteralFactory::const_iterator literal = cbegin(); literal != cend(); ++literal)
+        if((*literal).toString() == l)
+            return true;
+
+    return false;
 }
 
 bool LiteralFactory::existsAtom(const QString& atom) const {
