@@ -648,6 +648,8 @@ void Calculator::command(const QString& c){
                 if(!l.isAtom())
                     throw CalculatorException("Erreur : Impossible de supprimer la variable car ce n'en est pas une.");
 
+                QString name = l.toString();
+
                 // On supprime la variable et sa cible
                 factory.removeLiteral(l);
             }
@@ -751,7 +753,7 @@ void Calculator::command(const QString& c){
             // On applique de manière récursive
             for(int i = 0; i < commands.length(); i++){
                 // On vérifie ce que c'est avant de lancer
-                if(isOperator(commands[i]) || isStackOperator(commands[i]) || isFunction(commands[i]) || isNumber(commands[i]) || isExpression(commands[i]) || isProgramm(commands[i]) || factory.existsAtom(commands[i])){
+                if(isOperator(commands[i]) || isStackOperator(commands[i]) || isFunction(commands[i]) || isNumber(commands[i]) || isExpression(commands[i]) || isProgramm(commands[i]) || isVariable(commands[i])){
                     try {
                         this->command(commands[i]);
                     }
