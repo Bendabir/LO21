@@ -6,9 +6,11 @@
 #include "literal.h"
 #include "atom_literal.h"
 
+// Initialisation des attributs statics
+int Calculator::numCommand = 0;
+int Calculator::indexUndo = 0;
+
 Calculator::Calculator() : stack(new Stack()), settings(new Settings()){
-    numCommand = 0;
-    indexUndo = 0;
 }
 
 Calculator::~Calculator(){
@@ -290,7 +292,6 @@ void Calculator::command(const QString& c){
                 }
             }
 
-
             if(op == "DEN"){
                 try {
                     Literal& res = literals[0]->den();
@@ -306,7 +307,6 @@ void Calculator::command(const QString& c){
                 }
             }
 
-
             if(op == "NUM"){
                 try {
                     Literal& res = literals[0]->num();
@@ -321,7 +321,6 @@ void Calculator::command(const QString& c){
                     throw e;
                 }
             }
-
 
             if(op == "$"){
                 try {
@@ -482,6 +481,7 @@ void Calculator::command(const QString& c){
                     throw e;
                 }
             }
+
             if(op == "AND"){
                 try {
                     Literal& res = *literals[1] && *literals[0];
@@ -496,6 +496,7 @@ void Calculator::command(const QString& c){
                     throw e;
                 }
             }
+
             if(op == "OR"){
                 try {
                     Literal& res = *literals[1] || *literals[0];
@@ -510,7 +511,6 @@ void Calculator::command(const QString& c){
                     throw e;
                 }
             }
-
 
             // On supprime les litérales si pas d'erreurs
             if(!error){
@@ -774,28 +774,29 @@ void Calculator::cleanLastArgs(){
     lastargs.clear();
 }
 
-void Calculator::undo(){
-    if (numCommand==0)
-        throw("aucune action effectuée!");
-    else{
-        redostack[indexUndo%20]=stack->stackMemento();//on stock la pile en cours dans le redostack
-        indexUndo++;
-        stack->restoreMemento(undostack[numCommand%20]);//on restaure la pile avec le numero de la command actuel
-        numCommand--;
-    }
-}
+// Les méthodes statiques ne peuvent accéder qu'à des membres statiques...
+//void Calculator::undo(){
+//    if (numCommand==0)
+//        throw("aucune action effectuée!");
+//    else{
+//        redostack[indexUndo%20]=stack->stackMemento();//on stock la pile en cours dans le redostack
+//        indexUndo++;
+//        stack->restoreMemento(undostack[numCommand%20]);//on restaure la pile avec le numero de la command actuel
+//        numCommand--;
+//    }
+//}
 
-void Calculator::redo(){
-    if(indexUndo==0)
-        throw("aucune action effectuée!");
-    else{
-        stack->restoreMemento(redostack[indexUndo]);//on restaure la pile avec celle sauvegardé dans redostack à l'indice indexUndo
-        indexUndo--; //on décrémente cet index
-    }
+//void Calculator::redo(){
+//    if(indexUndo==0)
+//        throw("aucune action effectuée!");
+//    else{
+//        stack->restoreMemento(redostack[indexUndo]);//on restaure la pile avec celle sauvegardé dans redostack à l'indice indexUndo
+//        indexUndo--; //on décrémente cet index
+//    }
 
-}
+//}
 
-void Calculator::storeUndo(int index){
-    undostack[index%20]=stack->stackMemento();//on sauvegarde l'état de la stack dans un Memento dans le tableau de pile undostack
-    index++;
-}
+//void Calculator::storeUndo(int index){
+//    undostack[index%20]=stack->stackMemento();//on sauvegarde l'état de la stack dans un Memento dans le tableau de pile undostack
+//    index++;
+//}

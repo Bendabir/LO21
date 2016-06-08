@@ -4,8 +4,9 @@
 #include "stack.h"
 
 class Memento {
-private:
     friend class Stack;
+
+private:
     QStack<Literal*> state;
 public:
     Memento(QStack <Literal*> l){
