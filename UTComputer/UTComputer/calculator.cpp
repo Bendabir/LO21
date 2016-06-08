@@ -128,18 +128,49 @@ void Calculator::command(const QString& c){
 
             // On traite
             if(op == "+"){
-                Literal& res = *literals[1] + *literals[0];
-                stack->push(res);
+                try {
+                    Literal& res = *literals[1] + *literals[0];
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
+
             }
 
             if(op == "-"){
-                Literal& res = *literals[1] - *literals[0];
-                stack->push(res);
+                try {
+                    Literal& res = *literals[1] - *literals[0];
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
             }
 
             if(op == "*"){
-                Literal& res = *literals[1] * *literals[0];
-                stack->push(res);
+                try {
+                    Literal& res = *literals[1] * *literals[0];
+                    stack->push(res);
+                }
+                catch(const CalculatorException& e){
+                    // On rétablit les littérales
+                    for(int i = literals.length() - 1; i >= 0; i--)
+                        stack->push(*literals[i]);
+
+                    error = true;
+                    throw e;
+                }
             }
 
             if(op == "/"){

@@ -6,26 +6,61 @@
 // Opérateurs numériques
 Literal& StringLiteral::operator+(const Literal& l) const {
     // Ici, on ne se prend pas la tête : Dans tous les cas, la litérale passée en argument devient une expression
-    return this->manager->addLiteral(concat("+", l));
+    try {
+        return this->manager->addLiteral(concat("+", l));
+    }
+    catch(const CalculatorException& e){
+        throw e;
+    }
 }
 Literal& StringLiteral::operator-(const Literal& l) const {
-    return this->manager->addLiteral(concat("-", l));
+    try {
+        return this->manager->addLiteral(concat("-", l));
+    }
+    catch(const CalculatorException& e){
+        throw e;
+    }
 }
 Literal& StringLiteral::operator*(const Literal& l) const {
-    return this->manager->addLiteral(concat("*", l));
+    try {
+        return this->manager->addLiteral(concat("*", l));
+    }
+    catch(const CalculatorException& e){
+        throw e;
+    }
 }
 Literal& StringLiteral::operator/(const Literal& l) const {
-    return this->manager->addLiteral(concat("/", l));
+    try {
+        return this->manager->addLiteral(concat("/", l));
+    }
+    catch(const CalculatorException& e){
+        throw e;
+    }
 }
 // On va peut être ajouter des sécurités sur les conversions
 Literal& StringLiteral::div(const Literal& l) const {
-    return this->manager->addLiteral(concat("DIV", l));
+    try {
+        return this->manager->addLiteral(concat("DIV", l));
+    }
+    catch(const CalculatorException& e){
+        throw e;
+    }
 }
 Literal& StringLiteral::mod(const Literal& l) const {
-    return this->manager->addLiteral(concat("MOD", l));
+    try {
+        return this->manager->addLiteral(concat("MOD", l));
+    }
+    catch(const CalculatorException& e){
+        throw e;
+    }
 }
 Literal& StringLiteral::pow(const Literal& l) const {
-    return this->manager->addLiteral(concat("POW", l));
+    try {
+        return this->manager->addLiteral(concat("POW", l));
+    }
+    catch(const CalculatorException& e){
+        throw e;
+    }
 }
 
 Literal& StringLiteral::sin() const {
@@ -74,7 +109,12 @@ Literal& StringLiteral::norm() const {
     return this->manager->addLiteral(concat("NORM"));
 }
 Literal& StringLiteral::$(const Literal &l) const {
-    return this->manager->addLiteral(concat("$", l));
+    try {
+        return this->manager->addLiteral(concat("$", l));
+    }
+    catch(const CalculatorException& e){
+        throw e;
+    }
 }
 
 // Opérateurs logiques

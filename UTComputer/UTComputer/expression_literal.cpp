@@ -1,3 +1,5 @@
+#include <QDebug>
+
 #include "expression_literal.h"
 #include "complex_literal.h"
 
@@ -9,10 +11,11 @@ QString ExpressionLiteral::concat(const QString& op) const {
 
 QString ExpressionLiteral::concat(const QString& op, const Literal& l) const {
     QString exp;
-    int operatorPriority = getPriority(op);
 
     // Si on a un opérateur : infixe, sinon préfixe
     if(isOperator(op)){
+        int operatorPriority = getPriority(op);
+
         // On vire les guillemets si c'était une expression
         if(priority() < operatorPriority)
             exp += "(";
@@ -25,16 +28,22 @@ QString ExpressionLiteral::concat(const QString& op, const Literal& l) const {
         exp += op;
 
         // On crée une expression littérale pour le calcul
-        ExpressionLiteral literal(0, l.toString().replace("'", ""));
+        try {
+            ExpressionLiteral& literal = dynamic_cast<ExpressionLiteral&>(this->manager->addLiteral(l.toString().replace("'", "")));
 
-        if(literal.priority() < operatorPriority)
-            exp += "(";
+            if(literal.priority() < operatorPriority)
+                exp += "(";
 
-        exp += literal.expression;
+            exp += literal.expression;
 
-        if(literal.priority() < operatorPriority)
-            exp += ")";
+            if(literal.priority() < operatorPriority)
+                exp += ")";
 
+            this->manager->removeLiteral(literal);
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
     }
     else if(isFunction(op))
         // On vire les guillemets si c'était une expression
@@ -101,20 +110,6 @@ QString ExpressionLiteral::evaluate() const {
         if(::isNumber(token))
             output.append(token);
 
-        // Si c'est une variable, on va faire quelques tests pour être sûrs
-        if(isVariable(token)){
-            if(this->manager->existsAtom(token)){
-                Literal& atom = this->manager->findLiteral(token);
-                output.append(atom.eval()); // A voir si on évalue la variable dans l'évaluation (ou si on la laisse telle qu'elle) et si oui, si on l'évalue sur une itération ou sur toute sa chaine de référence
-            }
-            // Si on a qu'un seul token, on déclare surement une variable donc on ne renvoie pas d'erreur
-            else if(tokens.length() == 1){
-                output.append(token);
-            }
-            else
-                throw CalculatorException("Erreur : Le nom d'atome " + token + " n'existe pas.");
-        }
-
         // Si c'est une fonction, on empile
         if(isFunction(token))
             tokensStack.push(token);
@@ -149,6 +144,20 @@ QString ExpressionLiteral::evaluate() const {
 
             // On empile o1
             tokensStack.push(token);
+        }
+
+        // Si c'est une variable, on va faire quelques tests pour être sûrs
+        if(isVariable(token)){
+            if(this->manager->existsAtom(token)){
+                Literal& atom = this->manager->findLiteral(token);
+                output.append(atom.eval()); // A voir si on évalue la variable dans l'évaluation (ou si on la laisse telle qu'elle) et si oui, si on l'évalue sur une itération ou sur toute sa chaine de référence
+            }
+            // Si on a qu'un seul token, on déclare surement une variable donc on ne renvoie pas d'erreur
+            else if(tokens.length() == 1){
+                output.append(token);
+            }
+            else
+                throw CalculatorException("Erreur : Le nom d'atome " + token + " n'existe pas.");
         }
 
         // Si c'est une parenthèse gauche, on empile

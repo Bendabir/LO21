@@ -68,7 +68,12 @@ Literal& LiteralFactory::addLiteralFromString(const QString& exp){
     // Si on a une expression
     if(isExpression(exp)){
         QString expression = exp;
-        return addLiteral(expression.replace("'", ""));
+        try {
+            return addLiteral(expression.replace("'", ""));
+        }
+        catch(const CalculatorException& e){
+            throw e;
+        }
     }
     else if(isProgramm(exp)){
         return addLiteral(exp);
