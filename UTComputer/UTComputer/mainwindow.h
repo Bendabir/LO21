@@ -144,6 +144,9 @@ public slots:
      * \brief Permet de sauvegarder le contexte de l'application dans un fichier INI. Sauvegarder automatique à la fermeture de l'application.
      */
     void save();
+
+    void undoSlot();
+    void redoSlot();
 };
 
 #endif // MAINWINDOW_H

@@ -118,6 +118,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->actionSauvegarder, SIGNAL(triggered(bool)), this, SLOT(save()));
     QObject::connect(settingsDialog, SIGNAL(settingsChanged()), this, SLOT(updateSettings()));
     QObject::connect(ui->commandInput, SIGNAL(textChanged(QString)), this, SLOT(executeOnOperatorPressed()));
+    QObject::connect(ui->actionAnnuler, SIGNAL(triggered(bool)), this, SLOT(undoSlot()));
+    QObject::connect(ui->actionR_tablir, SIGNAL(triggered(bool)), this, SLOT(redoSlot()));
 
     // Raccourcis
     ui->actionQuitter->setShortcut(QKeySequence::Quit);
@@ -129,6 +131,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget->setSelectionMode(QTableWidget::NoSelection);
+
+    ui->undo->setDisabled(true);
+    ui->actionAnnuler->setDisabled(true);
+    ui->redo->setDisabled(true);
+    ui->actionR_tablir->setDisabled(true);
 
     updateSettings();
 }
@@ -398,6 +405,25 @@ void MainWindow::execute(){
 
     refreshListView();
 
+    // On met à jour les boutons
+    if(this->mementoIndex <= 0){
+        ui->undo->setDisabled(true);
+        ui->actionAnnuler->setDisabled(true);
+    }
+    else {
+        ui->undo->setEnabled(true);
+        ui->actionAnnuler->setEnabled(true);
+    }
+
+
+    if(this->mementoIndex > this->topIndex){
+        ui->redo->setDisabled(true);
+        ui->actionR_tablir->setDisabled(true);
+    }
+    else {
+        ui->redo->setEnabled(true);
+        ui->actionR_tablir->setEnabled(true);
+    }
 }
 
 void MainWindow::updateSettings(){
@@ -460,4 +486,24 @@ void MainWindow::executeOnOperatorPressed(){
     // On vérifie que l'on est pas dans une expression
     if(quoteNumber % 2 == 0 && bracketNumber % 2 == 0 && (last == '+' || last == '-' || last == '*' || last == '/' || last == '$'))
         execute();
+}
+
+void MainWindow::undoSlot(){
+    try {
+        undo();
+        refreshListView();
+    }
+    catch(const CalculatorException& e){
+        setUserMessage(e.what());
+    }
+}
+
+void MainWindow::redoSlot(){
+    try {
+        redo();
+        refreshListView();
+    }
+    catch(const CalculatorException& e){
+        setUserMessage(e.what());
+    }
 }

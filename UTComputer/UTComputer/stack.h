@@ -82,12 +82,12 @@ public:
      * \brief stackMemento permet de creer un memento de la pile
      * \return renvoi une QStack de literal* avec:  new Memento(literals)
      */
-    Memento * stackMemento();
+    Memento * createMemento();
     /*!
      * \brief restoreMemento permet de charger l'attribut literal de la stack avec le memento stocké en mémoire
      * \param mem
      */
-    void restoreMemento (Memento* mem);
+    void restoreMemento (Memento* mem, LiteralFactory& f);
 
     // On réimplémente un itérateur
     /*!

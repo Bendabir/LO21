@@ -49,13 +49,14 @@ ostream& operator<<(ostream& f, const Stack& s){
     return f;
 }
 
-Memento* Stack::stackMemento(){
+Memento* Stack::createMemento(){
     return new Memento(literals);
 }
 
-void Stack::restoreMemento(Memento* mem){
-    if(!mem->state.isEmpty())
-        literals = mem->state;
-    else
-        throw CalculatorException("Erreur : Pas de memento en mémoire.");
+void Stack::restoreMemento(Memento* mem, LiteralFactory& f){
+    // Lors de la restauration, on redéclare les litérales dans la factory
+    // Sinon, elles sont encore affichées mais sans être référencées dans le manager
+    literals.clear();
+    for(int i = mem->state.size() - 1; i >= 0; i--)
+        literals.push(&f.addLiteralFromString(mem->state[i]->toString()));
 }

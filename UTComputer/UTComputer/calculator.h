@@ -16,13 +16,12 @@ protected:
     Settings* settings;
     LiteralFactory factory;
 
-    //les deux tableaux de Memento pour sauvegarder les undo et redo
-    Memento* undoStack[HISTORY_SIZE];
-    Memento* redoStack[HISTORY_SIZE];
+    // Permet de stocker la pile à chaque changement
+    Memento* mementoList[HISTORY_SIZE];
 
-    //les indices de ces tableaux
-    int numCommand;
-    int indexUndo;
+    //les indices de ce tableaux
+    int mementoIndex;
+    int topIndex;
 
     QString lastop;
     QVector<Literal*> lastargs;
@@ -61,11 +60,6 @@ public:
     //fonction undo() et redo()
     void undo();
     void redo();
-
-    /*!
-     * \brief Fonction qui permet de stocker dans undoStack l'état de la pile à ce moment
-     */
-    void storeUndo();
 };
 
 /*!
