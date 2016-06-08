@@ -852,7 +852,7 @@ void Calculator::command(const QString& c){
     }
     else {
         // On récupère les commandes, splitée selon une regex et on va les traiter une par une.
-        QRegExp regex("(\\[.+\\]|'.+'|[A-Z]+|[A-Z][0-9A-Z]*|[0-9.]+|[+\\-*/(),<>=$]|<=|>=|!=)");
+        QRegExp regex("(\\[.+\\]|'[A-Z0-9.+\\-*/(),<>=$]+'|[A-Z]+|[A-Z][0-9A-Z]*|[0-9.]+|[+\\-*/(),<>=$]|<=|>=|!=)");
 
         QStringList commands;
 
@@ -862,6 +862,8 @@ void Calculator::command(const QString& c){
             commands << regex.cap(1);
             pos += regex.matchedLength();
         }
+
+        qDebug() << commands;
 
         // Sinon, si on trouve un atome inexistant, on crée une chaine qui prend la valeur de l'atome
         if(commands.length() == 1){
