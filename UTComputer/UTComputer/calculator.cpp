@@ -792,7 +792,24 @@ void Calculator::command(const QString& c){
                 command(literals[0]->eval());
         }
 
-        // Manque UNDO, REDO
+        if(op == "UNDO"){
+            try{
+                undo();
+            }
+            catch(const CalculatorException& e){
+                throw e;
+            }
+        }
+
+        if(op == "REDO"){
+            try{
+                redo();
+            }
+            catch(const CalculatorException& e){
+                throw e;
+            }
+
+        }
 
         // On sauvegarde le dernier opérateur
         if(op != "LASTOP")
@@ -867,19 +884,19 @@ void Calculator::cleanLastArgs(){
 }
 
 void Calculator::undo(){
-    if (numCommand==0)
-        throw("aucune action effectuée!");
+    if(numCommand == 0)
+        throw CalculatorException("Erreur : Impossible d'annuler car aucune action n'a été effectuée !");
     else{
-        redostack[indexUndo%20]=stack->stackMemento();//on stock la pile en cours dans le redostack
+        redostack[indexUndo % 20] = stack->stackMemento(); //on stock la pile en cours dans le redostack
         indexUndo++;
-        stack->restoreMemento(undostack[numCommand%20]);//on restaure la pile avec le numero de la command actuel
+        stack->restoreMemento(undostack[numCommand % 20]);//on restaure la pile avec le numero de la command actuel
         numCommand--;
     }
 }
 
 void Calculator::redo(){
-    if(indexUndo==0)
-        throw("aucune action effectuée!");
+    if(indexUndo == 0)
+        throw CalculatorException("Erreur : Impossible de rétablir car aucune action n'a été effectuée !");
     else{
         stack->restoreMemento(redostack[indexUndo]);//on restaure la pile avec celle sauvegardé dans redostack à l'indice indexUndo
         indexUndo--; //on décrémente cet index
@@ -888,6 +905,6 @@ void Calculator::redo(){
 }
 
 void Calculator::storeUndo(int index){
-    undostack[index%20]=stack->stackMemento();//on sauvegarde l'état de la stack dans un Memento dans le tableau de pile undostack
-    index++;
+    undostack[index % 20] = stack->stackMemento();//on sauvegarde l'état de la stack dans un Memento dans le tableau de pile undostack
+    index++; // Intérêt d'incrémenter ? La variable est copiée.
 }

@@ -53,7 +53,8 @@ Memento * Stack::stackMemento() {
 }
 
 void Stack::restoreMemento (Memento* mem){
-    if(mem->state.isEmpty()==false)
-        literals= mem->state;
-    else throw ("Pas de memento en mémoire");
+    if(!mem->state.isEmpty())
+        literals = mem->state;
+    else
+        throw CalculatorException("Erreur : Pas de memento en mémoire.");
 }

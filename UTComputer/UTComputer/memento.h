@@ -8,10 +8,9 @@ class Memento {
 
 private:
     QStack<Literal*> state;
+
 public:
-    Memento(QStack <Literal*> l){
-        state = l;
-    }
+    Memento(QStack <Literal*> l) : state(l){}
 };
 
 
