@@ -15,11 +15,11 @@ protected:
     LiteralFactory factory;
 
     //les deux tableaux de Memento pour sauvegarder les undo et redo
-    static Memento* undostack[20];
-    static Memento* redostack[20];
+    Memento* undostack[20];
+    Memento* redostack[20];
     //les indices de ces tableaux
-    static int numCommand;
-    static int indexUndo;
+    int numCommand;
+    int indexUndo;
 
 
     QString lastop;
@@ -57,14 +57,15 @@ public:
     Stack& getStack() {return *stack;}
 
     //fonction undo() et redo()
-//    static void undo();
-//    void static redo();
+    void undo();
+    void redo();
 
     /*!
      * \brief Fonction qui permet de stocker dans undoStack l'état de la pile à ce moment
      * \param index (indice de la commande undo, vaut l'attribut numCommand)
      */
-//    void storeUndo(int index);
+
+    void storeUndo(int index);
 
 
 };

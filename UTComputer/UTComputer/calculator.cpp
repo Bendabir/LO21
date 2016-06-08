@@ -6,11 +6,10 @@
 #include "literal.h"
 #include "atom_literal.h"
 
-// Initialisation des attributs statics
-int Calculator::numCommand = 0;
-int Calculator::indexUndo = 0;
 
 Calculator::Calculator() : stack(new Stack()), settings(new Settings()){
+    numCommand=0;
+    indexUndo=0;
 }
 
 Calculator::~Calculator(){
@@ -107,6 +106,7 @@ void Calculator::command(const QString& c){
     // Si on a un nombre, on le créait. A noter qu'on ne peut pas créer de complexes ou de rationnels directements ! (Même si on le fait pour charger les paramètres)
     if(isNumber(commandText) || isProgramm(commandText) || isExpression(commandText) || isComplex(commandText) || isRational(commandText)){
         try {
+            storeUndo(numCommand);
             stack->push(factory.addLiteralFromString(commandText));
         }
         catch(const CalculatorException& e){
@@ -130,6 +130,7 @@ void Calculator::command(const QString& c){
             if(op == "+"){
                 try {
                     Literal& res = *literals[1] + *literals[0];
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -146,6 +147,7 @@ void Calculator::command(const QString& c){
             if(op == "-"){
                 try {
                     Literal& res = *literals[1] - *literals[0];
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -161,6 +163,7 @@ void Calculator::command(const QString& c){
             if(op == "*"){
                 try {
                     Literal& res = *literals[1] * *literals[0];
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -176,12 +179,14 @@ void Calculator::command(const QString& c){
             if(op == "/"){
                 try {
                     Literal& res = *literals[1] / *literals[0];
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
                     // On rétablit les littérales
                     for(int i = literals.length() - 1; i >= 0; i--)
                         stack->push(*literals[i]);
+
 
                     error = true;
                     throw e;
@@ -191,12 +196,14 @@ void Calculator::command(const QString& c){
             if(op == "DIV"){
                 try {
                     Literal& res = literals[1]->div(*literals[0]);
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
                     // On rétablit les littérales
                     for(int i = literals.length() - 1; i >= 0; i--)
                         stack->push(*literals[i]);
+
 
                     error = true;
                     throw e;
@@ -206,12 +213,14 @@ void Calculator::command(const QString& c){
             if(op == "MOD"){
                 try {
                     Literal& res = literals[1]->mod(*literals[0]);
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
                     // On rétablit les littérales
                     for(int i = literals.length() - 1; i >= 0; i--)
                         stack->push(*literals[i]);
+
 
                     error = true;
                     throw e;
@@ -221,12 +230,14 @@ void Calculator::command(const QString& c){
             if(op == "POW"){
                 try {
                     Literal& res = literals[1]->pow(*literals[0]);
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
                     // On rétablit les littérales
                     for(int i = literals.length() - 1; i >= 0; i--)
                         stack->push(*literals[i]);
+
 
                     error = true;
                     throw e;
@@ -235,33 +246,39 @@ void Calculator::command(const QString& c){
 
             if(op == "NEG"){
                 Literal& res = -*literals[0];
+                storeUndo(numCommand);
                 stack->push(res);
             }
 
             if(op == "SIN"){
                 Literal& res = literals[0]->sin();
+                storeUndo(numCommand);
                 stack->push(res);
             }
 
             if(op == "COS"){
                 Literal& res = literals[0]->cos();
+                storeUndo(numCommand);
                 stack->push(res);
             }
 
             if(op == "TAN"){
                 Literal& res = literals[0]->tan();
+                storeUndo(numCommand);
                 stack->push(res);
             }
 
             if(op == "ARCSIN"){
                 try {
                     Literal& res = literals[0]->arcsin();
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
                     // On rétablit les littérales
                     for(int i = literals.length() - 1; i >= 0; i--)
                         stack->push(*literals[i]);
+
 
                     error = true;
                     throw e;
@@ -271,6 +288,7 @@ void Calculator::command(const QString& c){
             if(op == "ARCCOS"){
                 try {
                     Literal& res = literals[0]->arccos();
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -285,12 +303,14 @@ void Calculator::command(const QString& c){
 
             if(op == "ARCTAN"){
                 Literal& res = literals[0]->arctan();
+                storeUndo(numCommand);
                 stack->push(res);
             }
 
             if(op == "SQRT"){
                 try {
                     Literal& res = literals[0]->sqrt();
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -305,12 +325,14 @@ void Calculator::command(const QString& c){
 
             if(op == "EXP"){
                 Literal& res = literals[0]->exp();
+                storeUndo(numCommand);
                 stack->push(res);
             }
 
             if(op == "LN"){
                 try {
                     Literal& res = literals[0]->ln();
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -326,6 +348,7 @@ void Calculator::command(const QString& c){
             if(op == "DEN"){
                 try {
                     Literal& res = literals[0]->den();
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -341,6 +364,7 @@ void Calculator::command(const QString& c){
             if(op == "NUM"){
                 try {
                     Literal& res = literals[0]->num();
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -356,6 +380,7 @@ void Calculator::command(const QString& c){
             if(op == "$"){
                 try {
                     Literal& res = literals[1]->$(*literals[0]);
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -370,17 +395,20 @@ void Calculator::command(const QString& c){
 
             if(op == "RE"){
                 Literal& res = literals[0]->re();
+                storeUndo(numCommand);
                 stack->push(res);
             }
 
             if(op == "IM"){
                 Literal& res = literals[0]->im();
+                storeUndo(numCommand);
                 stack->push(res);
             }
 
             if(op == "ARG"){
                 try {
                     Literal& res = literals[0]->arg();
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -396,6 +424,7 @@ void Calculator::command(const QString& c){
             if(op == "NORM"){
                 try {
                     Literal& res = literals[0]->norm();
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -412,6 +441,7 @@ void Calculator::command(const QString& c){
             if(op == "="){
                 try {
                     Literal& res = *literals[1] == *literals[0];
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -427,6 +457,7 @@ void Calculator::command(const QString& c){
             if(op == "!="){
                 try {
                     Literal& res = *literals[1] != *literals[0];
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -442,6 +473,7 @@ void Calculator::command(const QString& c){
             if(op == ">="){
                 try {
                     Literal& res = *literals[1] >= *literals[0];
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -457,6 +489,7 @@ void Calculator::command(const QString& c){
             if(op == ">"){
                 try {
                     Literal& res = *literals[1] > *literals[0];
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -472,6 +505,7 @@ void Calculator::command(const QString& c){
             if(op == "<="){
                 try {
                     Literal& res = *literals[1] <= *literals[0];
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -487,6 +521,7 @@ void Calculator::command(const QString& c){
             if(op == "<"){
                 try {
                     Literal& res = *literals[1] < *literals[0];
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -502,6 +537,7 @@ void Calculator::command(const QString& c){
             if(op == "NOT"){
                 try {
                     Literal& res = !*literals[0];
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -516,6 +552,7 @@ void Calculator::command(const QString& c){
             if(op == "AND"){
                 try {
                     Literal& res = *literals[1] && *literals[0];
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -531,6 +568,7 @@ void Calculator::command(const QString& c){
             if(op == "OR"){
                 try {
                     Literal& res = *literals[1] || *literals[0];
+                    storeUndo(numCommand);
                     stack->push(res);
                 }
                 catch(const CalculatorException& e){
@@ -562,6 +600,7 @@ void Calculator::command(const QString& c){
         QString op = commandText;
 
         if(op == "CLEAR"){
+            storeUndo(numCommand);
             while(!stack->empty()){
                 Literal& pop = stack->pop();
 
@@ -573,6 +612,7 @@ void Calculator::command(const QString& c){
         if(op == "DUP"){
             try {
                 Literal& dup = stack->top();
+                storeUndo(numCommand);
                 stack->push(dup);
 
                 // On retient l'argument dans lastargs
@@ -588,6 +628,7 @@ void Calculator::command(const QString& c){
             try{
                 // On nettoie lastargs (nettoie la factory au passage) puis on retient le dernier élément dépilé
                 cleanLastArgs();
+                storeUndo(numCommand);
                 lastargs.push_back(&stack->pop());
             }
             catch(const CalculatorException& e){
@@ -602,6 +643,8 @@ void Calculator::command(const QString& c){
             try {
                 Literal& l1 = stack->pop();
                 Literal& l2 = stack->pop();
+
+                storeUndo(numCommand);
 
                 stack->push(l1);
                 stack->push(l2);
@@ -622,6 +665,7 @@ void Calculator::command(const QString& c){
             Literal& l = stack->pop();
 
             try {
+                storeUndo(numCommand);
                 command(l.eval()); // Pose un problème (sauf si l'on autorise l'ajout de rationnels ou de complexes depuis leur forme string
 
                 // On sauvegarde la litérale utilisée
@@ -644,6 +688,8 @@ void Calculator::command(const QString& c){
             Literal& target = stack->pop(); // La variable pointée
 
             QString atomName = atom.toString().replace("'", "");
+
+            storeUndo(numCommand);
 
             try {
                 // On regarde si la variable existe, sinon on écrase
@@ -807,29 +853,28 @@ void Calculator::cleanLastArgs(){
     lastargs.clear();
 }
 
-// Les méthodes statiques ne peuvent accéder qu'à des membres statiques...
-//void Calculator::undo(){
-//    if (numCommand==0)
-//        throw("aucune action effectuée!");
-//    else{
-//        redostack[indexUndo%20]=stack->stackMemento();//on stock la pile en cours dans le redostack
-//        indexUndo++;
-//        stack->restoreMemento(undostack[numCommand%20]);//on restaure la pile avec le numero de la command actuel
-//        numCommand--;
-//    }
-//}
+void Calculator::undo(){
+    if (numCommand==0)
+        throw("aucune action effectuée!");
+    else{
+        redostack[indexUndo%20]=stack->stackMemento();//on stock la pile en cours dans le redostack
+        indexUndo++;
+        stack->restoreMemento(undostack[numCommand%20]);//on restaure la pile avec le numero de la command actuel
+        numCommand--;
+    }
+}
 
-//void Calculator::redo(){
-//    if(indexUndo==0)
-//        throw("aucune action effectuée!");
-//    else{
-//        stack->restoreMemento(redostack[indexUndo]);//on restaure la pile avec celle sauvegardé dans redostack à l'indice indexUndo
-//        indexUndo--; //on décrémente cet index
-//    }
+void Calculator::redo(){
+    if(indexUndo==0)
+        throw("aucune action effectuée!");
+    else{
+        stack->restoreMemento(redostack[indexUndo]);//on restaure la pile avec celle sauvegardé dans redostack à l'indice indexUndo
+        indexUndo--; //on décrémente cet index
+    }
 
-//}
+}
 
-//void Calculator::storeUndo(int index){
-//    undostack[index%20]=stack->stackMemento();//on sauvegarde l'état de la stack dans un Memento dans le tableau de pile undostack
-//    index++;
-//}
+void Calculator::storeUndo(int index){
+    undostack[index%20]=stack->stackMemento();//on sauvegarde l'état de la stack dans un Memento dans le tableau de pile undostack
+    index++;
+}
