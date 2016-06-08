@@ -95,7 +95,6 @@ void Calculator::command(const QString& c){
     if(c.isEmpty())
         return;
 
-
     QString commandText = c.toUpper().trimmed();
 
     // On sauvegarde l'état de la pile (sauf quand on fait une commande qui touche au memento
@@ -628,7 +627,7 @@ void Calculator::command(const QString& c){
 
         if(op == "DUP"){
             try {
-                Literal& dup = stack->top();
+                Literal& dup = factory.addLiteralFromString(stack->top().toString());
 
                 stack->push(dup);
 
