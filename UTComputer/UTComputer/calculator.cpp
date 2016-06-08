@@ -9,6 +9,12 @@
 Calculator::Calculator() : stack(new Stack()), settings(new Settings()), mementoIndex(0), topIndex(0){}
 
 Calculator::~Calculator(){
+    // On détruit tout
+    stack->clear();
+    factory.clear();
+    lastargs.clear();
+
+//    delete[] mementoList;
     delete stack;
     delete settings;
 }
@@ -712,7 +718,10 @@ void Calculator::command(const QString& c){
                 if(factory.existsAtom(atomName)){
                     AtomLiteral& variable = dynamic_cast<AtomLiteral&>(factory.findLiteral(atomName));
                     factory.removeLiteral(variable.getTarget());
-                    variable.setTarget(target);
+                    // On crée une nouvelle littérale (duplication pour la cible)
+                    Literal& dup = factory.addLiteralFromString(target.toString());
+
+                    variable.setTarget(dup);
                     stack->push(variable);
                 }
                 else{

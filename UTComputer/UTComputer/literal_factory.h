@@ -99,6 +99,7 @@ public:
      * \return Vrai si la littérale existe, faux sinon
      */
     bool existsLiteral(const QString& l) const;
+    void clear() {literals.clear();}
 
     /*!
      * \brief Adaptateur de la classe iterator de QVector<Literal*> pour plus de facilité d'utilisation.

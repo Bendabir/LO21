@@ -2,6 +2,7 @@
 
 #include "expression_literal.h"
 #include "complex_literal.h"
+#include "atom_literal.h"
 
 QString ExpressionLiteral::concat(const QString& op) const {
     // On ne traite que des fonctions
@@ -149,8 +150,9 @@ QString ExpressionLiteral::evaluate() const {
         // Si c'est une variable, on va faire quelques tests pour être sûrs
         if(isVariable(token)){
             if(this->manager->existsAtom(token)){
-                Literal& atom = this->manager->findLiteral(token);
-                output.append(atom.eval()); // A voir si on évalue la variable dans l'évaluation (ou si on la laisse telle qu'elle) et si oui, si on l'évalue sur une itération ou sur toute sa chaine de référence
+                AtomLiteral& atom = dynamic_cast<AtomLiteral&>(this->manager->findLiteral(token));
+
+                output.append(atom.getTarget().eval()); // A voir si on évalue la variable dans l'évaluation (ou si on la laisse telle qu'elle) et si oui, si on l'évalue sur une itération ou sur toute sa chaine de référence
             }
             // Si on a qu'un seul token, on déclare surement une variable donc on ne renvoie pas d'erreur
             else if(tokens.length() == 1){
