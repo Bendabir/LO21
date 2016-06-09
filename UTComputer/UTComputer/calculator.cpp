@@ -878,7 +878,7 @@ void Calculator::command(const QString& c, bool keep){
                 // On vérifie ce que c'est avant de lancer
                 if(isOperator(commands[i]) || isStackOperator(commands[i]) || isFunction(commands[i]) || isNumber(commands[i]) || isExpression(commands[i]) || isProgramm(commands[i]) || isVariable(commands[i])){
                     try {
-                        this->command(commands[i], false); // On saute la sauvegarde
+                        this->command(commands[i], false); // On saute la sauvegarde de la pile et des derniers arguments lors d'un appel récurrent
                     }
                     catch(const CalculatorException& e){
                         throw e; // On propage en cas d'erreur
@@ -893,10 +893,11 @@ void Calculator::command(const QString& c, bool keep){
 void Calculator::cleanLastArgs(bool nokeep){
     // On supprime les littérales dans lastargs si ce n'est pas un atome et si ce n'est pas dans la pile. Il ne faut pas supprimer les cibles de variables non plus
     if(nokeep){
-//        for(int i = 0; i < lastargs.length(); i++){
-//            if(!lastargs[i]->isAtom() && !stack->contains(*lastargs[i]) && !factory.isPointed(*lastargs[i]))
-////                factory.removeLiteral(*lastargs[i]);
-//        }
+        for(int i = 0; i < lastargs.length(); i++){
+            // Si ce n'est pas un atome, pas dans la pile, pas pointé et pas déjà supprimé
+            if(!lastargs[i]->isAtom() && !stack->contains(*lastargs[i]) && !factory.isPointed(*lastargs[i]) && !factory.existsLiteral(lastargs[i]->toString()))
+                factory.removeLiteral(*lastargs[i]);
+        }
         qDebug() << "Place en mémoire : " << factory.size();
 
         lastargs.clear();
