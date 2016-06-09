@@ -330,7 +330,7 @@ QString Number::eval() const {
     else
         result = QString::number(numerator);
 
-    if(denominator != 0){
+    if(denominator != 1){
         result += " ";
 
         if(denominator < 0)
@@ -338,8 +338,10 @@ QString Number::eval() const {
         else
             result += QString::number(numerator);
 
-        result += " /"
+        result += " /";
     }
+
+    return result;
 }
 
 
