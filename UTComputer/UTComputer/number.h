@@ -252,6 +252,10 @@ public:
      */
     double toReal() const;
 
+    /*!
+     * \brief Permet de transformer un nombre (rationnel ou non) en expression postfixée.
+     * \return Nombre évalué
+     */
     QString eval() const;
 };
 

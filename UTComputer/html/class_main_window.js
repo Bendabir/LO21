@@ -2,8 +2,10 @@ var class_main_window =
 [
     [ "MainWindow", "class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db", null ],
     [ "~MainWindow", "class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7", null ],
+    [ "addTextToCommand", "class_main_window.html#a67e200e5f576fec77706eb66a7db716d", null ],
     [ "execute", "class_main_window.html#a86c3ae4d4606e66365c7d4a3e0194981", null ],
     [ "executeOnOperatorPressed", "class_main_window.html#a4d97f4d23efaddab21f46f9955927fce", null ],
+    [ "executeOperator", "class_main_window.html#ad5efbdc596aafb0b5ceb5299bd40c6cc", null ],
     [ "on0Pressed", "class_main_window.html#ab084458a9494f514a185f39bd9a5c6ff", null ],
     [ "on1Pressed", "class_main_window.html#aa12e9b5229449c7a4ea04c1a84d6b165", null ],
     [ "on2Pressed", "class_main_window.html#aa095d7af79d121624b18a75c781d8f22", null ],
@@ -71,6 +73,12 @@ var class_main_window =
     [ "onTimesPressed", "class_main_window.html#a8a6cd35601232edc2816d5c76ab2e8bd", null ],
     [ "onUndoPressed", "class_main_window.html#a02a439d20a555240714fb7f1b1a75b7c", null ],
     [ "onWhilePressed", "class_main_window.html#a1d7f49ddb81feaca00d95665ff12d2c9", null ],
+    [ "refreshListView", "class_main_window.html#a3d4d7d1c62bfaaf4063826ee9d9201a3", null ],
     [ "save", "class_main_window.html#a3ba1a371fb10e731ae0926ae85efeb4f", null ],
-    [ "updateSettings", "class_main_window.html#a156c29c6d7ab278e4246c88a0fcbe2f2", null ]
+    [ "setUserMessage", "class_main_window.html#ac86fd8b1e9f3181b7a79862e21aa67f4", null ],
+    [ "updateSettings", "class_main_window.html#a156c29c6d7ab278e4246c88a0fcbe2f2", null ],
+    [ "editProgrammDialog", "class_main_window.html#aca627111d6fe846d9a6bd7d304e9c7b5", null ],
+    [ "editVariablesDialog", "class_main_window.html#a7c670985aacc0c4c42b4cddf48936d90", null ],
+    [ "settingsDialog", "class_main_window.html#aef5f3e9b117558b9c1d633231bd0d833", null ],
+    [ "ui", "class_main_window.html#a35466a70ed47252a0191168126a352a5", null ]
 ];

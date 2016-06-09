@@ -12,15 +12,18 @@ class Calculator;
  * \brief La classe Stack est la pile de calcul de la calculatrice.
  */
 class Stack {
-    friend class Calculator; // ???
+    friend class Calculator;
 
 private:
     QStack<Literal*> literals;
 
 public:
+    /*!
+     * \brief Constructeur
+     */
     Stack();
-    Stack(const Stack& s);
-    Stack& operator=(const Stack& s);
+//    Stack(const Stack& s);
+//    Stack& operator=(const Stack& s);
 
     // On réimplémente les fonctions utiles
     /*!

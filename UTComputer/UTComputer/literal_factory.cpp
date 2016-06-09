@@ -158,7 +158,7 @@ bool LiteralFactory::isPointed(const Literal& l){
 
             // Si la cible match
             if(&l == &atom.getTarget()){
-                qDebug() << l.toString() << " est pointée par " << atom.toString();
+//                qDebug() << l.toString() << " est pointée par " << atom.toString();
                 return true;
             }
         }

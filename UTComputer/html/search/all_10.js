@@ -1,6 +1,7 @@
 var searchData=
 [
   ['tan',['tan',['../class_atom_literal.html#a4b886ee37b3e77e8f8253ae93c53a96a',1,'AtomLiteral::tan()'],['../class_complex_literal.html#a4491b92c0264ecc1030d9053196c2d3f',1,'ComplexLiteral::tan()'],['../class_literal.html#a57c1ae90641ec8bf89717f2a643abc1e',1,'Literal::tan()'],['../class_number.html#a9afa01643a0e2ac68c8e01420d094ca9',1,'Number::tan()'],['../class_string_literal.html#a3d0ac52a26d25912fa4c9a3bb66c6b66',1,'StringLiteral::tan()']]],
+  ['target',['target',['../class_atom_literal.html#a86d69ee5282f237276c25d343df739d7',1,'AtomLiteral']]],
   ['top',['top',['../class_stack.html#abd2d1e5c262da34bf426fedf2e46225a',1,'Stack::top()'],['../class_stack.html#a5336f1dfcf97850ecba9dea2f51026f5',1,'Stack::top() const ']]],
   ['topindex',['topIndex',['../class_calculator.html#a338810387ef2e57b92e34e24bf0e3fb2',1,'Calculator']]],
   ['toreal',['toReal',['../class_number.html#a0ad6826e72f0b7b7cbe33baac43f2653',1,'Number']]],

@@ -18,6 +18,9 @@ private:
     QVector<Literal*> literals;
 
 public:
+    /*!
+     * \brief Constructeur sans argument
+     */
     LiteralFactory();
 
     /*!
@@ -99,7 +102,15 @@ public:
      * \return Vrai si la littérale existe, faux sinon
      */
     bool existsLiteral(const QString& l) const;
+    /*!
+     * \brief Permet de savoir si le manager est vide.
+     */
     void clear() {literals.clear();}
+    /*!
+     * \brief Permet de savoir si la littérale passée en paramètre est pointée par un atome.
+     * \param l : Littérale à identifier
+     * \return Vrai si la littérale est pointée par un atome, faux sinon
+     */
     bool isPointed(const Literal& l);
 
     /*!

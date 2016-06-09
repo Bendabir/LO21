@@ -9,5 +9,8 @@ var class_settings =
     [ "saveSettingsToFile", "class_settings.html#afbe41d153522768cb6bdd3744339b6a5", null ],
     [ "setDisplayKeyboard", "class_settings.html#a527f38928e1ba2c82c64a9fc444cb72a", null ],
     [ "setNbLiteralsOnStack", "class_settings.html#ae3588b47fc55c6c8a6be9c6cf07abcab", null ],
-    [ "setPlaySound", "class_settings.html#a00b6e126e69de9ecf4fd8454ab64eace", null ]
+    [ "setPlaySound", "class_settings.html#a00b6e126e69de9ecf4fd8454ab64eace", null ],
+    [ "displayKeyboard", "class_settings.html#aa78c9d4d9542225d6f3fe61d900411e9", null ],
+    [ "nbLiteralsOnStack", "class_settings.html#a09e08e243a249782a0849ad57aa376a8", null ],
+    [ "playSound", "class_settings.html#a9ef002ce5bd053b477dd644cfb692327", null ]
 ];

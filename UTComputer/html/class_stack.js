@@ -4,7 +4,6 @@ var class_stack =
     [ "iterator", "class_stack_1_1iterator.html", "class_stack_1_1iterator" ],
     [ "reverse_iterator", "class_stack_1_1reverse__iterator.html", "class_stack_1_1reverse__iterator" ],
     [ "Stack", "class_stack.html#a14cd1cba325bead4ff0a91bc6eb0f6f5", null ],
-    [ "Stack", "class_stack.html#ac0da4dcd9a1ad66f99cea32d26c5d2cf", null ],
     [ "begin", "class_stack.html#a50571f5f80f8124311b39498a007ac5c", null ],
     [ "cbegin", "class_stack.html#a91a6802f77982e498e695e4b80a540a1", null ],
     [ "cend", "class_stack.html#a5e1a6c23f4eba2cad6c9ba55c0e47138", null ],
@@ -13,7 +12,6 @@ var class_stack =
     [ "createMemento", "class_stack.html#abd6280c9d06088b9e0038435efa581ba", null ],
     [ "empty", "class_stack.html#a2bd88c7b8faf901f4830ed616bf6478f", null ],
     [ "end", "class_stack.html#a02415f89ea8988765ae889fd9778541c", null ],
-    [ "operator=", "class_stack.html#a5b31a7bde7b9443305d58315bec66745", null ],
     [ "operator[]", "class_stack.html#ab9dc0d05e57a2df07dadc8fe7564d069", null ],
     [ "operator[]", "class_stack.html#ae926df1e5c6bee0724d6a1e444169ba0", null ],
     [ "pop", "class_stack.html#a065a0c5f48daaac6effbd817eb91cc5c", null ],
@@ -24,5 +22,6 @@ var class_stack =
     [ "size", "class_stack.html#ae53b3e26c5288bb1974693b1b2767a69", null ],
     [ "top", "class_stack.html#abd2d1e5c262da34bf426fedf2e46225a", null ],
     [ "top", "class_stack.html#a5336f1dfcf97850ecba9dea2f51026f5", null ],
-    [ "Calculator", "class_stack.html#abadcb24a4a0b52860a5e7618e3f66914", null ]
+    [ "Calculator", "class_stack.html#abadcb24a4a0b52860a5e7618e3f66914", null ],
+    [ "literals", "class_stack.html#a21de4343c366cdd41cf62e0cdb78c77d", null ]
 ];

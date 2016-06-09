@@ -1,5 +1,6 @@
 var class_complex_literal =
 [
+    [ "ComplexLiteral", "class_complex_literal.html#a71a23ea6f727a24e7de66f53b8edfa30", null ],
     [ "arccos", "class_complex_literal.html#a57f17153a4783eef2b325fb55cc71ac5", null ],
     [ "arcsin", "class_complex_literal.html#a9197c64751c645c39d87afc084986226", null ],
     [ "arctan", "class_complex_literal.html#a7b107fe91151402b29cf7d52cceec61b", null ],
@@ -46,5 +47,7 @@ var class_complex_literal =
     [ "tan", "class_complex_literal.html#a4491b92c0264ecc1030d9053196c2d3f", null ],
     [ "toString", "class_complex_literal.html#a73228f02667b2e172f7e50ec4ee4510a", null ],
     [ "LiteralFactory", "class_complex_literal.html#ab0ad5b2e683c750b9f78fd13da3fee67", null ],
-    [ "const", "class_complex_literal.html#a7789312cc5b51191ae26f14068391ea8", null ]
+    [ "const", "class_complex_literal.html#a7789312cc5b51191ae26f14068391ea8", null ],
+    [ "imaginary", "class_complex_literal.html#a06df395cd728e46c178f65a63c08f72c", null ],
+    [ "real", "class_complex_literal.html#a5b80901ce22553bd531d053a63be5891", null ]
 ];

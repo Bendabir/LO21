@@ -1,5 +1,6 @@
 var class_atom_literal =
 [
+    [ "AtomLiteral", "class_atom_literal.html#a5b59373f4461d9b3f3cac67b89e00ca8", null ],
     [ "arccos", "class_atom_literal.html#a4ab101bdfa05fc69a1910e30235830e6", null ],
     [ "arcsin", "class_atom_literal.html#a870c566d10537e1e59f5aaa20e2fb389", null ],
     [ "arctan", "class_atom_literal.html#a62c8ea5b17caa9d694fa9e3f2cbe8c31", null ],
@@ -45,5 +46,7 @@ var class_atom_literal =
     [ "tan", "class_atom_literal.html#a4b886ee37b3e77e8f8253ae93c53a96a", null ],
     [ "toString", "class_atom_literal.html#aabd5112f4c7cb717e87f5b507b4c9254", null ],
     [ "LiteralFactory", "class_atom_literal.html#ab0ad5b2e683c750b9f78fd13da3fee67", null ],
-    [ "const", "class_atom_literal.html#af81b7210f297931feee71c0ed73ae4fd", null ]
+    [ "atom", "class_atom_literal.html#a9f0319e8daf6ad67a0434f0894312d23", null ],
+    [ "const", "class_atom_literal.html#af81b7210f297931feee71c0ed73ae4fd", null ],
+    [ "target", "class_atom_literal.html#a86d69ee5282f237276c25d343df739d7", null ]
 ];

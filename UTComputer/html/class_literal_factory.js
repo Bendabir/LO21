@@ -17,7 +17,9 @@ var class_literal_factory =
     [ "existsAtom", "class_literal_factory.html#a1e5f990266a6ee110ebc2d606f02f446", null ],
     [ "existsLiteral", "class_literal_factory.html#a073b549fc613ae0a6b77f933f089a7f2", null ],
     [ "findLiteral", "class_literal_factory.html#a020af7be2b909da05ef58497616da49b", null ],
+    [ "isPointed", "class_literal_factory.html#a22127625e631df769ee98776bac8ac9c", null ],
     [ "operator[]", "class_literal_factory.html#afa091bcf0690c0fc160ff33321cc15b1", null ],
     [ "removeLiteral", "class_literal_factory.html#a8401d933bed9b95aa50c08e26bdc0d18", null ],
-    [ "size", "class_literal_factory.html#a041197ead79fd37ca7b9176295aadae1", null ]
+    [ "size", "class_literal_factory.html#a041197ead79fd37ca7b9176295aadae1", null ],
+    [ "literals", "class_literal_factory.html#a52151550acebc55c7677363596006e06", null ]
 ];

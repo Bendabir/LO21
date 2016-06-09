@@ -8,5 +8,6 @@ var class_literal_factory_1_1const__iterator =
     [ "operator++", "class_literal_factory_1_1const__iterator.html#afde79ec595fe442d0325ffb77d035555", null ],
     [ "operator--", "class_literal_factory_1_1const__iterator.html#a839116b6dd2a3fd578663c1f1a8818a8", null ],
     [ "operator--", "class_literal_factory_1_1const__iterator.html#ab092e4c93beea06acc1da810e0d04a6a", null ],
-    [ "operator==", "class_literal_factory_1_1const__iterator.html#a59ddd04247a558eefa2c4959a7b78d8d", null ]
+    [ "operator==", "class_literal_factory_1_1const__iterator.html#a59ddd04247a558eefa2c4959a7b78d8d", null ],
+    [ "current", "class_literal_factory_1_1const__iterator.html#a5bbf7d59df36e2e98f61cd371d4ac013", null ]
 ];

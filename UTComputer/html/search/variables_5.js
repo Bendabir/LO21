@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['manager',['manager',['../class_literal.html#aaf98fbbd4440483f27c09a5375f00607',1,'Literal']]],
-  ['mementoindex',['mementoIndex',['../class_calculator.html#a5ac17eaac5df0f85ee4aa237e7c577f1',1,'Calculator']]],
-  ['mementolist',['mementoList',['../class_calculator.html#ad020dd07581b42528557ad8d1203dbd1',1,'Calculator']]]
+  ['imaginary',['imaginary',['../class_complex_literal.html#a06df395cd728e46c178f65a63c08f72c',1,'ComplexLiteral']]],
+  ['info',['info',['../class_calculator_exception.html#aa96e9d803194773ced64abb91698e2db',1,'CalculatorException']]]
 ];

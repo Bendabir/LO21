@@ -7,6 +7,7 @@ var class_number =
     [ "cos", "class_number.html#acaf2976a78509d4f9f860dd552648da8", null ],
     [ "den", "class_number.html#a566ec45c3f39cf01175bd8b2631fbbb4", null ],
     [ "div", "class_number.html#a9303234c0f79e8079aa1a6faa7297fd0", null ],
+    [ "eval", "class_number.html#a353edf1beb3abb0f4e7e16136661a5aa", null ],
     [ "exp", "class_number.html#a42fcc22b2060f948e4ac5f0302903f4d", null ],
     [ "getDenominator", "class_number.html#a716ff6f749c0c149f7494ddf7f1cba15", null ],
     [ "getNumerator", "class_number.html#a89a6e273df1aadbb440dc2f3d9cbdae1", null ],
@@ -35,9 +36,13 @@ var class_number =
     [ "operator>=", "class_number.html#a84f78d6c23d00eb61bc67906990e27b5", null ],
     [ "operator||", "class_number.html#ab9f99fcb25e501ae21f1500af547144f", null ],
     [ "pow", "class_number.html#ab37b51db87d3b9de31d726359c51e0cc", null ],
+    [ "sign", "class_number.html#a49dc13f60ae40ed8d18d3654db286bf4", null ],
+    [ "simplify", "class_number.html#a8b0871ac06a6daccd7e2f0f29987a95f", null ],
     [ "sin", "class_number.html#ab2fc55a8ee3af58b419796662bfe5469", null ],
     [ "sqrt", "class_number.html#a18a845a691e754d1ac07144609815663", null ],
     [ "tan", "class_number.html#a9afa01643a0e2ac68c8e01420d094ca9", null ],
     [ "toReal", "class_number.html#a0ad6826e72f0b7b7cbe33baac43f2653", null ],
-    [ "toString", "class_number.html#a5f65cfff0169a920353c635b134bde9c", null ]
+    [ "toString", "class_number.html#a5f65cfff0169a920353c635b134bde9c", null ],
+    [ "denominator", "class_number.html#ad2f17b805bc85f0f8e2ac3e3b496ef11", null ],
+    [ "numerator", "class_number.html#a926e9a6665aa5f15b1d7a0e310bc1033", null ]
 ];
