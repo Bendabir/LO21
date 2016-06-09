@@ -163,8 +163,8 @@ Literal& ComplexLiteral::operator/(const Literal& l) const {
         // On tente la division
         try {
             // (a + ib)/(c + id) = [(ac + bd) + i(bc - ad)]/[c^2 + d^2]
-            Number re = (a*c + b*d),
-                   im = (b*c - a*d);
+            Number re = (a*c + b*d) / (c.pow(2) + d.pow(2)),
+                   im = (b*c - a*d) / (c.pow(2) + d.pow(2));
 
             return this->manager->addLiteral(re, im);
         }
