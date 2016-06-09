@@ -14,6 +14,7 @@ var searchData=
   ['execute',['execute',['../class_main_window.html#a86c3ae4d4606e66365c7d4a3e0194981',1,'MainWindow']]],
   ['executeonoperatorpressed',['executeOnOperatorPressed',['../class_main_window.html#a4d97f4d23efaddab21f46f9955927fce',1,'MainWindow']]],
   ['existsatom',['existsAtom',['../class_literal_factory.html#a1e5f990266a6ee110ebc2d606f02f446',1,'LiteralFactory']]],
+  ['existsliteral',['existsLiteral',['../class_literal_factory.html#a073b549fc613ae0a6b77f933f089a7f2',1,'LiteralFactory']]],
   ['exp',['exp',['../class_atom_literal.html#a1c5b039d5ec8d8c887aa2340a752e764',1,'AtomLiteral::exp()'],['../class_complex_literal.html#a8e73a42e37de7ce18aa2c18732b005d6',1,'ComplexLiteral::exp()'],['../class_literal.html#a070f957888375659ae9827bd813dcf47',1,'Literal::exp()'],['../class_number.html#a42fcc22b2060f948e4ac5f0302903f4d',1,'Number::exp()'],['../class_string_literal.html#ad6771569ef534e9560be48fd69191aef',1,'StringLiteral::exp()']]],
   ['expression',['expression',['../class_string_literal.html#a74a95bf982b347cc0e9e22bea90f4efd',1,'StringLiteral']]],
   ['expression_5fliteral_2ecpp',['expression_literal.cpp',['../expression__literal_8cpp.html',1,'']]],

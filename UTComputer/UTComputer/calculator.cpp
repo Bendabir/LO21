@@ -666,8 +666,6 @@ void Calculator::command(const QString& c){
                 Literal& l1 = stack->pop();
                 Literal& l2 = stack->pop();
 
-
-
                 stack->push(l1);
                 stack->push(l2);
 

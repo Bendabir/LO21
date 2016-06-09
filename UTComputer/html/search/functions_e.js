@@ -13,6 +13,5 @@ var searchData=
   ['size',['size',['../class_literal_factory.html#a041197ead79fd37ca7b9176295aadae1',1,'LiteralFactory::size()'],['../class_stack.html#ae53b3e26c5288bb1974693b1b2767a69',1,'Stack::size()']]],
   ['sqrt',['sqrt',['../class_atom_literal.html#a3a0dee1e5e3d416d4895d6f52acd95e3',1,'AtomLiteral::sqrt()'],['../class_complex_literal.html#ae8e0b8bb4146169a29fbf62bc0a80bfc',1,'ComplexLiteral::sqrt()'],['../class_literal.html#a502ec46e2810303a99d2924091807a44',1,'Literal::sqrt()'],['../class_number.html#a18a845a691e754d1ac07144609815663',1,'Number::sqrt()'],['../class_string_literal.html#a3203801d626605aebc5da3eb3d556efa',1,'StringLiteral::sqrt()']]],
   ['stack',['Stack',['../class_stack.html#a14cd1cba325bead4ff0a91bc6eb0f6f5',1,'Stack::Stack()'],['../class_stack.html#ac0da4dcd9a1ad66f99cea32d26c5d2cf',1,'Stack::Stack(const Stack &amp;s)']]],
-  ['stackmemento',['stackMemento',['../class_stack.html#a25f3a4d65e9053fc1b0ee7c1935b9823',1,'Stack']]],
   ['stringliteral',['StringLiteral',['../class_string_literal.html#a84cc1b6b83832a16540dda16c574bd15',1,'StringLiteral']]]
 ];

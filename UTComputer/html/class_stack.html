@@ -171,12 +171,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae926df1e5c6bee0724d6a1e444169ba0"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_literal.html">Literal</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stack.html#ae926df1e5c6bee0724d6a1e444169ba0">operator[]</a> (int i) const </td></tr>
 <tr class="memdesc:ae926df1e5c6bee0724d6a1e444169ba0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adatapteur de l'opérateur [] de QStack&lt;Literal*&gt; dans sa version const.  <a href="#ae926df1e5c6bee0724d6a1e444169ba0">More...</a><br /></td></tr>
 <tr class="separator:ae926df1e5c6bee0724d6a1e444169ba0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25f3a4d65e9053fc1b0ee7c1935b9823"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memento.html">Memento</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stack.html#a25f3a4d65e9053fc1b0ee7c1935b9823">stackMemento</a> ()</td></tr>
-<tr class="memdesc:a25f3a4d65e9053fc1b0ee7c1935b9823"><td class="mdescLeft">&#160;</td><td class="mdescRight">stackMemento permet de creer un memento de la pile  <a href="#a25f3a4d65e9053fc1b0ee7c1935b9823">More...</a><br /></td></tr>
-<tr class="separator:a25f3a4d65e9053fc1b0ee7c1935b9823"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d073336884cf415073e04d9907973d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stack.html#a4d073336884cf415073e04d9907973d2">restoreMemento</a> (<a class="el" href="class_memento.html">Memento</a> *mem)</td></tr>
-<tr class="memdesc:a4d073336884cf415073e04d9907973d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">restoreMemento permet de charger l'attribut literal de la stack avec le memento stocké en mémoire  <a href="#a4d073336884cf415073e04d9907973d2">More...</a><br /></td></tr>
-<tr class="separator:a4d073336884cf415073e04d9907973d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd6280c9d06088b9e0038435efa581ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memento.html">Memento</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stack.html#abd6280c9d06088b9e0038435efa581ba">createMemento</a> ()</td></tr>
+<tr class="memdesc:abd6280c9d06088b9e0038435efa581ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">stackMemento permet de creer un memento de la pile  <a href="#abd6280c9d06088b9e0038435efa581ba">More...</a><br /></td></tr>
+<tr class="separator:abd6280c9d06088b9e0038435efa581ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3cf85f582aedc33e4782078d19b05b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stack.html#af3cf85f582aedc33e4782078d19b05b5">restoreMemento</a> (<a class="el" href="class_memento.html">Memento</a> *mem, <a class="el" href="class_literal_factory.html">LiteralFactory</a> &amp;f)</td></tr>
+<tr class="memdesc:af3cf85f582aedc33e4782078d19b05b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">restoreMemento permet de charger l'attribut literal de la stack avec le memento stocké en mémoire  <a href="#af3cf85f582aedc33e4782078d19b05b5">More...</a><br /></td></tr>
+<tr class="separator:af3cf85f582aedc33e4782078d19b05b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50571f5f80f8124311b39498a007ac5c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_stack_1_1iterator.html">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stack.html#a50571f5f80f8124311b39498a007ac5c">begin</a> ()</td></tr>
 <tr class="memdesc:a50571f5f80f8124311b39498a007ac5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renvoie un iterator qui correspond à la première litérale de la pile.  <a href="#a50571f5f80f8124311b39498a007ac5c">More...</a><br /></td></tr>
 <tr class="separator:a50571f5f80f8124311b39498a007ac5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -369,6 +369,24 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Vrai si la litérale a été trouvée, faux sinon </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="abd6280c9d06088b9e0038435efa581ba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_memento.html">Memento</a> * Stack::createMemento </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>stackMemento permet de creer un memento de la pile </p>
+<dl class="section return"><dt>Returns</dt><dd>renvoi une QStack de literal* avec: new <a class="el" href="class_memento.html">Memento(literals)</a> </dd></dl>
 
 </div>
 </div>
@@ -592,7 +610,7 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4d073336884cf415073e04d9907973d2"></a>
+<a class="anchor" id="af3cf85f582aedc33e4782078d19b05b5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -600,8 +618,18 @@ Friends</h2></td></tr>
           <td class="memname">void Stack::restoreMemento </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_memento.html">Memento</a> *&#160;</td>
-          <td class="paramname"><em>mem</em></td><td>)</td>
+          <td class="paramname"><em>mem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="class_literal_factory.html">LiteralFactory</a> &amp;&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -639,24 +667,6 @@ Friends</h2></td></tr>
 
 <p>Adatapteur de la fonction <a class="el" href="class_stack.html#ae53b3e26c5288bb1974693b1b2767a69" title="Adatapteur de la fonction size() de QStack&lt;Literal*&gt; ">size()</a> de QStack&lt;Literal*&gt; </p>
 <dl class="section return"><dt>Returns</dt><dd>Taille de la pile de calcul </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a25f3a4d65e9053fc1b0ee7c1935b9823"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_memento.html">Memento</a> * Stack::stackMemento </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>stackMemento permet de creer un memento de la pile </p>
-<dl class="section return"><dt>Returns</dt><dd>renvoi une QStack de literal* avec: new <a class="el" href="class_memento.html">Memento(literals)</a> </dd></dl>
 
 </div>
 </div>

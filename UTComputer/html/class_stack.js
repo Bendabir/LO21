@@ -10,6 +10,7 @@ var class_stack =
     [ "cend", "class_stack.html#a5e1a6c23f4eba2cad6c9ba55c0e47138", null ],
     [ "clear", "class_stack.html#adab1284b8929385d4020356fb52c8139", null ],
     [ "contains", "class_stack.html#a52625f38dc3116faddc8f99a9f50874d", null ],
+    [ "createMemento", "class_stack.html#abd6280c9d06088b9e0038435efa581ba", null ],
     [ "empty", "class_stack.html#a2bd88c7b8faf901f4830ed616bf6478f", null ],
     [ "end", "class_stack.html#a02415f89ea8988765ae889fd9778541c", null ],
     [ "operator=", "class_stack.html#a5b31a7bde7b9443305d58315bec66745", null ],
@@ -19,9 +20,8 @@ var class_stack =
     [ "push", "class_stack.html#a83deb9ae140e5f3eb4f1da5d88c0215d", null ],
     [ "rbegin", "class_stack.html#a143e2dfa6a6eb4266378014766b5bfba", null ],
     [ "rend", "class_stack.html#a8412dec147080003086b65c477007fe4", null ],
-    [ "restoreMemento", "class_stack.html#a4d073336884cf415073e04d9907973d2", null ],
+    [ "restoreMemento", "class_stack.html#af3cf85f582aedc33e4782078d19b05b5", null ],
     [ "size", "class_stack.html#ae53b3e26c5288bb1974693b1b2767a69", null ],
-    [ "stackMemento", "class_stack.html#a25f3a4d65e9053fc1b0ee7c1935b9823", null ],
     [ "top", "class_stack.html#abd2d1e5c262da34bf426fedf2e46225a", null ],
     [ "top", "class_stack.html#a5336f1dfcf97850ecba9dea2f51026f5", null ],
     [ "Calculator", "class_stack.html#abadcb24a4a0b52860a5e7618e3f66914", null ]

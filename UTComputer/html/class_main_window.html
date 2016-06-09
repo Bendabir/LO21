@@ -115,6 +115,9 @@ $(document).ready(function(){initNavTree('class_main_window.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p>Fenêtre principale de l'application.  
+ <a href="class_main_window.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="mainwindow_8h_source.html">mainwindow.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for MainWindow:</div>
@@ -294,6 +297,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aea406980696c6b00c983f27b5fc195c9 inherit pub_methods_class_calculator"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_stack.html">Stack</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calculator.html#aea406980696c6b00c983f27b5fc195c9">getStack</a> ()</td></tr>
 <tr class="memdesc:aea406980696c6b00c983f27b5fc195c9 inherit pub_methods_class_calculator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesseur sur la pile de calcul.  <a href="#aea406980696c6b00c983f27b5fc195c9">More...</a><br /></td></tr>
 <tr class="separator:aea406980696c6b00c983f27b5fc195c9 inherit pub_methods_class_calculator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff2d11f562ab5261d7879a606859e524 inherit pub_methods_class_calculator"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calculator.html#aff2d11f562ab5261d7879a606859e524">undo</a> ()</td></tr>
+<tr class="separator:aff2d11f562ab5261d7879a606859e524 inherit pub_methods_class_calculator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a285140c8de6fb168413f8dc03fcab57e inherit pub_methods_class_calculator"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calculator.html#a285140c8de6fb168413f8dc03fcab57e">redo</a> ()</td></tr>
+<tr class="separator:a285140c8de6fb168413f8dc03fcab57e inherit pub_methods_class_calculator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -304,12 +311,20 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:ab4b885102864b0de88a41466b60d3bfd inherit pro_attribs_class_calculator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9284142ad20d6c6930833ee525369354 inherit pro_attribs_class_calculator"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_literal_factory.html">LiteralFactory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calculator.html#a9284142ad20d6c6930833ee525369354">factory</a></td></tr>
 <tr class="separator:a9284142ad20d6c6930833ee525369354 inherit pro_attribs_class_calculator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad020dd07581b42528557ad8d1203dbd1 inherit pro_attribs_class_calculator"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memento.html">Memento</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calculator.html#ad020dd07581b42528557ad8d1203dbd1">mementoList</a> [<a class="el" href="calculator_8h.html#a43034bdd0ae7c6267b05ff35ae97cddf">HISTORY_SIZE</a>]</td></tr>
+<tr class="separator:ad020dd07581b42528557ad8d1203dbd1 inherit pro_attribs_class_calculator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ac17eaac5df0f85ee4aa237e7c577f1 inherit pro_attribs_class_calculator"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calculator.html#a5ac17eaac5df0f85ee4aa237e7c577f1">mementoIndex</a></td></tr>
+<tr class="separator:a5ac17eaac5df0f85ee4aa237e7c577f1 inherit pro_attribs_class_calculator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a338810387ef2e57b92e34e24bf0e3fb2 inherit pro_attribs_class_calculator"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calculator.html#a338810387ef2e57b92e34e24bf0e3fb2">topIndex</a></td></tr>
+<tr class="separator:a338810387ef2e57b92e34e24bf0e3fb2 inherit pro_attribs_class_calculator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeab451e061ad11eaa84061e579684037 inherit pro_attribs_class_calculator"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calculator.html#aeab451e061ad11eaa84061e579684037">lastop</a></td></tr>
 <tr class="separator:aeab451e061ad11eaa84061e579684037 inherit pro_attribs_class_calculator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dbc09f0493518b3fb4e84d1d2a0d40d inherit pro_attribs_class_calculator"><td class="memItemLeft" align="right" valign="top">QVector&lt; <a class="el" href="class_literal.html">Literal</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calculator.html#a6dbc09f0493518b3fb4e84d1d2a0d40d">lastargs</a></td></tr>
 <tr class="separator:a6dbc09f0493518b3fb4e84d1d2a0d40d inherit pro_attribs_class_calculator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Fenêtre principale de l'application. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a8b244be8b7b7db1b08de2a2acb9409db"></a>
 <div class="memitem">
 <div class="memproto">

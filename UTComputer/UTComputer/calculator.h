@@ -42,7 +42,7 @@ public:
      * \brief Constructeur sans argument
      */
     Calculator(); // En privé si Singleton
-    ~Calculator(); // En privé si Singleton
+    virtual ~Calculator(); // En privé si Singleton
 
     /*!
      * \brief Permet d'exécuter une commande ou une suite de commande à partir d'une chaine de caractères.

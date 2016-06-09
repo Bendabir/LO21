@@ -125,7 +125,7 @@ Inheritance diagram for Calculator:</div>
  <div class="center">
   <img src="class_calculator.png" usemap="#Calculator_map" alt=""/>
   <map id="Calculator_map" name="Calculator_map">
-<area href="class_main_window.html" alt="MainWindow" shape="rect" coords="0,56,84,80"/>
+<area href="class_main_window.html" title="Fenêtre principale de l&#39;application. " alt="MainWindow" shape="rect" coords="0,56,84,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -142,6 +142,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aea406980696c6b00c983f27b5fc195c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_stack.html">Stack</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calculator.html#aea406980696c6b00c983f27b5fc195c9">getStack</a> ()</td></tr>
 <tr class="memdesc:aea406980696c6b00c983f27b5fc195c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesseur sur la pile de calcul.  <a href="#aea406980696c6b00c983f27b5fc195c9">More...</a><br /></td></tr>
 <tr class="separator:aea406980696c6b00c983f27b5fc195c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff2d11f562ab5261d7879a606859e524"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calculator.html#aff2d11f562ab5261d7879a606859e524">undo</a> ()</td></tr>
+<tr class="separator:aff2d11f562ab5261d7879a606859e524"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a285140c8de6fb168413f8dc03fcab57e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calculator.html#a285140c8de6fb168413f8dc03fcab57e">redo</a> ()</td></tr>
+<tr class="separator:a285140c8de6fb168413f8dc03fcab57e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -151,6 +155,12 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:ab4b885102864b0de88a41466b60d3bfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9284142ad20d6c6930833ee525369354"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_literal_factory.html">LiteralFactory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calculator.html#a9284142ad20d6c6930833ee525369354">factory</a></td></tr>
 <tr class="separator:a9284142ad20d6c6930833ee525369354"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad020dd07581b42528557ad8d1203dbd1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_memento.html">Memento</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calculator.html#ad020dd07581b42528557ad8d1203dbd1">mementoList</a> [<a class="el" href="calculator_8h.html#a43034bdd0ae7c6267b05ff35ae97cddf">HISTORY_SIZE</a>]</td></tr>
+<tr class="separator:ad020dd07581b42528557ad8d1203dbd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ac17eaac5df0f85ee4aa237e7c577f1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calculator.html#a5ac17eaac5df0f85ee4aa237e7c577f1">mementoIndex</a></td></tr>
+<tr class="separator:a5ac17eaac5df0f85ee4aa237e7c577f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a338810387ef2e57b92e34e24bf0e3fb2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calculator.html#a338810387ef2e57b92e34e24bf0e3fb2">topIndex</a></td></tr>
+<tr class="separator:a338810387ef2e57b92e34e24bf0e3fb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeab451e061ad11eaa84061e579684037"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calculator.html#aeab451e061ad11eaa84061e579684037">lastop</a></td></tr>
 <tr class="separator:aeab451e061ad11eaa84061e579684037"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dbc09f0493518b3fb4e84d1d2a0d40d"><td class="memItemLeft" align="right" valign="top">QVector&lt; <a class="el" href="class_literal.html">Literal</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calculator.html#a6dbc09f0493518b3fb4e84d1d2a0d40d">lastargs</a></td></tr>
@@ -243,6 +253,36 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a285140c8de6fb168413f8dc03fcab57e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Calculator::redo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aff2d11f562ab5261d7879a606859e524"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Calculator::undo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a class="anchor" id="a9284142ad20d6c6930833ee525369354"></a>
 <div class="memitem">
@@ -304,6 +344,46 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a5ac17eaac5df0f85ee4aa237e7c577f1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Calculator::mementoIndex</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad020dd07581b42528557ad8d1203dbd1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_memento.html">Memento</a>* Calculator::mementoList[<a class="el" href="calculator_8h.html#a43034bdd0ae7c6267b05ff35ae97cddf">HISTORY_SIZE</a>]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ab4b885102864b0de88a41466b60d3bfd"></a>
 <div class="memitem">
 <div class="memproto">
@@ -333,6 +413,26 @@ Protected Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="class_stack.html">Stack</a>* Calculator::stack</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a338810387ef2e57b92e34e24bf0e3fb2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Calculator::topIndex</td>
         </tr>
       </table>
   </td>

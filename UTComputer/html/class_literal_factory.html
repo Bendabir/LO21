@@ -166,6 +166,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1e5f990266a6ee110ebc2d606f02f446"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a1e5f990266a6ee110ebc2d606f02f446">existsAtom</a> (const QString &amp;atom) const </td></tr>
 <tr class="memdesc:a1e5f990266a6ee110ebc2d606f02f446"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de vérifier si un nom de variable (atome) est déjà utilisé.  <a href="#a1e5f990266a6ee110ebc2d606f02f446">More...</a><br /></td></tr>
 <tr class="separator:a1e5f990266a6ee110ebc2d606f02f446"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a073b549fc613ae0a6b77f933f089a7f2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a073b549fc613ae0a6b77f933f089a7f2">existsLiteral</a> (const QString &amp;l) const </td></tr>
+<tr class="memdesc:a073b549fc613ae0a6b77f933f089a7f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de vérifier si une littérale existe.  <a href="#a073b549fc613ae0a6b77f933f089a7f2">More...</a><br /></td></tr>
+<tr class="separator:a073b549fc613ae0a6b77f933f089a7f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a536d2b556afd71dbab7a6168ad7415f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a536d2b556afd71dbab7a6168ad7415f6">clear</a> ()</td></tr>
+<tr class="separator:a536d2b556afd71dbab7a6168ad7415f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17203128a5aaa661cbdcae9e21bd4904"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_literal_factory_1_1iterator.html">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_literal_factory.html#a17203128a5aaa661cbdcae9e21bd4904">begin</a> ()</td></tr>
 <tr class="memdesc:a17203128a5aaa661cbdcae9e21bd4904"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renvoie un iterator qui correspond à la première litérale du manager.  <a href="#a17203128a5aaa661cbdcae9e21bd4904">More...</a><br /></td></tr>
 <tr class="separator:a17203128a5aaa661cbdcae9e21bd4904"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -423,6 +428,29 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a536d2b556afd71dbab7a6168ad7415f6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LiteralFactory::clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a697eeb0ab97eb9c1de32227c36c07df6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -497,6 +525,31 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Vrai si le nom est déjà pris, faux sinon </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a073b549fc613ae0a6b77f933f089a7f2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool LiteralFactory::existsLiteral </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de vérifier si une littérale existe. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Le</td><td>nom de la littérale à vérifier </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vrai si la littérale existe, faux sinon </dd></dl>
 
 </div>
 </div>

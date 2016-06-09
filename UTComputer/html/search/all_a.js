@@ -1,9 +1,15 @@
 var searchData=
 [
-  ['nbtokens',['nbTokens',['../class_expression_literal.html#a25ad11fc6761f634afabd013bc48ae23',1,'ExpressionLiteral']]],
-  ['norm',['norm',['../class_atom_literal.html#a420d194451940d48295a5e0eef2858fb',1,'AtomLiteral::norm()'],['../class_complex_literal.html#a72b5c530f0c09bd7dd8af0d058306158',1,'ComplexLiteral::norm()'],['../class_literal.html#a029480762146c931e9a069d66c67c4b2',1,'Literal::norm()'],['../class_string_literal.html#a99f0d695a2a706e60351a155e07faadd',1,'StringLiteral::norm()']]],
-  ['num',['num',['../class_atom_literal.html#a719dfb59238cac9c986f09de89e6f26c',1,'AtomLiteral::num()'],['../class_complex_literal.html#a641d54251d07ecb66472444f159c8279',1,'ComplexLiteral::num()'],['../class_literal.html#a8c8eff6a39fd2255e42b40dc1d299c62',1,'Literal::num()'],['../class_number.html#a561a662e63a3c247be167224bcea4a65',1,'Number::num()'],['../class_string_literal.html#a0dd020aba329d915bd577fc6d7bcff43',1,'StringLiteral::num()']]],
-  ['number',['Number',['../class_number.html',1,'Number'],['../class_number.html#afcd2de1b4f472c0504a0034635641c30',1,'Number::Number()']]],
-  ['number_2ecpp',['number.cpp',['../number_8cpp.html',1,'']]],
-  ['number_2eh',['number.h',['../number_8h.html',1,'']]]
+  ['main',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
+  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
+  ['mainwindow',['MainWindow',['../class_main_window.html',1,'MainWindow'],['../class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db',1,'MainWindow::MainWindow()']]],
+  ['mainwindow_2ecpp',['mainwindow.cpp',['../mainwindow_8cpp.html',1,'']]],
+  ['mainwindow_2eh',['mainwindow.h',['../mainwindow_8h.html',1,'']]],
+  ['manager',['manager',['../class_literal.html#aaf98fbbd4440483f27c09a5375f00607',1,'Literal']]],
+  ['max_5flength',['MAX_LENGTH',['../string__literal_8cpp.html#a7a9a231e30b47bc0345749c8bd1e5077',1,'MAX_LENGTH():&#160;string_literal.cpp'],['../string__literal_8h.html#a7a9a231e30b47bc0345749c8bd1e5077',1,'MAX_LENGTH():&#160;string_literal.h']]],
+  ['memento',['Memento',['../class_memento.html',1,'Memento'],['../class_memento.html#ac7ed569e0ebcb23545e407aa1a75e2c1',1,'Memento::Memento()']]],
+  ['memento_2eh',['memento.h',['../memento_8h.html',1,'']]],
+  ['mementoindex',['mementoIndex',['../class_calculator.html#a5ac17eaac5df0f85ee4aa237e7c577f1',1,'Calculator']]],
+  ['mementolist',['mementoList',['../class_calculator.html#ad020dd07581b42528557ad8d1203dbd1',1,'Calculator']]],
+  ['mod',['mod',['../class_atom_literal.html#a45451a13ab74553c628d073e3879393d',1,'AtomLiteral::mod()'],['../class_complex_literal.html#a34b8ca610893cc12f8e5979acc908f7e',1,'ComplexLiteral::mod()'],['../class_literal.html#aa642325f45ec5e91d240697cf4c1ad49',1,'Literal::mod()'],['../class_number.html#a443ade1bfcd9702f5890494e09b0831c',1,'Number::mod()'],['../class_string_literal.html#a73a0f2eb51e130215a1f23eb4d200818',1,'StringLiteral::mod()']]]
 ];

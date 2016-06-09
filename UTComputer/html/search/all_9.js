@@ -1,13 +1,13 @@
 var searchData=
 [
-  ['main',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
-  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['mainwindow',['MainWindow',['../class_main_window.html',1,'MainWindow'],['../class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db',1,'MainWindow::MainWindow()']]],
-  ['mainwindow_2ecpp',['mainwindow.cpp',['../mainwindow_8cpp.html',1,'']]],
-  ['mainwindow_2eh',['mainwindow.h',['../mainwindow_8h.html',1,'']]],
-  ['manager',['manager',['../class_literal.html#aaf98fbbd4440483f27c09a5375f00607',1,'Literal']]],
-  ['max_5flength',['MAX_LENGTH',['../string__literal_8cpp.html#a7a9a231e30b47bc0345749c8bd1e5077',1,'MAX_LENGTH():&#160;string_literal.cpp'],['../string__literal_8h.html#a7a9a231e30b47bc0345749c8bd1e5077',1,'MAX_LENGTH():&#160;string_literal.h']]],
-  ['memento',['Memento',['../class_memento.html',1,'Memento'],['../class_memento.html#a6070b397bc8e39c39aaf4f5ffb5f5716',1,'Memento::Memento()']]],
-  ['memento_2eh',['memento.h',['../memento_8h.html',1,'']]],
-  ['mod',['mod',['../class_atom_literal.html#a45451a13ab74553c628d073e3879393d',1,'AtomLiteral::mod()'],['../class_complex_literal.html#a34b8ca610893cc12f8e5979acc908f7e',1,'ComplexLiteral::mod()'],['../class_literal.html#aa642325f45ec5e91d240697cf4c1ad49',1,'Literal::mod()'],['../class_number.html#a443ade1bfcd9702f5890494e09b0831c',1,'Number::mod()'],['../class_string_literal.html#a73a0f2eb51e130215a1f23eb4d200818',1,'StringLiteral::mod()']]]
+  ['lastargs',['lastargs',['../class_calculator.html#a6dbc09f0493518b3fb4e84d1d2a0d40d',1,'Calculator']]],
+  ['lastop',['lastop',['../class_calculator.html#aeab451e061ad11eaa84061e579684037',1,'Calculator']]],
+  ['literal',['Literal',['../class_literal.html',1,'Literal'],['../class_literal.html#aa3e6df32fd781877a456246ff7992995',1,'Literal::Literal()']]],
+  ['literal_2ecpp',['literal.cpp',['../literal_8cpp.html',1,'']]],
+  ['literal_2eh',['literal.h',['../literal_8h.html',1,'']]],
+  ['literal_5ffactory_2ecpp',['literal_factory.cpp',['../literal__factory_8cpp.html',1,'']]],
+  ['literal_5ffactory_2eh',['literal_factory.h',['../literal__factory_8h.html',1,'']]],
+  ['literalfactory',['LiteralFactory',['../class_literal_factory.html',1,'LiteralFactory'],['../class_atom_literal.html#ab0ad5b2e683c750b9f78fd13da3fee67',1,'AtomLiteral::LiteralFactory()'],['../class_complex_literal.html#ab0ad5b2e683c750b9f78fd13da3fee67',1,'ComplexLiteral::LiteralFactory()'],['../class_expression_literal.html#ab0ad5b2e683c750b9f78fd13da3fee67',1,'ExpressionLiteral::LiteralFactory()'],['../class_programm_literal.html#ab0ad5b2e683c750b9f78fd13da3fee67',1,'ProgrammLiteral::LiteralFactory()'],['../class_literal_factory.html#a56ad68cf36938de64bbd93cbda8d19de',1,'LiteralFactory::LiteralFactory()']]],
+  ['ln',['ln',['../class_atom_literal.html#aabc22030232d718db023c925189e80ab',1,'AtomLiteral::ln()'],['../class_complex_literal.html#a69fdaa68d035b1e8d19127d868fcb9da',1,'ComplexLiteral::ln()'],['../class_literal.html#aed664fbb5ca6ce3ace4d4b09b188134a',1,'Literal::ln()'],['../class_number.html#a8d915db8495c8cf7dce53d076768ab09',1,'Number::ln()'],['../class_string_literal.html#a1469e24c82025e0fd4a9d74d26bc95ca',1,'StringLiteral::ln()']]],
+  ['loadsettingsfromfile',['loadSettingsFromFile',['../class_settings.html#a4972009375c771e3e6037ada87176212',1,'Settings']]]
 ];

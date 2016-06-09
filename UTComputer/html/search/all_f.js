@@ -1,7 +1,25 @@
 var searchData=
 [
-  ['tan',['tan',['../class_atom_literal.html#a4b886ee37b3e77e8f8253ae93c53a96a',1,'AtomLiteral::tan()'],['../class_complex_literal.html#a4491b92c0264ecc1030d9053196c2d3f',1,'ComplexLiteral::tan()'],['../class_literal.html#a57c1ae90641ec8bf89717f2a643abc1e',1,'Literal::tan()'],['../class_number.html#a9afa01643a0e2ac68c8e01420d094ca9',1,'Number::tan()'],['../class_string_literal.html#a3d0ac52a26d25912fa4c9a3bb66c6b66',1,'StringLiteral::tan()']]],
-  ['top',['top',['../class_stack.html#abd2d1e5c262da34bf426fedf2e46225a',1,'Stack::top()'],['../class_stack.html#a5336f1dfcf97850ecba9dea2f51026f5',1,'Stack::top() const ']]],
-  ['toreal',['toReal',['../class_number.html#a0ad6826e72f0b7b7cbe33baac43f2653',1,'Number']]],
-  ['tostring',['toString',['../class_atom_literal.html#aabd5112f4c7cb717e87f5b507b4c9254',1,'AtomLiteral::toString()'],['../class_complex_literal.html#a73228f02667b2e172f7e50ec4ee4510a',1,'ComplexLiteral::toString()'],['../class_expression_literal.html#a1c6b2a904ed1ae1894a582406a6e0a29',1,'ExpressionLiteral::toString()'],['../class_literal.html#af2c35c8dd7c84315f5cd9a52ee66c398',1,'Literal::toString()'],['../class_number.html#a5f65cfff0169a920353c635b134bde9c',1,'Number::toString()'],['../class_programm_literal.html#a5471ac194c611208ae406c5d05b03da7',1,'ProgrammLiteral::toString()']]]
+  ['save',['save',['../class_main_window.html#a3ba1a371fb10e731ae0926ae85efeb4f',1,'MainWindow']]],
+  ['savesettingstofile',['saveSettingsToFile',['../class_settings.html#afbe41d153522768cb6bdd3744339b6a5',1,'Settings']]],
+  ['setdisplaykeyboard',['setDisplayKeyboard',['../class_settings.html#a527f38928e1ba2c82c64a9fc444cb72a',1,'Settings']]],
+  ['setnbliteralsonstack',['setNbLiteralsOnStack',['../class_settings.html#ae3588b47fc55c6c8a6be9c6cf07abcab',1,'Settings']]],
+  ['setplaysound',['setPlaySound',['../class_settings.html#a00b6e126e69de9ecf4fd8454ab64eace',1,'Settings']]],
+  ['settarget',['setTarget',['../class_atom_literal.html#ad351f8c0abf8ab9b0e1bfeaef31e9935',1,'AtomLiteral']]],
+  ['settings',['Settings',['../class_settings.html',1,'Settings'],['../class_calculator.html#ab4b885102864b0de88a41466b60d3bfd',1,'Calculator::settings()'],['../class_settings.html#ab7169a6eefce79566dd07db3b1e5e967',1,'Settings::Settings()'],['../class_settings.html#adf78d579377b10674ad9e0959d03a228',1,'Settings::Settings(bool sound, unsigned int maxLiterals, bool keyboard)']]],
+  ['settings_2ecpp',['settings.cpp',['../settings_8cpp.html',1,'']]],
+  ['settings_2eh',['settings.h',['../settings_8h.html',1,'']]],
+  ['settings_5fdialog_2ecpp',['settings_dialog.cpp',['../settings__dialog_8cpp.html',1,'']]],
+  ['settings_5fdialog_2eh',['settings_dialog.h',['../settings__dialog_8h.html',1,'']]],
+  ['settingschanged',['settingsChanged',['../class_settings_dialog.html#a5fa4d3ec9373cddce14b70ee53eb386a',1,'SettingsDialog']]],
+  ['settingsdialog',['SettingsDialog',['../class_settings_dialog.html',1,'SettingsDialog'],['../class_settings_dialog.html#a43b26fcdddd9c6327d5d5038fc862c3c',1,'SettingsDialog::SettingsDialog()']]],
+  ['sin',['sin',['../class_atom_literal.html#adc1ec5b103d621473522ed6b79ab21b7',1,'AtomLiteral::sin()'],['../class_complex_literal.html#a2cbea11d40d8e0e597002cd1baa65134',1,'ComplexLiteral::sin()'],['../class_literal.html#aa779533b93feab92d09dbaeccbf8399c',1,'Literal::sin()'],['../class_number.html#ab2fc55a8ee3af58b419796662bfe5469',1,'Number::sin()'],['../class_string_literal.html#a33c1517a66bc6435a863cfe756b04479',1,'StringLiteral::sin()']]],
+  ['size',['size',['../class_literal_factory.html#a041197ead79fd37ca7b9176295aadae1',1,'LiteralFactory::size()'],['../class_stack.html#ae53b3e26c5288bb1974693b1b2767a69',1,'Stack::size()']]],
+  ['sqrt',['sqrt',['../class_atom_literal.html#a3a0dee1e5e3d416d4895d6f52acd95e3',1,'AtomLiteral::sqrt()'],['../class_complex_literal.html#ae8e0b8bb4146169a29fbf62bc0a80bfc',1,'ComplexLiteral::sqrt()'],['../class_literal.html#a502ec46e2810303a99d2924091807a44',1,'Literal::sqrt()'],['../class_number.html#a18a845a691e754d1ac07144609815663',1,'Number::sqrt()'],['../class_string_literal.html#a3203801d626605aebc5da3eb3d556efa',1,'StringLiteral::sqrt()']]],
+  ['stack',['Stack',['../class_stack.html',1,'Stack'],['../class_memento.html#a4641b458711966e157e765a8aef3476c',1,'Memento::Stack()'],['../class_stack.html#a14cd1cba325bead4ff0a91bc6eb0f6f5',1,'Stack::Stack()'],['../class_stack.html#ac0da4dcd9a1ad66f99cea32d26c5d2cf',1,'Stack::Stack(const Stack &amp;s)'],['../class_calculator.html#a921092f1a0c0e763bf550ec87e863a5a',1,'Calculator::stack()']]],
+  ['stack_2ecpp',['stack.cpp',['../stack_8cpp.html',1,'']]],
+  ['stack_2eh',['stack.h',['../stack_8h.html',1,'']]],
+  ['string_5fliteral_2ecpp',['string_literal.cpp',['../string__literal_8cpp.html',1,'']]],
+  ['string_5fliteral_2eh',['string_literal.h',['../string__literal_8h.html',1,'']]],
+  ['stringliteral',['StringLiteral',['../class_string_literal.html',1,'StringLiteral'],['../class_string_literal.html#a84cc1b6b83832a16540dda16c574bd15',1,'StringLiteral::StringLiteral()']]]
 ];
