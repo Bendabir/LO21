@@ -251,6 +251,8 @@ public:
      * \return Réel.
      */
     double toReal() const;
+
+    QString eval() const;
 };
 
 /*!

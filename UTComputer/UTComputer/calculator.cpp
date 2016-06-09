@@ -97,14 +97,14 @@ unsigned int getArity(const QString &c){
     return 0;
 }
 
-void Calculator::command(const QString& c){
+void Calculator::command(const QString& c, bool keep){
     if(c.isEmpty())
         return;
 
     QString commandText = c.toUpper().trimmed();
 
     // On sauvegarde l'état de la pile (sauf quand on fait une commande qui touche au memento
-    if(commandText != "UNDO" && commandText != "REDO"){
+    if(commandText != "UNDO" && commandText != "REDO" && keep){
         // Si on a atteint la fin du tableau, on décale tout pour continuer à stocker
         if(mementoIndex >= HISTORY_SIZE - 1){
             for(int i = 0; i < HISTORY_SIZE - 1; i++)
@@ -603,7 +603,7 @@ void Calculator::command(const QString& c){
 
             // On supprime les litérales si pas d'erreurs
             if(!error){
-                cleanLastArgs();
+                cleanLastArgs(keep);
 
                 // On sauvegarde les littérales dans lastargs
                 for(int i = 0; i < operatorArity; i++)
@@ -622,7 +622,7 @@ void Calculator::command(const QString& c){
         if(op == "CLEAR"){
 
             while(!stack->empty()){
-                cleanLastArgs();
+                cleanLastArgs(keep);
 
                 Literal& pop = stack->pop();
 
@@ -638,7 +638,7 @@ void Calculator::command(const QString& c){
                 stack->push(dup);
 
                 // On retient l'argument dans lastargs
-                cleanLastArgs();
+                cleanLastArgs(keep);
                 lastargs.push_back(&dup);
             }
             catch(const CalculatorException& e){
@@ -649,7 +649,7 @@ void Calculator::command(const QString& c){
         if(op == "DROP"){
             try{
                 // On nettoie lastargs (nettoie la factory au passage) puis on retient le dernier élément dépilé
-                cleanLastArgs();
+                cleanLastArgs(keep);
 
                 lastargs.push_back(&stack->pop());
             }
@@ -669,7 +669,7 @@ void Calculator::command(const QString& c){
                 stack->push(l1);
                 stack->push(l2);
 
-                cleanLastArgs();
+                cleanLastArgs(keep);
                 lastargs.push_back(&l1);
                 lastargs.push_back(&l2);
             }
@@ -689,7 +689,7 @@ void Calculator::command(const QString& c){
                 command(l.eval()); // Pose un problème (sauf si l'on autorise l'ajout de rationnels ou de complexes depuis leur forme string
 
                 // On sauvegarde la litérale utilisée
-                cleanLastArgs();
+                cleanLastArgs(keep);
                 lastargs.push_back(&l);
             }
             catch(const CalculatorException& e){
@@ -727,7 +727,7 @@ void Calculator::command(const QString& c){
                     stack->push(variable);
                 }
 
-                cleanLastArgs();
+                cleanLastArgs(keep);
                 lastargs.push_back(&atom);
                 lastargs.push_back(&target);
             }
@@ -781,7 +781,7 @@ void Calculator::command(const QString& c){
             for(int i = 0; i < 2; i++){
                 Literal& res = stack->pop();
 
-                cleanLastArgs();
+                cleanLastArgs(keep);
                 lastargs.push_back(&res);
                 literals.append(&res); // On pop la littérale, on les supprimera après
             }
@@ -801,7 +801,7 @@ void Calculator::command(const QString& c){
             for(int i = 0; i < 3; i++){
                 Literal& res = stack->pop();
 
-                cleanLastArgs();
+                cleanLastArgs(keep);
                 lastargs.append(&res);
                 literals.append(&res); // On pop la littérale, on les supprimera après
             }
@@ -861,7 +861,7 @@ void Calculator::command(const QString& c){
             pos += regex.matchedLength();
         }
 
-        qDebug() << commands;
+//        qDebug() << commands;
 
         // Sinon, si on trouve un atome inexistant, on crée une chaine qui prend la valeur de l'atome
         if(commands.length() == 1){
@@ -878,7 +878,7 @@ void Calculator::command(const QString& c){
                 // On vérifie ce que c'est avant de lancer
                 if(isOperator(commands[i]) || isStackOperator(commands[i]) || isFunction(commands[i]) || isNumber(commands[i]) || isExpression(commands[i]) || isProgramm(commands[i]) || isVariable(commands[i])){
                     try {
-                        this->command(commands[i]);
+                        this->command(commands[i], false); // On saute la sauvegarde
                     }
                     catch(const CalculatorException& e){
                         throw e; // On propage en cas d'erreur
@@ -890,20 +890,17 @@ void Calculator::command(const QString& c){
     }
 }
 
-void Calculator::cleanLastArgs(){
+void Calculator::cleanLastArgs(bool nokeep){
     // On supprime les littérales dans lastargs si ce n'est pas un atome et si ce n'est pas dans la pile. Il ne faut pas supprimer les cibles de variables non plus
-    for(int i = 0; i < lastargs.length(); i++){
-        QString exp = lastargs[i]->toString();
+    if(nokeep){
+//        for(int i = 0; i < lastargs.length(); i++){
+//            if(!lastargs[i]->isAtom() && !stack->contains(*lastargs[i]) && !factory.isPointed(*lastargs[i]))
+////                factory.removeLiteral(*lastargs[i]);
+//        }
+        qDebug() << "Place en mémoire : " << factory.size();
 
-        if(!lastargs[i]->isAtom() && !stack->contains(*lastargs[i])){
-            exp += " (Removed)";
-            factory.removeLiteral(*lastargs[i]);
-        }
-
-//        qDebug() << exp;
+        lastargs.clear();
     }
-
-    lastargs.clear();
 }
 
 void Calculator::undo(){

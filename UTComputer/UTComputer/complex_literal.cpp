@@ -613,7 +613,12 @@ Literal& ComplexLiteral::operator!() const {
 }
 
 QString ComplexLiteral::eval() const {
-    return real.toString() + " " + imaginary.toString() + " $";
+    QString result = real.eval();
+
+    if(imaginary != 0)
+        result += imaginary.eval() + " $";
+
+    return result;
 }
 
 QString ComplexLiteral::toString() const {

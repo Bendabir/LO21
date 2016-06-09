@@ -321,6 +321,27 @@ double Number::toReal() const {
     return numerator / denominator;
 }
 
+QString Number::eval() const {
+    QString result;
+
+    // On convertit en postfixe
+    if(numerator < 0)
+        result = QString::number(numerator).replace("-", "") + " NEG";
+    else
+        result = QString::number(numerator);
+
+    if(denominator != 0){
+        result += " ";
+
+        if(denominator < 0)
+            result += QString::number(numerator).replace("-", "") + " NEG";
+        else
+            result += QString::number(numerator);
+
+        result += " /"
+    }
+}
+
 
 std::ostream& operator<<(std::ostream& f, const Number& n){
     f << n.toString().toStdString();

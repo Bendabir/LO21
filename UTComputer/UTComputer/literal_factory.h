@@ -100,6 +100,7 @@ public:
      */
     bool existsLiteral(const QString& l) const;
     void clear() {literals.clear();}
+    bool isPointed(const Literal& l);
 
     /*!
      * \brief Adaptateur de la classe iterator de QVector<Literal*> pour plus de facilité d'utilisation.

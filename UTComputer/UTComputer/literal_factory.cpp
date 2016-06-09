@@ -148,3 +148,20 @@ bool LiteralFactory::existsAtom(const QString& atom) const {
 
     return false;
 }
+
+// On cherche si une littérale est référencée par un atome (au moins)
+bool LiteralFactory::isPointed(const Literal& l){
+    for(int i = 0; i < literals.size(); i++)
+        // Si on a un atome, on convertit
+        if(literals[i]->isAtom()){
+            AtomLiteral& atom = dynamic_cast<AtomLiteral&>(*literals[i]);
+
+            // Si la cible match
+            if(&l == &atom.getTarget()){
+                qDebug() << l.toString() << " est pointée par " << atom.toString();
+                return true;
+            }
+        }
+
+    return false;
+}

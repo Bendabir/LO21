@@ -34,7 +34,7 @@ private:
     /*!
      * \brief Permet de nettoyer le tableau des derniers arguments utiliser (et de supprimer convenablement de la mémoire les littérales inutiles)
      */
-    void cleanLastArgs();
+    void cleanLastArgs(bool nokeep);
 
 
 public:
@@ -48,7 +48,7 @@ public:
      * \brief Permet d'exécuter une commande ou une suite de commande à partir d'une chaine de caractères.
      * \param commantText : Commande à exécuter.
      */
-    void command(const QString& commantText);
+    void command(const QString& commantText, bool keep = true);
 
     // Accesseurs
     /*!
