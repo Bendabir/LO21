@@ -4,3 +4,5 @@ conception/UML.*
 conception/*.vpp.*
 conception/*.vpp~*
 conception/*.vux
+
+*/build*
